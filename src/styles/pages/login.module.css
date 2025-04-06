@@ -1,0 +1,61 @@
+.inputs {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  width: 70%;
+  height: 50px;
+}
+
+.inputs div {
+  display: flex;
+  flex-direction: column;
+}
+
+.inputs::placeholder {
+  color: orangered;
+  font-size: 40px;
+  font-weight: 600;
+}
+
+.inputs:focus {
+  border: none;
+  border-bottom: 2px solid black;
+  /* Ensures underline remains */
+  outline: none;
+}
+
+.login-buttons-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 70%;
+  max-width: 470px;
+  height: 100px;
+}
+
+.guest-button, .login-button:active {
+  transform: scale(0.9);
+}
+
+.login-button {
+  width: 150px;
+  height: 85px;
+  border: 2px solid #000;
+  border-radius: 10px;
+  background-color: #000;
+  color: #ffff;
+  font-size: 45px;
+  cursor: pointer;
+}
+
+.guest-button {
+  width: 300px;
+  height: 85px;
+  border: 2px solid #000;
+  border-radius: 10px;
+  background-color: #000;
+  color: #ffff;
+  font-size: 45px;
+  cursor: pointer;
+}
+
