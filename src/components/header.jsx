@@ -4,7 +4,7 @@ export default function Header() {
   return (
     <>
       <header>
-        <div class="logo-header">
+        <div className="logo-header">
           <img src="/photos/pokemon-photo.png" alt="pokemon-photo" />
           <p id="header-text">pokemon</p>
         </div>
