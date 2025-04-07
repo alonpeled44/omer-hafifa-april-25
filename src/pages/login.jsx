@@ -1,7 +1,29 @@
-import React from "react";
+import React, {useState} from "react";
 import styles from "../styles/pages/login.module.css";
 
 function Login() {
+  const usersData=[
+    { _username: "wer123", _password: "gg666" },
+    { _username: "ola098", _password: "fff3323r" },
+    { _username: "1111", _password: "2234rrr" },
+    ];
+
+    const [user, setUser] = useState({});
+
+    const handleSubmit = (event) => {
+      event.preventDefault();
+
+    }
+
+    const handleChange = ({target}) => {
+      const {name, value} = target;
+       setUser((prevUser) => ({
+        ...prevUser,
+        [name]: value
+       }));
+    }
+
+
   return (
     <main>
       <form id="form">
