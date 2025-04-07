@@ -25,11 +25,11 @@ function Login() {
           <div id="error-message"></div>
         </section>
 
-        <section className="login-buttons-container">
-          <button className="login-button" onclick="formValidation(event)">
+        <section className={styles["login-buttons-container"]}>
+          <button className={styles["login-button"]} onclick="formValidation(event)">
             login
           </button>
-          <button className="guest-button" onclick="welcomeGuest()">
+          <button className={styles["guest-button"]} onclick="welcomeGuest()">
             join as guest
           </button>
         </section>
