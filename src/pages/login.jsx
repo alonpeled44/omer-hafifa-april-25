@@ -1,5 +1,6 @@
 import React, {use, useState} from "react";
 import styles from "../styles/pages/login.module.css";
+import Header from "../components/header";
 
 function Login() {
   const usersData=[
@@ -53,6 +54,8 @@ function Login() {
 
 
   return (
+    <>
+    <Header />
     <main>
       <form id="form" onSubmit={handleSubmit}>
         <h1>Login</h1>
@@ -93,6 +96,7 @@ function Login() {
         </section>
       </form>
     </main>
+    </>
   );
 }
 

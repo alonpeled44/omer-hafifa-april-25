@@ -24,11 +24,6 @@ header {
   background-color: rgb(175, 51, 175);
 }
 
-.logo-header {
-  display: flex;
-  align-items: center;
-}
-
 img {
   width: 60px;
   height: 60px;
