@@ -34,16 +34,16 @@ if (username === "" || password === "") {
 }
 }
 
-function welcomeGuest() {
-alert("Welcome Guest");
-}
+// function welcomeGuest() {
+// alert("Welcome Guest");
+// }
 
-function updateDate() {
-const dateElement = document.querySelector("#date");
-const currentDate = new Date();
-const formattedDate = currentDate.toLocaleDateString("en-GB"); // date type: dd/mm/yyyy
-dateElement.innerHTML = formattedDate;
-}
+// function updateDate() {
+// const dateElement = document.querySelector("#date");
+// const currentDate = new Date();
+// const formattedDate = currentDate.toLocaleDateString("en-GB"); // date type: dd/mm/yyyy
+// dateElement.innerHTML = formattedDate;
+// }
 
 //Change text inside paragrapg element inside header.
 function insertHeaderContent() {

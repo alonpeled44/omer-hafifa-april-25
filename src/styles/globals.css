@@ -124,20 +124,6 @@ button:active {
     background-color: transparent;
   }
 
-  .logo-header {
-    flex-direction: row-reverse;
-    padding-top: 30px;
-  }
-
-  #header-text {
-    font-size: 50px;
-  }
-
-  h1,
-  #date {
-    display: none;
-  }
-
   main {
     height: calc(100vh - 170px);
   }
@@ -150,40 +136,12 @@ button:active {
     box-shadow: none;
   }
 
-  .inputs {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 20px;
-  }
-
   input {
     font-size: 25px;
-  }
-
-  #error-message {
-    position: absolute;
-    left: 0;
-    top: 75px;
-  }
-
-  .login-buttons-container {
-    flex-direction: column;
-    gap: 21px;
-    height: auto;
   }
 
   button {
     height: 70px;
     font-size: 45px;
-  }
-
-  .login-button {
-    width: 55%;
-  }
-
-  .guest-button {
-    width: 100%;
-    font-size: 42px;
   }
 }

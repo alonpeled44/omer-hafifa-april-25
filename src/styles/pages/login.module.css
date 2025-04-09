@@ -16,8 +16,10 @@
   position: absolute;
   left: 0;
   bottom: 200px;
-  margin-top: 4px; /* Space below input */
-  margin-bottom: 10px; /* Space above next element */
+  margin-top: 4px;
+  /* Space below input */
+  margin-bottom: 10px;
+  /* Space above next element */
   width: 100%;
 }
 
@@ -55,4 +57,40 @@
   color: #ffff;
   font-size: 45px;
   cursor: pointer;
+}
+
+
+@media screen and (max-width: 1200px) {
+
+  .login-header{
+    display: none;
+  }
+
+  .inputs {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 70px;
+  }
+
+  .error-message {
+    position: absolute;
+    left: 0;
+    top: 105px;
+  }
+
+  .login-buttons-container {
+    flex-direction: column;
+    gap: 21px;
+    height: auto;
+  }
+
+  .login-button {
+    width: 55%;
+  }
+
+  .guest-button {
+    width: 100%;
+    font-size: 42px;
+  }
 }

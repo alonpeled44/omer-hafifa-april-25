@@ -58,7 +58,7 @@ function Login() {
     <Header />
     <main>
       <form id="form" onSubmit={handleSubmit}>
-        <h1>Login</h1>
+        <h1 className={styles["login-header"]}>Login</h1>
 
         <section className={styles.inputs}>
           <div>
