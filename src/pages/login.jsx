@@ -78,7 +78,7 @@ function Login() {
               autocomplete="current-password"
             />
           </div>
-          <div id="error-message" style={{ color: "red", fontSize: 25 }}>
+          <div className={styles["error-message"]} style={{ color: "red", fontSize: 25 }}>
             {errorMessage}
           </div>
         </section>
