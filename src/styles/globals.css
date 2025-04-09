@@ -29,12 +29,6 @@ img {
   height: 60px;
 }
 
-p {
-  font-size: 35px;
-  font-weight: bold;
-  letter-spacing: 2px;
-}
-
 #date {
   display: flex;
   align-items: center;
