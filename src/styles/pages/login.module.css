@@ -21,6 +21,8 @@
   margin-bottom: 10px;
   /* Space above next element */
   width: 100%;
+  font-size: 25px;
+  color: red;
 }
 
 .login-buttons-container {

@@ -12,6 +12,9 @@ function Login() {
   const [user, setUser] = useState({});
   const [errorMessage, setErrorMessage] = useState('');
 
+  const [username, setUserame]=useState()
+  const [password, setPassword]=useState()
+
   const handleSubmit = (event) => {
     event.preventDefault();
     const inputs = event.target.querySelectorAll('input');
@@ -49,49 +52,23 @@ function Login() {
     alert('Welcome guest');
   };
 
+  const allowedKeys = [
+    'Backspace',
+    'Delete',
+    'ArrowLeft',
+    'ArrowRight',
+    'ArrowUp',
+    'ArrowDown',
+    'Tab',
+    'Enter'
+  ];
   const restrictToAlphanumeric = (event) => {
     const regex = /^[A-Za-z0-9]$/;
-    const allowedKeys = [
-      'Backspace',
-      'Delete',
-      'ArrowLeft',
-      'ArrowRight',
-      'ArrowUp',
-      'ArrowDown',
-      'Tab',
-      'Enter'
-    ];
     if (allowedKeys.includes(event.key) || regex.test(event.key)) {
       return;
     }
     event.preventDefault();
   };
-
-  // const inputRef = useRef(null);
-  // const handleInputChange = (event) => {
-  //   const newValue = event.target.value;
-  //   const filteredValue = newValue
-  //   .split('')
-  //   .filter((char) => /[A-Za-z0-9]/.test(char))
-  //   .join('');
-  //   console.log(filteredValue);
-  //   inputRef.current.value=filteredValue;
-  // };
-
-  // const handleInputChange = (event) => {
-  //   let {name, value} = event.target;
-  //   setTimeout(() => {
-  //     const regex = /[^A-Za-z0-9]/g;
-  //     value = value.replace(regex, "");
-  //     console.log("after replace: "+value);
-  //     setUser((prev) => ({
-  //       ...prev,
-  //       [name]: value
-  //     }));
-  //     console.log(user);
-  //   }, 0);
-  // };
-
 
   return (
     <>
@@ -117,7 +94,7 @@ function Login() {
                 placeholder="password"
               />
             </div>
-            <div className={styles["error-message"]} style={{ color: "red", fontSize: 25 }}>
+            <div className={styles["error-message"]}>
               {errorMessage}
             </div>
           </section>
