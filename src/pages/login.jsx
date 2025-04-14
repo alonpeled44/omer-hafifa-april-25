@@ -12,8 +12,6 @@ function Login() {
   const [user, setUser] = useState({});
   const [errorMessage, setErrorMessage] = useState('');
 
-  const [username, setUserame]=useState()
-  const [password, setPassword]=useState()
 
   const handleSubmit = (event) => {
     event.preventDefault();
