@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Header from "../components/header";
 import styles from "../styles/pages/login.module.css";
 
@@ -15,6 +15,19 @@ function Login() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
+  useEffect(() => {
+    const data = window.localStorage.getItem('User_username_and_password');
+    if(data!==null){
+      setUser(JSON.parse(data));
+    }
+  }, []);
+
+  //save localy changes of user state.
+  useEffect(() => {
+    window.localStorage.setItem('User_username_and_password', JSON.stringify(user));
+  }, [user]);
+
+
   const handleSubmit = (event) => {
     event.preventDefault();
 
@@ -22,17 +35,17 @@ function Login() {
       setErrorMessage("Username or password are empty");
       return;
     }
-    
+
     const foundUser = usersData.find(
       (currentUser) =>
-      currentUser._username === username &&
-      currentUser._password === password
-      );
-      
-      if (foundUser) {
+        currentUser._username === username &&
+        currentUser._password === password
+    );
+
+    if (foundUser) {
       setUser(foundUser);
       alert(`Welcome ${username}`);
-      setErrorMessage(""); 
+      setErrorMessage("");
     } else {
       setErrorMessage("Username or password incorrect");
     }
@@ -68,8 +81,8 @@ function Login() {
                 placeholder="username"
                 onChange={handleUsernameChange}
                 value={username}
-                />
-                <input
+              />
+              <input
                 id="password"
                 name="_password"
                 type="password"
