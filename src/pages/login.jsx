@@ -1,6 +1,6 @@
-import React, { useState } from "react";
-import styles from "../styles/pages/login.module.css";
+import { useState } from "react";
 import Header from "../components/header";
+import styles from "../styles/pages/login.module.css";
 
 function Login() {
   const usersData = [
@@ -15,30 +15,24 @@ function Login() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
-  // const handleSubmit = (event) => {
-  //   event.preventDefault();
-
-  // }
-
   const handleSubmit = (event) => {
     event.preventDefault();
 
     if (username === "" || password === "") {
       setErrorMessage("Username or password are empty");
-      setUser({ _username: username, _password: password });
       return;
     }
-    setUser({ _username: username, _password: password });
-
+    
     const foundUser = usersData.find(
       (currentUser) =>
-        currentUser._username === username &&
-        currentUser._password === password
-    );
-
-    if (foundUser) {
+      currentUser._username === username &&
+      currentUser._password === password
+      );
+      
+      if (foundUser) {
+      setUser(foundUser);
       alert(`Welcome ${username}`);
-      setErrorMessage("");
+      setErrorMessage(""); 
     } else {
       setErrorMessage("Username or password incorrect");
     }
@@ -58,24 +52,6 @@ function Login() {
     setPassword(newValue);
   };
 
-  const allowedKeys = [
-    "Backspace",
-    "Delete",
-    "ArrowLeft",
-    "ArrowRight",
-    "ArrowUp",
-    "ArrowDown",
-    "Tab",
-    "Enter",
-  ];
-  const restrictToAlphanumeric = (event) => {
-    const regex = /^[A-Za-z0-9]$/;
-    if (allowedKeys.includes(event.key) || regex.test(event.key)) {
-      return;
-    }
-    event.preventDefault();
-  };
-
   return (
     <>
       <Header />
@@ -89,18 +65,16 @@ function Login() {
                 id="username"
                 name="_username"
                 type="text"
-                onKeyDown={restrictToAlphanumeric}
-                onChange={handleUsernameChange}
                 placeholder="username"
+                onChange={handleUsernameChange}
                 value={username}
-              />
-              <input
+                />
+                <input
                 id="password"
                 name="_password"
                 type="password"
-                onKeyDown={restrictToAlphanumeric}
-                onChange={handlePasswordChange}
                 placeholder="password"
+                onChange={handlePasswordChange}
                 value={password}
               />
             </div>

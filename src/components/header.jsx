@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import pokemonIcon from "../photos/pokemon-photo.png";
+import pokemonIcon from "../images/pokemon-photo.png";
 import styles from "../styles/components/header.module.css";
 export default function Header() {
   const [currentDate, setCurrentDate] = useState(new Date());
