@@ -10,67 +10,63 @@ function Login() {
   ];
 
   const [user, setUser] = useState({});
-  const [errorMessage, setErrorMessage] = useState('');
+  const [errorMessage, setErrorMessage] = useState("");
 
-  const [username, setUsername]=useState('');
-  const [password, setPassword]=useState('');
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+
+  // const handleSubmit = (event) => {
+  //   event.preventDefault();
+
+  // }
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    const inputs = event.target.querySelectorAll('input');
-    const newUser = {};
 
-    inputs.forEach((input) => {
-      if (input.name) {
-        newUser[`${input.name}`] = input.value;
-      }
-    });
-
-    if (newUser._username === '' || newUser._password === '') {
-      setErrorMessage('Username or password are empty');
-      setUser(newUser);
+    if (username === "" || password === "") {
+      setErrorMessage("Username or password are empty");
+      setUser({ _username: username, _password: password });
       return;
     }
-    setUser(newUser);
+    setUser({ _username: username, _password: password });
 
     const foundUser = usersData.find(
       (currentUser) =>
-        currentUser._username === newUser._username &&
-        currentUser._password === newUser._password
+        currentUser._username === username &&
+        currentUser._password === password
     );
 
     if (foundUser) {
-      alert(`Welcome ${newUser._username}`);
-      setErrorMessage('');
-    }
-    else {
-      setErrorMessage('Username or password incorrect');
+      alert(`Welcome ${username}`);
+      setErrorMessage("");
+    } else {
+      setErrorMessage("Username or password incorrect");
     }
   };
 
   const handleGuestClick = () => {
-    alert('Welcome guest');
+    alert("Welcome guest");
   };
 
-  const handleUsernameChange= (event) => {
-    const newValue = event.target.value.replace(/[^A-Za-z0-9]/g, '');
+  const handleUsernameChange = (event) => {
+    const newValue = event.target.value.replace(/[^A-Za-z0-9]/g, "");
     setUsername(newValue);
-  }
+  };
 
-  const handlePasswordChange= (event) => {
-    const newValue = event.target.value.replace(/[^A-Za-z0-9]/g, '');
+  const handlePasswordChange = (event) => {
+    const newValue = event.target.value.replace(/[^A-Za-z0-9]/g, "");
     setPassword(newValue);
-  }
+  };
 
   const allowedKeys = [
-    'Backspace',
-    'Delete',
-    'ArrowLeft',
-    'ArrowRight',
-    'ArrowUp',
-    'ArrowDown',
-    'Tab',
-    'Enter'
+    "Backspace",
+    "Delete",
+    "ArrowLeft",
+    "ArrowRight",
+    "ArrowUp",
+    "ArrowDown",
+    "Tab",
+    "Enter",
   ];
   const restrictToAlphanumeric = (event) => {
     const regex = /^[A-Za-z0-9]$/;
@@ -108,16 +104,18 @@ function Login() {
                 value={password}
               />
             </div>
-            <div className={styles["error-message"]}>
-              {errorMessage}
-            </div>
+            <div className={styles["error-message"]}>{errorMessage}</div>
           </section>
 
           <section className={styles["login-buttons-container"]}>
-            <button className={styles["login-button"]} type="submit" >
+            <button className={styles["login-button"]} type="submit">
               login
             </button>
-            <button className={styles["guest-button"]} type="button" onClick={handleGuestClick}>
+            <button
+              className={styles["guest-button"]}
+              type="button"
+              onClick={handleGuestClick}
+            >
               join as guest
             </button>
           </section>
