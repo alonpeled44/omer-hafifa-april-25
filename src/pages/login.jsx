@@ -12,6 +12,8 @@ function Login() {
   const [user, setUser] = useState({});
   const [errorMessage, setErrorMessage] = useState('');
 
+  const [username, setUsername]=useState('');
+  const [password, setPassword]=useState('');
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -50,6 +52,16 @@ function Login() {
     alert('Welcome guest');
   };
 
+  const handleUsernameChange= (event) => {
+    const newValue = event.target.value.replace(/[^A-Za-z0-9]/g, '');
+    setUsername(newValue);
+  }
+
+  const handlePasswordChange= (event) => {
+    const newValue = event.target.value.replace(/[^A-Za-z0-9]/g, '');
+    setPassword(newValue);
+  }
+
   const allowedKeys = [
     'Backspace',
     'Delete',
@@ -82,14 +94,18 @@ function Login() {
                 name="_username"
                 type="text"
                 onKeyDown={restrictToAlphanumeric}
+                onChange={handleUsernameChange}
                 placeholder="username"
+                value={username}
               />
               <input
                 id="password"
                 name="_password"
                 type="password"
                 onKeyDown={restrictToAlphanumeric}
+                onChange={handlePasswordChange}
                 placeholder="password"
+                value={password}
               />
             </div>
             <div className={styles["error-message"]}>
@@ -98,7 +114,7 @@ function Login() {
           </section>
 
           <section className={styles["login-buttons-container"]}>
-            <button className={styles["login-button"]} type="submit">
+            <button className={styles["login-button"]} type="submit" >
               login
             </button>
             <button className={styles["guest-button"]} type="button" onClick={handleGuestClick}>
