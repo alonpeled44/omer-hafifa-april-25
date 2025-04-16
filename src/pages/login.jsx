@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import Header from "../components/header";
 import styles from "../styles/pages/login.module.css";
+import { useRouter } from "next/router";
 
 function Login() {
   const usersData = [
@@ -15,17 +15,14 @@ function Login() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
+  const router = useRouter();
   useEffect(() => {
-    const data = window.localStorage.getItem('User_username_and_password');
-    if(data!==null){
-      setUser(JSON.parse(data));
+    const currentUsername = localStorage.getItem('username');
+    if(currentUsername){
+      setUser(usersData.find((user) => user._username == currentUsername));
+      router.push('/');
     }
   }, []);
-
-  //save localy changes of user state.
-  useEffect(() => {
-    window.localStorage.setItem('User_username_and_password', JSON.stringify(user));
-  }, [user]);
 
 
   const handleSubmit = (event) => {
@@ -44,6 +41,7 @@ function Login() {
 
     if (foundUser) {
       setUser(foundUser);
+      localStorage.setItem('username', username);
       alert(`Welcome ${username}`);
       setErrorMessage("");
     } else {
@@ -66,27 +64,25 @@ function Login() {
   };
 
   return (
-    <>
-      <Header />
       <main>
-        <form id="form" onSubmit={handleSubmit}>
+        <form id={"form"} onSubmit={handleSubmit}>
           <h1 className={styles["login-header"]}>Login</h1>
 
           <section className={styles.inputs}>
             <div>
               <input
-                id="username"
-                name="_username"
-                type="text"
-                placeholder="username"
+                id={"username"}
+                name={"_username"}
+                type={"text"}
+                placeholder={"username"}
                 onChange={handleUsernameChange}
                 value={username}
               />
               <input
-                id="password"
-                name="_password"
-                type="password"
-                placeholder="password"
+                id={"password"}
+                name={"_password"}
+                type={"password"}
+                placeholder={"password"}
                 onChange={handlePasswordChange}
                 value={password}
               />
@@ -95,12 +91,12 @@ function Login() {
           </section>
 
           <section className={styles["login-buttons-container"]}>
-            <button className={styles["login-button"]} type="submit">
+            <button className={styles["login-button"]} type={"submit"}>
               login
             </button>
             <button
               className={styles["guest-button"]}
-              type="button"
+              type={"button"}
               onClick={handleGuestClick}
             >
               join as guest
@@ -108,7 +104,6 @@ function Login() {
           </section>
         </form>
       </main>
-    </>
   );
 }
 
