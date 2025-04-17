@@ -18,12 +18,12 @@ function Login() {
   const router = useRouter();
   useEffect(() => {
     const currentUsername = localStorage.getItem('username');
-    if(currentUsername){
-      setUser(usersData.find((user) => user._username == currentUsername));
+    if(currentUsername==='Guest')
+    {
       router.push('/');
     }
-    else if(username==='Guest')
-    {
+    else if(currentUsername){
+      setUser(usersData.find((user) => user._username == currentUsername));
       router.push('/');
     }
   }, [submitSuccess]);
@@ -57,6 +57,7 @@ function Login() {
   const handleGuestClick = () => {
     setUsername('Guest');
     setSubmitSuccess(true);
+    localStorage.setItem('username', 'Guest');
     alert("Welcome guest");
   };
 
