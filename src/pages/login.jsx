@@ -11,7 +11,7 @@ function Login() {
 
   const [user, setUser] = useState({});
   const [errorMessage, setErrorMessage] = useState("");
-
+  const [submitSuccess, setSubmitSuccess] = useState(false);
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
@@ -22,7 +22,11 @@ function Login() {
       setUser(usersData.find((user) => user._username == currentUsername));
       router.push('/');
     }
-  }, []);
+    else if(username==='Guest')
+    {
+      router.push('/');
+    }
+  }, [submitSuccess]);
 
 
   const handleSubmit = (event) => {
@@ -42,6 +46,7 @@ function Login() {
     if (foundUser) {
       setUser(foundUser);
       localStorage.setItem('username', username);
+      setSubmitSuccess(true);
       alert(`Welcome ${username}`);
       setErrorMessage("");
     } else {
@@ -50,6 +55,8 @@ function Login() {
   };
 
   const handleGuestClick = () => {
+    setUsername('Guest');
+    setSubmitSuccess(true);
     alert("Welcome guest");
   };
 
