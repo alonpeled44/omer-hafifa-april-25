@@ -1,18 +1,22 @@
 import { useEffect } from "react";
 import { useRouter } from "next/navigation";
 
-function userMenu(props) {
+function UserMenu() {
   const router = useRouter();
+  let greetingUser='';
   useEffect(()=> {
-    localStorage.removeItem(props.key);
-    router.push('/login.jsx');
+    greetingUser = 'Hello' + localStorage.getItem('username');
+  })
+  useEffect(()=> {
+    localStorage.removeItem('username');
+    router.push('/login');
   }, [])
 
   return (
     <div>
-        <p>Hello {props.username}</p>
+        <p>{greetingUser}</p>
     </div>
   )
 }
 
-export default userMenu;
+export default UserMenu;
