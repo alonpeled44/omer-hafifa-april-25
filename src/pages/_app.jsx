@@ -3,9 +3,11 @@ import UserMenu from "./userMenu";
 import "../styles/globals.css";
 
 export default function App({ Component, pageProps }) {
-  return (<>
-  <Header/>
-  <UserMenu/>
-  <Component {...pageProps} />
-  </>);
+  return (
+    <>
+      <Header />
+      <UserMenu />
+      <Component {...pageProps} />
+    </>
+  );
 }

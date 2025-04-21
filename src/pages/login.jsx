@@ -17,17 +17,14 @@ function Login() {
 
   const router = useRouter();
   useEffect(() => {
-    const currentUsername = localStorage.getItem('username');
-    if(currentUsername==='Guest')
-    {
-      router.push('/');
-    }
-    else if(currentUsername){
+    const currentUsername = localStorage.getItem("username");
+    if (currentUsername === "Guest") {
+      router.push("/");
+    } else if (currentUsername) {
       setUser(usersData.find((user) => user._username == currentUsername));
-      router.push('/');
+      router.push("/");
     }
   }, [submitSuccess]);
-
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -39,13 +36,12 @@ function Login() {
 
     const foundUser = usersData.find(
       (currentUser) =>
-        currentUser._username === username &&
-        currentUser._password === password
+        currentUser._username === username && currentUser._password === password
     );
 
     if (foundUser) {
       setUser(foundUser);
-      localStorage.setItem('username', username);
+      localStorage.setItem("username", username);
       setSubmitSuccess(true);
       alert(`Welcome ${username}`);
       setErrorMessage("");
@@ -55,9 +51,9 @@ function Login() {
   };
 
   const handleGuestClick = () => {
-    setUsername('Guest');
+    setUsername("Guest");
     setSubmitSuccess(true);
-    localStorage.setItem('username', 'Guest');
+    localStorage.setItem("username", "Guest");
     alert("Welcome guest");
   };
 
@@ -72,46 +68,46 @@ function Login() {
   };
 
   return (
-      <main>
-        <form id={"form"} onSubmit={handleSubmit}>
-          <h1 className={styles["login-header"]}>Login</h1>
+    <main>
+      <form id={"form"} onSubmit={handleSubmit}>
+        <h1 className={styles["login-header"]}>Login</h1>
 
-          <section className={styles.inputs}>
-            <div>
-              <input
-                id={"username"}
-                name={"_username"}
-                type={"text"}
-                placeholder={"username"}
-                onChange={handleUsernameChange}
-                value={username}
-              />
-              <input
-                id={"password"}
-                name={"_password"}
-                type={"password"}
-                placeholder={"password"}
-                onChange={handlePasswordChange}
-                value={password}
-              />
-            </div>
-            <div className={styles["error-message"]}>{errorMessage}</div>
-          </section>
+        <section className={styles.inputs}>
+          <div>
+            <input
+              id={"username"}
+              name={"_username"}
+              type={"text"}
+              placeholder={"username"}
+              onChange={handleUsernameChange}
+              value={username}
+            />
+            <input
+              id={"password"}
+              name={"_password"}
+              type={"password"}
+              placeholder={"password"}
+              onChange={handlePasswordChange}
+              value={password}
+            />
+          </div>
+          <div className={styles["error-message"]}>{errorMessage}</div>
+        </section>
 
-          <section className={styles["login-buttons-container"]}>
-            <button className={styles["login-button"]} type={"submit"}>
-              login
-            </button>
-            <button
-              className={styles["guest-button"]}
-              type={"button"}
-              onClick={handleGuestClick}
-            >
-              join as guest
-            </button>
-          </section>
-        </form>
-      </main>
+        <section className={styles["login-buttons-container"]}>
+          <button className={styles["login-button"]} type={"submit"}>
+            login
+          </button>
+          <button
+            className={styles["guest-button"]}
+            type={"button"}
+            onClick={handleGuestClick}
+          >
+            join as guest
+          </button>
+        </section>
+      </form>
+    </main>
   );
 }
 
