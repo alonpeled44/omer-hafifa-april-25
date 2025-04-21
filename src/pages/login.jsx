@@ -10,10 +10,10 @@ function Login() {
   ];
 
   const [user, setUser] = useState({});
-  const [errorMessage, setErrorMessage] = useState("");
-  const [submitSuccess, setSubmitSuccess] = useState(false);
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [submitSuccess, setSubmitSuccess] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
 
   const router = useRouter();
   useEffect(() => {
