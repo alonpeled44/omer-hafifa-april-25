@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import pokemonIcon from "../images/pokemon-photo.png";
 import styles from "../styles/components/header.module.css";
 
-export default function Header() {
+function Header() {
   const currentDate = new Date();
   const [width, setWidth]= useState(0);
   
@@ -28,3 +28,5 @@ export default function Header() {
     </header>
   );
 }
+
+export default Header;

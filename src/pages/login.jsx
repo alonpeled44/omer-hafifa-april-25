@@ -13,6 +13,7 @@ function Login() {
   const [password, setPassword] = useState("");
   const [submitSuccess, setSubmitSuccess] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
+  const [width, setWidth]= useState(0);
 
   const router = useRouter();
   useEffect(() => {
@@ -41,10 +42,19 @@ function Login() {
     const newValue = event.target.value.replace(/[^A-Za-z0-9]/g, "");
     setPassword(newValue);
   };
+  
+  useEffect(()=> {
+    const handleResize = () => {
+      setWidth(innerWidth);
+    }
+    handleResize();
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
 
   return (
       <form
-        id={"form"}
         className={styles['login-form']}
         onSubmit={(event) => {
           event.preventDefault();
@@ -71,14 +81,15 @@ function Login() {
           }
         }}
       >
-        <h1 className={styles["login-header"]}>Login</h1>
+        <div className={styles["login-header"]}>
+          {width>1200 && <h1>Login</h1>}
+        </div>
 
         <section className={styles.inputs}>
-          <div>
             <input
               id={"username"}
               name={"_username"}
-              type={"text"}
+              type="text"
               placeholder={"username"}
               onChange={handleUsernameChange}
               value={username}
@@ -86,22 +97,21 @@ function Login() {
             <input
               id={"password"}
               name={"_password"}
-              type={"password"}
+              type="password"
               placeholder={"password"}
               onChange={handlePasswordChange}
               value={password}
             />
-          </div>
-          <div className={styles["error-message"]}>{errorMessage}</div>
+          <p className={styles["error-message"]}>{errorMessage}</p>
         </section>
 
         <section className={styles["login-buttons-container"]}>
-          <button className={styles["login-button"]} type={"submit"}>
+          <button className={styles["login-button"]} type="submit">
             login
           </button>
           <button
             className={styles["guest-button"]}
-            type={"button"}
+            type="button"
             onClick={handleGuestClick}
           >
             join as guest
