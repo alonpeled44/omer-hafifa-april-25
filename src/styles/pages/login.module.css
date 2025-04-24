@@ -1,37 +1,98 @@
-.inputs {
+.login-main-container {
   display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-  width: 70%;
-  height: 50px;
-}
-
-.inputs div {
-  display: flex;
-  flex-direction: column;
-}
-
-.error-message {
-  text-align: center;
-  position: absolute;
-  left: 0;
-  bottom: 200px;
-  margin-top: 4px;
-  /* Space below input */
-  margin-bottom: 10px;
-  /* Space above next element */
-  width: 100%;
-  font-size: 25px;
-  color: red;
-}
-
-.login-buttons-container {
-  display: flex;
+  justify-content: center;
   align-items: center;
-  justify-content: space-between;
-  width: 70%;
-  max-width: 470px;
-  height: 100px;
+  height: calc(100vh - 70px);
+
+  & form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 80px;
+    position: relative;
+    width: 670px;
+    height: 65%;
+    border-radius: 10px;
+    background-color: orange;
+    box-shadow: 1px 1px 20px 1px orange, 1px 1px 20px 1px orange;
+
+    & h1 {
+      margin-bottom: 30px;
+      font-size: 70px;
+    }
+
+    .inputs {
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      width: 70%;
+      height: 50px;
+
+      & div {
+        display: flex;
+        flex-direction: column;
+
+        & input {
+          padding-block: 15px;
+          border: none;
+          border-bottom: 2px solid #000;
+          background-color: transparent;
+          font-size: 33px;
+        }
+        
+        & input::placeholder {
+          color: orangered;
+          font-size: 40px;
+          font-weight: 600;
+        }
+        
+        & input:focus {
+          border: none;
+          border-bottom: 2px solid black;
+          /* Ensures underline remains */
+          outline: none;
+        }
+      }
+
+      & .error-message {
+        text-align: center;
+        position: absolute;
+        left: 0;
+        bottom: 200px;
+        margin-top: 4px;
+        /* Space below input */
+        margin-bottom: 10px;
+        /* Space above next element */
+        width: 100%;
+        font-size: 25px;
+        color: red;
+      }
+    }
+
+    & .login-buttons-container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 70%;
+      max-width: 470px;
+      height: 100px;
+
+      & button {
+        height: 85px;
+        border: 2px solid #000;
+        border-radius: 10px;
+        background-color: #000;
+        color: #ffff;
+        font-size: 45px;
+        cursor: pointer;
+      }
+      
+      & button:active {
+        transform: scale(0.9);
+      }
+    } 
+  }
 }
 
 .guest-button:active,
@@ -61,10 +122,8 @@
   cursor: pointer;
 }
 
-
 @media screen and (max-width: 1200px) {
-
-  .login-header{
+  .login-header {
     display: none;
   }
 

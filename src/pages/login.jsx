@@ -43,7 +43,7 @@ function Login() {
   };
 
   return (
-    <main>
+    <main className={styles['login-main-container']}>
       <form
         id={"form"}
         onSubmit={(event) => {

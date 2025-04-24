@@ -10,19 +10,20 @@ export default function Header() {
     const handleResize = () => {
       setWidth(innerWidth);
     }
+    handleResize();
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
   return (
-    <header>
+    <header className={styles.header}>
       <div className={styles["logo-header"]}>
         <img src={pokemonIcon.src} />
         <p className={styles["header-text"]}>pokemon</p>
       </div>
 
-      <div>
-        {width>1200 && <p className={styles.date}>{currentDate.toLocaleDateString("en-GB")}</p>}
+      <div className={styles.date}>
+        {width>1200 && <p>{currentDate.toLocaleDateString("en-GB")}</p>}
       </div>
     </header>
   );
