@@ -7,7 +7,9 @@ export default function App({ Component, pageProps }) {
     <>
       <Header />
       <UserMenu />
-      <Component {...pageProps} />
+      <main>
+        <Component {...pageProps} />
+      </main>
     </>
   );
 }

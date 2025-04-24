@@ -1,10 +1,4 @@
-.login-main-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: calc(100vh - 70px);
-
-  & form {
+.login-form {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -40,13 +34,13 @@
           background-color: transparent;
           font-size: 33px;
         }
-        
+
         & input::placeholder {
           color: orangered;
           font-size: 40px;
           font-weight: 600;
         }
-        
+
         & input:focus {
           border: none;
           border-bottom: 2px solid black;
@@ -65,8 +59,8 @@
         margin-bottom: 10px;
         /* Space above next element */
         width: 100%;
-        font-size: 25px;
-        color: red;
+        font-size: 1.6rem;
+        color: #ff0000;
       }
     }
 
@@ -74,8 +68,7 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      width: 70%;
-      max-width: 470px;
+      width: min(470px, 70%);
       height: 100px;
 
       & button {
@@ -84,74 +77,89 @@
         border-radius: 10px;
         background-color: #000;
         color: #ffff;
-        font-size: 45px;
+        font-size: 2.8rem;
         cursor: pointer;
       }
-      
+
       & button:active {
         transform: scale(0.9);
       }
-    } 
+
+      & .guest-button:active,
+      .login-button:active {
+        transform: scale(0.9);
+      }
+
+      & .login-button,
+      .guest-button {
+        height: 85px;
+        border: 2px solid #000;
+        border-radius: 10px;
+        background-color: #000;
+        color: #ffff;
+        font-size: 2.8rem;
+        cursor: pointer;
+      }
+
+      & .login-button {
+        width: 150px;
+      }
+
+      & .guest-button {
+        width: 300px;
+      }
+    }
   }
-}
-
-.guest-button:active,
-.login-button:active {
-  transform: scale(0.9);
-}
-
-.login-button {
-  width: 150px;
-  height: 85px;
-  border: 2px solid #000;
-  border-radius: 10px;
-  background-color: #000;
-  color: #ffff;
-  font-size: 45px;
-  cursor: pointer;
-}
-
-.guest-button {
-  width: 300px;
-  height: 85px;
-  border: 2px solid #000;
-  border-radius: 10px;
-  background-color: #000;
-  color: #ffff;
-  font-size: 45px;
-  cursor: pointer;
-}
 
 @media screen and (max-width: 1200px) {
+  .login-form {
+    justify-content: space-between;
+    gap: 70px;
+    width: 100%;
+    background: none;
+    box-shadow: none;
+
+    & .inputs {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 70px;
+
+      & div {
+        & input {
+          font-size: 25px;
+        }
+      }
+
+      & .error-message {
+        position: absolute;
+        left: 0;
+        top: 105px;
+      }
+    }
+
+    & .login-buttons-container {
+      flex-direction: column;
+      gap: 21px;
+      height: auto;
+
+      & button {
+        height: 70px;
+        font-size: 45px;
+      }
+
+      & .login-button {
+        width: 55%;
+      }
+
+      & .guest-button {
+        width: 100%;
+        font-size: 42px;
+      }
+    }
+  }
+
   .login-header {
     display: none;
-  }
-
-  .inputs {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 70px;
-  }
-
-  .error-message {
-    position: absolute;
-    left: 0;
-    top: 105px;
-  }
-
-  .login-buttons-container {
-    flex-direction: column;
-    gap: 21px;
-    height: auto;
-  }
-
-  .login-button {
-    width: 55%;
-  }
-
-  .guest-button {
-    width: 100%;
-    font-size: 42px;
   }
 }

@@ -43,9 +43,9 @@ function Login() {
   };
 
   return (
-    <main className={styles['login-main-container']}>
       <form
         id={"form"}
+        className={styles['login-form']}
         onSubmit={(event) => {
           event.preventDefault();
 
@@ -108,7 +108,6 @@ function Login() {
           </button>
         </section>
       </form>
-    </main>
   );
 }
 
