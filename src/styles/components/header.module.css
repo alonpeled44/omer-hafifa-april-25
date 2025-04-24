@@ -14,7 +14,7 @@
     align-items: center;
     padding-right: 10px;
     color: aquamarine;
-    font-size: 30px;
+    font-size: 2rem;
     font-weight: bold;
     letter-spacing: 1px;
 }
@@ -26,10 +26,6 @@
     }
 
     .header-text {
-        font-size: 50px;
-    }
-
-    .date{
-        display: none;
+        font-size: 3.5rem;
     }
 }

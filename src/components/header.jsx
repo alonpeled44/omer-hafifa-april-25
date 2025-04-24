@@ -1,8 +1,18 @@
+import { useEffect, useState } from "react";
 import pokemonIcon from "../images/pokemon-photo.png";
 import styles from "../styles/components/header.module.css";
 
 export default function Header() {
   const currentDate = new Date();
+  const [width, setWidth]= useState(0);
+  
+  useEffect(()=> {
+    const handleResize = () => {
+      setWidth(innerWidth);
+    }
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
 
   return (
     <header>
@@ -11,7 +21,9 @@ export default function Header() {
         <p className={styles["header-text"]}>pokemon</p>
       </div>
 
-      <p className={styles.date}>{currentDate.toLocaleDateString("en-GB")}</p>
+      <div>
+        {width>1200 && <p className={styles.date}>{currentDate.toLocaleDateString("en-GB")}</p>}
+      </div>
     </header>
   );
 }
