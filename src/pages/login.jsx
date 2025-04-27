@@ -11,42 +11,23 @@ function Login() {
   const [user, setUser] = useState({});
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const [submitSuccess, setSubmitSuccess] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
   const [width, setWidth] = useState(0);
 
   const router = useRouter();
+
   useEffect(() => {
     const currentUsername = localStorage.getItem("username");
-    if (currentUsername === "Guest") {
-      router.push("/");
-    } else if (currentUsername) {
-      setUser(usersData.find((user) => user._username == currentUsername));
+    if (currentUsername) {
       router.push("/");
     }
-  }, [submitSuccess]);
-
-  const handleGuestClick = () => {
-    setUsername("Guest");
-    setSubmitSuccess(true);
-    localStorage.setItem("username", "Guest");
-    alert("Welcome guest");
-  };
-
-  const handleUsernameChange = (event) => {
-    const newValue = event.target.value.replace(/[^A-Za-z0-9]/g, "");
-    setUsername(newValue);
-  };
-
-  const handlePasswordChange = (event) => {
-    const newValue = event.target.value.replace(/[^A-Za-z0-9]/g, "");
-    setPassword(newValue);
-  };
+  }, [user]);
 
   useEffect(() => {
     const handleResize = () => {
       setWidth(window.innerWidth);
     };
+
     handleResize();
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
@@ -71,8 +52,10 @@ function Login() {
 
         if (foundUser) {
           setUser(foundUser);
-          localStorage.setItem("username", username);
-          setSubmitSuccess(true);
+          localStorage && localStorage.setItem("username", username);
+          // &&
+          // ??
+          // ||
           alert(`Welcome ${username}`);
           setErrorMessage("");
         } else {
@@ -88,7 +71,10 @@ function Login() {
           name={"_username"}
           type="text"
           placeholder={"username"}
-          onChange={handleUsernameChange}
+          onChange={(event) => {
+            const newValue = event.target.value.replace(/[^A-Za-z0-9]/g, "");
+            setUsername(newValue);
+          }}
           value={username}
         />
         <input
@@ -96,7 +82,10 @@ function Login() {
           name={"_password"}
           type="password"
           placeholder={"password"}
-          onChange={handlePasswordChange}
+          onChange={(event) => {
+            const newValue = event.target.value.replace(/[^A-Za-z0-9]/g, "");
+            setPassword(newValue);
+          }}
           value={password}
         />
         <p className={styles["error-message"]}>{errorMessage}</p>
@@ -109,7 +98,12 @@ function Login() {
         <button
           className={styles["guest-button"]}
           type="button"
-          onClick={handleGuestClick}
+          onClick={(event) => {
+            setUsername("Guest");
+            localStorage.setItem("username", "Guest");
+            alert("Welcome guest");
+            router.push('/');
+          }}
         >
           join as guest
         </button>
