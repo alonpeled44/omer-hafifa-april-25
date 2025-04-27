@@ -11,11 +11,9 @@
   background-color: orange;
   box-shadow: 1px 1px 20px 1px orange, 1px 1px 20px 1px orange;
 
-  & .login-header {
-    & h1 {
-      margin-bottom: 30px;
-      font-size: 70px;
-    }
+  & h1 {
+    margin-bottom: 30px;
+    font-size: 70px;
   }
 
   & .inputs {

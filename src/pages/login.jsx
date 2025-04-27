@@ -13,7 +13,7 @@ function Login() {
   const [password, setPassword] = useState("");
   const [submitSuccess, setSubmitSuccess] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
-  const [width, setWidth]= useState(0);
+  const [width, setWidth] = useState(0);
 
   const router = useRouter();
   useEffect(() => {
@@ -42,82 +42,79 @@ function Login() {
     const newValue = event.target.value.replace(/[^A-Za-z0-9]/g, "");
     setPassword(newValue);
   };
-  
-  useEffect(()=> {
+
+  useEffect(() => {
     const handleResize = () => {
-      setWidth(innerWidth);
-    }
+      setWidth(window.innerWidth);
+    };
     handleResize();
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
   }, []);
 
-
   return (
-      <form
-        className={styles['login-form']}
-        onSubmit={(event) => {
-          event.preventDefault();
+    <form
+      className={styles["login-form"]}
+      onSubmit={(event) => {
+        event.preventDefault();
 
-          if (username === "" || password === "") {
-            setErrorMessage("Username or password are empty");
-            return;
-          }
+        if (username === "" || password === "") {
+          setErrorMessage("Username or password are empty");
+          return;
+        }
 
-          const foundUser = usersData.find(
-            (currentUser) =>
-              currentUser._username === username &&
-              currentUser._password === password
-          );
+        const foundUser = usersData.find(
+          (currentUser) =>
+            currentUser._username === username &&
+            currentUser._password === password
+        );
 
-          if (foundUser) {
-            setUser(foundUser);
-            localStorage.setItem("username", username);
-            setSubmitSuccess(true);
-            alert(`Welcome ${username}`);
-            setErrorMessage("");
-          } else {
-            setErrorMessage("Username or password incorrect");
-          }
-        }}
-      >
-        <div className={styles["login-header"]}>
-          {width>1200 && <h1>Login</h1>}
-        </div>
+        if (foundUser) {
+          setUser(foundUser);
+          localStorage.setItem("username", username);
+          setSubmitSuccess(true);
+          alert(`Welcome ${username}`);
+          setErrorMessage("");
+        } else {
+          setErrorMessage("Username or password incorrect");
+        }
+      }}
+    >
+      {width > 1200 && <h1 className={styles["login-header"]}>Login</h1>}
 
-        <section className={styles.inputs}>
-            <input
-              id={"username"}
-              name={"_username"}
-              type="text"
-              placeholder={"username"}
-              onChange={handleUsernameChange}
-              value={username}
-            />
-            <input
-              id={"password"}
-              name={"_password"}
-              type="password"
-              placeholder={"password"}
-              onChange={handlePasswordChange}
-              value={password}
-            />
-          <p className={styles["error-message"]}>{errorMessage}</p>
-        </section>
+      <section className={styles.inputs}>
+        <input
+          id={"username"}
+          name={"_username"}
+          type="text"
+          placeholder={"username"}
+          onChange={handleUsernameChange}
+          value={username}
+        />
+        <input
+          id={"password"}
+          name={"_password"}
+          type="password"
+          placeholder={"password"}
+          onChange={handlePasswordChange}
+          value={password}
+        />
+        <p className={styles["error-message"]}>{errorMessage}</p>
+      </section>
 
-        <section className={styles["login-buttons-container"]}>
-          <button className={styles["login-button"]} type="submit">
-            login
-          </button>
-          <button
-            className={styles["guest-button"]}
-            type="button"
-            onClick={handleGuestClick}
-          >
-            join as guest
-          </button>
-        </section>
-      </form>
+      <section className={styles["login-buttons-container"]}>
+        <button className={styles["login-button"]} type="submit">
+          login
+        </button>
+        <button
+          className={styles["guest-button"]}
+          type="button"
+          onClick={handleGuestClick}
+        >
+          join as guest
+        </button>
+      </section>
+    </form>
   );
 }
 
