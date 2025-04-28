@@ -9,7 +9,7 @@ const usersData = [
 ];
 
 export default function Login() {
-  const [user, setUser] = useState({});
+  const [logedUser, setLogedUser] = useState({});
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
@@ -22,7 +22,7 @@ export default function Login() {
     if (currentUsername) {
       router.push("/");
     }
-  }, [user]);
+  }, [logedUser]);
 
   useEffect(() => {
     const handleResize = () => {
@@ -52,7 +52,7 @@ export default function Login() {
         );
 
         if (foundUser) {
-          setUser(foundUser);
+          setLogedUser(foundUser);
           localStorage && localStorage.setItem("username", username);
           alert(`Welcome ${username}`);
           setErrorMessage("");
