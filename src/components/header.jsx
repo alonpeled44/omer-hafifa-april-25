@@ -3,13 +3,14 @@ import pokemonIcon from "../images/pokemon-photo.png";
 import styles from "../styles/components/header.module.css";
 
 function Header() {
-  const currentDate = new Date();
-  const [width, setWidth] = useState(0);
+  const [screenWidth, setScreenWidth] = useState(0);
 
   useEffect(() => {
+    
     const handleResize = () => {
-      setWidth(innerWidth);
+      setScreenWidth(innerWidth);
     };
+
     handleResize();
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
@@ -22,8 +23,8 @@ function Header() {
         <p className={styles["header-text"]}>pokemon</p>
       </div>
 
-      {width > 1200 && (
-        <p className={styles.date}>{currentDate.toLocaleDateString("en-GB")}</p>
+      {screenWidth > 1200 && (
+        <p className={styles.date}>{new Date().toLocaleDateString("en-GB")}</p>
       )}
     </header>
   );

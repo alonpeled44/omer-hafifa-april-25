@@ -4,32 +4,31 @@
   height: 70px;
   background-color: rgb(175, 51, 175);
 
-  & p{
-  font-size: 2.1rem;
-  font-weight: bold;
-  letter-spacing: 2px;
+  & .logo-header {
+    display: flex;
+    align-items: center;
+  }
+
+  & p {
+    font-size: 2.1rem;
+    font-weight: bold;
+    letter-spacing: 2px;
   }
 
   & img {
     width: 60px;
     height: 60px;
   }
-  
-}
 
-.logo-header {
-  display: flex;
-  align-items: center;
-}
-
-.date {
-  display: flex;
-  align-items: center;
-  padding-right: 10px;
-  color: aquamarine;
-  font-size: 2rem;
-  font-weight: bold;
-  letter-spacing: 1px;
+  & .date {
+    display: flex;
+    align-items: center;
+    padding-right: 10px;
+    color: rgb(127, 255, 212);
+    font-size: 2rem;
+    font-weight: bold;
+    letter-spacing: 1px;
+  }
 }
 
 @media screen and (max-width: 1200px) {
@@ -38,8 +37,8 @@
     height: 170px;
     background-color: transparent;
 
-    & p{
-        font-size: 3.5rem;
+    & p {
+      font-size: 3.5rem;
     }
   }
   .logo-header {

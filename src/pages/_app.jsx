@@ -1,12 +1,20 @@
+import { useEffect } from "react";
+import { useRouter } from "next/router";
 import Header from "../components/header";
-import UserMenu from "./userMenu";
 import "../styles/globals.css";
 
 export default function App({ Component, pageProps }) {
+    const router = useRouter();
+    useEffect(() => {
+      const userExist = localStorage.getItem("username");
+      if(!userExist){
+        router.push("/login");
+      }
+    }, []);
+
   return (
     <>
       <Header />
-      <UserMenu />
       <main>
         <Component {...pageProps} />
       </main>

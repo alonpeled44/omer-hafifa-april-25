@@ -8,12 +8,12 @@
   width: 670px;
   height: 65%;
   border-radius: 10px;
-  background-color: orange;
-  box-shadow: 1px 1px 20px 1px orange, 1px 1px 20px 1px orange;
+  background-color: rgb(255,165,0);
+  box-shadow: 1px 1px 20px 1px rgb(255,165,0), 1px 1px 20px 1px rgb(255,165,0);
 
   & h1 {
     margin-bottom: 30px;
-    font-size: 70px;
+    font-size: 4.4rem;
   }
 
   & .inputs {
@@ -23,26 +23,23 @@
     width: 70%;
     height: 50px;
 
-
-
     & input {
       padding-block: 15px;
       border: none;
-      border-bottom: 2px solid #000;
+      border-bottom: 2px solid rgb(0, 0, 0);
       background-color: transparent;
-      font-size: 33px;
+      font-size: 2.2rem;
     }
 
     & input::placeholder {
-      color: orangered;
-      font-size: 40px;
+      color: rgb(255, 69, 0);
+      font-size: 2.6rem;
       font-weight: 600;
     }
 
     & input:focus {
       border: none;
-      border-bottom: 2px solid black;
-      /* Ensures underline remains */
+      border-bottom: 2px solid rgb(0, 0, 0);
       outline: none;
     }
 
@@ -53,11 +50,11 @@
       bottom: 205px;
       width: 100%;
       font-size: 1.6rem;
-      color: #ff0000;
+      color: rgb(255, 0, 0);
     }
   }
 
-  & .login-buttons-container {
+  & .buttons {
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -66,10 +63,10 @@
 
     & button {
       height: 85px;
-      border: 2px solid #000;
+      border: 2px solid rgb(0, 0, 0);
       border-radius: 10px;
-      background-color: #000;
-      color: #ffff;
+      background-color: rgb(0, 0, 0);
+      color: rgb(255, 255, 255);
       font-size: 2.8rem;
       cursor: pointer;
     }
@@ -79,17 +76,17 @@
     }
 
     & .guest-button:active,
-    .login-button:active {
+    & .login-button:active {
       transform: scale(0.9);
     }
 
     & .login-button,
-    .guest-button {
+    & .guest-button {
       height: 85px;
-      border: 2px solid #000;
+      border: 2px solid rgb(0, 0, 0);
       border-radius: 10px;
-      background-color: #000;
-      color: #ffff;
+      background-color: rgb(0, 0, 0);
+      color: rgb(255, 255, 255);
       font-size: 2.8rem;
       cursor: pointer;
     }
@@ -119,7 +116,7 @@
 
       & div {
         & input {
-          font-size: 25px;
+          font-size: 2rem;
         }
       }
 
@@ -129,15 +126,10 @@
       }
     }
 
-    & .login-buttons-container {
+    & .buttons {
       flex-direction: column;
       gap: 21px;
       height: auto;
-
-      & button {
-        height: 70px;
-        font-size: 45px;
-      }
 
       & .login-button {
         width: 55%;

@@ -7,7 +7,8 @@ const usersData = [
   { _username: "ola098", _password: "fff3323r" },
   { _username: "1111", _password: "2234rrr" },
 ];
-function Login() {
+
+export default function Login() {
   const [user, setUser] = useState({});
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -53,9 +54,6 @@ function Login() {
         if (foundUser) {
           setUser(foundUser);
           localStorage && localStorage.setItem("username", username);
-          // &&
-          // ??
-          // ||
           alert(`Welcome ${username}`);
           setErrorMessage("");
         } else {
@@ -67,10 +65,9 @@ function Login() {
 
       <section className={styles.inputs}>
         <input
-          id={"username"}
-          name={"_username"}
+          id="username"
           type="text"
-          placeholder={"username"}
+          placeholder="username"
           onChange={(event) => {
             const newValue = event.target.value.replace(/[^A-Za-z0-9]/g, "");
             setUsername(newValue);
@@ -78,10 +75,9 @@ function Login() {
           value={username}
         />
         <input
-          id={"password"}
-          name={"_password"}
+          id="password"
           type="password"
-          placeholder={"password"}
+          placeholder="password"
           onChange={(event) => {
             const newValue = event.target.value.replace(/[^A-Za-z0-9]/g, "");
             setPassword(newValue);
@@ -91,7 +87,7 @@ function Login() {
         <p className={styles["error-message"]}>{errorMessage}</p>
       </section>
 
-      <section className={styles["login-buttons-container"]}>
+      <section className={styles.buttons}>
         <button className={styles["login-button"]} type="submit">
           login
         </button>
@@ -102,7 +98,7 @@ function Login() {
             setUsername("Guest");
             localStorage.setItem("username", "Guest");
             alert("Welcome guest");
-            router.push('/');
+            router.push("/");
           }}
         >
           join as guest
@@ -111,5 +107,3 @@ function Login() {
     </form>
   );
 }
-
-export default Login;
