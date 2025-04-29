@@ -1,6 +1,7 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import styles from "../styles/pages/login.module.css";
+import { ScreenWidthContext, useScreenWidthContext } from "../libs/context";
 
 const usersData = [
   { _username: "wer123", _password: "gg666" },
@@ -13,7 +14,7 @@ export default function Login() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
-  const [width, setWidth] = useState(0);
+  let screenWidth = useScreenWidthContext();
 
   const router = useRouter();
 
@@ -25,13 +26,15 @@ export default function Login() {
   }, [logedUser]);
 
   useEffect(() => {
-    const handleResize = () => {
-      setWidth(window.innerWidth);
-    };
+    // const handleResize = () => {
+    //   setWidth(window.innerWidth);
+    // };
 
-    handleResize();
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
+    // handleResize();
+    // window.addEventListener("resize", handleResize);
+    // return () => window.removeEventListener("resize", handleResize);
+
+    screenWidth = useScreenWidthContext();
   }, []);
 
   return (
@@ -61,7 +64,7 @@ export default function Login() {
         }
       }}
     >
-      {width > 1200 && <h1 className={styles["login-header"]}>Login</h1>}
+      {screenWidth && <h1 className={styles["login-header"]}>Login</h1>}
 
       <section className={styles.inputs}>
         <input
