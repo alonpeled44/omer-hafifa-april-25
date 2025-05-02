@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { useRouter } from "next/router";
 import Header from "../components/header";
 import "../styles/globals.css";
-import { UseScreenWidthContext } from "../libs/context";
+import { ScreenWidthProvider } from "../libs/context";
 
 export default function App({ Component, pageProps }) {
   const router = useRouter();
@@ -15,12 +15,12 @@ export default function App({ Component, pageProps }) {
 
   return (
     <>
-      <Header />
-      <main>
-        <UseScreenWidthContext>
+      <ScreenWidthProvider>
+        <Header />
+        <main>
           <Component {...pageProps} />
-        </UseScreenWidthContext>
-      </main>
+        </main>
+      </ScreenWidthProvider>
     </>
   );
 }

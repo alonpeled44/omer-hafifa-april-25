@@ -1,10 +1,9 @@
 
-import Login from "../pages/login";
-import { Children, createContext, useContext, useEffect, useState } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
 
-export const ScreenWidthContext = createContext(null);
+export const ScreenWidthContext = createContext(0);
 
-export function UseScreenWidthContext() {
+export function ScreenWidthProvider({children}) {
     const [screenWidth, setScreenWidth] = useState(0);
     useEffect(() => {
         const handleResize = () => {
@@ -17,8 +16,16 @@ export function UseScreenWidthContext() {
     }, []);
 
     return (
-        <ScreenWidthContext.Provider value={screenWidth}>
-            <Children />
+        <ScreenWidthContext.Provider value={{screenWidth}}>
+            {children}
         </ScreenWidthContext.Provider>
     )
+}
+
+export function useScreenWidth() {
+    const context = useContext(ScreenWidthContext);
+    if(!context){
+        throw new Error('useScreenWidth must be used within ScreenWidthProvider');
+    }
+    return context;
 }

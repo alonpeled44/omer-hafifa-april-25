@@ -1,7 +1,7 @@
 import { useContext, useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import styles from "../styles/pages/login.module.css";
-import { ScreenWidthContext} from "../libs/context";
+import { useScreenWidth} from "../libs/context";
 
 const usersData = [
   { _username: "wer123", _password: "gg666" },
@@ -14,7 +14,7 @@ export default function Login() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
-  const {screenWidth} = useContext(ScreenWidthContext);
+  const { screenWidth } = useScreenWidth();
 
   const router = useRouter();
 
