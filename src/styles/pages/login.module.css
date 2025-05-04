@@ -1,0 +1,150 @@
+.login-form {
+  position: relative;
+  width: 55%;
+  height: 65%;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 80px;
+
+  border-radius: 10px;
+  background-color: rgb(255,165,0);
+  box-shadow: 1px 1px 20px 1px rgb(255,165,0), 1px 1px 20px 1px rgb(255,165,0);
+
+  & h1 {
+    margin-bottom: 30px;
+    font-size: 4.4rem;
+  }
+
+  & .inputs {
+    width: 70%;
+    height: 10%;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+
+    & input {
+      padding-block: 15px;
+      border: none;
+      border-bottom: 2px solid rgb(0, 0, 0);
+      background-color: transparent;
+      font-size: 2.2rem;
+    }
+
+    & input::placeholder {
+      color: rgb(255, 69, 0);
+      font-size: 2.6rem;
+      font-weight: 600;
+    }
+
+    & input:focus {
+      border: none;
+      border-bottom: 2px solid rgb(0, 0, 0);
+      outline: none;
+    }
+
+    & .error-message {
+      position: absolute;
+      left: 0;
+      bottom: 205px;
+      width: 100%;
+
+      text-align: center;
+
+      font-size: 1.6rem;
+      color: rgb(255, 0, 0);
+    }
+  }
+
+  & .buttons {
+    width: min(470px, 70%);
+    height: 100px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    & button {
+      height: 85px;
+
+      border: 2px solid rgb(0, 0, 0);
+      border-radius: 10px;
+      background-color: rgb(0, 0, 0);
+      color: rgb(255, 255, 255);
+      font-size: 2.8rem;
+      cursor: pointer;
+    }
+
+    & button:active {
+      transform: scale(0.9);
+    }
+
+    & .login-button,
+    & .guest-button {
+      height: 85px;
+
+      border: 2px solid rgb(0, 0, 0);
+      border-radius: 10px;
+      background-color: rgb(0, 0, 0);
+      color: rgb(255, 255, 255);
+      font-size: 2.8rem;
+      cursor: pointer;
+    }
+
+    & .login-button {
+      width: 150px;
+    }
+
+    & .guest-button {
+      width: 300px;
+    }
+  }
+}
+
+@media screen and (max-width: 1200px) {
+  .login-form {
+    width: 100%;
+    justify-content: space-between;
+    gap: 70px;
+
+    background: none;
+    box-shadow: none;
+
+    & .inputs {
+      height: 70px;
+
+      justify-content: center;
+      align-items: center;
+
+      & div {
+        & input {
+          font-size: 2rem;
+        }
+      }
+
+      & .error-message {
+        left: 0;
+        top: 105px;
+      }
+    }
+
+    & .buttons {
+      height: auto;
+      
+      flex-direction: column;
+      gap: 21px;
+
+      & .login-button {
+        width: 55%;
+      }
+
+      & .guest-button {
+        width: 100%;
+        font-size: 2.75rem;
+      }
+    }
+  }
+}
