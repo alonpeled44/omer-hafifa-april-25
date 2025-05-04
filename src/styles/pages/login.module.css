@@ -83,11 +83,6 @@
       transform: scale(0.9);
     }
 
-    & .guest-button:active,
-    & .login-button:active {
-      transform: scale(0.9);
-    }
-
     & .login-button,
     & .guest-button {
       height: 85px;

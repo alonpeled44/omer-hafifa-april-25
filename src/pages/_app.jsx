@@ -5,6 +5,7 @@ import "../styles/globals.css";
 import { ScreenWidthProvider } from "../libs/context";
 
 export default function App({ Component, pageProps }) {
+  
   const router = useRouter();
   useEffect(() => {
     const userExist = localStorage.getItem("username");

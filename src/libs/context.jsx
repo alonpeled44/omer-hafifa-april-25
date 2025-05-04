@@ -4,6 +4,7 @@ import { createContext, useContext, useEffect, useState } from "react";
 const ScreenWidthContext = createContext(0);
 
 export function ScreenWidthProvider({children}) {
+
     const [screenWidth, setScreenWidth] = useState(0);
     useEffect(() => {
         const handleResize = () => {
@@ -28,5 +29,6 @@ export function useScreenWidth() {
         console.log('useScreenWidth must be used inside ScreenWidthProvider');
         return 0;
     }
+    
     return context;
 }
