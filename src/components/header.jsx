@@ -5,11 +5,15 @@ import styles from "../styles/components/header.module.css";
 export default function Header() {
   const { screenWidth } = useScreenWidth();
 
+  
+
   return (
     <header className={styles.header}>
       <div className={styles["logo-header"]}>
         <img src={pokemonIcon.src} />
         <p className={styles["header-text"]}>pokemon</p>
+        <p></p>
+        <button></button>
       </div>
 
       {screenWidth > 1200 && (
