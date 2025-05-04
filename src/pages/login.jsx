@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
+import { useScreenWidth } from "../libs/screenContext";
 import styles from "../styles/pages/login.module.css";
-import { useScreenWidth} from "../libs/context";
 
 const usersData = [
   { _username: "wer123", _password: "gg666" },
@@ -52,7 +52,7 @@ export default function Login() {
         }
       }}
     >
-      {screenWidth>1200 && <h1 className={styles["login-header"]}>Login</h1>}
+      {screenWidth > 1200 && <h1 className={styles["login-header"]}>Login</h1>}
 
       <section className={styles.inputs}>
         <input
@@ -87,7 +87,7 @@ export default function Login() {
           type="button"
           onClick={() => {
             setUsername("Guest");
-            localStorage.setItem("username", "Guest");
+            localStorage && localStorage.setItem("username", "Guest");
             alert("Welcome guest");
             router.push("/");
           }}

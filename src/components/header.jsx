@@ -1,9 +1,8 @@
+import { useScreenWidth } from "../libs/screenContext";
 import pokemonIcon from "../images/pokemon-photo.png";
 import styles from "../styles/components/header.module.css";
-import { useScreenWidth } from "../libs/context";
 
-function Header() {
-  
+export default function Header() {
   const { screenWidth } = useScreenWidth();
 
   return (
@@ -19,5 +18,3 @@ function Header() {
     </header>
   );
 }
-
-export default Header;
