@@ -1,22 +1,10 @@
-import { useEffect, useState } from "react";
 import pokemonIcon from "../images/pokemon-photo.png";
 import styles from "../styles/components/header.module.css";
-// import { useScreenWidth } from "@/libs/context";
+import { useScreenWidth } from "../libs/context";
 
 function Header() {
-  // const { screenWidth } = useScreenWidth();
-  const [screenWidth, setScreenWidth] = useState(0);
-
-  useEffect(() => {
-    
-    const handleResize = () => {
-      setScreenWidth(innerWidth);
-    };
-
-    handleResize();
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
-  }, []);
+  
+  const { screenWidth } = useScreenWidth();
 
   return (
     <header className={styles.header}>
