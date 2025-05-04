@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import styles from "../styles/pages/login.module.css";
 import { useScreenWidth} from "../libs/context";
@@ -10,7 +10,7 @@ const usersData = [
 ];
 
 export default function Login() {
-  const [logedUser, setLogedUser] = useState({});
+  const [loggedUser, setLoggedUser] = useState({});
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
@@ -23,7 +23,7 @@ export default function Login() {
     if (currentUsername) {
       router.push("/");
     }
-  }, [logedUser]);
+  }, [loggedUser]);
 
   return (
     <form
@@ -43,7 +43,7 @@ export default function Login() {
         );
 
         if (foundUser) {
-          setLogedUser(foundUser);
+          setLoggedUser(foundUser);
           localStorage && localStorage.setItem("username", username);
           alert(`Welcome ${username}`);
           setErrorMessage("");
@@ -85,7 +85,7 @@ export default function Login() {
         <button
           className={styles["guest-button"]}
           type="button"
-          onClick={(event) => {
+          onClick={() => {
             setUsername("Guest");
             localStorage.setItem("username", "Guest");
             alert("Welcome guest");
