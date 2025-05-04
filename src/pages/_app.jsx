@@ -8,8 +8,8 @@ export default function App({ Component, pageProps }) {
   const router = useRouter();
 
   useEffect(() => {
-    const userExist = localStorage.getItem("username");
-    if (!userExist) {
+    const username = localStorage.getItem("username");
+    if (!username) {
       router.push("/login");
     }
   }, []);
