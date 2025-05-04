@@ -1,7 +1,7 @@
 
 import { createContext, useContext, useEffect, useState } from "react";
 
-export const ScreenWidthContext = createContext(0);
+const ScreenWidthContext = createContext(0);
 
 export function ScreenWidthProvider({children}) {
     const [screenWidth, setScreenWidth] = useState(0);
