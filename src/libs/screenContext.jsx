@@ -26,7 +26,7 @@ export function ScreenWidthProvider({children}) {
 export function useScreenWidth() {
     const context = useContext(ScreenWidthContext);
     if(!context){
-        console.log('useScreenWidth must be used inside ScreenWidthProvider');
+        console.log('useScreenWidth must be used within a ScreenWidthProvider');
         return 0;
     }
     
