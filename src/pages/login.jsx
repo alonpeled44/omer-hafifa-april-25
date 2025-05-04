@@ -45,7 +45,6 @@ export default function Login() {
         if (foundUser) {
           setLoggedUser(foundUser);
           localStorage && localStorage.setItem("username", username);
-          alert(`Welcome ${username}`);
           setErrorMessage("");
         } else {
           setErrorMessage("Username or password incorrect");
@@ -88,7 +87,6 @@ export default function Login() {
           onClick={() => {
             setUsername("Guest");
             localStorage && localStorage.setItem("username", "Guest");
-            alert("Welcome guest");
             router.push("/");
           }}
         >
