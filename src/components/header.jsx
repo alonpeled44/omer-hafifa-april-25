@@ -10,6 +10,8 @@ export default function Header() {
       <div className={styles["logo-header"]}>
         <img src={pokemonIcon.src} />
         <p className={styles["header-text"]}>pokemon</p>
+        <p></p>
+        <button></button>
       </div>
 
       {screenWidth > 1200 && (
