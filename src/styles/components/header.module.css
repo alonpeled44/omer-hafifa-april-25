@@ -7,6 +7,10 @@
   & .logo-header {
     display: flex;
     align-items: center;
+
+    & .header-menu {
+      
+    }
   }
 
   & p {
