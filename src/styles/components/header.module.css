@@ -7,6 +7,38 @@
   & .logo-header {
     display: flex;
     align-items: center;
+
+    & .header-menu {
+      width: 50%;
+      height: 100%;
+
+      display: flex;
+      align-items: center;
+      gap: 3px;
+
+      margin-left: 5px;
+      padding-left: 2px;
+      border-left: 2px solid rgb(0, 0, 0);
+
+      & p {
+        font-size: 1.75rem;
+      }
+
+      & button {
+        height: 55%;
+        width: 50%;
+
+        border-radius: 4px;
+        background-color: rgb(255, 174, 66);
+        color: rgb(0, 0, 0);
+        font-size: 1.1rem;
+        cursor: pointer;
+      }
+
+      & button:active {
+        transform: scale(0.9);
+      }
+    }
   }
 
   & p {
@@ -36,17 +68,56 @@
 
 @media screen and (max-width: 1200px) {
   .header {
+    position: relative;
     height: 170px;
+    width: 100%;
+
     justify-content: center;
     background-color: transparent;
 
-    & p {
-      font-size: 3.5rem;
-    }
-  }
+    & .logo-header {
+      position: absolute;
+      bottom: 35px;
 
-  & .logo-header {
-    flex-direction: row-reverse;
-    padding-top: 60px;
+      height: 100%;
+      width: 60%;
+
+      flex-direction: row-reverse;
+      justify-content: center;
+
+      & p {
+        font-size: 4.25rem;
+      }
+
+      & img {
+        height: 75px;
+        width: 75px;
+      }
+
+      & .header-menu {
+        position: absolute;
+        top: 130px;
+
+        height: 30%;
+        width: 100%;
+
+        display: flex;
+        justify-content: center;
+        gap: 35px;
+
+        margin: 0;
+        padding: 0;
+        border: none;
+
+        & p {
+          font-size: 2.75rem;
+        }
+
+        & button {
+          height: 45px;
+          width: 120px;
+        }
+      }
+    }
   }
 }
