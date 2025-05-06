@@ -86,7 +86,7 @@
       justify-content: center;
 
       & p {
-        font-size: 4.5rem;
+        font-size: 4.25rem;
       }
 
       & img {
@@ -102,7 +102,8 @@
         width: 100%;
 
         display: flex;
-        justify-content: space-around;
+        justify-content: center;
+        gap: 35px;
 
         margin: 0;
         padding: 0;
@@ -113,8 +114,8 @@
         }
 
         & button {
-          height: 60%;
-          width: 15%;
+          height: 45px;
+          width: 120px;
         }
       }
     }
