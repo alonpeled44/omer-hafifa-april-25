@@ -6,7 +6,7 @@
 
   & .logo-header {
     display: flex;
-    align-items: center;
+    align-items: center; /* check */
 
     & .header-menu {
       width: 50%;
