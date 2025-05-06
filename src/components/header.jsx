@@ -6,21 +6,22 @@ import { usePathname } from "next/navigation";
 
 export default function Header() {
   const { screenWidth } = useScreenWidth();
-  const [username,setUsername]=useState('');
+  const [username, setUsername] = useState("");
   const pathname = usePathname();
 
-  useEffect(()=> {
+  useEffect(() => {
     const storedUsername = localStorage.getItem("username");
-    setUsername(storedUsername || '');
+    setUsername(storedUsername || "");
   }, [pathname]);
 
   return (
     <header className={styles.header}>
       <div className={styles["logo-header"]}>
-        <img src={pokemonIcon.src} />
-        <p className={styles["header-text"]}>pokemon</p>
-        {pathname==='/' && 
-        (
+        <div>
+          <img src={pokemonIcon.src} />
+          <p className={styles["header-text"]}>pokemon</p>
+        </div>
+        {pathname === "/" && (
           <div className={styles["header-menu"]}>
             <p>{username}</p>
             <button>log out</button>
