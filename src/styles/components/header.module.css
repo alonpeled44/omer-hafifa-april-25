@@ -70,14 +70,20 @@
   .header {
     position: relative;
     height: 170px;
+    width: 100%;
+
     justify-content: center;
     background-color: transparent;
 
     & .logo-header {
       position: absolute;
       bottom: 35px;
-      flex-direction: row-reverse;
+
       height: 100%;
+      width: 60%;
+
+      flex-direction: row-reverse;
+      justify-content: center;
 
       & p {
         font-size: 4.5rem;
@@ -91,17 +97,24 @@
       & .header-menu {
         position: absolute;
         top: 130px;
+
         height: 30%;
+        width: 100%;
+
         display: flex;
+        justify-content: space-around;
+
         margin: 0;
         padding: 0;
         border: none;
 
         & p {
+          font-size: 2.75rem;
         }
 
         & button {
-          height: 25%;
+          height: 60%;
+          width: 15%;
         }
       }
     }
