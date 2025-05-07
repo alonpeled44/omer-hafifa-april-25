@@ -1,0 +1,15 @@
+const pokemonCardsArray = [
+    {
+        id: 1,
+        name: 'pikachu',
+        type: typesArray[0],
+        height: 145,
+        weight: 45,
+        frontViewImageUrl: '',
+        backViewImageUrl: '',
+        frontShinyViewImageUrl: '',
+        backShinyViewImageUrl: ''
+    }
+];
+
+const typesArray = ['fire', 'water', 'wind', 'land'];
