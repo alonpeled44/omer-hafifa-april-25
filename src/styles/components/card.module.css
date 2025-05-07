@@ -1,5 +1,14 @@
 .card-general {
+    
+    & .name-id-container {
+        display: flex;
+        flex-direction: row-reverse;
+        justify-content: space-between;
+    }
 
+    & p {
+        font-size: 1rem;
+    }
 
     & img {
         width: 100px;
