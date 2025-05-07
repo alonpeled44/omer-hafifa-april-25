@@ -5,7 +5,7 @@ const pokemonCardsArray = [
         type: typesArray[0],
         height: 145,
         weight: 45,
-        frontViewImageUrl: '',
+        frontViewImageUrl: '../images/pikachu-front-image.png',
         backViewImageUrl: '',
         frontShinyViewImageUrl: '',
         backShinyViewImageUrl: ''
