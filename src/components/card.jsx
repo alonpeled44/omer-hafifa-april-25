@@ -1,3 +1,4 @@
+import styles from "../styles/components/card.module.css";
 export default function Card({
   id,
   name,
@@ -10,7 +11,7 @@ export default function Card({
   backShinyViewImageUrl,
 }) {
   return (
-    <div>
+    <div className={styles["card-general"]}>
       <p>{id}</p>
       <p>{name}</p>
       <p>{type}</p>
