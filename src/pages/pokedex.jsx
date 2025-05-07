@@ -1,9 +1,9 @@
 import Card from "../components/card";
 import { pokemonCardsArray } from "../components/pokemonCards";
-
+import styles from "../styles/components/pokedex.module.css";
 export default function pokedex() {
   return (
-    <div>
+    <div className={styles["cardsContainer"]}>
         {pokemonCardsArray.map((card)=> (
             <Card
               id={card.id}
