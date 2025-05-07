@@ -4,8 +4,10 @@
 
   display: flex;
   flex-direction: column;
+  gap: 25px;
 
   & .custom-cards-container {
+    display: flex;
   }
 
   & .cards-container {
