@@ -3,7 +3,7 @@ import { pokemonCardsArray } from "../components/pokemonCards";
 import styles from "../styles/components/pokedex.module.css";
 export default function pokedex() {
   return (
-    <div className={styles["cardsContainer"]}>
+    <div className={styles["cards-container"]}>
         {pokemonCardsArray.map((card)=> (
             <Card
               id={card.id}
