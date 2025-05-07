@@ -11,5 +11,5 @@ export default function Card({id, name , type, height, weight, frontViewImageUrl
             <p>{frontShinyViewImageUrl}</p>
             <p>{backShinyViewImageUrl}</p>
         </div>
-    )
-} 
+    );
+}
