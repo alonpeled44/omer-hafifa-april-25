@@ -10,6 +10,14 @@
         gap: 5px;
     }
 
+    & div {
+        display: flex;
+        justify-content: center;
+        
+        padding: 1px 0.5px;
+        border: 1px solid rgb(0, 0, 0);
+    }
+
     & .name-id-container {
         flex-direction: row-reverse;
         justify-content: space-between;

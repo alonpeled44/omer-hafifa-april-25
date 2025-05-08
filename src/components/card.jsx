@@ -16,7 +16,9 @@ export default function Card({
         <p>#{id}</p>
         <p>{name}</p>
       </section>
-      <img src={frontViewImageUrl} />
+      <div>
+        <img src={frontViewImageUrl} />
+      </div>
       <p>{backViewImageUrl}</p>
       <p>{frontShinyViewImageUrl}</p>
       <p>{backShinyViewImageUrl}</p>
