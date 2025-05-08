@@ -12,19 +12,19 @@ export default function Card({
 }) {
   return (
     <div className={styles["card-general"]}>
-      <div className={styles["name-id-container"]}>
+      <section className={styles["name-id-container"]}>
         <p>#{id}</p>
         <p>{name}</p>
-      </div>
+      </section>
       <img src={frontViewImageUrl} />
       <p>{backViewImageUrl}</p>
       <p>{frontShinyViewImageUrl}</p>
       <p>{backShinyViewImageUrl}</p>
-      <div>
+      <section>
         <p>Type: {type}</p>
         <p>height: {height}</p>
         <p>weight: {weight}</p>
-      </div>
+      </section>
     </div>
   );
 }
