@@ -6,10 +6,13 @@
     padding: 10px;
     border: 2px solid rgb(0, 0, 0);
 
+    background: linear-gradient(315deg, rgb(222, 171, 29), rgb(218, 209, 17), rgb(235, 61, 220));
     & section {
         display: flex;
         flex-direction: column;
-        gap: 10px;
+        gap: 13px;
+
+        margin-top: 3px;
     }
 
     & div {
