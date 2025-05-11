@@ -11,7 +11,7 @@
   & .custom-cards-container {
     display: flex;
     justify-content: center;
-    gap: 70%;
+    gap: 65%;
 
     & input {
       padding-block: 15px 2px;
@@ -34,15 +34,20 @@
     }
 
     & .filter-and-sort {
+       height: 100%;
+       width: 20%;
+
        display: flex;
        gap: 10%;
 
-      & .filter-by {
+      & select {
+        width: 40%;
+        text-align: center;
+        
+        border: 2px solid rgb(0, 0, 0);
+        border-radius: 20px;
 
-      }
-
-      & .sort-by {
-
+        font-size: 1.2rem;
       }
     }
   }
