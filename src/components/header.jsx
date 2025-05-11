@@ -1,17 +1,17 @@
+import { useEffect, useState } from "react";
+import { usePathname } from "next/navigation";
 import { useScreenWidth } from "../libs/screenContext";
 import pokemonIcon from "../images/pokemon-photo.png";
 import styles from "../styles/components/header.module.css";
-import { useEffect, useState } from "react";
-import { usePathname } from "next/navigation";
 
 export default function Header() {
   const { screenWidth } = useScreenWidth();
-  const [username,setUsername]=useState('');
+  const [username, setUsername] = useState("");
   const pathname = usePathname();
 
-  useEffect(()=> {
+  useEffect(() => {
     const storedUsername = localStorage.getItem("username");
-    setUsername(storedUsername || '');
+    setUsername(storedUsername);
   }, [pathname]);
 
   return (
@@ -19,8 +19,7 @@ export default function Header() {
       <div className={styles["logo-header"]}>
         <img src={pokemonIcon.src} />
         <p className={styles["header-text"]}>pokemon</p>
-        {pathname==='/' && 
-        (
+        {username && (
           <div className={styles["header-menu"]}>
             <p>{username}</p>
             <button>log out</button>
