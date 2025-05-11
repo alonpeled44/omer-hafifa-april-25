@@ -16,8 +16,7 @@
       align-items: center;
       gap: 3px;
 
-      margin-left: 5px;
-      padding-left: 2px;
+      margin-left: 3px;
       border-left: 2px solid rgb(0, 0, 0);
 
       & p {
