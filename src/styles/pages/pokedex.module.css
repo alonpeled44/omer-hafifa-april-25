@@ -1,14 +1,12 @@
 .pokedex-page-container {
-  height: 100%;
+  height: 97%;
   width: 93%;
 
   display: flex;
   flex-direction: column;
-  gap: 30px;
+  gap: 33px;
 
-  margin-top: 20px;
-
-  overflow: scroll;
+  margin-top: 8px;
 
   & .custom-cards-container {
     display: flex;
@@ -37,6 +35,8 @@
   & .cards-container {
     display: grid;
     grid-template-columns: repeat(6, 1fr);
-    gap: 30px;
+    grid-gap: 30px;
+
+    overflow-y: scroll;
   }
 }

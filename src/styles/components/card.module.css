@@ -1,4 +1,5 @@
 .card-general {
+    height: 202px;
     max-width: 150px;
 
     display: flex;
@@ -13,8 +14,6 @@
         display: flex;
         flex-direction: column;
         gap: 13px;
-
-        margin-top: 3px;
     }
 
     & div {
