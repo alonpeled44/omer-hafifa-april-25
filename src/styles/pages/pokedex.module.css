@@ -1,6 +1,6 @@
 .pokedex-page-container {
   height: 97%;
-  width: 93%;
+  width: 90%;
 
   display: flex;
   flex-direction: column;
@@ -10,6 +10,8 @@
 
   & .custom-cards-container {
     display: flex;
+    justify-content: center;
+    gap: 70%;
 
     & input {
       padding-block: 15px 2px;
@@ -29,6 +31,19 @@
       border: none;
       border-bottom: 2px solid rgb(0, 0, 0);
       outline: none;
+    }
+
+    & .filter-and-sort {
+       display: flex;
+       gap: 10%;
+
+      & .filter-by {
+
+      }
+
+      & .sort-by {
+
+      }
     }
   }
 
