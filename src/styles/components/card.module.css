@@ -1,4 +1,6 @@
 .card-general {
+    max-width: 150px;
+
     display: flex;
     flex-direction: column;
     gap: 2px;
