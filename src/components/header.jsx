@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
 import { useScreenWidth } from "../libs/screenContext";
+import HeaderBorder from "./headerBorder";
 import pokemonIcon from "../images/pokemon-photo.png";
 import styles from "../styles/components/header.module.css";
 
@@ -21,10 +22,15 @@ export default function Header() {
         <img src={pokemonIcon.src} />
         <p className={styles["header-text"]}>pokemon</p>
         {username && (
-          <div className={styles["header-menu"]}>
-            <p>{username}</p>
-            <button>log out</button>
-          </div>
+          <>
+            <div className={styles["header-menu"]}>
+              <div className={styles["header-border"]}>
+                <HeaderBorder></HeaderBorder>
+              </div>
+              <p>{username}</p>
+              <button>log out</button>
+            </div>
+          </>
         )}
       </div>
 
