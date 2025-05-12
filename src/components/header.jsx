@@ -22,15 +22,11 @@ export default function Header() {
         <img src={pokemonIcon.src} />
         <p className={styles["header-text"]}>pokemon</p>
         {username && (
-          <>
-            <div className={styles["header-menu"]}>
-              <div className={styles["header-border"]}>
-                <HeaderBorder></HeaderBorder>
-              </div>
-              <p>{username}</p>
-              <button>log out</button>
-            </div>
-          </>
+          <div className={styles["header-menu"]}>
+            <HeaderBorder></HeaderBorder>
+            <p>{username}</p>
+            <button>log out</button>
+          </div>
         )}
       </div>
 
