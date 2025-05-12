@@ -1,29 +1,54 @@
+import { useEffect, useState } from "react";
 import Card from "../components/card";
 import { pokemonCardsArray } from "../components/pokemonCards";
 import styles from "../styles/pages/pokedex.module.css";
 export default function pokedex() {
+  const sortOptionsArray = ["1", "2", "3", "4", "5", "6", "7"];
+  const [isOpen, setIsOpen] = useState(false);
+
+  useEffect(() => {
+    const handleClickSort = () => {
+      isOpen===true ? setIsOpen(false) : setIsOpen(true);
+    };
+    console.log(isOpen);
+    document.addEventListener("click", handleClickSort);
+    return () => document.removeEventListener("click", handleClickSort);
+  });
+
   return (
     <div className={styles["pokedex-page-container"]}>
       <div className={styles["custom-cards-container"]}>
         <input type="text" placeholder="Search..." />
         <section className={styles["filter-and-sort"]}>
-          <select className={styles["filter-by"]}>
-            <option value="" disabled selected>
-              filter by
-            </option>
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-          </select>
+          <div className="filter-box">
+            <button className="filter-button">filter by</button>
+            <div className="filter-options">
+              <div className="option">1</div>
+              <div className="option">2</div>
+              <div className="option">3</div>
+              <div className="option">4</div>
+              <div className="option">5</div>
+              <div className="option">6</div>
+              <div className="option">7</div>
+            </div>
+          </div>
 
-          <select className={styles["sort-by"]}>
-            <option value="" disabled selected>
-              sort by
-            </option>
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-          </select>
+          <div className="sort-box">
+            <button
+              className="sort-button"
+              onClick={() => {
+                isOpen===true &&
+                  sortOptionsArray.map((option) => {
+                    <div className={styles["option-container"]}>
+                      <label>{option}</label>
+                    </div>
+                  });
+              }}
+            >
+              <label>sort by</label>
+            </button>
+            <div className="sort-options"></div>
+          </div>
         </section>
       </div>
       <div className={styles["cards-container"]}>

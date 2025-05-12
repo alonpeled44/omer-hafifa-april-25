@@ -32,20 +32,23 @@
     }
 
     & .filter-and-sort {
-       height: 100%;
-       width: 20%;
+      height: 100%;
+      width: 20%;
 
-       display: flex;
-       gap: 10%;
+      display: flex;
+      gap: 10%;
 
-      & select {
-        width: 40%;
-        text-align: center;
+      & .sort-box {
         
-        border: 2px solid rgb(0, 0, 0);
-        border-radius: 20px;
 
-        font-size: 1.2rem;
+        & .sort-button {
+
+
+          & .option-container {
+            display: flex;
+            flex-direction: column;
+          }
+        }
       }
     }
   }
