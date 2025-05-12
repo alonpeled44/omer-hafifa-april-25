@@ -6,12 +6,13 @@ import styles from "../styles/components/header.module.css";
 
 export default function Header() {
   const { screenWidth } = useScreenWidth();
-  const [username, setUsername] = useState("");
+  const [username, setUsername] = useState(null);
   const pathname = usePathname();
 
   useEffect(() => {
     const storedUsername = localStorage.getItem("username");
-    setUsername(storedUsername);
+    console.log(storedUsername);
+    setUsername(storedUsername || null);
   }, [pathname]);
 
   return (
