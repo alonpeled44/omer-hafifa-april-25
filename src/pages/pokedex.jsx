@@ -4,14 +4,17 @@ import { pokemonCardsArray } from "../components/pokemonCards";
 import styles from "../styles/pages/pokedex.module.css";
 export default function pokedex() {
   const sortOptionsArray = ["1", "2", "3", "4", "5", "6", "7"];
-  const [isOpen, setIsOpen] = useState(false);
+  const filterOptionsArray = ["1", "2", "3", "4", "5", "6", "7"];
+  const [isSortOpen, setIsSortOpen] = useState(false);
+  const [isFilterOpen, setIsFilterOpen] = useState(false);
 
   useEffect(() => {
-    const handleClickSort = () => {
-      setIsOpen(false);
+    const handleClickOnScreen = () => {
+      setIsSortOpen(false);
+      setIsFilterOpen(false);
     };
-    document.addEventListener("click", handleClickSort);
-    return () => document.removeEventListener("click", handleClickSort);
+    document.addEventListener("click", handleClickOnScreen);
+    return () => document.removeEventListener("click", handleClickOnScreen);
   });
 
   return (
@@ -19,17 +22,25 @@ export default function pokedex() {
       <div className={styles["custom-cards-container"]}>
         <input type="text" placeholder="Search..." />
         <section className={styles["filter-and-sort"]}>
-          <div className="filter-box">
-            <button className="filter-button">filter by</button>
-            <div className="filter-options">
-              <div className="option">1</div>
-              <div className="option">2</div>
-              <div className="option">3</div>
-              <div className="option">4</div>
-              <div className="option">5</div>
-              <div className="option">6</div>
-              <div className="option">7</div>
-            </div>
+          <div className={styles["filter-box"]}>
+            <button
+              className={styles["filter-button"]}
+              onClick={(event) => {
+                event.stopPropagation();
+                setIsFilterOpen(!isFilterOpen);
+              }}
+            >
+              <label>filter by</label>
+            </button>
+            {isFilterOpen === true && (
+              <div className={styles["filter-options"]}>
+                {filterOptionsArray.map((option) => (
+                  <div className={styles["filter-container"]}>
+                    <label>{option}</label>
+                  </div>
+                ))}
+              </div>
+            )}
           </div>
 
           <div className={styles["sort-box"]}>
@@ -37,12 +48,12 @@ export default function pokedex() {
               className={styles["sort-button"]}
               onClick={(event) => {
                 event.stopPropagation();
-                setIsOpen(!isOpen);
+                setIsSortOpen(!isSortOpen);
               }}
             >
               <label>sort by</label>
             </button>
-            {isOpen === true && (
+            {isSortOpen === true && (
               <div className={styles["sort-options"]}>
                 {sortOptionsArray.map((option) => (
                   <div className={styles["option-container"]}>
