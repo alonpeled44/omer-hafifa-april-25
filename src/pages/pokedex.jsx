@@ -8,9 +8,8 @@ export default function pokedex() {
 
   useEffect(() => {
     const handleClickSort = () => {
-      isOpen===true ? setIsOpen(false) : setIsOpen(true);
+      setIsOpen(false);
     };
-    console.log(isOpen);
     document.addEventListener("click", handleClickSort);
     return () => document.removeEventListener("click", handleClickSort);
   });
@@ -33,21 +32,25 @@ export default function pokedex() {
             </div>
           </div>
 
-          <div className="sort-box">
+          <div className={styles["sort-box"]}>
             <button
-              className="sort-button"
-              onClick={() => {
-                isOpen===true &&
-                  sortOptionsArray.map((option) => {
-                    <div className={styles["option-container"]}>
-                      <label>{option}</label>
-                    </div>
-                  });
+              className={styles["sort-button"]}
+              onClick={(event) => {
+                event.stopPropagation();
+                setIsOpen(!isOpen);
               }}
             >
               <label>sort by</label>
             </button>
-            <div className="sort-options"></div>
+            {isOpen === true && (
+              <div className={styles["sort-options"]}>
+                {sortOptionsArray.map((option) => (
+                  <div className={styles["option-container"]}>
+                    <label>{option}</label>
+                  </div>
+                ))}
+              </div>
+            )}
           </div>
         </section>
       </div>

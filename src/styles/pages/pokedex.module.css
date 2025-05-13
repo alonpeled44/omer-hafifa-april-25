@@ -39,15 +39,16 @@
       gap: 10%;
 
       & .sort-box {
-        
+        position: relative;
+        overflow: visible;
 
-        & .sort-button {
-
-
-          & .option-container {
-            display: flex;
-            flex-direction: column;
-          }
+        & .sort-options {
+          position: absolute;
+          top: 100%; /* Positions it just below the button */
+          left: 0;
+          background-color: white;
+          border: 1px solid #ccc;
+          z-index: 10; /* Ensure it appears above other elements */
         }
       }
     }
