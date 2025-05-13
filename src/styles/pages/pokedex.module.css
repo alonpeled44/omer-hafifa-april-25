@@ -9,7 +9,7 @@
   & .custom-cards-container {
     display: flex;
     justify-content: center;
-    gap: 65%;
+    gap: 61%;
 
     & input {
       padding-block: 15px 2px;
@@ -36,19 +36,54 @@
       width: 20%;
 
       display: flex;
+      justify-content: flex-end;
       gap: 10%;
 
-      & .sort-box {
+      margin-right: 15px;
+
+      & .sort-box,
+      .filter-box {
         position: relative;
         overflow: visible;
 
-        & .sort-options {
+        & .sort-button,
+        .filter-button {
+          height: 29px;
+          width: 175px;
+          position: relative;
+
+          border: 2px solid rgb(0, 0, 0);
+          border-radius: 40px;
+
+          z-index: 10;
+          font-size: 1rem;
+
+          & label {
+            
+          }
+        }
+
+        & .sort-options,
+        .filter-options {
           position: absolute;
-          top: 100%; /* Positions it just below the button */
-          left: 0;
-          background-color: white;
-          border: 1px solid #ccc;
-          z-index: 10; /* Ensure it appears above other elements */
+          top: 20px;
+          left: 2px;
+
+          border: 1px solid rgb(0, 0, 0);
+          border-radius: 20px;
+
+          z-index: 5;
+          
+          & .option-container {
+            height: 38px;
+            width: 170px;
+            
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border: 1px solid rgb(0, 0, 0);
+            background-color: rgb(255, 255, 255);
+          }
         }
       }
     }
