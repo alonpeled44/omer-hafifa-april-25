@@ -4,21 +4,36 @@
   justify-content: space-between;
   background-color: rgb(175, 51, 175);
 
-  & .logo-header {
+  & .header-items-container {
     display: flex;
     align-items: center;
     gap: 3px;
 
-    & h1 {
-      font-size: 2.5rem;
+    & .header-image-text-container {
+      display: flex;
+      align-items: center;
+
+      & h1 {
+        font-size: 2.75rem;
+      }
     }
 
-    & .header-menu {
+
+    & .user-menu {
       width: 50%;
       height: 100%;
 
       display: flex;
       align-items: center;
+
+      & div {
+        height: 75%;
+        width: 20%;
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
 
       & button {
         height: 55%;
@@ -72,35 +87,36 @@
     justify-content: center;
     background-color: transparent;
 
-    & .logo-header {
+    & .header-items-container {
       position: absolute;
-      bottom: 35px;
+      bottom: 15px;
 
       height: 100%;
       width: 60%;
 
-      flex-direction: row-reverse;
+      flex-direction: column;
       justify-content: center;
 
-      & p {
-        font-size: 4.25rem;
+      & .header-image-text-container {
+        flex-direction: row-reverse;
+
+        & h1 {
+          font-size: 3.75rem;
+        }
+
+        & img {
+          height: 75px;
+          width: 75px;
+        }
       }
 
-      & img {
-        height: 75px;
-        width: 75px;
-      }
-
-      & .header-menu {
-        position: absolute;
-        top: 130px;
-
+      & .user-menu {
         height: 30%;
         width: 100%;
 
         display: flex;
         justify-content: center;
-        gap: 35px;
+        gap: 70px;
 
         border: none;
 
