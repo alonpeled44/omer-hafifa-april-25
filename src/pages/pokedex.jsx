@@ -68,6 +68,7 @@ export default function pokedex() {
       <div className={styles["cards-container"]}>
         {pokemonCardsArray.map((card) => (
           <Card
+            onClick={(event)=> (<div></div>)}
             id={card.id}
             name={card.name}
             type={card.type}
