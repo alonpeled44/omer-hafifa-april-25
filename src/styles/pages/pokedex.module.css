@@ -61,24 +61,30 @@
 
         & .sort-options,
         .filter-options {
+          height: 145px;
+          width: 103px;
+
           position: absolute;
           top: 13px;
 
+          padding: 7px 35px 0 35px;
           border: 1px solid rgb(0, 0, 0);
           border-radius: 12px;
 
-          overflow: auto;
+          overflow: hidden;
+          overflow-y: scroll;
           z-index: 5;
+          background-color: rgb(255, 255, 255);
           
           & .option-container {
             height: 50px;
-            width: 171px;
+            width: 100%;
             
             display: flex;
             justify-content: center;
             align-items: center;
-            border: 1px solid rgb(0, 0, 0);
-            background-color: rgb(255, 255, 255);
+
+            border-bottom: 1px solid rgb(0, 0, 0);
           }
         }
       }
