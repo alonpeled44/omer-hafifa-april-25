@@ -35,9 +35,9 @@ export default function pokedex() {
             {isFilterOpen === true && (
               <div className={styles["filter-options"]}>
                 {filterOptionsArray.map((option) => (
-                  <div className={styles["option-container"]}>
-                    <label>{option}</label>
-                  </div>
+                  <p className={styles["option-container"]}>
+                    {option}
+                  </p>
                 ))}
               </div>
             )}
@@ -56,9 +56,9 @@ export default function pokedex() {
             {isSortOpen === true && (
               <div className={styles["sort-options"]}>
                 {sortOptionsArray.map((option) => (
-                  <div className={styles["option-container"]}>
-                    <label>{option}</label>
-                  </div>
+                  <p className={styles["option-container"]}>
+                    {option}
+                  </p>
                 ))}
               </div>
             )}
