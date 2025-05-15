@@ -1,4 +1,5 @@
 import { useRef, useEffect } from 'react';
+import styles from "../styles/components/dialogModal.module.css";
 
 export default function Modal({ isOpen, onClose, children, closeOnBackdropClick = true }) {
   const dialogRef = useRef(null);
@@ -33,9 +34,9 @@ export default function Modal({ isOpen, onClose, children, closeOnBackdropClick 
       ref={dialogRef}
       onClick={handleBackdropClick}
     >
-      <div>
+      <div className={styles["modal-container"]}>
         {children}
-        <button onClick={onClose}>
+        <button onClick={onClose} className={styles["close-button"]}>
           Close
         </button>
       </div>
