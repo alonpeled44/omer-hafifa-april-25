@@ -9,9 +9,10 @@ export default function Card({
   backViewImageUrl,
   frontShinyViewImageUrl,
   backShinyViewImageUrl,
+  onClick
 }) {
   return (
-    <div className={styles["card-general"]}>
+    <div onClick={onClick} className={styles["card-general"]}>
       <section className={styles["name-id-container"]}>
         <p>#{id}</p>
         <p>{name}</p>

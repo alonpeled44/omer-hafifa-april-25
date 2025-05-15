@@ -2,11 +2,14 @@ import { useEffect, useState } from "react";
 import Card from "../components/card";
 import { pokemonCardsArray } from "../components/pokemonCards";
 import styles from "../styles/pages/pokedex.module.css";
+import Modal from "../components/dialogModal";
 export default function pokedex() {
   const sortOptionsArray = ["1", "2", "3", "4", "5", "6", "7"];
   const filterOptionsArray = ["1", "2", "3", "4", "5", "6", "7"];
   const [isSortOpen, setIsSortOpen] = useState(false);
   const [isFilterOpen, setIsFilterOpen] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [selectedCard, setSelectedCard] = useState(null);
 
   useEffect(() => {
     const handleClickOnScreen = () => {
@@ -16,6 +19,16 @@ export default function pokedex() {
     document.addEventListener("click", handleClickOnScreen);
     return () => document.removeEventListener("click", handleClickOnScreen);
   });
+
+  const openModal = (card) => {
+    setSelectedCard(card);
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+    setSelectedCard(null);
+  };
 
   return (
     <div className={styles["pokedex-page-container"]}>
@@ -35,9 +48,7 @@ export default function pokedex() {
             {isFilterOpen === true && (
               <div className={styles["filter-options"]}>
                 {filterOptionsArray.map((option) => (
-                  <p className={styles["option-container"]}>
-                    {option}
-                  </p>
+                  <p className={styles["option-container"]}>{option}</p>
                 ))}
               </div>
             )}
@@ -56,9 +67,7 @@ export default function pokedex() {
             {isSortOpen === true && (
               <div className={styles["sort-options"]}>
                 {sortOptionsArray.map((option) => (
-                  <p className={styles["option-container"]}>
-                    {option}
-                  </p>
+                  <p className={styles["option-container"]}>{option}</p>
                 ))}
               </div>
             )}
@@ -68,7 +77,7 @@ export default function pokedex() {
       <div className={styles["cards-container"]}>
         {pokemonCardsArray.map((card) => (
           <Card
-            onClick={(event)=> (<div></div>)}
+            onClick={() => openModal(card)}
             id={card.id}
             name={card.name}
             type={card.type}
@@ -81,6 +90,24 @@ export default function pokedex() {
           />
         ))}
       </div>
+      <Modal isOpen={isModalOpen} onClose={closeModal}>
+        {selectedCard && (
+          <>
+            <section>
+              <p>#{selectedCard.id}</p>
+              <p>{selectedCard.name}</p>
+            </section>
+
+            <section></section>
+
+            <section>
+              <p></p>
+              <p></p>
+              <p></p>
+            </section>
+          </>
+        )}
+      </Modal>
     </div>
   );
 }
