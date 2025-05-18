@@ -110,10 +110,19 @@
     gap: 100px;
   }
 
-  & .shiny-images-container {
+  & .images-container {
+    display: flex;
+    gap: 10px;
+
     & img {
       height: 170px;
       width: 170px;
     }
+  }
+
+  & .pokemon-data-container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
   }
 }

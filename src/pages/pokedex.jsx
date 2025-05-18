@@ -112,21 +112,21 @@ export default function pokedex() {
           </section>
 
           {showShinyOnly ? (
-            <section className={styles["shiny-images-container"]}>
+            <section className={styles["images-container"]}>
               <img src={selectedCard.frontShinyViewImageUrl} />
               <img src={selectedCard.backShinyViewImageUrl} />
             </section>
           ) : (
-            <section className={styles["regular-images-container"]}>
+            <section className={styles["images-container"]}>
               <img src={selectedCard.frontViewImageUrl} />
               <img src={selectedCard.backViewImageUrl} />
             </section>
           )}
 
-          <section>
-            <p></p>
-            <p></p>
-            <p></p>
+          <section className={styles["pokemon-data-container"]}>
+            <p>Type: {selectedCard.type}</p>
+            <p>Height: {selectedCard.height}</p>
+            <p>Weight: {selectedCard.weight}</p>
           </section>
         </Modal>
       )}
