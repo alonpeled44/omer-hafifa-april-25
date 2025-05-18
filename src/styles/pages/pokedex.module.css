@@ -109,4 +109,11 @@
     justify-content: center;
     gap: 100px;
   }
+
+  & .shiny-images-container {
+    & img {
+      height: 170px;
+      width: 170px;
+    }
+  }
 }

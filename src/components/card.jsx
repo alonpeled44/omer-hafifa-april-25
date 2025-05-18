@@ -20,8 +20,6 @@ export default function Card({
       <div>
         <img src={frontViewImageUrl} />
       </div>
-      <p>{backViewImageUrl}</p>
-      <p>{backShinyViewImageUrl}</p>
       <section>
         <p>Type: {type}</p>
         <p>height: {height}</p>
