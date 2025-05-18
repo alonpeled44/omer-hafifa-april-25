@@ -1,4 +1,5 @@
-import pokemonImage from "../images/pikachu-front-image.png";
+import pokemonFrontImage from "../images/pikachu-front-image.png";
+import pokemonFrontShinyImage from "../images/pikachu-front-shiny-image.png";
 const typesArray = ['fire', 'water', 'wind', 'land'];
 
 export const pokemonCardsArray = [
@@ -8,9 +9,9 @@ export const pokemonCardsArray = [
         type: typesArray[0],
         height: 145,
         weight: 45,
-        frontViewImageUrl: pokemonImage.src,
+        frontViewImageUrl: pokemonFrontImage.src,
         backViewImageUrl: '',
-        frontShinyViewImageUrl: '',
+        frontShinyViewImageUrl: pokemonFrontShinyImage.src,
         backShinyViewImageUrl: ''
     },
     {
@@ -19,9 +20,9 @@ export const pokemonCardsArray = [
         type: typesArray[0],
         height: 145,
         weight: 45,
-        frontViewImageUrl: pokemonImage.src,
+        frontViewImageUrl: pokemonFrontImage.src,
         backViewImageUrl: '',
-        frontShinyViewImageUrl: '',
+        frontShinyViewImageUrl: pokemonFrontShinyImage.src,
         backShinyViewImageUrl: ''
     },
     {
@@ -30,9 +31,9 @@ export const pokemonCardsArray = [
         type: typesArray[0],
         height: 145,
         weight: 45,
-        frontViewImageUrl: pokemonImage.src,
+        frontViewImageUrl: pokemonFrontImage.src,
         backViewImageUrl: '',
-        frontShinyViewImageUrl: '',
+        frontShinyViewImageUrl: pokemonFrontShinyImage.src,
         backShinyViewImageUrl: ''
     },
     {
@@ -41,9 +42,9 @@ export const pokemonCardsArray = [
         type: typesArray[0],
         height: 145,
         weight: 45,
-        frontViewImageUrl: pokemonImage.src,
+        frontViewImageUrl: pokemonFrontImage.src,
         backViewImageUrl: '',
-        frontShinyViewImageUrl: '',
+        frontShinyViewImageUrl: pokemonFrontShinyImage.src,
         backShinyViewImageUrl: ''
     },
     {
@@ -52,9 +53,9 @@ export const pokemonCardsArray = [
         type: typesArray[0],
         height: 145,
         weight: 45,
-        frontViewImageUrl: pokemonImage.src,
+        frontViewImageUrl: pokemonFrontImage.src,
         backViewImageUrl: '',
-        frontShinyViewImageUrl: '',
+        frontShinyViewImageUrl: pokemonFrontShinyImage.src,
         backShinyViewImageUrl: ''
     },
     {
@@ -63,9 +64,9 @@ export const pokemonCardsArray = [
         type: typesArray[0],
         height: 145,
         weight: 45,
-        frontViewImageUrl: pokemonImage.src,
+        frontViewImageUrl: pokemonFrontImage.src,
         backViewImageUrl: '',
-        frontShinyViewImageUrl: '',
+        frontShinyViewImageUrl: pokemonFrontShinyImage.src,
         backShinyViewImageUrl: ''
     },
     {
@@ -74,9 +75,9 @@ export const pokemonCardsArray = [
         type: typesArray[0],
         height: 145,
         weight: 45,
-        frontViewImageUrl: pokemonImage.src,
+        frontViewImageUrl: pokemonFrontImage.src,
         backViewImageUrl: '',
-        frontShinyViewImageUrl: '',
+        frontShinyViewImageUrl: pokemonFrontShinyImage.src,
         backShinyViewImageUrl: ''
     },
     {
@@ -85,9 +86,9 @@ export const pokemonCardsArray = [
         type: typesArray[0],
         height: 145,
         weight: 45,
-        frontViewImageUrl: pokemonImage.src,
+        frontViewImageUrl: pokemonFrontImage.src,
         backViewImageUrl: '',
-        frontShinyViewImageUrl: '',
+        frontShinyViewImageUrl: pokemonFrontShinyImage.src,
         backShinyViewImageUrl: ''
     },
     {
@@ -96,9 +97,9 @@ export const pokemonCardsArray = [
         type: typesArray[0],
         height: 145,
         weight: 45,
-        frontViewImageUrl: pokemonImage.src,
+        frontViewImageUrl: pokemonFrontImage.src,
         backViewImageUrl: '',
-        frontShinyViewImageUrl: '',
+        frontShinyViewImageUrl: pokemonFrontShinyImage.src,
         backShinyViewImageUrl: ''
     },
     {
@@ -107,9 +108,9 @@ export const pokemonCardsArray = [
         type: typesArray[0],
         height: 145,
         weight: 45,
-        frontViewImageUrl: pokemonImage.src,
+        frontViewImageUrl: pokemonFrontImage.src,
         backViewImageUrl: '',
-        frontShinyViewImageUrl: '',
+        frontShinyViewImageUrl: pokemonFrontShinyImage.src,
         backShinyViewImageUrl: ''
     },
     {
@@ -118,9 +119,9 @@ export const pokemonCardsArray = [
         type: typesArray[0],
         height: 145,
         weight: 45,
-        frontViewImageUrl: pokemonImage.src,
+        frontViewImageUrl: pokemonFrontImage.src,
         backViewImageUrl: '',
-        frontShinyViewImageUrl: '',
+        frontShinyViewImageUrl: pokemonFrontShinyImage.src,
         backShinyViewImageUrl: ''
     },
     {
@@ -129,9 +130,9 @@ export const pokemonCardsArray = [
         type: typesArray[0],
         height: 145,
         weight: 45,
-        frontViewImageUrl: pokemonImage.src,
+        frontViewImageUrl: pokemonFrontImage.src,
         backViewImageUrl: '',
-        frontShinyViewImageUrl: '',
+        frontShinyViewImageUrl: pokemonFrontShinyImage.src,
         backShinyViewImageUrl: ''
     },
     {
@@ -140,9 +141,9 @@ export const pokemonCardsArray = [
         type: typesArray[0],
         height: 145,
         weight: 45,
-        frontViewImageUrl: pokemonImage.src,
+        frontViewImageUrl: pokemonFrontImage.src,
         backViewImageUrl: '',
-        frontShinyViewImageUrl: '',
+        frontShinyViewImageUrl: pokemonFrontShinyImage.src,
         backShinyViewImageUrl: ''
     },
     {
@@ -151,9 +152,9 @@ export const pokemonCardsArray = [
         type: typesArray[0],
         height: 145,
         weight: 45,
-        frontViewImageUrl: pokemonImage.src,
+        frontViewImageUrl: pokemonFrontImage.src,
         backViewImageUrl: '',
-        frontShinyViewImageUrl: '',
+        frontShinyViewImageUrl: pokemonFrontShinyImage.src,
         backShinyViewImageUrl: ''
     },
     {
@@ -162,9 +163,9 @@ export const pokemonCardsArray = [
         type: typesArray[0],
         height: 145,
         weight: 45,
-        frontViewImageUrl: pokemonImage.src,
+        frontViewImageUrl: pokemonFrontImage.src,
         backViewImageUrl: '',
-        frontShinyViewImageUrl: '',
+        frontShinyViewImageUrl: pokemonFrontShinyImage.src,
         backShinyViewImageUrl: ''
     },
     {
@@ -173,9 +174,9 @@ export const pokemonCardsArray = [
         type: typesArray[0],
         height: 145,
         weight: 45,
-        frontViewImageUrl: pokemonImage.src,
+        frontViewImageUrl: pokemonFrontImage.src,
         backViewImageUrl: '',
-        frontShinyViewImageUrl: '',
+        frontShinyViewImageUrl: pokemonFrontShinyImage.src,
         backShinyViewImageUrl: ''
     },
     {
@@ -184,9 +185,9 @@ export const pokemonCardsArray = [
         type: typesArray[0],
         height: 145,
         weight: 45,
-        frontViewImageUrl: pokemonImage.src,
+        frontViewImageUrl: pokemonFrontImage.src,
         backViewImageUrl: '',
-        frontShinyViewImageUrl: '',
+        frontShinyViewImageUrl: pokemonFrontShinyImage.src,
         backShinyViewImageUrl: ''
     },
     {
@@ -195,9 +196,9 @@ export const pokemonCardsArray = [
         type: typesArray[0],
         height: 145,
         weight: 45,
-        frontViewImageUrl: pokemonImage.src,
+        frontViewImageUrl: pokemonFrontImage.src,
         backViewImageUrl: '',
-        frontShinyViewImageUrl: '',
+        frontShinyViewImageUrl: pokemonFrontShinyImage.src,
         backShinyViewImageUrl: ''
     }
 ];

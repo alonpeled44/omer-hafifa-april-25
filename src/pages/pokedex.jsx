@@ -34,7 +34,7 @@ export default function pokedex() {
 
   const handleShinyFilterChange = (event) => {
     setShowShinyOnly(event.target.checked);
-  }
+  };
 
   return (
     <div className={styles["pokedex-page-container"]}>
@@ -98,23 +98,30 @@ export default function pokedex() {
       </div>
       {selectedCard && (
         <Modal isOpen={isModalOpen} onClose={closeModal}>
-          <section>
-            <p>#{selectedCard.id}</p>
+          <section className={styles["id-name-control-pop-up-container"]}>
             <p>{selectedCard.name}</p>
             <label>
               <input
-              type="checkbox"
-              checked={showShinyOnly}
-              onChange={handleShinyFilterChange}
+                type="checkbox"
+                checked={showShinyOnly}
+                onChange={handleShinyFilterChange}
               />
               Shiny
             </label>
+            <p>#{selectedCard.id}</p>
           </section>
 
-          <section>
-            <img></img>
-            <img></img>
-          </section>
+          {showShinyOnly ? (
+            <section className={styles["shiny-images-container"]}>
+              <img src={selectedCard.frontShinyViewImageUrl} />
+              <img src={selectedCard.backShinyViewImageUrl} />
+            </section>
+          ) : (
+            <section className={styles["regular-images-container"]}>
+              <img src={selectedCard.frontViewImageUrl} />
+              <img src={selectedCard.backViewImageUrl} />
+            </section>
+          )}
 
           <section>
             <p></p>
