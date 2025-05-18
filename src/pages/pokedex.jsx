@@ -26,6 +26,7 @@ export default function pokedex() {
   };
 
   const closeModal = () => {
+    console.log("entering closeModal");
     setIsModalOpen(false);
     setSelectedCard(null);
   };
@@ -90,24 +91,25 @@ export default function pokedex() {
           />
         ))}
       </div>
-      <Modal isOpen={isModalOpen} onClose={closeModal}>
-        {selectedCard && (
-          <>
-            <section>
-              <p>#{selectedCard.id}</p>
-              <p>{selectedCard.name}</p>
-            </section>
+      {selectedCard && (
+        <Modal isOpen={isModalOpen} onClose={closeModal}>
+          <section>
+            <p>#{selectedCard.id}</p>
+            <p>{selectedCard.name}</p>
+          </section>
 
-            <section></section>
+          <section>
+            <img></img>
+            <img></img>
+          </section>
 
-            <section>
-              <p></p>
-              <p></p>
-              <p></p>
-            </section>
-          </>
-        )}
-      </Modal>
+          <section>
+            <p></p>
+            <p></p>
+            <p></p>
+          </section>
+        </Modal>
+      )}
     </div>
   );
 }

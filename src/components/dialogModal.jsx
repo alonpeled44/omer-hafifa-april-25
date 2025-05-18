@@ -13,18 +13,22 @@ export default function Modal({ isOpen, onClose, children, className, closeOnBac
     }
   }, [isOpen]);
 
+  
   useEffect(() => {
     const dialog = dialogRef.current;
     const handleCancel = (e) => {
       e.preventDefault();
-      onClose();
+      if(typeof onClose === 'function')
+      {
+        onClose();
+      }
     };
     dialog.addEventListener('cancel', handleCancel);
     return () => dialog.removeEventListener('cancel', handleCancel);
   }, [onClose]);
 
   const handleBackdropClick = (e) => {
-    if (closeOnBackdropClick && e.target === dialogRef.current) {
+    if (closeOnBackdropClick && e.target === dialogRef.current && typeof onClose === 'function') {
       onClose();
     }
   };
@@ -37,7 +41,7 @@ export default function Modal({ isOpen, onClose, children, className, closeOnBac
     >
       <div className={styles["content-container"]}>
         {children}
-        <button onClick={onClose} className={styles["close-button"]}>
+        <button onClick={() => onClose && typeof onClose === 'function' && onClose()} className={styles["close-button"]}>
           Close
         </button>
       </div>
