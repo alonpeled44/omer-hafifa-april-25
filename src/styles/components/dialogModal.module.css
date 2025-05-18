@@ -5,4 +5,19 @@
     display: flex;
     justify-self: center;
     align-self: center;
+
+    & .content-container {
+        position: relative;
+        height: 100%;
+        width: 100%;
+
+        display: flex;
+        flex-direction: column;
+
+        & .close-button {
+            position: absolute;
+            top: 20px;
+            right: 10px;
+        }
+    }
 }

@@ -10,6 +10,7 @@ export default function pokedex() {
   const [isFilterOpen, setIsFilterOpen] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedCard, setSelectedCard] = useState(null);
+  const [showShinyOnly, setShowShinyOnly] = useState(false);
 
   useEffect(() => {
     const handleClickOnScreen = () => {
@@ -30,6 +31,10 @@ export default function pokedex() {
     setIsModalOpen(false);
     setSelectedCard(null);
   };
+
+  const handleShinyFilterChange = (event) => {
+    setShowShinyOnly(event.target.checked);
+  }
 
   return (
     <div className={styles["pokedex-page-container"]}>
@@ -96,6 +101,14 @@ export default function pokedex() {
           <section>
             <p>#{selectedCard.id}</p>
             <p>{selectedCard.name}</p>
+            <label>
+              <input
+              type="checkbox"
+              checked={showShinyOnly}
+              onChange={handleShinyFilterChange}
+              />
+              Shiny
+            </label>
           </section>
 
           <section>
