@@ -43,7 +43,7 @@ export default function Modal({ isOpen, onClose, children, className, closeOnBac
       <div className={styles["content-container"]}>
         {children}
         <button onClick={() => onClose && typeof onClose === 'function' && onClose()} className={styles["close-button"]}>
-          <img src={symbolXImage.src} alt='x-image'/>
+          &times;
         </button>
       </div>
     </dialog>

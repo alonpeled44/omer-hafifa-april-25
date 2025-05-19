@@ -1,28 +1,43 @@
 .modal {
-    height: 500px;
-    width: 625px;
+  height: 500px;
+  width: 625px;
+
+  display: flex;
+  justify-self: center;
+  align-self: center;
+
+  & .content-container {
+    position: relative;
+    height: 100%;
+    width: 100%;
 
     display: flex;
-    justify-self: center;
-    align-self: center;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 45px;
 
-    & .content-container {
-        position: relative;
+    font-size: 2.2rem;
+
+    & .close-button {
+      position: absolute;
+      top: 20px;
+      right: 10px;
+      height: 35px;
+      width: 35px;
+
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+
+      overflow: visible;
+      background: none;
+      border: none;
+      & img {
         height: 100%;
         width: 100%;
-
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        gap: 45px;
-
-        font-size: 2.2rem;
-
-        & .close-button {
-            position: absolute;
-            top: 20px;
-            right: 10px;
-        }
+      }
     }
+  }
 }
