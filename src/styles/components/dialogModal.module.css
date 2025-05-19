@@ -15,7 +15,9 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    gap: 45px;
+    gap: 40px;
+
+    padding-top: 10px;
 
     font-size: 2.2rem;
 
@@ -29,15 +31,18 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      cursor: pointer;
 
+      border-radius: 20px;
+      cursor: pointer;
       overflow: visible;
       background: none;
-      border: none;
-      & img {
-        height: 100%;
-        width: 100%;
-      }
+      z-index: 1;
+
+      font-size: 2.75rem;
+    }
+
+    & .close-button:active {
+      transform: scale(0.9);
     }
   }
 }

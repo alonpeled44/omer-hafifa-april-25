@@ -57,6 +57,11 @@
 
           z-index: 10;
           font-size: 1.5rem;
+          cursor: pointer;
+
+          & label {
+            cursor: pointer;
+          }
         }
 
         & .sort-options,
@@ -110,7 +115,7 @@
 
     & div {
       display: flex;
-      gap: 35px;
+      gap: 50px;
 
       & label {
         & input {
@@ -137,4 +142,8 @@
     flex-direction: column;
     gap: 15px;
   }
+}
+
+@media screen and (max-width: 1200px) {
+  
 }
