@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
-import Card from "../components/card";
+import { useScreenWidth } from "../libs/screenContext";
 import { pokemonCardsArray } from "../components/pokemonCards";
-import styles from "../styles/pages/pokedex.module.css";
+import Card from "../components/card";
 import Modal from "../components/dialogModal";
+import styles from "../styles/pages/pokedex.module.css";
 export default function pokedex() {
   const sortOptionsArray = ["1", "2", "3", "4", "5", "6", "7"];
   const filterOptionsArray = ["1", "2", "3", "4", "5", "6", "7"];
@@ -11,6 +12,7 @@ export default function pokedex() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedCard, setSelectedCard] = useState(null);
   const [showShinyOnly, setShowShinyOnly] = useState(false);
+  const {screenWidth} = useScreenWidth();
 
   useEffect(() => {
     const handleClickOnScreen = () => {
@@ -39,7 +41,7 @@ export default function pokedex() {
   return (
     <div className={styles["pokedex-page-container"]}>
       <div className={styles["custom-cards-container"]}>
-        <input type="text" placeholder="Search..." />
+        {screenWidth > 1200 && <input type="text" placeholder="Search..." />}
         <section className={styles["filter-and-sort"]}>
           <div className={styles["filter-box"]}>
             <button
