@@ -1,5 +1,4 @@
 import { useRef, useEffect } from 'react';
-import symbolXImage from "../images/pop-up-close-button-symbol.png"; 
 import styles from "../styles/components/dialogModal.module.css";
 
 export default function Modal({ isOpen, onClose, children, className, closeOnBackdropClick = true }) {
