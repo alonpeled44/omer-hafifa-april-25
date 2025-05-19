@@ -121,7 +121,6 @@
         & input {
           height: 26px;
           width: 26px;
-
         }
       }
     }
@@ -145,5 +144,14 @@
 }
 
 @media screen and (max-width: 1200px) {
-  
+  .pokedex-page-container {
+    
+    & .cards-container {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      grid-gap: 30px;
+
+      overflow-y: scroll;
+    }
+  }
 }

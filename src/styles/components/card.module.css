@@ -37,3 +37,12 @@
         height: 100px;
     }
 }
+
+@media screen and (max-width: 1200px) {
+    .card-general {
+        height: 202px;
+        max-width: 200px;
+
+        flex-direction: column-reverse;
+    }
+}
