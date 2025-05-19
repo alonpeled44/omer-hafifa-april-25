@@ -100,15 +100,17 @@ export default function pokedex() {
         <Modal isOpen={isModalOpen} onClose={closeModal}>
           <section className={styles["id-name-control-pop-up-container"]}>
             <p>{selectedCard.name}</p>
-            <label>
-              <input
-                type="checkbox"
-                checked={showShinyOnly}
-                onChange={handleShinyFilterChange}
-              />
-              Shiny
-            </label>
-            <p>#{selectedCard.id}</p>
+            <div>
+              <label>
+                <input
+                  type="checkbox"
+                  checked={showShinyOnly}
+                  onChange={handleShinyFilterChange}
+                />
+                Shiny
+              </label>
+              <p>#{selectedCard.id}</p>
+            </div>
           </section>
 
           {showShinyOnly ? (

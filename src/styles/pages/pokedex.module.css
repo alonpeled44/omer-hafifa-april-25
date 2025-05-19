@@ -106,8 +106,20 @@
 
   & .id-name-control-pop-up-container {
     display: flex;
-    justify-content: center;
-    gap: 100px;
+    gap: 140px;
+
+    & div {
+      display: flex;
+      gap: 35px;
+
+      & label {
+        & input {
+          height: 26px;
+          width: 26px;
+
+        }
+      }
+    }
   }
 
   & .images-container {
@@ -115,14 +127,14 @@
     gap: 10px;
 
     & img {
-      height: 170px;
-      width: 170px;
+      height: 205px;
+      width: 205px;
     }
   }
 
   & .pokemon-data-container {
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 15px;
   }
 }

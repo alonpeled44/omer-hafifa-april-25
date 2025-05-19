@@ -1,4 +1,5 @@
 import { useRef, useEffect } from 'react';
+import symbolXImage from "../images/pop-up-close-button-symbol.png"; 
 import styles from "../styles/components/dialogModal.module.css";
 
 export default function Modal({ isOpen, onClose, children, className, closeOnBackdropClick = true }) {
@@ -42,7 +43,7 @@ export default function Modal({ isOpen, onClose, children, className, closeOnBac
       <div className={styles["content-container"]}>
         {children}
         <button onClick={() => onClose && typeof onClose === 'function' && onClose()} className={styles["close-button"]}>
-          Close
+          <img src={symbolXImage.src} alt='x-image'/>
         </button>
       </div>
     </dialog>
