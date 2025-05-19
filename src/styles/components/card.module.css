@@ -44,5 +44,23 @@
         max-width: 200px;
 
         flex-direction: column-reverse;
+        align-items: center;
+
+        & div {
+            height: 80%;
+            width: 100%;
+
+            padding: 0;
+            border: none;
+
+            & img {
+                height: 100%;
+                width: 100%;
+            }
+        }
+
+        & p {
+            font-size: 1.5rem;
+        }
     }
 }
