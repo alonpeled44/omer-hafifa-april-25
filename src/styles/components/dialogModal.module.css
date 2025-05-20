@@ -51,3 +51,27 @@
     background-color: transparent;
     backdrop-filter: blur(10px);
 }
+
+@media screen and (max-width: 1200px) {
+  .modal {
+    height: 100%;
+    animation: slideUp linear 0.3s 0s 1 normal forwards;
+
+    & .content-container {
+      
+    }
+  }
+
+  .modal::backdrop {
+    backdrop-filter: none;
+  }
+
+  @keyframes slideUp {
+    from {
+      transform: translateY(100%); /* Start off-screen (bottom) (%) */
+    }
+    to {
+      transform: translateY(50%); /* End on-screen (px)*/
+    }
+  }
+}

@@ -146,7 +146,9 @@
 
 @media screen and (max-width: 1200px) {
   .pokedex-page-container {
+    position: relative;
     height: 100%;
+    overflow: hidden;
 
     & .custom-cards-container {
       height: 50px;
