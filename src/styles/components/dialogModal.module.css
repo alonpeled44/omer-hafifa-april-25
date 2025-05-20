@@ -54,11 +54,14 @@
 
 @media screen and (max-width: 1200px) {
   .modal {
-    height: 100%;
-    animation: slideUp linear 0.3s 0s 1 normal forwards;
+    height: 350px;
+    width: 1200px;
+    animation: slideUp linear 1s 0s 1 normal forwards;
 
     & .content-container {
-      
+      display: flex;
+      flex-direction: row;
+      font-size: 1rem;
     }
   }
 
@@ -71,7 +74,7 @@
       transform: translateY(100%); /* Start off-screen (bottom) (%) */
     }
     to {
-      transform: translateY(50%); /* End on-screen (px)*/
+      transform: translateY(79%); /* End on-screen (px)*/
     }
   }
 }

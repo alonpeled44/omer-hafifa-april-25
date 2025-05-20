@@ -137,38 +137,39 @@ export default function pokedex() {
             </>
           ) : (
             <>
-              <section className={styles["id-name-control-pop-up-container"]}>
-                <p>{selectedCard.name}</p>
-                <div>
-                  <label>
-                    <input
-                      type="checkbox"
-                      checked={showShinyOnly}
-                      onChange={handleShinyFilterChange}
-                    />
-                    Shiny
-                  </label>
-                  <p>#{selectedCard.id}</p>
-                </div>
-              </section>
+              <div
+                className={styles["pokemon-data-and-shiny-checkbox-container"]}
+              >
+                <section className={styles["id-name-control-pop-up-container"]}>
+                  <p>{selectedCard.name}</p>
+                  <div>
+                    <label>
+                      <input
+                        type="checkbox"
+                        checked={showShinyOnly}
+                        onChange={handleShinyFilterChange}
+                      />
+                      Shiny
+                    </label>
+                    <p>#{selectedCard.id}</p>
+                  </div>
+                </section>
 
+                <section className={styles["pokemon-data-container"]}>
+                  <p>Type: {selectedCard.type}</p>
+                  <p>Height: {selectedCard.height}</p>
+                  <p>Weight: {selectedCard.weight}</p>
+                </section>
+              </div>
               {showShinyOnly ? (
                 <section className={styles["images-container"]}>
                   <img src={selectedCard.frontShinyViewImageUrl} />
-                  <img src={selectedCard.backShinyViewImageUrl} />
                 </section>
               ) : (
                 <section className={styles["images-container"]}>
                   <img src={selectedCard.frontViewImageUrl} />
-                  <img src={selectedCard.backViewImageUrl} />
                 </section>
               )}
-
-              <section className={styles["pokemon-data-container"]}>
-                <p>Type: {selectedCard.type}</p>
-                <p>Height: {selectedCard.height}</p>
-                <p>Weight: {selectedCard.weight}</p>
-              </section>
             </>
           )}
         </Modal>
