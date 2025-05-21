@@ -163,13 +163,29 @@
           height: 100%;
           width: 40%;
 
-          & .sort-button, 
+          & .sort-button,
           .filter-button {
             height: 100%;
             width: 100%;
 
             & label {
               font-size: 2.5rem;
+            }
+          }
+
+          & .sort-options,
+          .filter-options {
+            height: 183px;
+            width: 82%;
+
+            top: 32px;
+            left: 7px;
+
+            padding: 7px 25px 0 25px;
+
+            & .option-container {
+              width: 100%;
+              font-size: 2rem;
             }
           }
         }
@@ -195,13 +211,14 @@
       display: flex;
       flex-direction: column;
       align-items: center;
+      gap: 65px;
 
       & .id-name-control-pop-up-container {
         & div {
           & label {
             & input {
-              height: 10px;
-              width: 10px;
+              height: 25px;
+              width: 25px;
             }
           }
         }
