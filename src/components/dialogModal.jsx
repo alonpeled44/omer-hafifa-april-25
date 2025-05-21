@@ -37,7 +37,7 @@ export default function Modal({ isOpen, onClose, children, className, closeOnBac
     <dialog
       ref={dialogRef}
       onClick={handleBackdropClick}
-      className={styles["modal"]}
+      className={styles["modal"] }
     >
       <div className={styles["content-container"]}>
         {children}
