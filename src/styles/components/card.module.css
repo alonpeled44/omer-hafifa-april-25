@@ -1,66 +1,73 @@
 .card-general {
-    height: 202px;
-    max-width: 150px;
+  height: 202px;
+  max-width: 150px;
 
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+
+  padding: 10px;
+  border: 2px solid rgb(0, 0, 0);
+
+  background: linear-gradient(
+    315deg,
+    rgb(222, 171, 29),
+    rgb(218, 209, 17),
+    rgb(235, 61, 220)
+  );
+
+  & section {
     display: flex;
     flex-direction: column;
-    gap: 2px;
+    gap: 13px;
+  }
 
-    padding: 10px;
-    border: 2px solid rgb(0, 0, 0);
+  & div {
+    display: flex;
+    justify-content: center;
+    
+    padding: 1px 0.5px;
+    border: 1px solid rgb(0, 0, 0);
+  }
 
-    background: linear-gradient(315deg, rgb(222, 171, 29), rgb(218, 209, 17), rgb(235, 61, 220));
-    & section {
-        display: flex;
-        flex-direction: column;
-        gap: 13px;
-    }
+  & .name-id-container {
+    flex-direction: row-reverse;
+    justify-content: space-between;
+  }
 
-    & div {
-        display: flex;
-        justify-content: center;
-        padding: 1px 0.5px;
-        border: 1px solid rgb(0, 0, 0);
-    }
+  & p {
+    font-size: 1rem;
+  }
 
-    & .name-id-container {
-        flex-direction: row-reverse;
-        justify-content: space-between;
-    }
-
-    & p {
-        font-size: 1rem;
-    }
-
-    & img {
-        width: 100px;
-        height: 100px;
-    }
+  & img {
+    height: 100px;
+    width: 100px;
+  }
 }
 
 @media screen and (max-width: 1200px) {
-    .card-general {
-        height: 202px;
-        max-width: 200px;
+  .card-general {
+    height: 202px;
+    max-width: 200px;
 
-        flex-direction: column-reverse;
-        align-items: center;
+    flex-direction: column-reverse;
+    align-items: center;
 
-        & div {
-            height: 80%;
-            width: 100%;
+    & div {
+      height: 80%;
+      width: 100%;
 
-            padding: 0;
-            border: none;
+      padding: 0;
+      border: none;
 
-            & img {
-                height: 100%;
-                width: 100%;
-            }
-        }
-
-        & p {
-            font-size: 1.5rem;
-        }
+      & img {
+        height: 100%;
+        width: 100%;
+      }
     }
+
+    & p {
+      font-size: 1.5rem;
+    }
+  }
 }
