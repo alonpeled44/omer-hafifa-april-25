@@ -17,13 +17,13 @@ export default function Header() {
 
   return (
     <header className={styles.header}>
-      <div className={styles["header-items-container"]}>
-        <div className={styles["header-image-text-container"]}>
+      <div className={styles["pokemon-header-content"]}>
+        <div className={styles["header-logo"]}>
           <img src={pokemonIcon.src} />
           <h1 className={styles["header-text"]}>pokemon</h1>
         </div>
         {username && (
-          <div className={styles["user-menu"]}>
+          <div className={styles["auth-links"]}>
             {screenWidth > 1200 && (
               <div>
                 <VerticalDivider />
@@ -31,7 +31,7 @@ export default function Header() {
             )}
 
             <p>{username}</p>
-            
+
             <button>log out</button>
           </div>
         )}

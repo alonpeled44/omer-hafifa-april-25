@@ -4,12 +4,12 @@
   justify-content: space-between;
   background-color: rgb(175, 51, 175);
 
-  & .header-items-container {
+  & .pokemon-header-content {
     display: flex;
     align-items: center;
     gap: 3px;
 
-    & .header-image-text-container {
+    & .header-logo {
       display: flex;
       align-items: center;
 
@@ -19,7 +19,7 @@
     }
 
 
-    & .user-menu {
+    & .auth-links {
       width: 50%;
       height: 100%;
 
@@ -43,7 +43,7 @@
         background-color: rgb(255, 174, 66);
         color: rgb(0, 0, 0);
         font-size: 1.1rem;
-        
+
         cursor: pointer;
       }
 
@@ -87,7 +87,7 @@
     justify-content: center;
     background-color: transparent;
 
-    & .header-items-container {
+    & .pokemon-header-content {
       position: absolute;
       bottom: 15px;
 
@@ -97,7 +97,7 @@
       flex-direction: column;
       justify-content: center;
 
-      & .header-image-text-container {
+      & .header-logo {
         flex-direction: row-reverse;
 
         & h1 {
@@ -110,7 +110,7 @@
         }
       }
 
-      & .user-menu {
+      & .auth-links {
         height: 30%;
         width: 100%;
 
