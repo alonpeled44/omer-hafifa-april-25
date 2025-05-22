@@ -22,14 +22,13 @@ export default function Header() {
           <img src={pokemonIcon.src} />
           <h1 className={styles["header-text"]}>pokemon</h1>
         </div>
+
+        {screenWidth > 1200 && (
+          <VerticalDivider className={styles["header-vertical-divider"]} />
+        )}
+
         {username && (
           <div className={styles["auth-links"]}>
-            {screenWidth > 1200 && (
-              <div>
-                <VerticalDivider />
-              </div>
-            )}
-
             <p>{username}</p>
 
             <button>log out</button>
