@@ -176,12 +176,11 @@
           & .sort-options,
           .filter-options {
             height: 183px;
-            width: 82%;
+            width: 96%;
 
             top: 32px;
-            left: 7px;
 
-            padding: 7px 25px 0 25px;
+            padding: 7px 5px 0 5px;
 
             & .option-container {
               width: 100%;
