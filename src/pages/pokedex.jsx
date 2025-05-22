@@ -19,6 +19,7 @@ export default function pokedex() {
       setIsSortOpen(false);
       setIsFilterOpen(false);
     };
+
     document.addEventListener("click", handleClickOnScreen);
     return () => document.removeEventListener("click", handleClickOnScreen);
   });
@@ -29,7 +30,6 @@ export default function pokedex() {
   };
 
   const closeModal = () => {
-    console.log("entering closeModal");
     setIsModalOpen(false);
     setSelectedCard(null);
   };
