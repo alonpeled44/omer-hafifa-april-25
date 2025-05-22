@@ -29,7 +29,9 @@ export default function Header() {
                 <VerticalDivider />
               </div>
             )}
+
             <p>{username}</p>
+            
             <button>log out</button>
           </div>
         )}
