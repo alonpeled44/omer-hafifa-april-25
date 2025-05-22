@@ -13,6 +13,7 @@ export default function Card({
   onClick,
 }) {
   const { screenWidth } = useScreenWidth();
+  
   return (
     <div onClick={onClick} className={styles["card-general"]}>
       {screenWidth > 1200 ? (
