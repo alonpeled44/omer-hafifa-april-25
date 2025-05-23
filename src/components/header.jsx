@@ -24,7 +24,9 @@ export default function Header() {
         </div>
 
         {screenWidth > 1200 && (
-          <VerticalDivider className={styles["header-vertical-divider"]} />
+          <div className={styles["header-vertical-divider"]}>
+            <VerticalDivider />
+          </div>
         )}
 
         {username && (
