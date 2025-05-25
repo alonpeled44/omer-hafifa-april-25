@@ -4,6 +4,7 @@ import { pokemonCardsArray } from "../components/pokemonCards";
 import Card from "../components/card";
 import Modal from "../components/dialogModal";
 import styles from "../styles/pages/pokedex.module.css";
+
 export default function pokedex() {
   const sortOptionsArray = ["1", "2", "3", "4", "5", "6", "7"];
   const filterOptionsArray = ["1", "2", "3", "4", "5", "6", "7"];

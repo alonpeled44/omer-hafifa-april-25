@@ -1,5 +1,6 @@
 import { useScreenWidth } from "../libs/screenContext";
 import styles from "../styles/components/card.module.css";
+
 export default function Card({
   id,
   name,
