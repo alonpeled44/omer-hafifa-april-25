@@ -208,13 +208,19 @@
     }
 
     & .pokemon-data-and-shiny-checkbox-container {
+      height: 90%;
+      width: 55%;
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 65px;
+      gap: 20%;
 
       & .id-name-control-pop-up-container {
+        row-gap: 20%;
+
         & div {
+          row-gap: 5%;
+          
           & label {
             & input {
               height: 25px;

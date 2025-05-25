@@ -5,7 +5,7 @@ import pokemonBackShinyImage from "../images/pikachu-back-shiny-image.png";
 
 const typesArray = ['fire', 'water', 'wind', 'land'];
 
-export const pokemonCardsArray = [
+export const pokemons = [
     {
         id: 1,
         name: 'pikachu',

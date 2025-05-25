@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useScreenWidth } from "../libs/screenContext";
-import { pokemonCardsArray } from "../components/pokemonCards";
+import { pokemons } from "../components/pokemons";
 import Card from "../components/card";
 import Modal from "../components/dialogModal";
 import styles from "../styles/pages/pokedex.module.css";
@@ -84,7 +84,7 @@ export default function pokedex() {
         </section>
       </div>
       <div className={styles["cards-container"]}>
-        {pokemonCardsArray.map((card) => (
+        {pokemons.map((card) => (
           <Card
             onClick={() => openModal(card)}
             id={card.id}

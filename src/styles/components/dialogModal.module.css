@@ -55,8 +55,8 @@
 
 @media screen and (max-width: 1200px) {
   .modal {
-    height: 350px;
-    width: 1200px;
+    height: 39%;
+    width: 100%;
     animation: slideUp linear 1s 0s 1 normal forwards;
 
     & .content-container {
@@ -64,8 +64,7 @@
       flex-direction: row;
       justify-content: space-evenly;
 
-      padding: 10px 0 0 40px;
-      font-size: 2.9rem;
+      font-size: 2.75rem;
 
       & .close-button {
         top: 10px;
