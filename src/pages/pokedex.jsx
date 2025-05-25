@@ -76,20 +76,11 @@ export default function pokedex() {
       <div className={styles["cards-container"]}>
         {pokemons.map((card) => (
           <Card
-            onClick={(card) => {
+            card={card}
+            onCardClick={() => {
               setSelectedCard(card);
               setIsModalOpen(true);
-              console.log(card.id);
             }}
-            id={card.id}
-            name={card.name}
-            type={card.type}
-            height={card.height}
-            weight={card.weight}
-            frontViewImageUrl={card.frontViewImageUrl}
-            backViewImageUrl={card.backViewImageUrl}
-            frontShinyViewImageUrl={card.frontShinyViewImageUrl}
-            backShinyViewImageUrl={card.backShinyViewImageUrl}
           />
         ))}
       </div>

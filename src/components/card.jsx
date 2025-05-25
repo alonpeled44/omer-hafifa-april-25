@@ -1,38 +1,27 @@
 import { useScreenWidth } from "../libs/screenContext";
 import styles from "../styles/components/card.module.css";
 
-export default function Card({
-  id,
-  name,
-  type,
-  height,
-  weight,
-  frontViewImageUrl,
-  backViewImageUrl,
-  frontShinyViewImageUrl,
-  backShinyViewImageUrl,
-  onClick,
-}) {
+export default function Card({card, onCardClick}) {
   const { screenWidth } = useScreenWidth();
   
   return (
-    <div onClick={onClick} className={styles["card-general"]}>
+    <div onClick={onCardClick} className={styles["card-general"]}>
       {screenWidth > 1200 ? (
         <section className={styles["name-id-container"]}>
-          <p>#{id}</p>
-          <p>{name}</p>
+          <p>#{card.id}</p>
+          <p>{card.name}</p>
         </section>
       ) : (
-        <p>{name}</p>
+        <p>{card.name}</p>
       )}
       <div>
-        <img src={frontViewImageUrl} />
+        <img src={card.frontViewImageUrl} />
       </div>
       {screenWidth > 1200 && (
         <section>
-          <p>Type: {type}</p>
-          <p>height: {height}</p>
-          <p>weight: {weight}</p>
+          <p>Type: {card.type}</p>
+          <p>height: {card.height}</p>
+          <p>weight: {card.weight}</p>
         </section>
       )}
     </div>
