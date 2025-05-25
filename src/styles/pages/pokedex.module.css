@@ -123,19 +123,15 @@
         & input {
           height: 26px;
           width: 26px;
+
+          
         }
       }
     }
   }
-
-  & .images-container {
-    display: flex;
-    gap: 10px;
-
-    & img {
-      height: 205px;
-      width: 205px;
-    }
+  & img {
+    height: 205px;
+    width: 205px;
   }
 
   & .pokemon-data-container {
@@ -200,11 +196,9 @@
       overflow-y: scroll;
     }
 
-    & .images-container {
-      & img {
-        height: 290px;
-        width: 290px;
-      }
+    & img {
+      height: 290px;
+      width: 290px;
     }
 
     & .pokemon-data-and-shiny-checkbox-container {
@@ -220,8 +214,11 @@
 
         & div {
           row-gap: 5%;
-          
+
           & label {
+            display: flex;
+            align-items: center;
+
             & input {
               height: 25px;
               width: 25px;

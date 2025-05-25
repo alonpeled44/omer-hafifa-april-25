@@ -28,6 +28,11 @@
     
     padding: 1px 0.5px;
     border: 1px solid rgb(0, 0, 0);
+
+    & img {
+      height: 100px;
+      width: 100px;
+    }
   }
 
   & .name-id-container {
@@ -37,11 +42,6 @@
 
   & p {
     font-size: 1rem;
-  }
-
-  & img {
-    height: 100px;
-    width: 100px;
   }
 }
 
