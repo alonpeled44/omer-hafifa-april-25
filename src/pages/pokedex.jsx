@@ -25,16 +25,6 @@ export default function pokedex() {
     return () => document.removeEventListener("click", handleClickOnScreen);
   });
 
-  const openModal = (card) => {
-    setSelectedCard(card);
-    setIsModalOpen(true);
-  };
-
-  const closeModal = () => {
-    setIsModalOpen(false);
-    setSelectedCard(null);
-  };
-
   const handleShinyFilterChange = (event) => {
     setShowShinyOnly(event.target.checked);
   };
@@ -86,7 +76,11 @@ export default function pokedex() {
       <div className={styles["cards-container"]}>
         {pokemons.map((card) => (
           <Card
-            onClick={() => openModal(card)}
+            onClick={(card) => {
+              setSelectedCard(card);
+              setIsModalOpen(true);
+              console.log(card.id);
+            }}
             id={card.id}
             name={card.name}
             type={card.type}
@@ -100,7 +94,13 @@ export default function pokedex() {
         ))}
       </div>
       {selectedCard && (
-        <Modal isOpen={isModalOpen} onClose={closeModal}>
+        <Modal
+          isOpen={isModalOpen}
+          onClose={() => {
+            setIsModalOpen(false);
+            setSelectedCard(null);
+          }}
+        >
           {screenWidth > 1200 ? (
             <>
               <section className={styles["id-name-control-pop-up-container"]}>
