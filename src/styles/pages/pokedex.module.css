@@ -70,7 +70,7 @@
         .filter-options {
           position: absolute;
           top: 13px;
-          
+
           height: 183px;
           width: 103px;
 
@@ -124,11 +124,12 @@
           height: 26px;
           width: 26px;
 
-          
+
         }
       }
     }
   }
+
   & img {
     height: 205px;
     width: 205px;
@@ -197,20 +198,28 @@
     }
 
     & img {
-      height: 290px;
-      width: 290px;
+      height: 150px;
+      width: 150px;
+      max-width: 100%;
+      object-fit: contain;
     }
 
     & .pokemon-data-and-shiny-checkbox-container {
-      height: 90%;
-      width: 55%;
+      width: 100%;
+      height: auto;
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 20%;
+      gap: 15px;
+      font-size: 1.5rem;
 
       & .id-name-control-pop-up-container {
-        row-gap: 20%;
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 10px;
+        font-size: inherit;
 
         & div {
           row-gap: 5%;
@@ -225,6 +234,15 @@
             }
           }
         }
+      }
+
+      & .pokemon-data-container {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        align-items: center;
+        font-size: inherit;
       }
     }
   }

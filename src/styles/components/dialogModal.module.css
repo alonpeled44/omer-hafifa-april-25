@@ -55,16 +55,27 @@
 
 @media screen and (max-width: 1200px) {
   .modal {
-    height: 39%;
-    width: 100%;
+    width: 825px;
+  max-width: 90vw;
+  height: auto;
+  max-height: 80vh;
+overflow-y: auto;
+  border: none; /* Remove default dialog border */
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
     animation: slideUp linear 1s 0s 1 normal forwards;
 
     & .content-container {
-      display: flex;
-      flex-direction: row;
-      justify-content: space-evenly;
-
-      font-size: 2.75rem;
+      width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 20px;
+    padding: 20px 10px;
+    font-size: 2rem;
 
       & .close-button {
         top: 10px;
