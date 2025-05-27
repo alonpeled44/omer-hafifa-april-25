@@ -94,10 +94,6 @@
             border-bottom: 1px solid rgb(0, 0, 0);
             font-size: 1.25rem;
           }
-
-          & .option-container:last-child {
-            border-bottom: none;
-          }
         }
       }
     }
@@ -108,7 +104,7 @@
     grid-template-columns: repeat(6, 1fr);
     grid-gap: 30px;
 
-    overflow-y: scroll;
+    overflow-y: auto;
   }
 
   & .id-name-control-pop-up-container {
@@ -193,56 +189,23 @@
       display: flex;
       justify-content: center;
       flex-wrap: wrap;
-
-      overflow-y: scroll;
     }
 
-    & img {
-      height: 150px;
-      width: 150px;
-      max-width: 100%;
-      object-fit: contain;
+    & .id-name-control-pop-up-container {
+      border: 2px solid black;
+      font-size: 1.5rem;
     }
 
     & .pokemon-data-and-shiny-checkbox-container {
-      width: 100%;
-      height: auto;
       display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 15px;
-      font-size: 1.5rem;
-
-      & .id-name-control-pop-up-container {
-        width: 100%;
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        gap: 10px;
-        font-size: inherit;
-
-        & div {
-          row-gap: 5%;
-
-          & label {
-            display: flex;
-            align-items: center;
-
-            & input {
-              height: 25px;
-              width: 25px;
-            }
-          }
-        }
-      }
+      flex-direction: row;
 
       & .pokemon-data-container {
-        width: 100%;
-        display: flex;
-        flex-direction: column;
-        gap: 10px;
-        align-items: center;
-        font-size: inherit;
+        font-size: 1.25rem;
+      }
+
+      & .pokemon-slide-up-image {
+        
       }
     }
   }

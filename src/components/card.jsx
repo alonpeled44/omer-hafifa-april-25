@@ -20,8 +20,8 @@ export default function Card({card, onCardClick}) {
       {screenWidth > 1200 && (
         <section>
           <p>Type: {card.type}</p>
-          <p>height: {card.height}</p>
-          <p>weight: {card.weight}</p>
+          <p>Height: {card.height}</p>
+          <p>Weight: {card.weight}</p>
         </section>
       )}
     </div>

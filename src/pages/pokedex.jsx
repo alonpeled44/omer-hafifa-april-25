@@ -92,78 +92,61 @@ export default function pokedex() {
             setSelectedCard(null);
           }}
         >
-          {screenWidth > 1200 ? (
-            <>
-              <section className={styles["id-name-control-pop-up-container"]}>
-                <p>{selectedCard.name}</p>
-                <div>
-                  <label>
-                    <input
-                      type="checkbox"
-                      checked={showShinyOnly}
-                      onChange={handleShinyFilterChange}
-                    />
-                    Shiny
-                  </label>
-                  <p>#{selectedCard.id}</p>
-                </div>
-              </section>
+          <>
+            <section className={styles["id-name-control-pop-up-container"]}>
+              <p>{selectedCard.name}</p>
+              <div>
+                <label>
+                  <input
+                    type="checkbox"
+                    checked={showShinyOnly}
+                    onChange={handleShinyFilterChange}
+                  />
+                  Shiny
+                </label>
+                <p>#{selectedCard.id}</p>
+              </div>
+            </section>
+            {screenWidth > 1200 ? (
+              <>
 
-              {showShinyOnly ? (
-                <section className={styles["images-container"]}>
-                  <img src={selectedCard.frontShinyViewImageUrl} />
-                  <img src={selectedCard.backShinyViewImageUrl} />
-                </section>
-              ) : (
-                <section className={styles["images-container"]}>
-                  <img src={selectedCard.frontViewImageUrl} />
-                  <img src={selectedCard.backViewImageUrl} />
-                </section>
-              )}
-
-              <section className={styles["pokemon-data-container"]}>
-                <p>Type: {selectedCard.type}</p>
-                <p>Height: {selectedCard.height}</p>
-                <p>Weight: {selectedCard.weight}</p>
-              </section>
-            </>
-          ) : (
-            <>
-              <div
-                className={styles["pokemon-data-and-shiny-checkbox-container"]}
-              >
-                <section className={styles["id-name-control-pop-up-container"]}>
-                  <p>{selectedCard.name}</p>
-                  <div>
-                    <label>
-                      <input
-                        type="checkbox"
-                        checked={showShinyOnly}
-                        onChange={handleShinyFilterChange}
-                      />
-                      Shiny
-                    </label>
-                    <p>#{selectedCard.id}</p>
-                  </div>
-                </section>
+                {showShinyOnly ? (
+                  <section className={styles["images-container"]}>
+                    <img src={selectedCard.frontShinyViewImageUrl} />
+                    <img src={selectedCard.backShinyViewImageUrl} />
+                  </section>
+                ) : (
+                  <section className={styles["images-container"]}>
+                    <img src={selectedCard.frontViewImageUrl} />
+                    <img src={selectedCard.backViewImageUrl} />
+                  </section>
+                )}
 
                 <section className={styles["pokemon-data-container"]}>
                   <p>Type: {selectedCard.type}</p>
                   <p>Height: {selectedCard.height}</p>
                   <p>Weight: {selectedCard.weight}</p>
                 </section>
-              </div>
-              {showShinyOnly ? (
-                <section className={styles["images-container"]}>
-                  <img src={selectedCard.frontShinyViewImageUrl} />
-                </section>
-              ) : (
-                <section className={styles["images-container"]}>
-                  <img src={selectedCard.frontViewImageUrl} />
-                </section>
-              )}
-            </>
-          )}
+              </>
+            ) : (
+              <>
+                <div
+                  className={styles["pokemon-data-and-shiny-checkbox-container"]}
+                >
+                  {showShinyOnly ? (
+                    <img src={selectedCard.frontShinyViewImageUrl} className={styles["pokemon-slide-up-image"]} />
+                  ) : (
+                    <img src={selectedCard.frontViewImageUrl} className={styles["pokemon-slide-up-image"]} />
+                  )}
+                  <section className={styles["pokemon-data-container"]}>
+                    <p>Type: {selectedCard.type}</p>
+                    <p>Height: {selectedCard.height}</p>
+                    <p>Weight: {selectedCard.weight}</p>
+                  </section>
+                </div>
+              </>
+            )}
+          </>
         </Modal>
       )}
     </div>
