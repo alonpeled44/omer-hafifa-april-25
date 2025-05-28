@@ -136,6 +136,11 @@ export default function pokedex() {
                     styles["pokemon-data-and-shiny-checkbox-container"]
                   }
                 >
+                  <section className={styles["pokemon-data-container"]}>
+                    <p>Type: {selectedCard.type}</p>
+                    <p>Height: {selectedCard.height}</p>
+                    <p>Weight: {selectedCard.weight}</p>
+                  </section>
                   {showShinyOnly ? (
                     <img
                       src={selectedCard.frontShinyViewImageUrl}
@@ -147,11 +152,6 @@ export default function pokedex() {
                       className={styles["pokemon-slide-up-image"]}
                     />
                   )}
-                  <section className={styles["pokemon-data-container"]}>
-                    <p>Type: {selectedCard.type}</p>
-                    <p>Height: {selectedCard.height}</p>
-                    <p>Weight: {selectedCard.weight}</p>
-                  </section>
                 </div>
               </>
             )}
