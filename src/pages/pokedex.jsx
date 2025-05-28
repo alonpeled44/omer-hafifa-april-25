@@ -30,61 +30,63 @@ export default function pokedex() {
   };
 
   return (
-    <div className={styles["pokedex-page-container"]}>
-      <div className={styles["custom-cards-container"]}>
-        {screenWidth > 1200 && <input type="text" placeholder="Search..." />}
-        <section className={styles["filter-and-sort"]}>
-          <div className={styles["filter-box"]}>
-            <button
-              className={styles["filter-button"]}
-              onClick={(event) => {
-                event.stopPropagation();
-                setIsFilterOpen(!isFilterOpen);
-              }}
-            >
-              <label>filter by</label>
-            </button>
-            {isFilterOpen === true && (
-              <div className={styles["filter-options"]}>
-                {filterOptionsArray.map((option) => (
-                  <p className={styles["option-container"]}>{option}</p>
-                ))}
-              </div>
-            )}
-          </div>
+    <>
+      <div className={styles["pokedex-page-container"]}>
+        <div className={styles["custom-cards-container"]}>
+          {screenWidth > 1200 && <input type="text" placeholder="Search..." />}
+          <section className={styles["filter-and-sort"]}>
+            <div className={styles["filter-box"]}>
+              <button
+                className={styles["filter-button"]}
+                onClick={(event) => {
+                  event.stopPropagation();
+                  setIsFilterOpen(!isFilterOpen);
+                }}
+              >
+                <label>filter by</label>
+              </button>
+              {isFilterOpen === true && (
+                <div className={styles["filter-options"]}>
+                  {filterOptionsArray.map((option) => (
+                    <p className={styles["option-container"]}>{option}</p>
+                  ))}
+                </div>
+              )}
+            </div>
 
-          <div className={styles["sort-box"]}>
-            <button
-              className={styles["sort-button"]}
-              onClick={(event) => {
-                event.stopPropagation();
-                setIsSortOpen(!isSortOpen);
+            <div className={styles["sort-box"]}>
+              <button
+                className={styles["sort-button"]}
+                onClick={(event) => {
+                  event.stopPropagation();
+                  setIsSortOpen(!isSortOpen);
+                }}
+              >
+                <label>sort by</label>
+              </button>
+              {isSortOpen === true && (
+                <div className={styles["sort-options"]}>
+                  {sortOptionsArray.map((option) => (
+                    <p className={styles["option-container"]}>{option}</p>
+                  ))}
+                </div>
+              )}
+            </div>
+          </section>
+        </div>
+        <div className={styles["cards-container"]}>
+          {pokemons.map((card) => (
+            <Card
+              card={card}
+              onCardClick={() => {
+                setSelectedCard(card);
+                setIsModalOpen(true);
               }}
-            >
-              <label>sort by</label>
-            </button>
-            {isSortOpen === true && (
-              <div className={styles["sort-options"]}>
-                {sortOptionsArray.map((option) => (
-                  <p className={styles["option-container"]}>{option}</p>
-                ))}
-              </div>
-            )}
-          </div>
-        </section>
+            />
+          ))}
+        </div>
       </div>
-      <div className={styles["cards-container"]}>
-        {pokemons.map((card) => (
-          <Card
-            card={card}
-            onCardClick={() => {
-              setSelectedCard(card);
-              setIsModalOpen(true);
-            }}
-          />
-        ))}
-      </div>
-      {selectedCard && (
+      {isModalOpen && (
         <Modal
           isOpen={isModalOpen}
           onClose={() => {
@@ -109,7 +111,6 @@ export default function pokedex() {
             </section>
             {screenWidth > 1200 ? (
               <>
-
                 {showShinyOnly ? (
                   <section className={styles["images-container"]}>
                     <img src={selectedCard.frontShinyViewImageUrl} />
@@ -131,12 +132,20 @@ export default function pokedex() {
             ) : (
               <>
                 <div
-                  className={styles["pokemon-data-and-shiny-checkbox-container"]}
+                  className={
+                    styles["pokemon-data-and-shiny-checkbox-container"]
+                  }
                 >
                   {showShinyOnly ? (
-                    <img src={selectedCard.frontShinyViewImageUrl} className={styles["pokemon-slide-up-image"]} />
+                    <img
+                      src={selectedCard.frontShinyViewImageUrl}
+                      className={styles["pokemon-slide-up-image"]}
+                    />
                   ) : (
-                    <img src={selectedCard.frontViewImageUrl} className={styles["pokemon-slide-up-image"]} />
+                    <img
+                      src={selectedCard.frontViewImageUrl}
+                      className={styles["pokemon-slide-up-image"]}
+                    />
                   )}
                   <section className={styles["pokemon-data-container"]}>
                     <p>Type: {selectedCard.type}</p>
@@ -149,6 +158,6 @@ export default function pokedex() {
           </>
         </Modal>
       )}
-    </div>
+    </>
   );
 }
