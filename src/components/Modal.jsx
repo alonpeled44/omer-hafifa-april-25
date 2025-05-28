@@ -12,7 +12,7 @@ export default function Modal({
     const dialog = dialogRef.current;
     
     if (isOpen) {
-      dialog.showModal();
+      dialog.showModal(); 
     } else {
       dialog.close();
     }
