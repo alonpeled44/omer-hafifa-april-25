@@ -64,6 +64,10 @@
     align-self: flex-end;
     justify-content: center;
 
+    &::backdrop {
+      backdrop-filter: none;
+    }
+
     & .content-container {
       bottom: 40vh;
       height: 27%;
@@ -71,10 +75,6 @@
       gap: 5px;
       animation: slideUp linear 1s 0s 1 normal forwards;
     }
-  }
-
-  .modal::backdrop {
-    backdrop-filter: none;
   }
 
   @keyframes slideUp {
