@@ -5,7 +5,7 @@ export default function Card({card, onCardClick}) {
   const { screenWidth } = useScreenWidth();
   
   return (
-    <div onClick={onCardClick} className={styles["card-general"]}>
+    <div onClick={onCardClick} className={styles.card}>
       {screenWidth > 1200 ? (
         <section className={styles["name-id-container"]}>
           <p>#{card.id}</p>

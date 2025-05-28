@@ -1,4 +1,4 @@
-.pokedex-page-container {
+.pokedex-content-container {
   height: 94%;
   width: 90%;
 
@@ -6,7 +6,7 @@
   flex-direction: column;
   gap: 50px;
 
-  & .custom-cards-container {
+  & .control-bar-container {
     height: 36px;
     display: flex;
     justify-content: center;
@@ -43,8 +43,8 @@
 
       margin-right: 15px;
 
-      & .sort-box,
-      .filter-box {
+      & .sort-container,
+      .filter-container {
         position: relative;
         overflow: visible;
 
@@ -145,12 +145,12 @@
 }
 
 @media screen and (max-width: 1200px) {
-  .pokedex-page-container {
+  .pokedex-content-container {
     position: relative;
     height: 100%;
     overflow: hidden;
 
-    & .custom-cards-container {
+    & .control-bar-container {
       height: 50px;
 
       & .filter-and-sort {
@@ -158,8 +158,8 @@
         width: 100%;
         justify-content: center;
 
-        & .sort-box,
-        .filter-box {
+        & .sort-container,
+        .filter-container {
           height: 100%;
           width: 40%;
 
@@ -200,14 +200,15 @@
 }
 
 .id-name-control-pop-up-container {
-
+   height: 15%;
 }
 
 .pokemon-data-and-shiny-checkbox-container {
-  height: 70%;
+  height: 72%;
   width: 100%;
   display: flex;
   flex-direction: row;
+  justify-content: center;
 
   & .pokemon-data-container {
     display: flex;
@@ -218,9 +219,7 @@
   }
 
   & .pokemon-slide-up-image {
-    & img {
-      height: 100px;
-      width: 100px;
-    }
+      height: 100%;
+      width: 25%;
   }
 }

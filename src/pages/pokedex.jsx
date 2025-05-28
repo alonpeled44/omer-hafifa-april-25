@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useScreenWidth } from "../libs/screenContext";
 import { pokemons } from "../components/pokemons";
 import Card from "../components/card";
-import Modal from "../components/dialogModal";
+import Modal from "../components/Modal";
 import styles from "../styles/pages/pokedex.module.css";
 
 export default function pokedex() {
@@ -13,6 +13,7 @@ export default function pokedex() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedCard, setSelectedCard] = useState(null);
   const [showShinyOnly, setShowShinyOnly] = useState(false);
+
   const { screenWidth } = useScreenWidth();
 
   useEffect(() => {
@@ -25,17 +26,17 @@ export default function pokedex() {
     return () => document.removeEventListener("click", handleClickOnScreen);
   });
 
-  const handleShinyFilterChange = (event) => {
+  const handleShinyChange = (event) => {
     setShowShinyOnly(event.target.checked);
   };
 
   return (
     <>
-      <div className={styles["pokedex-page-container"]}>
-        <div className={styles["custom-cards-container"]}>
+      <div className={styles["pokedex-content-container"]}>
+        <div className={styles["control-bar-container"]}>
           {screenWidth > 1200 && <input type="text" placeholder="Search..." />}
           <section className={styles["filter-and-sort"]}>
-            <div className={styles["filter-box"]}>
+            <div className={styles["filter-container"]}>
               <button
                 className={styles["filter-button"]}
                 onClick={(event) => {
@@ -54,7 +55,7 @@ export default function pokedex() {
               )}
             </div>
 
-            <div className={styles["sort-box"]}>
+            <div className={styles["sort-container"]}>
               <button
                 className={styles["sort-button"]}
                 onClick={(event) => {
@@ -102,7 +103,7 @@ export default function pokedex() {
                   <input
                     type="checkbox"
                     checked={showShinyOnly}
-                    onChange={handleShinyFilterChange}
+                    onChange={handleShinyChange}
                   />
                   Shiny
                 </label>

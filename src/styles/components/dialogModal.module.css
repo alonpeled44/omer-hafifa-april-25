@@ -61,10 +61,11 @@
 @media screen and (max-width: 1200px) {
   .modal {
     align-self: flex-end;
+    justify-content: center;
 
     & .content-container {
-      top: 75vh;
-      height: 25%;
+      bottom: 40vh;
+      height: 27%;
       width: 100%;
       gap: 5px;
       animation: slideUp linear 1s 0s 1 normal forwards;

@@ -4,9 +4,7 @@ import styles from "../styles/components/dialogModal.module.css";
 export default function Modal({
   isOpen,
   onClose,
-  children,
-  className,
-  closeOnBackdropClick = true,
+  children
 }) {
   const dialogRef = useRef(null);
 
@@ -25,35 +23,23 @@ export default function Modal({
 
     const handleCancel = (e) => {
       e.preventDefault();
-      if (typeof onClose === "function") {
         onClose();
-      }
     };
 
     dialog.addEventListener("cancel", handleCancel);
     return () => dialog.removeEventListener("cancel", handleCancel);
   }, [onClose]);
 
-  const handleBackdropClick = (e) => {
-    if (
-      closeOnBackdropClick &&
-      e.target === dialogRef.current &&
-      typeof onClose === "function"
-    ) {
-      onClose();
-    }
-  };
-
   return (
     <dialog
       ref={dialogRef}
-      onClick={handleBackdropClick}
-      className={styles["modal"]}
+      onClick={((e) => { if (e.target === dialogRef.current) onClose();})}
+      className={styles.modal}
     >
       <div className={styles["content-container"]}>
         {children}
         <button
-          onClick={() => onClose && typeof onClose === "function" && onClose()}
+          onClick={() => onClose()}
           className={styles["close-button"]}
         >
           &times;
