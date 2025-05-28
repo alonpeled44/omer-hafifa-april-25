@@ -44,12 +44,12 @@
       margin-right: 15px;
 
       & .sort-container,
-      .filter-container {
+      & .filter-container {
         position: relative;
         overflow: visible;
 
         & .sort-button,
-        .filter-button {
+        & .filter-button {
           position: relative;
           height: 31px;
           width: 175px;
@@ -67,7 +67,7 @@
         }
 
         & .sort-options,
-        .filter-options {
+        & .filter-options {
           position: absolute;
           top: 13px;
 
@@ -159,12 +159,12 @@
         justify-content: center;
 
         & .sort-container,
-        .filter-container {
+        & .filter-container {
           height: 100%;
           width: 40%;
 
           & .sort-button,
-          .filter-button {
+          & .filter-button {
             height: 100%;
             width: 100%;
 
@@ -174,7 +174,7 @@
           }
 
           & .sort-options,
-          .filter-options {
+          & .filter-options {
             top: 32px;
 
             height: 183px;
