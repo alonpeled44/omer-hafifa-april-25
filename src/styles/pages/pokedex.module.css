@@ -113,6 +113,7 @@
   width: 100%;
   display: flex;
   justify-content: space-around;
+  align-items: center;
 
   font-size: 2.25rem;
 
@@ -195,22 +196,18 @@
       justify-content: center;
       flex-wrap: wrap;
     }
-
-    & .id-name-control-pop-up-container {
-      border: 2px solid black;
-      font-size: 1.5rem;
-    }
-
-    & .pokemon-data-and-shiny-checkbox-container {
-      display: flex;
-      flex-direction: row;
-
-      & .pokemon-data-container {
-        font-size: 1.25rem;
-      }
-
-      & .pokemon-slide-up-image {
-      }
-    }
   }
+}
+
+.id-name-control-pop-up-container {
+
+}
+
+.pokemon-data-and-shiny-checkbox-container {
+  height: 60%;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+
+  
 }

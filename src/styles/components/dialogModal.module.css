@@ -12,6 +12,14 @@
   justify-content: center;
   align-items: center;
 
+  border: none;
+  background-color: transparent;
+
+  &::backdrop {
+    backdrop-filter: blur(10px);
+    background-color: transparent;
+  }
+
   & .content-container {
     position: relative;
     height: 53%;
@@ -21,45 +29,42 @@
     flex-direction: column;
     align-items: center;
     gap: 13px;
-  }
-}
 
-.modal::backdrop {
-  backdrop-filter: blur(10px);
-  background-color: transparent;
+    background-color: rgb(255, 255, 255);
+
+    & .close-button {
+      position: absolute;
+      top: 15px;
+      right: 10px;
+      height: 40px;
+      width: 40px;
+
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      border-radius: 20px;
+      cursor: pointer;
+      overflow: visible;
+      background: none;
+      z-index: 1;
+
+      font-size: 2.75rem;
+    }
+
+    & .close-button:active {
+      transform: scale(0.9);
+    }
+  }
 }
 
 @media screen and (max-width: 1200px) {
   .modal {
-    bottom: 5vh;
-    width: 100vw;
-    height: 40vh;
-    overflow-y: auto;
-    border: none;
-    /* Remove default dialog border */
-    position: fixed;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    animation: slideUp linear 1s 0s 1 normal forwards;
-
     & .content-container {
-      width: 100vw;
-      height: 38vh;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-
-      & .close-button {
-        top: 10px;
-        right: 20px;
-        height: 50px;
-        width: 50px;
-
-        border-radius: 35px;
-
-        font-size: 4.5rem;
-      }
+      top: 75vh;
+      height: 25%;
+      width: 100%;
+      animation: slideUp linear 1s 0s 1 normal forwards;
     }
   }
 
@@ -69,11 +74,11 @@
 
   @keyframes slideUp {
     from {
-      transform: translateY(600px);
+      transform: translateY(100vh);
     }
 
     to {
-      transform: translateY(285px);
+      transform: translateY(75vh);
     }
   }
 }
