@@ -12,7 +12,7 @@ export default function pokedex() {
   const [isFilterOpen, setIsFilterOpen] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedCard, setSelectedCard] = useState(null);
-  const [showShinyOnly, setShowShinyOnly] = useState(false);
+  const [showShiny, setShowShiny] = useState(false);
 
   const { screenWidth } = useScreenWidth();
 
@@ -27,7 +27,7 @@ export default function pokedex() {
   });
 
   const handleShinyChange = (event) => {
-    setShowShinyOnly(event.target.checked);
+    setShowShiny(event.target.checked);
   };
 
   return (
@@ -102,7 +102,7 @@ export default function pokedex() {
                 <label>
                   <input
                     type="checkbox"
-                    checked={showShinyOnly}
+                    checked={showShiny}
                     onChange={handleShinyChange}
                   />
                   Shiny
@@ -112,7 +112,7 @@ export default function pokedex() {
             </section>
             {screenWidth > 1200 ? (
               <>
-                {showShinyOnly ? (
+                {showShiny ? (
                   <section className={styles["images-container"]}>
                     <img src={selectedCard.frontShinyViewImageUrl} />
                     <img src={selectedCard.backShinyViewImageUrl} />
@@ -142,7 +142,7 @@ export default function pokedex() {
                     <p>Height: {selectedCard.height}</p>
                     <p>Weight: {selectedCard.weight}</p>
                   </section>
-                  {showShinyOnly ? (
+                  {showShiny ? (
                     <img
                       src={selectedCard.frontShinyViewImageUrl}
                       className={styles["pokemon-slide-up-image"]}
