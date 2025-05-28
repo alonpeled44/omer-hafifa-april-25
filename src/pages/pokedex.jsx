@@ -34,7 +34,7 @@ export default function pokedex() {
     <>
       <div className={styles["pokedex-content-container"]}>
         <div className={styles["control-bar-container"]}>
-          {screenWidth > 1200 && <input type="text" placeholder="Search..." />}
+          <input type="text" placeholder="Search..." />
           <section className={styles["filter-and-sort"]}>
             <div className={styles["filter-container"]}>
               <button
