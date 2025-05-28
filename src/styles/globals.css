@@ -16,8 +16,6 @@ body {
   display: flex;
   flex-direction: column;
 
-  overflow: hidden;
-
   background-image: url("../images/pokemon-background-image.jpg");
   background-size: cover;
 }

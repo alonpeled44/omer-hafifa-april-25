@@ -46,7 +46,6 @@
       & .sort-container,
       & .filter-container {
         position: relative;
-        overflow: visible;
 
         & .sort-button,
         & .filter-button {
