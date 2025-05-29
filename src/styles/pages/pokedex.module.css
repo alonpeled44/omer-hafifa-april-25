@@ -200,6 +200,7 @@
 
 .id-name-control-pop-up-container {
    height: 15%;
+   font-size: clamp(8px, 2vw, 50px);
 }
 
 .pokemon-data-and-shiny-checkbox-container {

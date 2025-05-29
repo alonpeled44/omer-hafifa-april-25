@@ -48,7 +48,6 @@
       cursor: pointer;
       overflow: visible;
       background: none;
-      z-index: 1;
 
       font-size: 2.75rem;
     }
