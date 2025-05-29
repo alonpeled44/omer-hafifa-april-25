@@ -41,7 +41,7 @@ export default function pokedex() {
                 className={styles["filter-button"]}
                 onClick={(event) => {
                   event.stopPropagation();
-                  setIsFilterOpen((prev)=> !prev);
+                  setIsFilterOpen((prev) => !prev);
                 }}
               >
                 <label>filter by</label>
@@ -61,7 +61,7 @@ export default function pokedex() {
                 className={styles["sort-button"]}
                 onClick={(event) => {
                   event.stopPropagation();
-                  setIsSortOpen((prev)=> !prev);
+                  setIsSortOpen((prev) => !prev);
                 }}
               >
                 <label>sort by</label>
@@ -114,17 +114,22 @@ export default function pokedex() {
             </section>
             {screenWidth > 1200 ? (
               <>
-                {showShiny ? (
-                  <section className={styles["images-container"]}>
-                    <img src={selectedCard.frontShinyViewImageUrl} />
-                    <img src={selectedCard.backShinyViewImageUrl} />
-                  </section>
-                ) : (
-                  <section className={styles["images-container"]}>
-                    <img src={selectedCard.frontViewImageUrl} />
-                    <img src={selectedCard.backViewImageUrl} />
-                  </section>
-                )}
+                <section className={styles["images-container"]}>
+                  <img
+                    src={
+                      showShiny
+                        ? selectedCard.frontShinyViewImageUrl
+                        : selectedCard.frontViewImageUrl
+                    }
+                  />
+                  <img
+                    src={
+                      showShiny
+                        ? selectedCard.backShinyViewImageUrl
+                        : selectedCard.backViewImageUrl
+                    }
+                  />
+                </section>
 
                 <section className={styles["pokemon-data-container"]}>
                   <p>Type: {selectedCard.type}</p>
