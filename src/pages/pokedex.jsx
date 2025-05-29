@@ -41,11 +41,12 @@ export default function pokedex() {
                 className={styles["filter-button"]}
                 onClick={(event) => {
                   event.stopPropagation();
-                  setIsFilterOpen(!isFilterOpen);
+                  setIsFilterOpen((prev)=> !prev);
                 }}
               >
                 <label>filter by</label>
               </button>
+              
               {isFilterOpen === true && (
                 <div className={styles["filter-options"]}>
                   {filterOptionsArray.map((option) => (
