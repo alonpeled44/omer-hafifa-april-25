@@ -72,7 +72,7 @@
       height: 27%;
       width: 100%;
       gap: 5px;
-      animation: slideUp linear 1s 0s 1 normal forwards;
+      animation: slideUp 1s;
     }
   }
 

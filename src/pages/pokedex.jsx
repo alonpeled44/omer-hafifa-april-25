@@ -50,7 +50,7 @@ export default function pokedex() {
               {isFilterOpen && (
                 <div className={styles["filter-options"]}>
                   {filterOptions.map((option) => (
-                    <p className={styles["option"]}>{option}</p>
+                    <button className={styles["option"]}>{option}</button>
                   ))}
                 </div>
               )}
@@ -69,7 +69,7 @@ export default function pokedex() {
               {isSortOpen === true && (
                 <div className={styles["sort-options"]}>
                   {sortOptions.map((option) => (
-                    <p className={styles["option"]}>{option}</p>
+                    <button className={styles["option"]}>{option}</button>
                   ))}
                 </div>
               )}
