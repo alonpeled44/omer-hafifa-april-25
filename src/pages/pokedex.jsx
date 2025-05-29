@@ -50,7 +50,7 @@ export default function pokedex() {
               {isFilterOpen && (
                 <div className={styles["filter-options"]}>
                   {filterOptionsArray.map((option) => (
-                    <p className={styles["option-container"]}>{option}</p>
+                    <p className={styles["option"]}>{option}</p>
                   ))}
                 </div>
               )}
@@ -69,7 +69,7 @@ export default function pokedex() {
               {isSortOpen === true && (
                 <div className={styles["sort-options"]}>
                   {sortOptionsArray.map((option) => (
-                    <p className={styles["option-container"]}>{option}</p>
+                    <p className={styles["option"]}>{option}</p>
                   ))}
                 </div>
               )}
@@ -100,6 +100,7 @@ export default function pokedex() {
           <>
             <section className={styles["id-name-control-pop-up-container"]}>
               <p>{selectedCard.name}</p>
+
               <div>
                 <label>
                   <input
@@ -109,6 +110,7 @@ export default function pokedex() {
                   />
                   Shiny
                 </label>
+
                 <p>#{selectedCard.id}</p>
               </div>
             </section>
