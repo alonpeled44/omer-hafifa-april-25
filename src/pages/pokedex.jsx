@@ -44,7 +44,7 @@ export default function pokedex() {
                   setIsFilterOpen((prev) => !prev);
                 }}
               >
-                <label>filter by</label>
+                filter by
               </button>
 
               {isFilterOpen && (
@@ -64,7 +64,7 @@ export default function pokedex() {
                   setIsSortOpen((prev) => !prev);
                 }}
               >
-                <label>sort by</label>
+                sort by
               </button>
               {isSortOpen === true && (
                 <div className={styles["sort-options"]}>
