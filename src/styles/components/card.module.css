@@ -16,13 +16,13 @@
     rgb(235, 61, 220)
   );
 
-  & section {
+  & .pokemon-data-container {
     display: flex;
     flex-direction: column;
     gap: 12px;
   }
 
-  & div {
+  & .image-container {
     display: flex;
     justify-content: center;
     
@@ -54,7 +54,7 @@
     flex-direction: column-reverse;
     align-items: center;
 
-    & div {
+    & .image-container {
       height: 80%;
       width: 100%;
 

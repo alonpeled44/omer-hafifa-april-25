@@ -14,11 +14,11 @@ export default function Card({card, onCardClick}) {
       ) : (
         <p>{card.name}</p>
       )}
-      <div>
+      <div className={styles["image-container"]}>
         <img src={card.frontViewImageUrl} />
       </div>
       {screenWidth > 1200 && (
-        <section>
+        <section className={styles["pokemon-data-container"]}>
           <p>Type: {card.type}</p>
           <p>Height: {card.height}</p>
           <p>Weight: {card.weight}</p>
