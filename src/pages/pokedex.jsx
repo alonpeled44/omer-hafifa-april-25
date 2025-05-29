@@ -46,8 +46,8 @@ export default function pokedex() {
               >
                 <label>filter by</label>
               </button>
-              
-              {isFilterOpen === true && (
+
+              {isFilterOpen && (
                 <div className={styles["filter-options"]}>
                   {filterOptionsArray.map((option) => (
                     <p className={styles["option-container"]}>{option}</p>
