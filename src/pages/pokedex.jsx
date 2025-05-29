@@ -6,8 +6,8 @@ import Modal from "../components/Modal";
 import styles from "../styles/pages/pokedex.module.css";
 
 export default function pokedex() {
-  const sortOptionsArray = ["1", "2", "3", "4", "5", "6", "7"];
-  const filterOptionsArray = ["1", "2", "3", "4", "5", "6", "7"];
+  const sortOptions = ["1", "2", "3", "4", "5", "6", "7"];
+  const filterOptions = ["1", "2", "3", "4", "5", "6", "7"];
   const [isSortOpen, setIsSortOpen] = useState(false);
   const [isFilterOpen, setIsFilterOpen] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -49,7 +49,7 @@ export default function pokedex() {
 
               {isFilterOpen && (
                 <div className={styles["filter-options"]}>
-                  {filterOptionsArray.map((option) => (
+                  {filterOptions.map((option) => (
                     <p className={styles["option"]}>{option}</p>
                   ))}
                 </div>
@@ -68,7 +68,7 @@ export default function pokedex() {
               </button>
               {isSortOpen === true && (
                 <div className={styles["sort-options"]}>
-                  {sortOptionsArray.map((option) => (
+                  {sortOptions.map((option) => (
                     <p className={styles["option"]}>{option}</p>
                   ))}
                 </div>
