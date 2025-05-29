@@ -61,7 +61,7 @@ export default function pokedex() {
                 className={styles["sort-button"]}
                 onClick={(event) => {
                   event.stopPropagation();
-                  setIsSortOpen(!isSortOpen);
+                  setIsSortOpen((prev)=> !prev);
                 }}
               >
                 <label>sort by</label>
@@ -76,6 +76,7 @@ export default function pokedex() {
             </div>
           </section>
         </div>
+
         <div className={styles["cards-container"]}>
           {pokemons.map((card) => (
             <Card
