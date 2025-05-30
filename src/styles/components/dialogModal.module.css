@@ -3,7 +3,6 @@
   top: 0;
   left: 0;
 
-  height: 100%;
   width: 100%;
 
   display: flex;
@@ -36,7 +35,7 @@
       position: absolute;
       top: 15px;
       right: 10px;
-      
+
       height: 40px;
       width: 40px;
 
@@ -48,6 +47,7 @@
       cursor: pointer;
       overflow: visible;
       background: none;
+      z-index: 1;
 
       font-size: 2.75rem;
     }
@@ -60,29 +60,28 @@
 
 @media screen and (max-width: 1200px) {
   .modal {
+    position: fixed;
     align-self: flex-end;
-    justify-content: center;
+    overflow: hidden;
+    animation: slideUp linear 1s 0s 1 normal forwards;
 
     &::backdrop {
       backdrop-filter: none;
     }
 
     & .content-container {
-      bottom: 40vh;
-      height: 27%;
       width: 100%;
       gap: 5px;
-      animation: slideUp 1s;
     }
   }
 
   @keyframes slideUp {
-    from {
-      transform: translateY(100vh);
+    0% {
+      transform: translateY(100%);
     }
 
-    to {
-      transform: translateY(75vh);
+    100% {
+      transform: translateY(0%);
     }
   }
 }
