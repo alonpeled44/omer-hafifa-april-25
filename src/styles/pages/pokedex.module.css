@@ -123,8 +123,9 @@
       & input {
         border: none;
         outline: none;
-        
+         
         font-size: 2.5rem;
+        color: aqua;
       }
     }
   }
