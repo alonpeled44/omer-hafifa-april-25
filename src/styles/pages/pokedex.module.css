@@ -58,7 +58,7 @@
 
           font-size: 1.5rem;
           cursor: pointer;
-          z-index: 10;
+          z-index: 1;
 
           cursor: pointer;
         }
@@ -78,7 +78,7 @@
           overflow: hidden;
           overflow-y: auto;
           background-color: rgb(255, 255, 255);
-          z-index: 5;
+          z-index: 0;
 
           & .option {
             height: 60px;
