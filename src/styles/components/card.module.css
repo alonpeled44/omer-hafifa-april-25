@@ -50,8 +50,7 @@
 
 @media screen and (max-width: 1200px) {
   .card {
-    max-width: 200px;
-
+    flex-basis: calc(100% / 3 - 80px);
     flex-direction: column-reverse;
     align-items: center;
 
