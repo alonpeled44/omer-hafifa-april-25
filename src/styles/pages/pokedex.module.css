@@ -213,6 +213,7 @@
 }
 
 .pokemon-data-and-shiny-checkbox-container {
+  height: 70%;
   width: 100%;
   display: flex;
   flex-direction: row;
@@ -228,6 +229,7 @@
   }
 
   & .pokemon-slide-up-image {
+    height: 80%;
     width: 32%;
   }
 }
