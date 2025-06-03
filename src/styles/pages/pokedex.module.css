@@ -149,39 +149,30 @@
   .pokedex-content-container {
     position: relative;
     height: 100%;
-    overflow: hidden;
 
     & .control-bar-container {
       height: 50px;
 
       & .filter-and-sort {
         height: 100%;
-        width: 100%;
-        justify-content: center;
+        gap: 10px;
 
         & .sort-container,
         & .filter-container {
           height: 100%;
-          width: 40%;
 
           & .sort-button,
           & .filter-button {
             height: 100%;
-            width: 100%;
           }
 
           & .sort-options,
           & .filter-options {
-            top: 32px;
+            top: 15px;
 
             height: 183px;
-            width: 96%;
-
-            padding: 7px 5px 0 5px;
-
 
             & .option {
-              width: 100%;
               font-size: 2rem;
             }
           }
@@ -198,7 +189,7 @@
 }
 
 .id-name-control-pop-up-container {
-  font-size: clamp(8px, 2vw, 50px);
+  font-size: clamp(10px, 2.65vw, 50px);
 }
 
 .pokemon-data-and-shiny-checkbox-container {
@@ -213,10 +204,10 @@
     justify-content: center;
     gap: 10px;
 
-    font-size: clamp(8px, 2vw, 50px);
+    font-size: clamp(10px, 2.65vw, 50px);
   }
 
   & .pokemon-slide-up-image {
-    width: 25%;
+    width: 32%;
   }
 }

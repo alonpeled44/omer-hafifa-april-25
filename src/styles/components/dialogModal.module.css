@@ -61,8 +61,8 @@
 @media screen and (max-width: 1200px) {
   .modal {
     position: fixed;
+    height: 50%;
     align-self: flex-end;
-    overflow: hidden;
     animation: slideUp linear 1s 0s 1 normal forwards;
 
     &::backdrop {
@@ -70,6 +70,7 @@
     }
 
     & .content-container {
+      height: 100%;
       width: 100%;
       gap: 5px;
     }
