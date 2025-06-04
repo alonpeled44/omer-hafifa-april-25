@@ -1,11 +1,11 @@
 import { useScreenWidth } from "../libs/screenContext";
 import styles from "../styles/components/card.module.css";
 
-export default function Card({card, onCardClick}) {
+export default function Card({ card, onClick }) {
   const { screenWidth } = useScreenWidth();
-  
+
   return (
-    <div onClick={onCardClick} className={styles.card}>
+    <div onClick={onClick} className={styles.card}>
       {screenWidth > 1200 ? (
         <section className={styles["name-id-container"]}>
           <p>#{card.id}</p>
@@ -14,9 +14,7 @@ export default function Card({card, onCardClick}) {
       ) : (
         <p>{card.name}</p>
       )}
-      <div className={styles["image-container"]}>
-        <img src={card.frontViewImageUrl} />
-      </div>
+      <img src={card.frontViewImageUrl} className={styles["image-container"]} />
       {screenWidth > 1200 && (
         <section className={styles["pokemon-data-container"]}>
           <p>Type: {card.type}</p>

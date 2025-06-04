@@ -81,7 +81,7 @@ export default function pokedex() {
           {pokemons.map((card) => (
             <Card
               card={card}
-              onCardClick={() => {
+              onClick={() => {
                 setSelectedCard(card);
                 setIsModalOpen(true);
               }}

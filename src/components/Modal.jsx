@@ -38,6 +38,7 @@ export default function Modal({
     >
       <div className={styles["content-container"]}>
         {children}
+        
         <button
           onClick={() => onClose()}
           className={styles["close-button"]}
