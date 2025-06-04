@@ -3,13 +3,13 @@ import pokemonBackImage from "../images/pikachu-back-image.png";
 import pokemonFrontShinyImage from "../images/pikachu-front-shiny-image.png";
 import pokemonBackShinyImage from "../images/pikachu-back-shiny-image.png";
 
-const typesArray = ['fire', 'water', 'wind', 'land'];
+const typeArray = ['fire', 'water', 'wind', 'land'];
 
 export const pokemons = [
     {
         id: 1,
         name: 'pikachu',
-        type: typesArray[0],
+        type: typeArray[0],
         height: 145,
         weight: 45,
         frontViewImageUrl: pokemonFrontImage.src,
@@ -20,7 +20,7 @@ export const pokemons = [
     {
         id: 2,
         name: 'pikachu',
-        type: typesArray[0],
+        type: typeArray[0],
         height: 145,
         weight: 45,
         frontViewImageUrl: pokemonFrontImage.src,
@@ -31,7 +31,7 @@ export const pokemons = [
     {
         id: 3,
         name: 'pikachu',
-        type: typesArray[0],
+        type: typeArray[0],
         height: 145,
         weight: 45,
         frontViewImageUrl: pokemonFrontImage.src,
@@ -42,7 +42,7 @@ export const pokemons = [
     {
         id: 4,
         name: 'pikachu',
-        type: typesArray[0],
+        type: typeArray[0],
         height: 145,
         weight: 45,
         frontViewImageUrl: pokemonFrontImage.src,
@@ -53,7 +53,7 @@ export const pokemons = [
     {
         id: 5,
         name: 'pikachu',
-        type: typesArray[0],
+        type: typeArray[0],
         height: 145,
         weight: 45,
         frontViewImageUrl: pokemonFrontImage.src,
@@ -64,7 +64,7 @@ export const pokemons = [
     {
         id: 6,
         name: 'pikachu',
-        type: typesArray[0],
+        type: typeArray[0],
         height: 145,
         weight: 45,
         frontViewImageUrl: pokemonFrontImage.src,
@@ -75,7 +75,7 @@ export const pokemons = [
     {
         id: 7,
         name: 'pikachu',
-        type: typesArray[0],
+        type: typeArray[0],
         height: 145,
         weight: 45,
         frontViewImageUrl: pokemonFrontImage.src,
@@ -86,7 +86,7 @@ export const pokemons = [
     {
         id: 8,
         name: 'pikachu',
-        type: typesArray[0],
+        type: typeArray[0],
         height: 145,
         weight: 45,
         frontViewImageUrl: pokemonFrontImage.src,
@@ -97,7 +97,7 @@ export const pokemons = [
     {
         id: 9,
         name: 'pikachu',
-        type: typesArray[0],
+        type: typeArray[0],
         height: 145,
         weight: 45,
         frontViewImageUrl: pokemonFrontImage.src,
@@ -108,7 +108,7 @@ export const pokemons = [
     {
         id: 10,
         name: 'pikachu',
-        type: typesArray[0],
+        type: typeArray[0],
         height: 145,
         weight: 45,
         frontViewImageUrl: pokemonFrontImage.src,
@@ -119,7 +119,7 @@ export const pokemons = [
     {
         id: 11,
         name: 'pikachu',
-        type: typesArray[0],
+        type: typeArray[0],
         height: 145,
         weight: 45,
         frontViewImageUrl: pokemonFrontImage.src,
@@ -130,7 +130,7 @@ export const pokemons = [
     {
         id: 12,
         name: 'pikachu',
-        type: typesArray[0],
+        type: typeArray[0],
         height: 145,
         weight: 45,
         frontViewImageUrl: pokemonFrontImage.src,
@@ -141,7 +141,7 @@ export const pokemons = [
     {
         id: 13,
         name: 'pikachu',
-        type: typesArray[0],
+        type: typeArray[0],
         height: 145,
         weight: 45,
         frontViewImageUrl: pokemonFrontImage.src,
@@ -152,7 +152,7 @@ export const pokemons = [
     {
         id: 14,
         name: 'pikachu',
-        type: typesArray[0],
+        type: typeArray[0],
         height: 145,
         weight: 45,
         frontViewImageUrl: pokemonFrontImage.src,
@@ -163,7 +163,7 @@ export const pokemons = [
     {
         id: 15,
         name: 'pikachu',
-        type: typesArray[0],
+        type: typeArray[0],
         height: 145,
         weight: 45,
         frontViewImageUrl: pokemonFrontImage.src,
@@ -174,7 +174,7 @@ export const pokemons = [
     {
         id: 16,
         name: 'pikachu',
-        type: typesArray[0],
+        type: typeArray[0],
         height: 145,
         weight: 45,
         frontViewImageUrl: pokemonFrontImage.src,
@@ -185,7 +185,7 @@ export const pokemons = [
     {
         id: 17,
         name: 'pikachu',
-        type: typesArray[0],
+        type: typeArray[0],
         height: 145,
         weight: 45,
         frontViewImageUrl: pokemonFrontImage.src,
@@ -196,7 +196,7 @@ export const pokemons = [
     {
         id: 18,
         name: 'pikachu',
-        type: typesArray[0],
+        type: typeArray[0],
         height: 145,
         weight: 45,
         frontViewImageUrl: pokemonFrontImage.src,

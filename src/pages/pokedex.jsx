@@ -11,7 +11,7 @@ export default function pokedex() {
   const [isSortOpen, setIsSortOpen] = useState(false);
   const [isFilterOpen, setIsFilterOpen] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [selectedCard, setSelectedCard] = useState(null);
+  const [selectedPokemon, setSelectedPokemon] = useState(null);
   const [showShiny, setShowShiny] = useState(false);
 
   const { screenWidth } = useScreenWidth();
@@ -32,9 +32,10 @@ export default function pokedex() {
 
   return (
     <>
-      <div className={styles["pokedex-content-container"]}>
-        <div className={styles["control-bar-container"]}>
+      <div className={styles["pokedex-content"]}>
+        <div className={styles["control-bar"]}>
           <input type="text" placeholder="Search..." />
+
           <section className={styles["filter-and-sort"]}>
             <div className={styles["filter-container"]}>
               <button
@@ -66,6 +67,7 @@ export default function pokedex() {
               >
                 sort by
               </button>
+              
               {isSortOpen === true && (
                 <div className={styles["sort-options"]}>
                   {sortOptions.map((option) => (
@@ -77,29 +79,30 @@ export default function pokedex() {
           </section>
         </div>
 
-        <div className={styles["cards-container"]}>
+        <div className={styles["pokemons-container"]}>
           {pokemons.map((card) => (
             <Card
               card={card}
               onClick={() => {
-                setSelectedCard(card);
+                setSelectedPokemon(card);
                 setIsModalOpen(true);
               }}
             />
           ))}
         </div>
       </div>
+
       {isModalOpen && (
         <Modal
           isOpen={isModalOpen}
           onClose={() => {
             setIsModalOpen(false);
-            setSelectedCard(null);
+            setSelectedPokemon(null);
           }}
         >
           <>
             <section className={styles["pokemon-id-shiny-control"]}>
-              <p>{selectedCard.name}</p>
+              <p>{selectedPokemon.name}</p>
               <div>
                 <label>
                   <input
@@ -110,7 +113,7 @@ export default function pokedex() {
                   Shiny
                 </label>
 
-                <p>#{selectedCard.id}</p>
+                <p>#{selectedPokemon.id}</p>
               </div>
             </section>
             {screenWidth > 1200 ? (
@@ -119,23 +122,23 @@ export default function pokedex() {
                   <img
                     src={
                       showShiny
-                        ? selectedCard.frontShinyViewImageUrl
-                        : selectedCard.frontViewImageUrl
+                        ? selectedPokemon.frontShinyViewImageUrl
+                        : selectedPokemon.frontViewImageUrl
                     }
                   />
                   <img
                     src={
                       showShiny
-                        ? selectedCard.backShinyViewImageUrl
-                        : selectedCard.backViewImageUrl
+                        ? selectedPokemon.backShinyViewImageUrl
+                        : selectedPokemon.backViewImageUrl
                     }
                   />
                 </section>
 
                 <section className={styles["pokemon-data-container"]}>
-                  <p>Type: {selectedCard.type}</p>
-                  <p>Height: {selectedCard.height}</p>
-                  <p>Weight: {selectedCard.weight}</p>
+                  <p>Type: {selectedPokemon.type}</p>
+                  <p>Height: {selectedPokemon.height}</p>
+                  <p>Weight: {selectedPokemon.weight}</p>
                 </section>
               </>
             ) : (
@@ -146,18 +149,18 @@ export default function pokedex() {
                   }
                 >
                   <section className={styles["pokemon-data-container"]}>
-                    <p>Type: {selectedCard.type}</p>
-                    <p>Height: {selectedCard.height}</p>
-                    <p>Weight: {selectedCard.weight}</p>
+                    <p>Type: {selectedPokemon.type}</p>
+                    <p>Height: {selectedPokemon.height}</p>
+                    <p>Weight: {selectedPokemon.weight}</p>
                   </section>
                   {showShiny ? (
                     <img
-                      src={selectedCard.frontShinyViewImageUrl}
+                      src={selectedPokemon.frontShinyViewImageUrl}
                       className={styles["pokemon-slide-up-image"]}
                     />
                   ) : (
                     <img
-                      src={selectedCard.frontViewImageUrl}
+                      src={selectedPokemon.frontViewImageUrl}
                       className={styles["pokemon-slide-up-image"]}
                     />
                   )}

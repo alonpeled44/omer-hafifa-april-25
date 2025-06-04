@@ -7,14 +7,14 @@ export default function Card({ card, onClick }) {
   return (
     <div onClick={onClick} className={styles.card}>
       {screenWidth > 1200 ? (
-        <section className={styles["name-id-container"]}>
+        <section className={styles["pokemon-info"]}>
           <p>#{card.id}</p>
           <p>{card.name}</p>
         </section>
       ) : (
         <p>{card.name}</p>
       )}
-      <img src={card.frontViewImageUrl} className={styles["image-container"]} />
+      <img src={card.frontViewImageUrl} className={styles["image"]} />
       {screenWidth > 1200 && (
         <section className={styles["pokemon-data-container"]}>
           <p>Type: {card.type}</p>

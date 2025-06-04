@@ -22,21 +22,15 @@
     gap: 12px;
   }
 
-  & .image-container {
+  & .image {
+    height: 105px;
+    width: 105px;
+
     display: flex;
-    justify-content: center;
-    
-    padding: 1px 0.5px;
-
-    border: 1px solid rgb(0, 0, 0);
-
-    & img {
-      height: 100px;
-      width: 100px;
-    }
+    align-self: center;
   }
 
-  & .name-id-container {
+  & .pokemon-info {
     display: flex;
     flex-direction: row-reverse;
     justify-content: space-between;
@@ -53,18 +47,9 @@
     flex-direction: column-reverse;
     align-items: center;
 
-    & .image-container {
+    & .image {
       height: 64%;
       width: 100%;
-
-      padding: 0;
-      
-      border: none;
-
-      & img {
-        height: 86%;
-        width: 100%;
-      }
     }
 
     & p {
