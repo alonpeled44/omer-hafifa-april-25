@@ -106,7 +106,7 @@
   }
 }
 
-.id-name-control-pop-up-container {
+.pokemon-id-shiny-control {
   height: 30%;
   width: 100%;
   display: flex;
@@ -231,7 +231,7 @@
     }
   }
 
-  & .id-name-control-pop-up-container {
+  & .pokemon-id-shiny-control {
     font-size: clamp(10px, 4vw, 50px);
 
     & div {

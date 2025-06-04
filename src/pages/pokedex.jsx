@@ -98,9 +98,8 @@ export default function pokedex() {
           }}
         >
           <>
-            <section className={styles["id-name-control-pop-up-container"]}>
+            <section className={styles["pokemon-id-shiny-control"]}>
               <p>{selectedCard.name}</p>
-
               <div>
                 <label>
                   <input
