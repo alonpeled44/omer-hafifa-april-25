@@ -116,6 +116,7 @@ export default function pokedex() {
                 <p>#{selectedPokemon.id}</p>
               </div>
             </section>
+            
             {screenWidth > 1200 ? (
               <>
                 <section className={styles["images-container"]}>
