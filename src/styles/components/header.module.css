@@ -21,7 +21,7 @@
       }
     }
 
-    & .header-vertical-divider {
+    & .vertical-divider-wrapper {
       height: 65%;
       width: 6px;
 
@@ -30,7 +30,7 @@
       align-items: center;
     }
 
-    & .auth-links {
+    & .user-info {
       width: 50%;
       height: 100%;
 
@@ -112,7 +112,7 @@
         }
       }
 
-      & .auth-links {
+      & .user-info {
         height: 30%;
         width: 100%;
 

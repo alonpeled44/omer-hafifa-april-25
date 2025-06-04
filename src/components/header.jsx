@@ -24,13 +24,13 @@ export default function Header() {
         </div>
 
         {screenWidth > 1200 && (
-          <div className={styles["header-vertical-divider"]}>
+          <div className={styles["vertical-divider-wrapper"]}>
             <VerticalDivider />
           </div>
         )}
 
         {username && (
-          <div className={styles["auth-links"]}>
+          <div className={styles["user-info"]}>
             <p>{username}</p>
 
             <button>log out</button>
