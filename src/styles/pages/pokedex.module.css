@@ -32,6 +32,10 @@
       border-bottom: 2px solid rgb(0, 0, 0);
       outline: none;
     }
+
+    & .filter-and-sort-container {
+      display: flex;
+    }
   }
 
   & .pokemons-container {

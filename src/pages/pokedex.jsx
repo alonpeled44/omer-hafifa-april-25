@@ -36,17 +36,17 @@ export default function pokedex() {
       <div className={styles["pokedex-content"]}>
         <div className={styles["control-bar"]}>
           <input type="text" placeholder="Search..." />
-          <section>
+          <section className={styles["filter-and-sort-container"]}>
             <Select isOpen={isFilterOpen}
              setIsOpen={setIsFilterOpen}
              options={filterOptions}
-             selectType={"filter"} 
+             type={"filter"} 
             />
 
             <Select isOpen={isSortOpen}
              setIsOpen={setIsSortOpen}
              options={sortOptions}
-             selectType={"sort"} 
+             type={"sort"} 
             />
           </section>
         </div>
