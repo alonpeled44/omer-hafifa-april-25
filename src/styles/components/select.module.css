@@ -1,0 +1,15 @@
+.select {
+    display: flex;
+    flex-direction: column;
+
+    & .button {
+
+    }
+
+    & .options {
+        display: flex;
+        flex-direction: column;
+
+        
+    }
+}
