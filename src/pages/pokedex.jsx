@@ -35,48 +35,6 @@ export default function pokedex() {
       <div className={styles["pokedex-content"]}>
         <div className={styles["control-bar"]}>
           <input type="text" placeholder="Search..." />
-
-          <section className={styles["filter-and-sort"]}>
-            <div className={styles["filter-container"]}>
-              <button
-                className={styles["filter-button"]}
-                onClick={(event) => {
-                  event.stopPropagation();
-                  setIsFilterOpen((prev) => !prev);
-                }}
-              >
-                filter by
-              </button>
-
-              {isFilterOpen && (
-                <div className={styles["filter-options"]}>
-                  {filterOptions.map((option) => (
-                    <button className={styles["option"]}>{option}</button>
-                  ))}
-                </div>
-              )}
-            </div>
-
-            <div className={styles["sort-container"]}>
-              <button
-                className={styles["sort-button"]}
-                onClick={(event) => {
-                  event.stopPropagation();
-                  setIsSortOpen((prev) => !prev);
-                }}
-              >
-                sort by
-              </button>
-              
-              {isSortOpen === true && (
-                <div className={styles["sort-options"]}>
-                  {sortOptions.map((option) => (
-                    <button className={styles["option"]}>{option}</button>
-                  ))}
-                </div>
-              )}
-            </div>
-          </section>
         </div>
 
         <div className={styles["pokemons-container"]}>
