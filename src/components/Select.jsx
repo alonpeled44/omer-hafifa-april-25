@@ -1,3 +1,4 @@
+import styles from "../styles/components/select.module.css";
 export default function Select({ isOpen, setIsOpen, options, selectType}) {
   return (
     <div className={styles["select"]}>

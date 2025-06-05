@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useScreenWidth } from "../libs/screenContext";
 import { pokemons } from "../components/pokemons";
 import Card from "../components/card";
+import Select from "../components/Select";
 import Modal from "../components/Modal";
 import styles from "../styles/pages/pokedex.module.css";
 
@@ -35,6 +36,19 @@ export default function pokedex() {
       <div className={styles["pokedex-content"]}>
         <div className={styles["control-bar"]}>
           <input type="text" placeholder="Search..." />
+          <section>
+            <Select isOpen={isFilterOpen}
+             setIsOpen={setIsFilterOpen}
+             options={filterOptions}
+             selectType={"filter"} 
+            />
+
+            <Select isOpen={isSortOpen}
+             setIsOpen={setIsSortOpen}
+             options={sortOptions}
+             selectType={"sort"} 
+            />
+          </section>
         </div>
 
         <div className={styles["pokemons-container"]}>
