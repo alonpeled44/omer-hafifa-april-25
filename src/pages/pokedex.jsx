@@ -91,7 +91,7 @@ export default function pokedex() {
             
             {screenWidth > 1200 ? (
               <>
-                <section className={styles["images-container"]}>
+                <section className={styles["images"]}>
                   <img
                     src={
                       showShiny

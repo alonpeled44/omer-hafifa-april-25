@@ -72,7 +72,7 @@
   }
 }
 
-.images-container {
+.images {
   & img {
     height: 205px;
     width: 205px;
