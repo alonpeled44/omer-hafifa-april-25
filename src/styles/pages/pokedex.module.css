@@ -34,7 +34,9 @@
     }
 
     & .filter-and-sort-container {
+      width: 20%;
       display: flex;
+      justify-content: space-evenly;
     }
   }
 

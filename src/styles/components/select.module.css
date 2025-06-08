@@ -1,15 +1,22 @@
 .select {
+  height: 109px;
+  display: flex;
+  flex-direction: column;
+
+  & .button {
+  }
+
+  & .options {
+    height: 90px;
     display: flex;
     flex-direction: column;
+    overflow-y: auto;
+    background: white;
+    z-index: 9;
+    align-items: center;
 
-    & .button {
-
+    & .option {
+      min-height: 30px;
     }
-
-    & .options {
-        display: flex;
-        flex-direction: column;
-
-        
-    }
+  }
 }
