@@ -6,18 +6,19 @@
   flex-direction: column;
 
   & .button {
-    height: 24%;
+    height: 26%;
     width: 100%;
     border: 1px solid black;
     border-radius: 12px;
     z-index: 1;
+    font-size: 1.5rem;
   }
 
   & .options {
     position: absolute;
-    top: 21px;
+    top: 24px;
     left: 1px;
-    height: 76%;
+    height: 74%;
     width: 97%;
     display: flex;
     flex-direction: column;
@@ -31,6 +32,24 @@
       border: none;
       border-bottom: 1px solid rgb(0, 0, 0);
       background: transparent;
+    }
+  }
+}
+
+@media screen and (max-width: 1200px) {
+  .select {
+    width: 47%;
+
+    & .button {
+     font-size: 1.4rem;
+    }
+
+    & .options {
+
+      & .option {
+
+      }
+
     }
   }
 }

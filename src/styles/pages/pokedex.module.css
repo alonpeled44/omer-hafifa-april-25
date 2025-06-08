@@ -108,38 +108,10 @@
         font-size: 1.6rem;
       }
 
-      & .filter-and-sort {
+      & .filter-and-sort-container {
         height: 100%;
         width: 67%;
         gap: 10px;
-
-        & .sort-container,
-        & .filter-container {
-          height: 100%;
-          width: 30%;
-
-          & .sort-button,
-          & .filter-button {
-            height: 100%;
-            width: 100%;
-
-            font-size: 1.15rem;
-          }
-
-          & .sort-options,
-          & .filter-options {
-            top: 15px;
-
-            height: 183px;
-            width: 99%;
-
-            padding: 7px 0 0 0;
-
-            & .option {
-              font-size: 1.5rem;
-            }
-          }
-        }
       }
     }
 
