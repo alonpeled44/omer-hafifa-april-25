@@ -126,17 +126,11 @@ export default function pokedex() {
                     <p>Height: {selectedPokemon.height}</p>
                     <p>Weight: {selectedPokemon.weight}</p>
                   </section>
-                  {showShiny ? (
-                    <img
-                      src={selectedPokemon.frontShinyViewImageUrl}
-                      className={styles["pokemon-slide-up-image"]}
-                    />
-                  ) : (
-                    <img
-                      src={selectedPokemon.frontViewImageUrl}
-                      className={styles["pokemon-slide-up-image"]}
-                    />
-                  )}
+                  
+                  <img 
+                  src={showShiny ? selectedPokemon.frontShinyViewImageUrl : selectedPokemon.frontViewImageUrl}
+                  className={styles["pokemon-slide-up-image"]}
+                  />
                 </div>
               </>
             )}

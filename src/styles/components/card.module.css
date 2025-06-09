@@ -1,5 +1,5 @@
 .card {
-  height: 12.6rem;
+  height: 13.7rem;
 
   display: flex;
   flex-direction: column;
@@ -23,8 +23,8 @@
   }
 
   & .image {
-    height: 105px;
-    width: 105px;
+    height: 113px;
+    width: 113px;
 
     display: flex;
     align-self: center;
