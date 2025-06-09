@@ -9,6 +9,7 @@
 
   & .control-bar {
     height: 36px;
+    
     display: flex;
     justify-content: center;
     align-items: baseline;
