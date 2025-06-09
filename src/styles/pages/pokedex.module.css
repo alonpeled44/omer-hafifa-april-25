@@ -1,15 +1,17 @@
 .pokedex-content {
-  height: 96%;
-  width: 90%;
+  height: 100%;
 
   display: flex;
   flex-direction: column;
   gap: 32px;
 
+  padding: 30px 100px 0 100px;
+
   & .control-bar {
     height: 36px;
     display: flex;
     justify-content: center;
+    align-items: baseline;
     gap: 61%;
 
     & input {
@@ -45,6 +47,7 @@
     flex-wrap: wrap;
     gap: 28px;
     overflow-y: auto;
+    justify-content: space-between;
   }
 }
 
@@ -98,7 +101,7 @@
     & .control-bar {
       height: 50px;
       width: 91vw;
-      align-items: baseline;
+
       gap: 70px;
 
       & input {
