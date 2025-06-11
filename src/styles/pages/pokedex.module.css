@@ -104,7 +104,7 @@
 
     & .control-bar {
       height: 30px;
-      width: 91vw;
+      width: 91%;
 
       gap: 70px;
 
@@ -159,7 +159,7 @@
     & div {
 
       & label { 
-        
+
         & input {
           height: 10px;
           width: 10px;
