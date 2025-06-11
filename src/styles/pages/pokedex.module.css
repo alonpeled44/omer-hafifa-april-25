@@ -51,7 +51,7 @@
   }
 }
 
-.pokemon-id-shiny-control {
+.pokemon-profile {
   height: 30%;
   width: 100%;
 
@@ -154,7 +154,7 @@
     }
   }
 
-  & .pokemon-id-shiny-control {
+  & .pokemon-profile {
     font-size: clamp(10px, 4vw, 50px);
 
     & div {

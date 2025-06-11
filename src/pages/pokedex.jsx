@@ -73,7 +73,7 @@ export default function pokedex() {
           }}
         >
           <>
-            <section className={styles["pokemon-id-shiny-control"]}>
+            <section className={styles["pokemon-profile"]}>
               <p>{selectedPokemon.name}</p>
               <div>
                 <label>
