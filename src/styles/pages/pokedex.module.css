@@ -97,6 +97,7 @@
   .pokedex-content {
     position: relative;
     height: 100%;
+    width: inherit;
 
     display: flex;
     flex-direction: column;
