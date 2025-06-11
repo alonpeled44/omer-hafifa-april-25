@@ -16,7 +16,7 @@ export default function Card({ card, onClick }) {
       )}
       <img src={card.frontViewImageUrl} className={styles["image"]} />
       {screenWidth > 1200 && (
-        <section className={styles["pokemon-data-container"]}>
+        <section className={styles["pokemon-details"]}>
           <p>Type: {card.type}</p>
           <p>Height: {card.height}</p>
           <p>Weight: {card.weight}</p>

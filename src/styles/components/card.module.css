@@ -16,7 +16,7 @@
     rgb(235, 61, 220)
   );
 
-  & .pokemon-data-container {
+  & .pokemon-details {
     display: flex;
     flex-direction: column;
     gap: 16px;
