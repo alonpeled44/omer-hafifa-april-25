@@ -1,17 +1,16 @@
 .modal {
   position: absolute;
   top: 0;
-  left: 0;
 
   height: 75%;
   width: 100%;
 
   display: flex;
-  justify-self: center;
   align-self: center;
   justify-content: center;
   align-items: center;
 
+  margin: auto;
   border: none;
   background-color: transparent;
 
