@@ -10,7 +10,7 @@
 
     display: flex;
     justify-content: center;
-    gap: 61%;
+    gap: 56%;
 
     & input {
       border: none;
