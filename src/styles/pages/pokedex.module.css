@@ -156,7 +156,7 @@
     font-size: clamp(10px, 4vw, 50px);
 
     & div {
-      & label {
+      & label { 
         & input {
           height: 10px;
           width: 10px;
