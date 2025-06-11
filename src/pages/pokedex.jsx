@@ -108,7 +108,7 @@ export default function pokedex() {
                   />
                 </section>
 
-                <section className={styles["pokemon-data-container"]}>
+                <section className={styles["pokemon-details"]}>
                   <p>Type: {selectedPokemon.type}</p>
                   <p>Height: {selectedPokemon.height}</p>
                   <p>Weight: {selectedPokemon.weight}</p>
@@ -121,7 +121,7 @@ export default function pokedex() {
                     styles["pokemon-data-and-shiny-checkbox-container"]
                   }
                 >
-                  <section className={styles["pokemon-data-container"]}>
+                  <section className={styles["pokemon-details"]}>
                     <p>Type: {selectedPokemon.type}</p>
                     <p>Height: {selectedPokemon.height}</p>
                     <p>Weight: {selectedPokemon.weight}</p>
@@ -129,7 +129,7 @@ export default function pokedex() {
                   
                   <img 
                   src={showShiny ? selectedPokemon.frontShinyViewImageUrl : selectedPokemon.frontViewImageUrl}
-                  className={styles["pokemon-slide-up-image"]}
+                  className={styles["slide-up-image"]}
                   />
                 </div>
               </>

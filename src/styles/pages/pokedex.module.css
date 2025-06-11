@@ -85,7 +85,7 @@
   }
 }
 
-.pokemon-data-container {
+.pokemon-details {
   display: flex;
   flex-direction: column;
   gap: 20px;
@@ -141,14 +141,14 @@
     justify-content: center;
     align-items: center;
 
-    & .pokemon-data-container {
+    & .pokemon-details {
       justify-content: center;
       gap: 50px;
 
       font-size: clamp(10px, 4vw, 50px);
     }
 
-    & .pokemon-slide-up-image {
+    & .slide-up-image {
       height: 80%;
       width: 32%;
     }
