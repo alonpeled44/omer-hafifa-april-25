@@ -66,6 +66,7 @@
     gap: 50px;
 
     & label {
+
       & input {
         height: 20px;
         width: 20px;
@@ -156,7 +157,9 @@
     font-size: clamp(10px, 4vw, 50px);
 
     & div {
+
       & label { 
+        
         & input {
           height: 10px;
           width: 10px;
