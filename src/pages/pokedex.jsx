@@ -118,7 +118,7 @@ export default function pokedex() {
               <>
                 <div
                   className={
-                    styles["pokemon-data-and-shiny-checkbox-container"]
+                    styles["slide-up-card"]
                   }
                 >
                   <section className={styles["pokemon-details"]}>
