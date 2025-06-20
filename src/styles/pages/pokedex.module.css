@@ -150,7 +150,7 @@
 
     & .slide-up-image {
       height: 80%;
-      width: 62%;
+      aspect-ratio: 9 /12;
     }
   }
 
