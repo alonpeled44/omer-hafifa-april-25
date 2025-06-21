@@ -167,8 +167,8 @@
           height: 10px;
           width: 10px;
 
-          height: clamp(0.5rem, 2vw, 2rem);
-          width: clamp(0.5rem, 2vw, 2rem);
+          height: clamp(0.5rem, 3vw, 2rem);
+          width: clamp(0.5rem, 3vw, 2rem);
         }
       }
     }
