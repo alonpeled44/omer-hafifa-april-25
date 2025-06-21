@@ -129,6 +129,8 @@
       display: flex;
       justify-content: center;
       flex-wrap: wrap;
+
+      padding-inline: 10px;
     }
   }
 
