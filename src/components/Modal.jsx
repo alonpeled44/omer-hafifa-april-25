@@ -1,5 +1,5 @@
 import { useRef, useEffect } from "react";
-import styles from "../styles/components/dialogModal.module.css";
+import styles from "../styles/components/modal.module.css";
 
 export default function Modal({
   isOpen,
