@@ -144,7 +144,6 @@
     align-items: center;
 
     & .pokemon-details {
-      justify-content: center;
       gap: 50px;
 
       font-size: clamp(10px, 4vw, 50px);
