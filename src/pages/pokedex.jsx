@@ -37,13 +37,13 @@ export default function pokedex() {
             <Select isOpen={isFilterOpen}
              setIsOpen={setIsFilterOpen}
              options={filterOptions}
-             type={"filter"} 
+             type="filter" 
             />
 
             <Select isOpen={isSortOpen}
              setIsOpen={setIsSortOpen}
              options={sortOptions}
-             type={"sort"} 
+             type="sort" 
             />
           </section>
         </div>
