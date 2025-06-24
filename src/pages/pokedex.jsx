@@ -28,10 +28,6 @@ export default function pokedex() {
     return () => document.removeEventListener("click", handleClickOnScreen);
   });
 
-  const handleShinyChange = (event) => {
-    setShowShiny(event.target.checked);
-  };
-
   return (
     <>
       <div className={styles["pokedex-content"]}>
@@ -81,7 +77,7 @@ export default function pokedex() {
                   <input
                     type="checkbox"
                     checked={showShiny}
-                    onChange={handleShinyChange}
+                    onChange={(event)=> (setShowShiny(event.target.checked))}
                   />
                   Shiny
                 </label>
