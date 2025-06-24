@@ -6,9 +6,10 @@ import Select from "../components/Select";
 import Modal from "../components/Modal";
 import styles from "../styles/pages/pokedex.module.css";
 
+const sortOptions = ["1", "2", "3", "4", "5", "6", "7"];
+const filterOptions = ["1", "2", "3", "4", "5", "6", "7"];
+
 export default function pokedex() {
-  const sortOptions = ["1", "2", "3", "4", "5", "6", "7"];
-  const filterOptions = ["1", "2", "3", "4", "5", "6", "7"];
   const [isSortOpen, setIsSortOpen] = useState(false);
   const [isFilterOpen, setIsFilterOpen] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);

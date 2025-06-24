@@ -6,7 +6,7 @@
   display: flex;
   flex-direction: column;
 
-  & .button {
+  & .head {
     height: 26%;
     width: 100%;
 
@@ -48,7 +48,7 @@
   .select {
     width: 47%;
 
-    & .button {
+    & .head {
      font-size: 1.4rem;
     }
 

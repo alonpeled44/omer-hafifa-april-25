@@ -4,7 +4,7 @@ export default function Select({ isOpen, setIsOpen, options, type}) {
   return (
     <div className={styles.select}>
       <button
-        className={styles.button}
+        className={styles.head}
         onClick={(event) => {
           event.stopPropagation();
           setIsOpen((prev) => !prev);
