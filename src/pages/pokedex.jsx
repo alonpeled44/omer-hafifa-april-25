@@ -49,11 +49,11 @@ export default function pokedex() {
         </div>
 
         <div className={styles["pokemons-container"]}>
-          {pokemons.map((card) => (
+          {pokemons.map((pokemon) => (
             <Card
-              card={card}
+              card={pokemon}
               onClick={() => {
-                setSelectedPokemon(card);
+                setSelectedPokemon(pokemon);
                 setIsModalOpen(true);
               }}
             />
@@ -88,7 +88,7 @@ export default function pokedex() {
             
             {screenWidth > 1200 ? (
               <>
-                <section className={styles["images"]}>
+                <section className={styles.images}>
                   <img
                     src={
                       showShiny
