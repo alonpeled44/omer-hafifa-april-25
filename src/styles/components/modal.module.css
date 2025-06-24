@@ -1,6 +1,7 @@
 .modal {
   height: 75%;
   width: 100%;
+  max-width: none;
 
   display: flex;
   justify-content: center;
@@ -17,7 +18,7 @@
 
   & .content-container {
     position: relative;
-    height: 60%;
+    height: 64%;
     width: 52%;
 
     display: flex;
@@ -54,7 +55,6 @@
 
 @media screen and (max-width: 1200px) {
   .modal {
-    max-width: none;
     animation: slideUp linear 1s 0s 1 normal forwards;
 
     & .content-container {
