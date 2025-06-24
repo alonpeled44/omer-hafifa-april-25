@@ -10,35 +10,32 @@ export default function Modal({
 
   useEffect(() => {
     const dialog = dialogRef.current;
-    
+
     if (isOpen) {
-      dialog.showModal(); 
+      dialog.showModal();
     } else {
       dialog.close();
     }
-  }, [isOpen]);
-
-  useEffect(() => {
-    const dialog = dialogRef.current;
 
     const handleCancel = (e) => {
       e.preventDefault();
-        onClose();
+      onClose();
     };
 
     dialog.addEventListener("cancel", handleCancel);
     return () => dialog.removeEventListener("cancel", handleCancel);
-  }, [onClose]);
+
+  }, [isOpen, onClose]);
 
   return (
     <dialog
       ref={dialogRef}
-      onClick={((e) => { if (e.target === dialogRef.current) onClose();})}
+      onClick={((e) => { if (e.target === dialogRef.current) onClose(); })}
       className={styles.modal}
     >
       <div className={styles["content-container"]}>
         {children}
-        
+
         <button
           onClick={() => onClose()}
           className={styles["close-button"]}
