@@ -96,6 +96,7 @@
 @media screen and (max-width: 1200px) {
   .pokedex-content {
     position: relative;
+    
     height: 100%;
     width: inherit;
 

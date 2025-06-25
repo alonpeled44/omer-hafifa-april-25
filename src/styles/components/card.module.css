@@ -45,6 +45,7 @@
   .card {
     height: 260px;
     width: 230px;
+    
     flex-direction: column-reverse;
     align-items: center;
     gap: 10px;
