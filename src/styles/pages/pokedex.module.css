@@ -33,7 +33,7 @@
     }
 
     & .filter-and-sort-container {
-      width: 25%;
+      width: 24%;
 
       display: flex;
       justify-content: space-evenly;
@@ -52,7 +52,7 @@
 }
 
 .pokemon-profile {
-  height: 30%;
+  height: 32%;
   width: 100%;
 
   display: flex;
@@ -63,7 +63,7 @@
 
   & div {
     display: flex;
-    gap: 50px;
+    gap: 48px;
 
     & label {
 
@@ -80,8 +80,8 @@
 
 .images {
   & img {
-    height: 205px;
-    width: 205px;
+    height: 204px;
+    width: 204px;
   }
 }
 
@@ -108,10 +108,10 @@
       height: 32px;
       width: 92%;
 
-      gap: 70px;
+      gap: 72px;
 
       & input {
-        width: 110px;
+        width: 112px;
       }
 
       & input::placeholder {
@@ -122,7 +122,7 @@
         height: 100%;
         width: 68%;
 
-        gap: 10px;
+        gap: 12px;
       }
     }
 
@@ -136,7 +136,7 @@
   }
 
   & .slide-up-card {
-    height: 70%;
+    height: 68%;
     width: 100%;
 
     display: flex;
@@ -145,7 +145,7 @@
     align-items: center;
 
     & .pokemon-details {
-      gap: 50px;
+      gap: 52px;
 
       font-size: clamp(10px, 4vw, 50px);
     }
@@ -160,6 +160,7 @@
     font-size: clamp(10px, 4vw, 50px);
 
     & div {
+
 
       & label { 
 
