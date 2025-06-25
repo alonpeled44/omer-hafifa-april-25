@@ -31,7 +31,7 @@
     align-items: center;
 
     overflow-y: auto;
-    background: white;
+    background: rgb(255, 255, 255);
 
     & .option {
       min-height: 28px;
