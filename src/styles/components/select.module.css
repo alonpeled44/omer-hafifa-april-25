@@ -1,6 +1,6 @@
 .select {
   position: relative;
-  
+
   height: 108px;
   width: 45%;
 
@@ -23,7 +23,7 @@
     position: absolute;
     top: 24px;
 
-    height: 74%;
+    height: 76%;
     width: 96%;
 
     display: flex;
