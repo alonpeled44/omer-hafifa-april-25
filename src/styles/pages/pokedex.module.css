@@ -96,7 +96,7 @@
 @media screen and (max-width: 1200px) {
   .pokedex-content {
     position: relative;
-    
+
     height: 100%;
     width: inherit;
 
@@ -105,8 +105,8 @@
     align-items: center;
 
     & .control-bar {
-      height: 30px;
-      width: 91%;
+      height: 32px;
+      width: 92%;
 
       gap: 70px;
 
@@ -120,7 +120,7 @@
 
       & .filter-and-sort-container {
         height: 100%;
-        width: 67%;
+        width: 68%;
 
         gap: 10px;
       }
