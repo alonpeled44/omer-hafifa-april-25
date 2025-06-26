@@ -13,7 +13,7 @@
     
     padding-inline: 12px;
 
-    & input {
+    & input { 
       border: none;
       border-bottom: 2px solid rgb(0, 0, 0);
 
