@@ -33,7 +33,7 @@ export default function Select({ isOpen, setIsOpen, options, type}) {
               }
             }}
             >
-              {option} {selectedTypes.includes(option) ? "&#10003" : ""}
+              {option} {selectedTypes.includes(option) ? "\u2713" : ""}
             </button>
           ))}
         </div>
