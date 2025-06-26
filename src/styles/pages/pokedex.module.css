@@ -9,8 +9,9 @@
     height: 36px;
 
     display: flex;
-    justify-content: center;
-    gap: 56%;
+    justify-content: space-between;
+    
+    padding-inline: 12px;
 
     & input {
       border: none;
@@ -160,7 +161,6 @@
     font-size: clamp(10px, 4vw, 50px);
 
     & div {
-
 
       & label { 
 
