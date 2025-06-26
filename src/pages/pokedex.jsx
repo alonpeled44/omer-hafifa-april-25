@@ -6,8 +6,8 @@ import Select from "../components/Select";
 import Modal from "../components/Modal";
 import styles from "../styles/pages/pokedex.module.css";
 
-const sortOptions = ["1", "2", "3", "4", "5", "6", "7"];
-const filterOptions = ["1", "2", "3", "4", "5", "6", "7"];
+const sortOptions = ["id number", "name", "height", "width"];
+const filterOptions = ["normal", "water", "fire", "electric", "Grass", "ice", "fighting", "poison", "ground", "flying", "psychic", "bug", "rock", "ghost", "dragon", "dark", "steel", "fairy"];
 
 export default function pokedex() {
   const [isSortOpen, setIsSortOpen] = useState(false);
