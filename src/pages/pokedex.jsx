@@ -35,6 +35,8 @@ export default function pokedex() {
   const [selectedPokemon, setSelectedPokemon] = useState(null);
   const [showShiny, setShowShiny] = useState(false);
   const [searchValue, setSearchValue] = useState("");
+  const [selectedTypes, setSelectedTypes] = useState([]);
+
 
   const { screenWidth } = useScreenWidth();
 
@@ -50,14 +52,15 @@ export default function pokedex() {
 
   const filteredPokemons = pokemons.filter((pokemon) => {
     const searchValueLowerCase = searchValue.toLowerCase();
-
-    return (
+    const matchesSearch =
       pokemon.name.toLowerCase().startsWith(searchValueLowerCase) ||
       pokemon.type.toLowerCase().startsWith(searchValueLowerCase) ||
       pokemon.id.toString().startsWith(searchValue) ||
       pokemon.height.toString().startsWith(searchValue) ||
-      pokemon.weight.toString().startsWith(searchValue)
-    );
+      pokemon.weight.toString().startsWith(searchValue);
+
+      const matchesTypes = selectedTypes.length===0 || selectedTypes.includes(pokemon.type.toLowerCase());
+    return matchesSearch && matchesTypes;
   });
 
   return (
@@ -77,6 +80,8 @@ export default function pokedex() {
               setIsOpen={setIsFilterOpen}
               options={filterOptions}
               type="filter"
+              selectedTypes={selectedTypes}
+              setSelectedTypes={setSelectedTypes}
             />
 
             <Select

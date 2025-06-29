@@ -1,8 +1,7 @@
 import { useState } from "react";
 import styles from "../styles/components/select.module.css";
 
-export default function Select({ isOpen, setIsOpen, options, type}) {
-  const [selectedTypes, setSelectedTypes] = useState([]);
+export default function Select({ isOpen, setIsOpen, options, type ,selectedTypes, setSelectedTypes}) {
   
   return (
     <div className={styles.select}>
