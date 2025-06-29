@@ -50,7 +50,7 @@ export default function pokedex() {
 
   const filteredPokemons = pokemons.filter((pokemon) => {
     const searchValueLowerCase = searchValue.toLowerCase();
-    
+
     return (
       pokemon.name.toLowerCase().startsWith(searchValueLowerCase) ||
       pokemon.type.toLowerCase().startsWith(searchValueLowerCase) ||
