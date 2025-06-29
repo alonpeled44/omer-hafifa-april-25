@@ -7,7 +7,26 @@ import Modal from "../components/Modal";
 import styles from "../styles/pages/pokedex.module.css";
 
 const sortOptions = ["id number", "name", "height", "width"];
-const filterOptions = ["normal", "water", "fire", "electric", "Grass", "ice", "fighting", "poison", "ground", "flying", "psychic", "bug", "rock", "ghost", "dragon", "dark", "steel", "fairy"];
+const filterOptions = [
+  "normal",
+  "water",
+  "fire",
+  "electric",
+  "Grass",
+  "ice",
+  "fighting",
+  "poison",
+  "ground",
+  "flying",
+  "psychic",
+  "bug",
+  "rock",
+  "ghost",
+  "dragon",
+  "dark",
+  "steel",
+  "fairy",
+];
 
 export default function pokedex() {
   const [isSortOpen, setIsSortOpen] = useState(false);
@@ -15,6 +34,7 @@ export default function pokedex() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedPokemon, setSelectedPokemon] = useState(null);
   const [showShiny, setShowShiny] = useState(false);
+  const [searchValue, setSearchValue] = useState("");
 
   const { screenWidth } = useScreenWidth();
 
@@ -28,28 +48,44 @@ export default function pokedex() {
     return () => document.removeEventListener("click", handleClickOnScreen);
   });
 
+  const filteredPokemons = pokemons.filter((pokemon) => {
+    const searchValueLowerCase = searchValue.toLowerCase();
+    return (
+      pokemon.name.toLowerCase().startsWith(searchValueLowerCase) ||
+      pokemon.type.toLowerCase().startsWith(searchValueLowerCase)
+    );
+  });
+
   return (
     <>
       <div className={styles["pokedex-content"]}>
         <div className={styles["control-bar"]}>
-          <input type="text" placeholder="Search..." />
+          <input
+            type="text"
+            placeholder="Search..."
+            onChange={(event) => {
+              setSearchValue(event.target.value);
+            }}
+          />
           <section className={styles["filter-and-sort-container"]}>
-            <Select isOpen={isFilterOpen}
-             setIsOpen={setIsFilterOpen}
-             options={filterOptions}
-             type="filter" 
+            <Select
+              isOpen={isFilterOpen}
+              setIsOpen={setIsFilterOpen}
+              options={filterOptions}
+              type="filter"
             />
 
-            <Select isOpen={isSortOpen}
-             setIsOpen={setIsSortOpen}
-             options={sortOptions}
-             type="sort" 
+            <Select
+              isOpen={isSortOpen}
+              setIsOpen={setIsSortOpen}
+              options={sortOptions}
+              type="sort"
             />
           </section>
         </div>
 
         <div className={styles["pokemons-container"]}>
-          {pokemons.map((pokemon) => (
+          {filteredPokemons.map((pokemon) => (
             <Card
               card={pokemon}
               onClick={() => {
@@ -77,7 +113,7 @@ export default function pokedex() {
                   <input
                     type="checkbox"
                     checked={showShiny}
-                    onChange={(event)=> (setShowShiny(event.target.checked))}
+                    onChange={(event) => setShowShiny(event.target.checked)}
                   />
                   Shiny
                 </label>
@@ -85,7 +121,7 @@ export default function pokedex() {
                 <p>#{selectedPokemon.id}</p>
               </div>
             </section>
-            
+
             {screenWidth > 1200 ? (
               <>
                 <section className={styles.images}>
@@ -113,20 +149,20 @@ export default function pokedex() {
               </>
             ) : (
               <>
-                <div
-                  className={
-                    styles["slide-up-card"]
-                  }
-                >
+                <div className={styles["slide-up-card"]}>
                   <section className={styles["pokemon-details"]}>
                     <p>Type: {selectedPokemon.type}</p>
                     <p>Height: {selectedPokemon.height}</p>
                     <p>Weight: {selectedPokemon.weight}</p>
                   </section>
-                  
-                  <img 
-                  src={showShiny ? selectedPokemon.frontShinyViewImageUrl : selectedPokemon.frontViewImageUrl}
-                  className={styles["slide-up-image"]}
+
+                  <img
+                    src={
+                      showShiny
+                        ? selectedPokemon.frontShinyViewImageUrl
+                        : selectedPokemon.frontViewImageUrl
+                    }
+                    className={styles["slide-up-image"]}
                   />
                 </div>
               </>
