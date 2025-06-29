@@ -50,13 +50,13 @@ export default function pokedex() {
 
   const filteredPokemons = pokemons.filter((pokemon) => {
     const searchValueLowerCase = searchValue.toLowerCase();
-    const searchNumber = parseInt(searchValue);
+    
     return (
       pokemon.name.toLowerCase().startsWith(searchValueLowerCase) ||
       pokemon.type.toLowerCase().startsWith(searchValueLowerCase) ||
-      pokemon.id.toString() ||
-      pokemon.height===searchNumber ||
-      pokemon.weight===searchNumber
+      pokemon.id.toString().startsWith(searchValue) ||
+      pokemon.height.toString().startsWith(searchValue) ||
+      pokemon.weight.toString().startsWith(searchValue)
     );
   });
 
