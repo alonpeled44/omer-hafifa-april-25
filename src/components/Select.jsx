@@ -1,8 +1,16 @@
 import { useState } from "react";
 import styles from "../styles/components/select.module.css";
 
-export default function Select({ isOpen, setIsOpen, options, type ,selectedTypes, setSelectedTypes}) {
-  
+export default function Select({
+  isOpen,
+  setIsOpen,
+  options,
+  type,
+  selectedTypes,
+  setSelectedTypes,
+  sortOption,
+  setSortOption
+}) {
   return (
     <div className={styles.select}>
       <button
@@ -19,20 +27,27 @@ export default function Select({ isOpen, setIsOpen, options, type ,selectedTypes
         <div className={styles.options}>
           {options.map((option) => (
             <button
-            className={styles.option}
-            onClick={()=> {
-              if(selectedTypes.includes(option))
-              {
-                setSelectedTypes(selectedTypes.filter((type)=> type!==option));
-                console.log(selectedTypes);
-              }
-              else{
-                setSelectedTypes([...selectedTypes, option]);
-                console.log(selectedTypes);
-              }
-            }}
+              className={styles.option}
+              onClick={() => {
+                if (type === "filter") {
+                  if (selectedTypes.includes(option)) {
+                    setSelectedTypes(
+                      selectedTypes.filter((type) => type !== option)
+                    );
+                    console.log(selectedTypes);
+                  } else {
+                    setSelectedTypes([...selectedTypes, option]);
+                    console.log(selectedTypes);
+                  }
+                }
+
+                if(type==="sort")
+                {
+                  setSortOption(option.value);
+                }
+              }}
             >
-              {option} {selectedTypes.includes(option) ? "\u2713" : ""}
+              {type==="filter" ? (selectedTypes.includes(option) ? "\u2713" : "") : (option.label)} 
             </button>
           ))}
         </div>

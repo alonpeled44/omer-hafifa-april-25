@@ -6,7 +6,6 @@ import Select from "../components/Select";
 import Modal from "../components/Modal";
 import styles from "../styles/pages/pokedex.module.css";
 
-const sortOptions = ["id number", "name", "height", "width"];
 const filterOptions = [
   "normal",
   "water",
@@ -27,6 +26,18 @@ const filterOptions = [
   "steel",
   "fairy",
 ];
+const sortOptions = [
+  { value: "name-asc", label: "Name (A-Z)" },
+  { value: "name-desc", label: "Name (Z-A)" },
+  { value: "type-asc", label: "Type (A-Z)" },
+  { value: "type-desc", label: "Type (Z-A)" },
+  { value: "id-desc", label: "ID (High-Low)" },
+  { value: "id-asc", label: "ID (Low-High)" },
+  { value: "height-desc", label: "Height (High-Low)" },
+  { value: "height-asc", label: "Height (Low-High)" },
+  { value: "weight-desc", label: "Weight (High-Low)" },
+  { value: "weight-asc", label: "Weight (Low-High)" },
+];
 
 export default function pokedex() {
   const [isSortOpen, setIsSortOpen] = useState(false);
@@ -36,7 +47,7 @@ export default function pokedex() {
   const [showShiny, setShowShiny] = useState(false);
   const [searchValue, setSearchValue] = useState("");
   const [selectedTypes, setSelectedTypes] = useState([]);
-
+  const [sortOption, setSortOption] = useState("name-asc");
 
   const { screenWidth } = useScreenWidth();
 
@@ -50,18 +61,55 @@ export default function pokedex() {
     return () => document.removeEventListener("click", handleClickOnScreen);
   });
 
-  const filteredPokemons = pokemons.filter((pokemon) => {
-    const searchValueLowerCase = searchValue.toLowerCase();
-    const matchesSearch =
-      pokemon.name.toLowerCase().startsWith(searchValueLowerCase) ||
-      pokemon.type.toLowerCase().startsWith(searchValueLowerCase) ||
-      pokemon.id.toString().startsWith(searchValue) ||
-      pokemon.height.toString().startsWith(searchValue) ||
-      pokemon.weight.toString().startsWith(searchValue);
+  const filteredPokemons = pokemons
+    .filter((pokemon) => {
+      const searchValueLowerCase = searchValue.toLowerCase();
+      const matchesSearch =
+        pokemon.name.toLowerCase().startsWith(searchValueLowerCase) ||
+        pokemon.type.toLowerCase().startsWith(searchValueLowerCase) ||
+        pokemon.id.toString().startsWith(searchValue) ||
+        pokemon.height.toString().startsWith(searchValue) ||
+        pokemon.weight.toString().startsWith(searchValue);
 
-      const matchesTypes = selectedTypes.length===0 || selectedTypes.includes(pokemon.type.toLowerCase());
-    return matchesSearch && matchesTypes;
-  });
+      const matchesTypes =
+        selectedTypes.length === 0 ||
+        selectedTypes.includes(pokemon.type.toLowerCase());
+      return matchesSearch && matchesTypes;
+    })
+    .sort((a, b) => {
+      switch (sortOption) {
+        case "name-asc":
+          return a.name.localeCompare(b.name, undefined, {
+            sensitivity: "base",
+          });
+        case "name-desc":
+          return b.name.localeCompare(a.name, undefined, {
+            sensitivity: "base",
+          });
+        case "type-asc":
+          return a.type.localeCompare(b.type, undefined, {
+            sensitivity: "base",
+          });
+        case "type-desc":
+          return b.type.localeCompare(a.type, undefined, {
+            sensitivity: "base",
+          });
+        case "id-desc":
+          return b.id - a.id;
+        case "id-asc":
+          return a.id - b.id;
+        case "height-desc":
+          return b.height - a.height;
+        case "height-asc":
+          return a.height - b.height;
+        case "weight-desc":
+          return b.weight - a.weight;
+        case "weight-asc":
+          return a.weight - b.weight;
+        default:
+          return 0;
+      }
+    });
 
   return (
     <>
@@ -89,6 +137,8 @@ export default function pokedex() {
               setIsOpen={setIsSortOpen}
               options={sortOptions}
               type="sort"
+              sortOption={sortOption}
+              setSortOption={setSortOption}
             />
           </section>
         </div>
