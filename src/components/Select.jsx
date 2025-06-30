@@ -47,7 +47,7 @@ export default function Select({
                 }
               }}
             >
-              {type==="filter" ? (selectedTypes.includes(option) ? "\u2713" : "") : (option.label)} 
+              {option} {selectedTypes.includes(option) ? "\u2713" : ""}
             </button>
           ))}
         </div>
