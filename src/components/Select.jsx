@@ -9,7 +9,7 @@ export default function Select({
   selectedTypes,
   setSelectedTypes,
   sortOption,
-  setSortOption
+  setSortOption,
 }) {
   return (
     <div className={styles.select}>
@@ -20,7 +20,12 @@ export default function Select({
           setIsOpen((prev) => !prev);
         }}
       >
-        {type==="sort" ? `sort by${": " + options.find(opt => opt.value === sortOption)?.label || ""}` : "filter by"}
+        {type === "sort"
+          ? `sort by${
+              ": " + options.find((opt) => opt.value === sortOption)?.label ||
+              ""
+            }`
+          : "filter by"}
       </button>
 
       {isOpen && (
@@ -34,21 +39,21 @@ export default function Select({
                     setSelectedTypes(
                       selectedTypes.filter((type) => type !== option)
                     );
-                    console.log(selectedTypes);
                   } else {
                     setSelectedTypes([...selectedTypes, option]);
                     console.log(selectedTypes);
                   }
                 }
 
-                if(type==="sort")
-                {
+                if (type === "sort") {
                   setSortOption(option.value);
                 }
               }}
             >
-              {type === 'filter' ? option : option.label}{' '}
-              {type === 'filter' && selectedTypes.includes(option) ? "\u2713" : ""}
+              {type === "filter" ? option : option.label}{" "}
+              {type === "filter" && selectedTypes.includes(option)
+                ? "\u2713"
+                : ""}
             </button>
           ))}
         </div>
