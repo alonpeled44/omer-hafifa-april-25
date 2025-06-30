@@ -20,7 +20,7 @@ export default function Select({
           setIsOpen((prev) => !prev);
         }}
       >
-        {type} by
+        {type==="sort" ? `sort by${options.find(opt => opt.value === sortOption)?.label}` : "filter by"}
       </button>
 
       {isOpen && (

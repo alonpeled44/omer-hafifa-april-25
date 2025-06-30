@@ -74,6 +74,7 @@ export default function pokedex() {
       const matchesTypes =
         selectedTypes.length === 0 ||
         selectedTypes.includes(pokemon.type.toLowerCase());
+
       return matchesSearch && matchesTypes;
     })
     .sort((a, b) => {
@@ -82,30 +83,40 @@ export default function pokedex() {
           return a.name.localeCompare(b.name, undefined, {
             sensitivity: "base",
           });
+
         case "name-desc":
           return b.name.localeCompare(a.name, undefined, {
             sensitivity: "base",
           });
+
         case "type-asc":
           return a.type.localeCompare(b.type, undefined, {
             sensitivity: "base",
           });
+
         case "type-desc":
           return b.type.localeCompare(a.type, undefined, {
             sensitivity: "base",
           });
+
         case "id-desc":
           return b.id - a.id;
+
         case "id-asc":
           return a.id - b.id;
+
         case "height-desc":
           return b.height - a.height;
+
         case "height-asc":
           return a.height - b.height;
+
         case "weight-desc":
           return b.weight - a.weight;
+
         case "weight-asc":
           return a.weight - b.weight;
+          
         default:
           return 0;
       }
