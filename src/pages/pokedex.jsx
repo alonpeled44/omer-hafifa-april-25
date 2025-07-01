@@ -27,16 +27,11 @@ const filterOptions = [
   "fairy",
 ];
 const sortOptions = [
-  { value: "name-asc", label: "Name (A-Z)" },
-  { value: "name-desc", label: "Name (Z-A)" },
-  { value: "type-asc", label: "Type (A-Z)" },
-  { value: "type-desc", label: "Type (Z-A)" },
-  { value: "id-desc", label: "ID (High-Low)" },
-  { value: "id-asc", label: "ID (Low-High)" },
-  { value: "height-desc", label: "Height (High-Low)" },
-  { value: "height-asc", label: "Height (Low-High)" },
-  { value: "weight-desc", label: "Weight (High-Low)" },
-  { value: "weight-asc", label: "Weight (Low-High)" },
+  { value: "name", label: "Name" },
+  { value: "type", label: "Type" },
+  { value: "id", label: "ID" },
+  { value: "height", label: "Height" },
+  { value: "weight", label: "Weight" }
 ];
 
 export default function pokedex() {
@@ -47,7 +42,7 @@ export default function pokedex() {
   const [showShiny, setShowShiny] = useState(false);
   const [searchValue, setSearchValue] = useState("");
   const [selectedTypes, setSelectedTypes] = useState([]);
-  const [sortOption, setSortOption] = useState("name-asc");
+  const [sortOption, setSortOption] = useState("name");
 
   const { screenWidth } = useScreenWidth();
 
@@ -79,42 +74,23 @@ export default function pokedex() {
     })
     .sort((a, b) => {
       switch (sortOption) {
-        case "name-asc":
+        case "name":
           return a.name.localeCompare(b.name, undefined, {
             sensitivity: "base",
           });
 
-        case "name-desc":
-          return b.name.localeCompare(a.name, undefined, {
-            sensitivity: "base",
-          });
-
-        case "type-asc":
+        case "type":
           return a.type.localeCompare(b.type, undefined, {
             sensitivity: "base",
           });
 
-        case "type-desc":
-          return b.type.localeCompare(a.type, undefined, {
-            sensitivity: "base",
-          });
-
-        case "id-desc":
-          return b.id - a.id;
-
-        case "id-asc":
+        case "id":
           return a.id - b.id;
 
-        case "height-desc":
-          return b.height - a.height;
-
-        case "height-asc":
+        case "height":
           return a.height - b.height;
 
-        case "weight-desc":
-          return b.weight - a.weight;
-
-        case "weight-asc":
+        case "weight":
           return a.weight - b.weight;
           
         default:

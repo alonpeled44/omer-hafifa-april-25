@@ -34,7 +34,7 @@
     }
 
     & .filter-and-sort-container {
-      width: 24%;
+      width: 32%;
 
       display: flex;
       justify-content: space-evenly;
@@ -108,14 +108,15 @@
       height: 32px;
       width: 92%;
 
-      gap: 72px;
+      align-items: baseline;
+      gap: 60px;
 
       & input {
-        width: 112px;
+        width: 68px;
       }
 
       & input::placeholder {
-        font-size: 1.6rem;
+        font-size: 1rem;
       }
 
       & .filter-and-sort-container {
