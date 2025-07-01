@@ -1,5 +1,6 @@
 .pokedex-content {
   height: 92%;
+  width: inherit;
 
   display: flex;
   flex-direction: column;
