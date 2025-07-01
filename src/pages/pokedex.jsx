@@ -27,6 +27,7 @@ const filterOptions = [
   "fairy",
 ];
 const sortOptions = [
+  { value: "none", label: "sort-by" },
   { value: "name", label: "Name" },
   { value: "type", label: "Type" },
   { value: "id", label: "ID" },
@@ -42,7 +43,7 @@ export default function pokedex() {
   const [showShiny, setShowShiny] = useState(false);
   const [searchValue, setSearchValue] = useState("");
   const [selectedTypes, setSelectedTypes] = useState([]);
-  const [sortOption, setSortOption] = useState("name");
+  const [sortOption, setSortOption] = useState("none");
 
   const { screenWidth } = useScreenWidth();
 
@@ -74,6 +75,8 @@ export default function pokedex() {
     })
     .sort((a, b) => {
       switch (sortOption) {
+        case "none":
+          return;
         case "name":
           return a.name.localeCompare(b.name, undefined, {
             sensitivity: "base",

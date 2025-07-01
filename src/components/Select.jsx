@@ -21,10 +21,7 @@ export default function Select({
         }}
       >
         {type === "sort"
-          ? `sort by${
-              ": " + options.find((opt) => opt.value === sortOption)?.label ||
-              ""
-            }`
+          ? `${options.find((opt) => opt.value === sortOption)?.label || ""}`
           : "filter by"}
       </button>
 
