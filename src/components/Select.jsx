@@ -34,7 +34,7 @@ export default function Select({
                   }
                 }
                 else {
-                  setSelectedOptions(option);
+                  setSelectedOptions(option.value);
                 }
               }}
             ></button>
