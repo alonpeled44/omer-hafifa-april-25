@@ -4,11 +4,9 @@ export default function Select({
   isOpen,
   setIsOpen,
   options,
-  type,
-  selectedTypes,
-  setSelectedTypes,
-  sortOption,
-  setSortOption,
+  multiple,
+  selectedOptions,
+  setSelectedOptions,
 }) {
   return (
     <div className={styles.select}>
@@ -18,11 +16,7 @@ export default function Select({
           event.stopPropagation();
           setIsOpen((prev) => !prev);
         }}
-      >
-        {type === "sort"
-          ? `${options.find((opt) => opt.value === sortOption)?.label || ""}`
-          : "filter by"}
-      </button>
+      ></button>
 
       {isOpen && (
         <div className={styles.options}>
@@ -30,24 +24,20 @@ export default function Select({
             <button
               className={styles.option}
               onClick={() => {
-                if (type === "filter") {
-                  if (selectedTypes.includes(option)) {
-                    setSelectedTypes(
-                      selectedTypes.filter((type) => type !== option)
+                if (multiple) {
+                  if (selectedOptions.includes(option)) {
+                    setSelectedOptions(
+                      selectedOptions.filter((type) => type !== option)
                     );
                   } else {
-                    setSelectedTypes([...selectedTypes, option]);
+                    setSelectedOptions([...selectedOptions, option]);
                   }
                 }
-
-                if (type === "sort") {
-                  setSortOption(option.value);
+                else {
+                  setSelectedOptions(option);
                 }
               }}
-            >
-              {type === "filter" ? option : option.label}
-              {type === "filter" && selectedTypes.includes(option) && (<span>&#10003;</span>)}
-            </button>
+            ></button>
           ))}
         </div>
       )}

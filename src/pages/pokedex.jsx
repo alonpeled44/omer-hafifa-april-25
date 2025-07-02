@@ -117,18 +117,18 @@ export default function pokedex() {
               isOpen={isFilterOpen}
               setIsOpen={setIsFilterOpen}
               options={filterOptions}
-              type="filter"
-              selectedTypes={selectedTypes}
-              setSelectedTypes={setSelectedTypes}
+              multiple={true}
+              selectedOptions= {selectedTypes}
+              setSelectedOptions= {setSelectedTypes}
             />
 
             <Select
               isOpen={isSortOpen}
               setIsOpen={setIsSortOpen}
               options={sortOptions}
-              type="sort"
-              sortOption={sortOption}
-              setSortOption={setSortOption}
+              multiple= {false}
+              selectedOptions= {sortOption}
+              setSelectedOptions= {setSortOption}
             />
           </section>
         </div>
