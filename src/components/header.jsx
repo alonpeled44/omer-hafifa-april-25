@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
 import { useScreenWidth } from "../libs/screenContext";
+import { useRouter } from "next/router";
 import VerticalDivider from "./verticalDivider";
 import pokemonIcon from "../images/pokemon-photo.png";
 import styles from "../styles/components/header.module.css";
@@ -9,6 +10,7 @@ export default function Header() {
   const { screenWidth } = useScreenWidth();
   const [username, setUsername] = useState(null);
   const pathname = usePathname();
+  const router = useRouter();
 
   useEffect(() => {
     const storedUsername = localStorage.getItem("username");
@@ -33,7 +35,10 @@ export default function Header() {
           <div className={styles["user-info"]}>
             <p>{username}</p>
 
-            <button>log out</button>
+            <button onClick={()=> {
+              localStorage.removeItem("username");
+              router.push("../pages/login");
+            }}>log out</button>
           </div>
         )}
       </div>
