@@ -1,4 +1,3 @@
-import { useState } from "react";
 import styles from "../styles/components/select.module.css";
 
 export default function Select({
@@ -38,7 +37,6 @@ export default function Select({
                     );
                   } else {
                     setSelectedTypes([...selectedTypes, option]);
-                    console.log(selectedTypes);
                   }
                 }
 
@@ -47,10 +45,8 @@ export default function Select({
                 }
               }}
             >
-              {type === "filter" ? option : option.label}{" "}
-              {type === "filter" && selectedTypes.includes(option)
-                ? "\u2713"
-                : ""}
+              {type === "filter" ? option : option.label}
+              {type === "filter" && selectedTypes.includes(option) && (<span>&#10003;</span>)}
             </button>
           ))}
         </div>
