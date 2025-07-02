@@ -32,7 +32,7 @@ const sortOptions = [
   { value: "type", label: "Type" },
   { value: "id", label: "ID" },
   { value: "height", label: "Height" },
-  { value: "weight", label: "Weight" }
+  { value: "weight", label: "Weight" },
 ];
 
 export default function pokedex() {
@@ -95,7 +95,7 @@ export default function pokedex() {
 
         case "weight":
           return a.weight - b.weight;
-          
+
         default:
           return 0;
       }
@@ -133,7 +133,13 @@ export default function pokedex() {
           </section>
         </div>
 
-        <div className={styles["pokemons-container"]}>
+        <div
+          className={`${styles["pokemons-container"]} ${
+            filteredPokemons.length < pokemons.length
+              ? styles["centered"]
+              : ""
+          }`}
+        >
           {filteredPokemons.map((pokemon) => (
             <Card
               card={pokemon}

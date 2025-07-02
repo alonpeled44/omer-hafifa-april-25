@@ -51,6 +51,10 @@
     overflow-y: auto;
     padding-inline: 100px;
   }
+
+  & .centered {
+    justify-content: center;
+  }
 }
 
 .pokemon-profile {
