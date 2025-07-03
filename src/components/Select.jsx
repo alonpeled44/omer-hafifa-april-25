@@ -33,7 +33,7 @@ export default function Select({
                       selectedOptions.filter((type) => type !== option)
                     );
                   } else {
-                    setSelectedOptions([...selectedOptions, option]);
+                    setSelectedOptions((prev)=> [...prev, option]);
                   }
                 }
                 else {
