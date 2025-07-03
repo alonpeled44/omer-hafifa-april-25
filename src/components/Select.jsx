@@ -29,9 +29,7 @@ export default function Select({
               onClick={() => {
                 if (multiple) {
                   if (selectedOptions.includes(option)) {
-                    setSelectedOptions(
-                      selectedOptions.filter((type) => type !== option)
-                    );
+                    setSelectedOptions((prev) => prev.filter((item) => item !== option));
                   } else {
                     setSelectedOptions((prev)=> [...prev, option]);
                   }
