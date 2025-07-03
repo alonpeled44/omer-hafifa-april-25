@@ -42,7 +42,7 @@ export default function Select({
               {multiple ? (
                 <>
                   {option}
-                  {selectedOptions.find((opt)=> opt===option) && <span className={styles["checkmark"]}>&#10003;</span>}
+                  {selectedOptions.find((opt)=> opt===option) && <span>&#10003;</span>}
                 </>
               ) : (
                 option.label
