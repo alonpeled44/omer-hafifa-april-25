@@ -4,9 +4,10 @@ export default function Select({
   isOpen,
   setIsOpen,
   options,
+  title,
   multiple,
   selectedOptions,
-  setSelectedOptions,
+  setSelectedOptions
 }) {
   return (
     <div className={styles.select}>
@@ -17,7 +18,7 @@ export default function Select({
           setIsOpen((prev) => !prev);
         }}
       >
-        {multiple ? "filter by" : "sort by"}
+        {title}
       </button>
 
       {isOpen && (

@@ -117,6 +117,7 @@ export default function pokedex() {
               isOpen={isFilterOpen}
               setIsOpen={setIsFilterOpen}
               options={filterOptions}
+              title={"filter by"}
               multiple={true}
               selectedOptions= {selectedTypes}
               setSelectedOptions= {setSelectedTypes}
@@ -126,6 +127,7 @@ export default function pokedex() {
               isOpen={isSortOpen}
               setIsOpen={setIsSortOpen}
               options={sortOptions}
+              title={"sort by"}
               multiple= {false}
               selectedOptions= {sortOption}
               setSelectedOptions= {setSortOption}
