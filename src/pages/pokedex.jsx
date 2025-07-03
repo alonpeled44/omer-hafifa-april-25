@@ -118,7 +118,7 @@ export default function pokedex() {
         <div
           className={`${styles["pokemons-container"]} ${
             filteredPokemons.length < pokemons.length
-              ? styles["centered"]
+              ? styles["data-is-centered"]
               : ""
           }`}
         >

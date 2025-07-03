@@ -52,7 +52,7 @@
     padding-inline: 100px;
   }
 
-  & .centered {
+  & .data-is-centered {
     justify-content: center;
   }
 }
