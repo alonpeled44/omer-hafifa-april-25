@@ -1,31 +1,11 @@
 import { useEffect, useState } from "react";
 import { useScreenWidth } from "../libs/screenContext";
-import { pokemons } from "../components/pokemons";
+import { pokemons, filterOptions } from "../components/pokemons";
 import Card from "../components/card";
 import Select from "../components/Select";
 import Modal from "../components/Modal";
 import styles from "../styles/pages/pokedex.module.css";
 
-const filterOptions = [
-  "normal",
-  "water",
-  "fire",
-  "electric",
-  "Grass",
-  "ice",
-  "fighting",
-  "poison",
-  "ground",
-  "flying",
-  "psychic",
-  "bug",
-  "rock",
-  "ghost",
-  "dragon",
-  "dark",
-  "steel",
-  "fairy",
-];
 const sortOptions = [
   { value: "none", label: "sort-by" },
   { value: "name", label: "Name" },
