@@ -16,7 +16,9 @@ export default function Select({
           event.stopPropagation();
           setIsOpen((prev) => !prev);
         }}
-      ></button>
+      >
+        {multiple ? "filter by" : "sort by"}
+      </button>
 
       {isOpen && (
         <div className={styles.options}>
@@ -37,7 +39,16 @@ export default function Select({
                   setSelectedOptions(option.value);
                 }
               }}
-            ></button>
+            >
+              {multiple ? (
+                <>
+                  {option}
+                  {selectedOptions.find((opt)=> opt===option) && <span>&#10003;</span>}
+                </>
+              ) : (
+                option.label
+              )}
+            </button>
           ))}
         </div>
       )}
