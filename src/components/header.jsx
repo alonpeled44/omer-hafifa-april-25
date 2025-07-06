@@ -25,7 +25,7 @@ export default function Header() {
           <h1 className={styles["header-text"]}>pokemon</h1>
         </div>
 
-        {screenWidth > 1200 && localStorage.getItem("username") && (
+        {screenWidth > 1200 && username && (
           <div className={styles["vertical-divider-wrapper"]}>
             <VerticalDivider />
           </div>
