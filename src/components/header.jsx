@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
-import { useScreenWidth } from "../libs/screenContext";
 import { useRouter } from "next/router";
+import { useScreenWidth } from "../libs/screenContext";
 import VerticalDivider from "./verticalDivider";
 import pokemonIcon from "../images/pokemon-photo.png";
 import styles from "../styles/components/header.module.css";
