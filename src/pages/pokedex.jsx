@@ -16,9 +16,11 @@ const sortOptions = [
 ];
 
 export default function pokedex() {
-  const [isSortOpen, setIsSortOpen] = useState(false);
-  const [isFilterOpen, setIsFilterOpen] = useState(false);
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState({
+    isSortOpen: false,
+    isFilterOpen: false,
+    isModalOpen: false,
+  });
   const [selectedPokemon, setSelectedPokemon] = useState(null);
   const [showShiny, setShowShiny] = useState(false);
   const [searchValue, setSearchValue] = useState("");
@@ -29,13 +31,19 @@ export default function pokedex() {
 
   useEffect(() => {
     const handleClickOnScreen = () => {
-      setIsSortOpen(false);
-      setIsFilterOpen(false);
+      setIsOpen({ ...isOpen, isSortOpen: false, isFilterOpen: false });
     };
 
     document.addEventListener("click", handleClickOnScreen);
     return () => document.removeEventListener("click", handleClickOnScreen);
   });
+
+  const setFilterOrSortOpen = (isMulti) => {
+    setIsOpen({
+      ...isOpen,
+      [isMulti ? 'isFilterOpen' : 'isSortOpen']: !isOpen[isMulti ? 'isFilterOpen' : 'isSortOpen']
+    });
+  };
 
   const filteredPokemons = pokemons
     .filter((pokemon) => {
@@ -94,23 +102,23 @@ export default function pokedex() {
           />
           <section className={styles["filter-and-sort-container"]}>
             <Select
-              isOpen={isFilterOpen}
-              setIsOpen={setIsFilterOpen}
+              isOpen={isOpen.isFilterOpen}
+              setIsOpen={() => setFilterOrSortOpen(true)}
               options={filterOptions}
               title={"filter by"}
               multiple={true}
-              selectedOptions= {selectedTypes}
-              setSelectedOptions= {setSelectedTypes}
+              selectedOptions={selectedTypes}
+              setSelectedOptions={setSelectedTypes}
             />
 
             <Select
-              isOpen={isSortOpen}
-              setIsOpen={setIsSortOpen}
+              isOpen={isOpen.isSortOpen}
+              setIsOpen={() => setFilterOrSortOpen(false)}
               options={sortOptions}
               title={"sort by"}
-              multiple= {false}
-              selectedOptions= {sortOption}
-              setSelectedOptions= {setSortOption}
+              multiple={false}
+              selectedOptions={sortOption}
+              setSelectedOptions={setSortOption}
             />
           </section>
         </div>
@@ -127,18 +135,18 @@ export default function pokedex() {
               card={pokemon}
               onClick={() => {
                 setSelectedPokemon(pokemon);
-                setIsModalOpen(true);
+                setIsOpen({...isOpen, isModalOpen: !isOpen.isModalOpen});
               }}
             />
           ))}
         </div>
       </div>
 
-      {isModalOpen && (
+      {isOpen.isModalOpen && (
         <Modal
-          isOpen={isModalOpen}
+          isOpen={isOpen.isModalOpen}
           onClose={() => {
-            setIsModalOpen(false);
+            setIsOpen({...isOpen, isModalOpen: !isOpen.isModalOpen});
             setSelectedPokemon(null);
           }}
         >
