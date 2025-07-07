@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useScreenWidth } from "../libs/screenContext";
-import { pokemons, filterOptions } from "../components/pokemons";
+import { pokemons, types } from "../components/pokemons";
 import Card from "../components/card";
 import Select from "../components/Select";
 import Modal from "../components/Modal";
@@ -104,7 +104,7 @@ export default function pokedex() {
             <Select
               isOpen={isOpen.isFilterOpen}
               setIsOpen={() => setFilterOrSortOpen(true)}
-              options={filterOptions}
+              options={types}
               title={"filter by"}
               multiple={true}
               selectedOptions={selectedTypes}
@@ -124,11 +124,8 @@ export default function pokedex() {
         </div>
 
         <div
-          className={`${styles["pokemons-container"]} ${
-            filteredPokemons.length < pokemons.length
-              ? styles["data-is-centered"]
-              : ""
-          }`}
+          className={styles["pokemons-container"]}
+          data-is-centered={filteredPokemons.length < pokemons.length ? 'true' : undefined}
         >
           {filteredPokemons.map((pokemon) => (
             <Card
