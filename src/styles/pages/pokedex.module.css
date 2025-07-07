@@ -52,7 +52,7 @@
     padding-inline: 100px;
   }
 
-  & [data-is-centered="true"] {
+  & .pokemons-container[data-is-centered] {
     justify-content: center;
   }
 }
