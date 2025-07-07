@@ -125,7 +125,7 @@ export default function pokedex() {
 
         <div
           className={styles["pokemons-container"]}
-          data-is-centered={filteredPokemons.length < pokemons.length ? 'true' : undefined}
+          data-is-centered={filteredPokemons.length < pokemons.length ? "true" : undefined}
         >
           {filteredPokemons.map((pokemon) => (
             <Card
