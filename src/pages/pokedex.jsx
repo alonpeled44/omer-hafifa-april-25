@@ -31,7 +31,12 @@ export default function pokedex() {
 
   useEffect(() => {
     const handleClickOnScreen = () => {
-      setIsOpen({ ...isOpen, isSortOpen: false, isFilterOpen: false });
+      setIsOpen((prev)=> {
+        const prevIsOpen = {...prev};
+        prevIsOpen.isSortOpen = false;
+        prevIsOpen.isFilterOpen = false;
+        return prevIsOpen;
+      });
     };
 
     document.addEventListener("click", handleClickOnScreen);
@@ -39,9 +44,10 @@ export default function pokedex() {
   });
 
   const setFilterOrSortOpen = (isMulti) => {
-    setIsOpen({
-      ...isOpen,
-      [isMulti ? 'isFilterOpen' : 'isSortOpen']: !isOpen[isMulti ? 'isFilterOpen' : 'isSortOpen']
+    setIsOpen((prev)=> {
+      const prevIsOpen = {...prev};
+      prevIsOpen[isMulti ? "isFilterOpen" : "isSortOpen"] = !prevIsOpen[isMulti ? "isFilterOpen" : "isSortOpen"];
+      return prevIsOpen;
     });
   };
 
@@ -132,7 +138,11 @@ export default function pokedex() {
               card={pokemon}
               onClick={() => {
                 setSelectedPokemon(pokemon);
-                setIsOpen({...isOpen, isModalOpen: !isOpen.isModalOpen});
+                setIsOpen((prev)=> {
+                  const prevIsOpen = {...prev};
+                  prevIsOpen.isModalOpen = !prevIsOpen.isModalOpen;
+                  return prevIsOpen;
+                });
               }}
             />
           ))}
@@ -143,7 +153,11 @@ export default function pokedex() {
         <Modal
           isOpen={isOpen.isModalOpen}
           onClose={() => {
-            setIsOpen({...isOpen, isModalOpen: !isOpen.isModalOpen});
+            setIsOpen((prev)=> {
+              const prevIsOpen = {...prev};
+              prevIsOpen.isModalOpen = !prevIsOpen.isModalOpen;
+              return prevIsOpen;
+            });
             setSelectedPokemon(null);
           }}
         >
