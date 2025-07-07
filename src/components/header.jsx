@@ -37,7 +37,8 @@ export default function Header() {
 
             <button onClick={()=> {
               localStorage.removeItem("username");
-              router.push("../pages/login");
+              setUsername(null);
+              router.push("/login");
             }}>log out</button>
           </div>
         )}
