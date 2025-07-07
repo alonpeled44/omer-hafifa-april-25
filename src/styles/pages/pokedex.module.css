@@ -49,12 +49,13 @@
     gap: 28px;
 
     overflow-y: auto;
-    padding-inline: 100px;  
+    padding-inline: 100px;
+
+    &[data-is-centered] {
+      justify-content: center;
+    }
   }
   
-  & [data-is-centered] {
-    justify-content: center;
-  }
 }
 
 .pokemon-profile {
