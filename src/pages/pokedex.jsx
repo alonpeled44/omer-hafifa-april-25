@@ -25,7 +25,7 @@ export default function pokedex() {
   const [showShiny, setShowShiny] = useState(false);
   const [searchValue, setSearchValue] = useState("");
   const [selectedTypes, setSelectedTypes] = useState([]);
-  const [sortOption, setSortOption] = useState("none");
+  const [sortOption, setSortOption] = useState("");
 
   const { screenWidth } = useScreenWidth();
 
@@ -63,14 +63,12 @@ export default function pokedex() {
 
       const matchesTypes =
         selectedTypes.length === 0 ||
-        selectedTypes.includes(pokemon.type.toLowerCase());
+        selectedTypes.includes(pokemon.type);
 
       return matchesSearch && matchesTypes;
     })
     .sort((a, b) => {
       switch (sortOption) {
-        case "none":
-          return;
         case "name":
           return a.name.localeCompare(b.name, undefined, {
             sensitivity: "base",
@@ -91,7 +89,7 @@ export default function pokedex() {
           return a.weight - b.weight;
 
         default:
-          return 0;
+          return;
       }
     });
 
