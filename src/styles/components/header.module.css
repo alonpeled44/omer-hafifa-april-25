@@ -8,11 +8,12 @@
   & .pokemon-header-content {
     display: flex;
     align-items: center;
-    gap: 4px;
 
     & .header-logo {
       display: flex;
       align-items: center;
+
+      padding-right: 4px;
 
       & h1 {
         font-size: 2.75rem;
@@ -26,6 +27,8 @@
       display: flex;
       justify-content: center;
       align-items: center;
+
+      padding-right: 4px;
     }
 
     & .user-info {
