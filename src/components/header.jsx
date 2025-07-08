@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
 import { useRouter } from "next/router";
+import Link from "next/link";
 import { useScreenWidth } from "../libs/screenContext";
 import VerticalDivider from "./verticalDivider";
 import pokemonIcon from "../images/pokemon-photo.png";
@@ -25,22 +26,39 @@ export default function Header() {
           <h1 className={styles["header-text"]}>pokemon</h1>
         </div>
 
-        {screenWidth > 1200 && username && (
-          <div className={styles["vertical-divider-wrapper"]}>
-            <VerticalDivider />
-          </div>
-        )}
-
         {username && (
-          <div className={styles["user-info"]}>
-            <p>{username}</p>
+          <>
+            {screenWidth > 1200 && (
+              <div className={styles["vertical-divider-wrapper"]}>
+                <VerticalDivider />
+              </div>
+            )}
 
-            <button onClick={()=> {
-              localStorage.removeItem("username");
-              setUsername(null);
-              router.push("/login");
-            }}>log out</button>
-          </div>
+            <div className={styles["user-info"]}>
+              <p>{username}</p>
+
+              <button
+                onClick={() => {
+                  localStorage.removeItem("username");
+                  setUsername(null);
+                  router.push("/login");
+                }}
+              >
+                log out
+              </button>
+            </div>
+
+            {screenWidth > 1200 && (
+              <div className={styles["vertical-divider-wrapper"]}>
+                <VerticalDivider />
+              </div>
+            )}
+
+            <div className={styles["pages-links"]}>
+              <Link href="">pokedex</Link>
+              <Link href="">guess that pokemon</Link>
+            </div>
+          </>
         )}
       </div>
 
