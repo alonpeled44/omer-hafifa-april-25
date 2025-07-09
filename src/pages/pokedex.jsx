@@ -10,7 +10,7 @@ const sortOptions = [
   { value: "none", label: "sort-by" },
   { value: "name", label: "Name" },
   { value: "type", label: "Type" },
-  { value: "id", label: "ID" },
+  { value: "id", label: "Id" },
   { value: "height", label: "Height" },
   { value: "weight", label: "Weight" },
 ];
@@ -30,10 +30,11 @@ export default function pokedex() {
   const { screenWidth } = useScreenWidth();
 
   useEffect(() => {
+    // closing sort and filter lists when user click outside their space.
     const handleClickOnScreen = () => {
       setIsOpen((prev)=> {
-        const prevIsOpen = {...prev};
-        prevIsOpen.isSortOpen = false;
+        const prevIsOpen = {...prev}; //state before being set.
+        prevIsOpen.isSortOpen = false; 
         prevIsOpen.isFilterOpen = false;
         return prevIsOpen;
       });
@@ -44,8 +45,9 @@ export default function pokedex() {
   });
 
   const setFilterOrSortOpen = (isMulti) => {
+    //setter for either sort or filter list to open when closed/close when open when user click on the button above the list.
     setIsOpen((prev)=> {
-      const prevIsOpen = {...prev};
+      const prevIsOpen = {...prev}; // state before being set.
       prevIsOpen[isMulti ? "isFilterOpen" : "isSortOpen"] = !prevIsOpen[isMulti ? "isFilterOpen" : "isSortOpen"];
       return prevIsOpen;
     });
@@ -109,7 +111,7 @@ export default function pokedex() {
               isOpen={isOpen.isFilterOpen}
               setIsOpen={() => setFilterOrSortOpen(true)}
               options={types}
-              title={"filter by"}
+              title="filter by"
               multiple={true}
               selectedOptions={selectedTypes}
               setSelectedOptions={setSelectedTypes}
@@ -119,7 +121,7 @@ export default function pokedex() {
               isOpen={isOpen.isSortOpen}
               setIsOpen={() => setFilterOrSortOpen(false)}
               options={sortOptions}
-              title={"sort by"}
+              title="sort by"
               multiple={false}
               selectedOptions={sortOption}
               setSelectedOptions={setSortOption}
@@ -133,11 +135,13 @@ export default function pokedex() {
         >
           {filteredPokemons.map((pokemon) => (
             <Card
+              key={pokemon.id}
               card={pokemon}
               onClick={() => {
                 setSelectedPokemon(pokemon);
                 setIsOpen((prev)=> {
-                  const prevIsOpen = {...prev};
+                  //open card selected by user.
+                  const prevIsOpen = {...prev}; //state before being set.
                   prevIsOpen.isModalOpen = !prevIsOpen.isModalOpen;
                   return prevIsOpen;
                 });
@@ -152,7 +156,8 @@ export default function pokedex() {
           isOpen={isOpen.isModalOpen}
           onClose={() => {
             setIsOpen((prev)=> {
-              const prevIsOpen = {...prev};
+              //closing pop up card.
+              const prevIsOpen = {...prev}; //state before being set.
               prevIsOpen.isModalOpen = !prevIsOpen.isModalOpen;
               return prevIsOpen;
             });

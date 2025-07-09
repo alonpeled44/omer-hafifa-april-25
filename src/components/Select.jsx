@@ -25,6 +25,7 @@ export default function Select({
         <div className={styles.options}>
           {options.map((option) => (
             <button
+              key={multiple ? option : option.value}
               className={styles.option}
               onClick={() => {
                 if (multiple) {
