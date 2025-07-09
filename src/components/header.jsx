@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useScreenWidth } from "../libs/screenContext";
 import VerticalDivider from "./verticalDivider";
 import pokemonIcon from "../images/pokemon-photo.png";
+import hamburgerMenu from "../images/hamburger-menu-icon.png";
 import styles from "../styles/components/header.module.css";
 
 export default function Header() {
@@ -61,8 +62,10 @@ export default function Header() {
         )}
       </div>
 
-      {screenWidth > 1200 && (
+      {screenWidth > 1200 ? (
         <p className={styles.date}>{new Date().toLocaleDateString("en-GB")}</p>
+      ) : (
+        <img src={hamburgerMenu.src} className={styles["hamburger-menu"]} />
       )}
     </header>
   );

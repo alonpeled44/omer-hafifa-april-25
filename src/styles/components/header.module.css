@@ -119,7 +119,7 @@
         flex-direction: row-reverse;
 
         & h1 {
-          font-size: 3.75rem;
+          font-size: 3.5rem;
         }
 
         & img {
@@ -138,13 +138,17 @@
         border: none;
 
         & p {
-          font-size: 2.75rem;
+          font-size: 2.5rem;
         }
 
         & button {
           height: 44px;
           width: 120px;
         }
+      }
+
+      & .hamburger-menu {
+        position: absolute;
       }
     }
   }
