@@ -20,7 +20,7 @@ body {
   background-size: cover;
 }
 
-main{
+main {
   width: 100%;
   height: calc(100vh - 70px);
 
@@ -29,8 +29,8 @@ main{
   align-items: center;
 }
 
-@media screen and (max-width: 1200px){
-  main{
-    height: calc(100vh - 170px);
+@media screen and (max-width: 1200px) {
+  main {
+    height: calc(100vh - 220px);
   }
 }

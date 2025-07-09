@@ -56,7 +56,6 @@ export default function Header() {
 
             <div className={styles["pages-links"]}>
               <Link href="">pokedex</Link>
-              <Link href="">guess that pokemon</Link>
             </div>
           </>
         )}
