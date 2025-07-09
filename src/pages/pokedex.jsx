@@ -6,13 +6,13 @@ import Select from "../components/Select";
 import Modal from "../components/Modal";
 import styles from "../styles/pages/pokedex.module.css";
 
-const sortOptions = [
-  { value: "name", label: "Name" },
-  { value: "type", label: "Type" },
-  { value: "id", label: "Id" },
-  { value: "height", label: "Height" },
-  { value: "weight", label: "Weight" },
-];
+const sortOptions = {
+  name: "Name",
+  type: "Type",
+  id: "Id",
+  height: "Height",
+  weight: "Weight",
+};
 
 export default function pokedex() {
   const [isOpen, setIsOpen] = useState({
@@ -31,9 +31,9 @@ export default function pokedex() {
   useEffect(() => {
     // closing sort and filter lists when user click outside their space.
     const handleClickOnScreen = () => {
-      setIsOpen((prev)=> {
-        const prevIsOpen = {...prev}; //state before being set.
-        prevIsOpen.isSortOpen = false; 
+      setIsOpen((prev) => {
+        const prevIsOpen = { ...prev }; //state before being set.
+        prevIsOpen.isSortOpen = false;
         prevIsOpen.isFilterOpen = false;
         return prevIsOpen;
       });
@@ -45,9 +45,10 @@ export default function pokedex() {
 
   const setFilterOrSortOpen = (isMulti) => {
     //setter for either sort or filter list to open when closed/close when open when user click on the button above the list.
-    setIsOpen((prev)=> {
-      const prevIsOpen = {...prev}; // state before being set.
-      prevIsOpen[isMulti ? "isFilterOpen" : "isSortOpen"] = !prevIsOpen[isMulti ? "isFilterOpen" : "isSortOpen"];
+    setIsOpen((prev) => {
+      const prevIsOpen = { ...prev }; // state before being set.
+      prevIsOpen[isMulti ? "isFilterOpen" : "isSortOpen"] =
+        !prevIsOpen[isMulti ? "isFilterOpen" : "isSortOpen"];
       return prevIsOpen;
     });
   };
@@ -63,30 +64,29 @@ export default function pokedex() {
         pokemon.weight.toString().startsWith(searchValue);
 
       const matchesTypes =
-        selectedTypes.length === 0 ||
-        selectedTypes.includes(pokemon.type);
+        selectedTypes.length === 0 || selectedTypes.includes(pokemon.type);
 
       return matchesSearch && matchesTypes;
     })
     .sort((a, b) => {
       switch (sortOption) {
-        case "name":
+        case "Name":
           return a.name.localeCompare(b.name, undefined, {
             sensitivity: "base",
           });
 
-        case "type":
+        case "Type":
           return a.type.localeCompare(b.type, undefined, {
             sensitivity: "base",
           });
 
-        case "id":
+        case "Id":
           return a.id - b.id;
 
-        case "height":
+        case "Height":
           return a.height - b.height;
 
-        case "weight":
+        case "Weight":
           return a.weight - b.weight;
 
         default:
@@ -119,7 +119,7 @@ export default function pokedex() {
             <Select
               isOpen={isOpen.isSortOpen}
               setIsOpen={() => setFilterOrSortOpen(false)}
-              options={sortOptions}
+              options={Object.values(sortOptions)}
               title="sort by"
               multiple={false}
               selectedOptions={sortOption}
@@ -130,7 +130,9 @@ export default function pokedex() {
 
         <div
           className={styles["pokemons-container"]}
-          data-is-centered={filteredPokemons.length < pokemons.length || undefined}
+          data-is-centered={
+            filteredPokemons.length < pokemons.length || undefined
+          }
         >
           {filteredPokemons.map((pokemon) => (
             <Card
@@ -138,9 +140,9 @@ export default function pokedex() {
               card={pokemon}
               onClick={() => {
                 setSelectedPokemon(pokemon);
-                setIsOpen((prev)=> {
+                setIsOpen((prev) => {
                   //open card selected by user.
-                  const prevIsOpen = {...prev}; //state before being set.
+                  const prevIsOpen = { ...prev }; //state before being set.
                   prevIsOpen.isModalOpen = !prevIsOpen.isModalOpen;
                   return prevIsOpen;
                 });
@@ -154,9 +156,9 @@ export default function pokedex() {
         <Modal
           isOpen={isOpen.isModalOpen}
           onClose={() => {
-            setIsOpen((prev)=> {
+            setIsOpen((prev) => {
               //closing pop up card.
-              const prevIsOpen = {...prev}; //state before being set.
+              const prevIsOpen = { ...prev }; //state before being set.
               prevIsOpen.isModalOpen = !prevIsOpen.isModalOpen;
               return prevIsOpen;
             });

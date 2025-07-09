@@ -7,7 +7,7 @@ export default function Select({
   title,
   multiple,
   selectedOptions,
-  setSelectedOptions
+  setSelectedOptions,
 }) {
   return (
     <div className={styles.select}>
@@ -25,27 +25,30 @@ export default function Select({
         <div className={styles.options}>
           {options.map((option) => (
             <button
-              key={multiple ? option : option.value}
+              key={option}
               className={styles.option}
               onClick={() => {
                 if (multiple) {
                   if (selectedOptions.includes(option)) {
-                    setSelectedOptions((prev) => prev.filter((item) => item !== option));
+                    setSelectedOptions((prev) =>
+                      prev.filter((item) => item !== option)
+                    );
                   } else {
-                    setSelectedOptions((prev)=> [...prev, option]);
+                    setSelectedOptions((prev) => [...prev, option]);
                   }
-                }
-                else {
-                  setSelectedOptions(option.value);
+                } else {
+                  setSelectedOptions(option);
                 }
               }}
             >
-              {(
+              {
                 <>
-                  {multiple ? option : option.label}
-                  {(multiple ? selectedOptions.find((opt)=> opt===option) : option.value===selectedOptions)  && <span>&#10003;</span>}
+                  {option}
+                  {(multiple
+                    ? selectedOptions.find((opt) => opt === option)
+                    : option === selectedOptions) && <span>&#10003;</span>}
                 </>
-              )}
+              }
             </button>
           ))}
         </div>
