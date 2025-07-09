@@ -7,7 +7,6 @@ import Modal from "../components/Modal";
 import styles from "../styles/pages/pokedex.module.css";
 
 const sortOptions = [
-  { value: "none", label: "sort-by" },
   { value: "name", label: "Name" },
   { value: "type", label: "Type" },
   { value: "id", label: "Id" },

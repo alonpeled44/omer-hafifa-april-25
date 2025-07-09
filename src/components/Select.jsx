@@ -40,13 +40,11 @@ export default function Select({
                 }
               }}
             >
-              {multiple ? (
+              {(
                 <>
-                  {option}
-                  {selectedOptions.find((opt)=> opt===option) && <span>&#10003;</span>}
+                  {multiple ? option : option.label}
+                  {(multiple ? selectedOptions.find((opt)=> opt===option) : option.value===selectedOptions)  && <span>&#10003;</span>}
                 </>
-              ) : (
-                option.label
               )}
             </button>
           ))}
