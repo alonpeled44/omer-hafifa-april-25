@@ -61,6 +61,13 @@
 
       & a {
         font-size: 2rem;
+        color: rgb(20, 83, 141);
+        text-decoration-line: none;
+        cursor: pointer;
+
+        & :visited {
+          color: rgb(20, 141, 135);
+        }
       }
     }
   }
