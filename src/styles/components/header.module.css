@@ -147,9 +147,15 @@
         }
       }
 
-      & .hamburger-menu {
-        position: absolute;
+      & .pages-links {
+        display: none;
       }
+    }
+
+    & .hamburger-menu {
+      position: absolute;
+      top: 40px;
+      right: 1px;
     }
   }
 }
