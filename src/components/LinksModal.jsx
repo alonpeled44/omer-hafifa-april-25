@@ -1,4 +1,5 @@
 import { useRef, useEffect } from "react";
+import styles from "../styles/components/link-modal.module.css";
 
 export default function LinksModal({ isOpen, onClose, children }) {
   const dialogRef = useRef(null);
