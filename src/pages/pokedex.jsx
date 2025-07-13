@@ -70,23 +70,23 @@ export default function pokedex() {
     })
     .sort((a, b) => {
       switch (sortOption) {
-        case "Name":
+        case sortOptions.name:
           return a.name.localeCompare(b.name, undefined, {
             sensitivity: "base",
           });
 
-        case "Type":
+        case sortOptions.type:
           return a.type.localeCompare(b.type, undefined, {
             sensitivity: "base",
           });
 
-        case "Id":
+        case sortOptions.id:
           return a.id - b.id;
 
-        case "Height":
+        case sortOptions.height:
           return a.height - b.height;
 
-        case "Weight":
+        case sortOptions.weight:
           return a.weight - b.weight;
 
         default:
