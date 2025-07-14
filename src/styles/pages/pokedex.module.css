@@ -1,5 +1,6 @@
 .pokedex-content {
   height: 92%;
+  width: inherit;
 
   display: flex;
   flex-direction: column;
@@ -13,7 +14,7 @@
     
     padding-inline: 12px;
 
-    & input {
+    & input { 
       border: none;
       border-bottom: 2px solid rgb(0, 0, 0);
 
@@ -34,7 +35,7 @@
     }
 
     & .filter-and-sort-container {
-      width: 24%;
+      width: 32%;
 
       display: flex;
       justify-content: space-evenly;
@@ -49,7 +50,12 @@
 
     overflow-y: auto;
     padding-inline: 100px;
+
+    &[data-is-centered] {
+      justify-content: center;
+    }
   }
+  
 }
 
 .pokemon-profile {
@@ -108,10 +114,10 @@
       height: 32px;
       width: 92%;
 
-      gap: 72px;
+      gap: 68px;
 
       & input {
-        width: 112px;
+        width: 108px;
       }
 
       & input::placeholder {

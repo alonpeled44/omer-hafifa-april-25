@@ -37,9 +37,15 @@
       min-height: 28px;
       width: 52%;
 
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 4px;
+
       border: none;
       border-bottom: 1px solid rgb(0, 0, 0);
-      
+
+      white-space: nowrap;
       background: transparent;
       font-size: 1.5rem;
     }
@@ -51,16 +57,21 @@
     width: 48%;
 
     & .head {
-     font-size: 1.4rem;
+      font-size: 1.4rem;
     }
 
     & .options {
       top: 20px;
 
-      & .option {        
-        font-size: 1.25rem;
-      }
+      width: 100%;
 
+      padding-top: 4px;
+
+      & .option {
+        width: 68%;
+
+        font-size: 1.2rem;
+      }
     }
   }
 }

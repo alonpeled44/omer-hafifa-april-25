@@ -1,6 +1,14 @@
 import styles from "../styles/components/select.module.css";
 
-export default function Select({ isOpen, setIsOpen, options, type}) {
+export default function Select({
+  isOpen,
+  setIsOpen,
+  options,
+  title,
+  multiple,
+  selectedOptions,
+  setSelectedOptions,
+}) {
   return (
     <div className={styles.select}>
       <button
@@ -10,13 +18,38 @@ export default function Select({ isOpen, setIsOpen, options, type}) {
           setIsOpen((prev) => !prev);
         }}
       >
-        {type} by
+        {title}
       </button>
 
       {isOpen && (
         <div className={styles.options}>
           {options.map((option) => (
-            <button className={styles.option}>{option}</button>
+            <button
+              key={option}
+              className={styles.option}
+              onClick={() => {
+                if (multiple) {
+                  if (selectedOptions.includes(option)) {
+                    setSelectedOptions((prev) =>
+                      prev.filter((item) => item !== option)
+                    );
+                  } else {
+                    setSelectedOptions((prev) => [...prev, option]);
+                  }
+                } else {
+                  setSelectedOptions(option);
+                }
+              }}
+            >
+              {
+                <>
+                  {option}
+                  {(multiple
+                    ? selectedOptions.find((opt) => opt === option)
+                    : option === selectedOptions) && <span>&#10003;</span>}
+                </>
+              }
+            </button>
           ))}
         </div>
       )}
