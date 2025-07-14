@@ -2,7 +2,12 @@
   height: 20%;
   width: 100%;
   max-width: none;
+
+  display: flex;
+  align-items: center;
+
   border: none;
+  padding-left: 4px;
   animation: slideDown linear 1s 0s 1 normal forwards;
 
   & .content-container {
@@ -24,6 +29,10 @@
       background: none;
       font-size: 2.75rem;
       cursor: pointer;
+
+      &:active {
+        transform: scale(0.9);
+      }
     }
   }
 }

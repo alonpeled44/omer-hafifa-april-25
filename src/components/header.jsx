@@ -59,7 +59,9 @@ export default function Header() {
               )}
 
               <div className={styles["pages-links"]}>
-                <Link href="">pokedex</Link>
+                <Link href="https://www.google.com" target="blank">
+                  pokedex
+                </Link>
               </div>
             </>
           )}
@@ -91,7 +93,9 @@ export default function Header() {
           }}
         >
           <div className={styles["modal-links"]}>
-            <Link href="">pokedex</Link>
+            <Link href="https://www.google.com/" target="blank">
+              pokedex
+            </Link>
           </div>
         </LinksModal>
       )}
