@@ -21,6 +21,10 @@ export default function Header() {
     setUsername(storedUsername || null);
   }, [pathname]);
 
+  useEffect(() => {
+    screenWidth > 1200 && setIsOpen(false);
+  }, [screenWidth]);
+
   return (
     <>
       <header className={styles.header}>
