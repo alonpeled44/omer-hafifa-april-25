@@ -5,6 +5,7 @@ import Card from "../components/card";
 import Select from "../components/Select";
 import Modal from "../components/Modal";
 import styles from "../styles/pages/pokedex.module.css";
+import { useDigimonsDb } from "../libs/digimonsDbContext";
 
 const sortOptions = {
   name: "Name",
@@ -27,6 +28,7 @@ export default function pokedex() {
   const [sortOption, setSortOption] = useState("");
 
   const { screenWidth } = useScreenWidth();
+  const { digimons } = useDigimonsDb();
 
   useEffect(() => {
     // closing sort and filter lists when user click outside their space.
@@ -134,12 +136,12 @@ export default function pokedex() {
             filteredPokemons.length < pokemons.length || undefined
           }
         >
-          {filteredPokemons.map((pokemon) => (
+          {digimons.map((digimon) => (
             <Card
-              key={pokemon.id}
-              card={pokemon}
+              key={digimon.id}
+              card={digimon}
               onClick={() => {
-                setSelectedPokemon(pokemon);
+                setSelectedPokemon(digimon);
                 setIsOpen((prev) => {
                   //open card selected by user.
                   const prevIsOpen = { ...prev }; //state before being set.

@@ -14,7 +14,7 @@ export default function Card({ card, onClick }) {
       ) : (
         <p>{card.name}</p>
       )}
-      <img src={card.frontViewImageUrl} />
+      <img src={card.image} />
       {screenWidth > 1200 && (
         <section className={styles["pokemon-details"]}>
           <p>Type: {card.type}</p>
