@@ -4,6 +4,7 @@ const DigimonsDbContext = createContext();
 
 export function DigimonsDbProvider({ children }) {
   const [digimons, setDigimons] = useState([]);
+  const [types, setTypes] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
@@ -19,6 +20,7 @@ export function DigimonsDbProvider({ children }) {
 
         const data = await response.json();
         setDigimons(data.content);
+        setTypes(data.content.fields);
         console.log(digimons);
         setLoading(false);
       } catch (err) {
@@ -30,7 +32,7 @@ export function DigimonsDbProvider({ children }) {
   }, []);
 
   return (
-    <DigimonsDbContext.Provider value={{ digimons, loading, error }}>
+    <DigimonsDbContext.Provider value={{ digimons, types, loading, error }}>
       {children}
     </DigimonsDbContext.Provider>
   );
