@@ -28,7 +28,7 @@ export default function Header() {
   return (
     <>
       <header className={styles.header}>
-        <div className={styles["pokemon-header-content"]}>
+        <div className={styles["header-content"]}>
           <div className={styles["header-logo"]}>
             <img src={pokemonIcon.src} />
             <h1 className={styles["header-text"]}>pokemon</h1>
@@ -80,9 +80,7 @@ export default function Header() {
             src={hamburgerMenu.src}
             className={styles["hamburger-menu"]}
             onClick={() => {
-              setIsOpen((prev) => {
-                return !prev;
-              });
+              setIsOpen((prev) => !prev);
             }}
           />
         )}
@@ -91,9 +89,7 @@ export default function Header() {
         <LinksModal
           isOpen={isOpen}
           onClose={() => {
-            setIsOpen((prev) => {
-              !prev;
-            });
+            setIsOpen((prev) => !prev);
           }}
         >
           <div className={styles["modal-links"]}>

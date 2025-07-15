@@ -8,7 +8,7 @@
 
   border: none;
   padding-left: 4px;
-  animation: slideDown linear 1s 0s 1 normal forwards;
+  animation: slideDown linear 1s 1 normal forwards;
 
   & .content-container {
     font-size: 2.4rem;
