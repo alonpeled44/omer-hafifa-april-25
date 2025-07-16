@@ -191,7 +191,7 @@ export default function pokedex() {
                     src={
                       showShiny
                         ? selectedPokemon.frontShinyViewImageUrl
-                        : selectedPokemon.frontViewImageUrl
+                        : selectedPokemon.image
                     }
                   />
                   <img
@@ -204,7 +204,7 @@ export default function pokedex() {
                 </section>
 
                 <section className={styles["pokemon-details"]}>
-                  <p>Type: {selectedPokemon.type}</p>
+                  <p>Type: {selectedPokemon.types?.[0]?.type || "unknown"}</p>
                   <p>Height: {selectedPokemon.height}</p>
                   <p>Weight: {selectedPokemon.weight}</p>
                 </section>

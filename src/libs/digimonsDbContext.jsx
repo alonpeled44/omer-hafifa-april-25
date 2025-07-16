@@ -20,8 +20,6 @@ export function DigimonsDbProvider({ children }) {
 
         const data = await response.json();
         setDigimons(data.content);
-        setTypes(data.content.fields);
-        console.log(digimons);
         setLoading(false);
       } catch (err) {
         setError(err.message);
@@ -32,7 +30,7 @@ export function DigimonsDbProvider({ children }) {
   }, []);
 
   return (
-    <DigimonsDbContext.Provider value={{ digimons, types, loading, error }}>
+    <DigimonsDbContext.Provider value={{ digimons, loading, error }}>
       {children}
     </DigimonsDbContext.Provider>
   );
