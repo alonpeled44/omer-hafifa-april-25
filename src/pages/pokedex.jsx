@@ -26,6 +26,7 @@ export default function pokedex() {
   const [searchValue, setSearchValue] = useState("");
   const [selectedTypes, setSelectedTypes] = useState([]);
   const [sortOption, setSortOption] = useState("");
+  const [digimonProperties, setDigimonProperties] = useState({});
 
   const { screenWidth } = useScreenWidth();
   const { digimons } = useDigimonsDb();
@@ -44,6 +45,49 @@ export default function pokedex() {
     document.addEventListener("click", handleClickOnScreen);
     return () => document.removeEventListener("click", handleClickOnScreen);
   });
+
+  useEffect(() => {
+    const fetchDigimonDetails = async () => {
+      try {
+        const properties = {};
+        await Promise.all(
+          digimons.map(async (digimon) => {
+            try {
+              const response = await fetch(digimon.href);
+              if (!response.ok) {
+                throw new Error(
+                  `Failed to fetch Digimon ${digimon.id}: ${response.status}`
+                );
+              }
+              const data = await response.json();
+              properties[digimon.id] = {
+                type: data.types?.[0]?.type || "unknown",
+                level: data.levels?.[0]?.level || "negative",
+                field: data.fields?.[0]?.field || "none",
+              };
+            } catch (err) {
+              console.error(
+                `Error fetching Digimon ${digimon.id}:`,
+                err.message
+              );
+              properties[digimon.id] = {
+                type: "error",
+                level: "error",
+                field: "error",
+              };
+            }
+          })
+        );
+        setDigimonProperties(properties);
+      } catch (err) {
+        console.error("Error fetching Digimon details:", err.message);
+      }
+    };
+
+    if (digimons.length > 0) {
+      fetchDigimonDetails();
+    }
+  }, [digimons]);
 
   const setFilterOrSortOpen = (isMulti) => {
     //setter for either sort or filter list to open when closed/close when open when user click on the button above the list.
@@ -140,6 +184,13 @@ export default function pokedex() {
             <Card
               key={digimon.id}
               card={digimon}
+              digimonProperties={
+                digimonProperties[digimon.id] || {
+                  type: "",
+                  level: "",
+                  field: "",
+                }
+              }
               onClick={() => {
                 setSelectedPokemon(digimon);
                 setIsOpen((prev) => {
@@ -204,9 +255,9 @@ export default function pokedex() {
                 </section>
 
                 <section className={styles["pokemon-details"]}>
-                  <p>Type: {selectedPokemon.types?.[0]?.type || "unknown"}</p>
-                  <p>Height: {selectedPokemon.height}</p>
-                  <p>Weight: {selectedPokemon.weight}</p>
+                  <p>Type: {digimonProperties[selectedPokemon.id].type}</p>
+                  <p>Height: {digimonProperties[selectedPokemon.id].level}</p>
+                  <p>Weight: {digimonProperties[selectedPokemon.id].field}</p>
                 </section>
               </>
             ) : (
