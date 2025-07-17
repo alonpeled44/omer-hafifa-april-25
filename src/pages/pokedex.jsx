@@ -271,11 +271,17 @@ export default function pokedex() {
                 <section className={styles.images}>
                   <img
                     src={
-                      showShiny ? pokemonFrontShinyImage : selectedPokemon.image
+                      showShiny
+                        ? pokemonFrontShinyImage.src
+                        : selectedDigimon.image
                     }
                   />
                   <img
-                    src={showShiny ? pokemonBackShinyImage : pokemonBackImage}
+                    src={
+                      showShiny
+                        ? pokemonBackShinyImage.src
+                        : pokemonBackImage.src
+                    }
                   />
                 </section>
 
@@ -297,7 +303,7 @@ export default function pokedex() {
                   <img
                     src={
                       showShiny
-                        ? selectedDigimon.frontShinyViewImageUrl
+                        ? frontShinyViewImageUrl.src
                         : selectedDigimon.image
                     }
                     className={styles["slide-up-image"]}
