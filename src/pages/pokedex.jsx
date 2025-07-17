@@ -96,10 +96,6 @@ export default function pokedex() {
     ]);
   }, [digimonProperties]);
 
-  useEffect(() => {
-    console.log(selectedTypes);
-  });
-
   const setFilterOrSortOpen = (isMulti) => {
     //setter for either sort or filter list to open when closed/close when open when user click on the button above the list.
     setIsOpen((prev) => {
