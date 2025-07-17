@@ -11,8 +11,8 @@ const sortOptions = {
   name: "Name",
   type: "Type",
   id: "Id",
-  height: "Height",
-  weight: "Weight",
+  level: "Level",
+  field: "Field",
 };
 
 export default function pokedex() {
@@ -24,6 +24,7 @@ export default function pokedex() {
   const [selectedPokemon, setSelectedPokemon] = useState(null);
   const [showShiny, setShowShiny] = useState(false);
   const [searchValue, setSearchValue] = useState("");
+  const [types, setTypes] = useState([]);
   const [selectedTypes, setSelectedTypes] = useState([]);
   const [sortOption, setSortOption] = useState("");
   const [digimonProperties, setDigimonProperties] = useState({});
@@ -89,6 +90,16 @@ export default function pokedex() {
     }
   }, [digimons]);
 
+  useEffect(() => {
+    setTypes([
+      ...new Set(Object.values(digimonProperties).map((item) => item.type)),
+    ]);
+  }, [digimonProperties]);
+
+  useEffect(() => {
+    console.log(selectedTypes);
+  });
+
   const setFilterOrSortOpen = (isMulti) => {
     //setter for either sort or filter list to open when closed/close when open when user click on the button above the list.
     setIsOpen((prev) => {
@@ -99,18 +110,23 @@ export default function pokedex() {
     });
   };
 
-  const filteredPokemons = pokemons
-    .filter((pokemon) => {
+  const filteredDigimons = digimons
+    .filter((digimon) => {
       const searchValueLowerCase = searchValue.toLowerCase();
       const matchesSearch =
-        pokemon.name.toLowerCase().startsWith(searchValueLowerCase) ||
-        pokemon.type.toLowerCase().startsWith(searchValueLowerCase) ||
-        pokemon.id.toString().startsWith(searchValue) ||
-        pokemon.height.toString().startsWith(searchValue) ||
-        pokemon.weight.toString().startsWith(searchValue);
+        digimon.name.toLowerCase().startsWith(searchValueLowerCase) ||
+        digimonProperties[digimon.id].type
+          .toLowerCase()
+          .startsWith(searchValueLowerCase) ||
+        digimon.id.toString().startsWith(searchValue) ||
+        digimonProperties[digimon.id].level
+          .toString()
+          .startsWith(searchValue) ||
+        digimonProperties[digimon.id].field.toString().startsWith(searchValue);
 
       const matchesTypes =
-        selectedTypes.length === 0 || selectedTypes.includes(pokemon.type);
+        selectedTypes.length === 0 ||
+        selectedTypes.includes(digimonProperties[digimon.id].type);
 
       return matchesSearch && matchesTypes;
     })
@@ -122,19 +138,34 @@ export default function pokedex() {
           });
 
         case sortOptions.type:
-          return a.type.localeCompare(b.type, undefined, {
-            sensitivity: "base",
-          });
+          return digimonProperties[a.id].type.localeCompare(
+            digimonProperties[b.id].type,
+            undefined,
+            {
+              sensitivity: "base",
+            }
+          );
 
         case sortOptions.id:
           return a.id - b.id;
 
-        case sortOptions.height:
-          return a.height - b.height;
+        case sortOptions.level:
+          return digimonProperties[a.id].level.localeCompare(
+            digimonProperties[b.id].level,
+            undefined,
+            {
+              sensitivity: "base",
+            }
+          );
 
-        case sortOptions.weight:
-          return a.weight - b.weight;
-
+        case sortOptions.field:
+          return digimonProperties[a.id].field.localeCompare(
+            digimonProperties[b.id].field,
+            undefined,
+            {
+              sensitivity: "base",
+            }
+          );
         default:
           return;
       }
@@ -177,10 +208,10 @@ export default function pokedex() {
         <div
           className={styles["pokemons-container"]}
           data-is-centered={
-            filteredPokemons.length < pokemons.length || undefined
+            filteredDigimons.length < pokemons.length || undefined
           }
         >
-          {digimons.map((digimon) => (
+          {filteredDigimons.map((digimon) => (
             <Card
               key={digimon.id}
               card={digimon}
@@ -264,16 +295,16 @@ export default function pokedex() {
               <>
                 <div className={styles["slide-up-card"]}>
                   <section className={styles["pokemon-details"]}>
-                    <p>Type: {selectedPokemon.type}</p>
-                    <p>Height: {selectedPokemon.height}</p>
-                    <p>Weight: {selectedPokemon.weight}</p>
+                    <p>Type: {digimonProperties[selectedPokemon.id].type}</p>
+                    <p>Height: {digimonProperties[selectedPokemon.id].level}</p>
+                    <p>Weight: {digimonProperties[selectedPokemon.id].field}</p>
                   </section>
 
                   <img
                     src={
                       showShiny
                         ? selectedPokemon.frontShinyViewImageUrl
-                        : selectedPokemon.frontViewImageUrl
+                        : selectedPokemon.image
                     }
                     className={styles["slide-up-image"]}
                   />
