@@ -120,9 +120,11 @@ export default function pokedex() {
           .startsWith(searchValueLowerCase) ||
         digimon.id.toString().startsWith(searchValue) ||
         digimonProperties[digimon.id].level
-          .toString()
+          .toLowerCase()
           .startsWith(searchValue) ||
-        digimonProperties[digimon.id].field.toString().startsWith(searchValue);
+        digimonProperties[digimon.id].field
+          .toLowerCase()
+          .startsWith(searchValue);
 
       const matchesTypes =
         selectedTypes.length === 0 ||
