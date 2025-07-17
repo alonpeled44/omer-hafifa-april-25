@@ -8,7 +8,7 @@ export default function Card({ card, onClick, digimonProperties }) {
   return (
     <div onClick={onClick} className={styles.card}>
       {screenWidth > 1200 ? (
-        <section className={styles["pokemon-info"]}>
+        <section className={styles["digimon-info"]}>
           <p>#{card.id}</p>
           <p>{card.name}</p>
         </section>
@@ -17,7 +17,7 @@ export default function Card({ card, onClick, digimonProperties }) {
       )}
       <img src={card.image} />
       {screenWidth > 1200 && (
-        <section className={styles["pokemon-details"]}>
+        <section className={styles["digimon-details"]}>
           <p>Type: {digimonProperties.type || "unknown"}</p>
           <p>Level: {digimonProperties.level || "negative"}</p>
           <p>Field: {digimonProperties.field || "none"}</p>

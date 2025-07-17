@@ -1,11 +1,13 @@
 import { useEffect, useState } from "react";
 import { useScreenWidth } from "../libs/screenContext";
-import { pokemons, types } from "../components/pokemons";
+import { useDigimonsDb } from "../libs/digimonsDbContext";
 import Card from "../components/card";
 import Select from "../components/Select";
 import Modal from "../components/Modal";
 import styles from "../styles/pages/pokedex.module.css";
-import { useDigimonsDb } from "../libs/digimonsDbContext";
+import pokemonBackImage from "../images/pikachu-back-image.png";
+import pokemonFrontShinyImage from "../images/pikachu-front-shiny-image.png";
+import pokemonBackShinyImage from "../images/pikachu-back-shiny-image.png";
 
 const sortOptions = {
   name: "Name",
@@ -21,7 +23,7 @@ export default function pokedex() {
     isFilterOpen: false,
     isModalOpen: false,
   });
-  const [selectedPokemon, setSelectedPokemon] = useState(null);
+  const [selectedDigimon, setSelectedDigimon] = useState(null);
   const [showShiny, setShowShiny] = useState(false);
   const [searchValue, setSearchValue] = useState("");
   const [types, setTypes] = useState([]);
@@ -204,9 +206,9 @@ export default function pokedex() {
         </div>
 
         <div
-          className={styles["pokemons-container"]}
+          className={styles["digimons-container"]}
           data-is-centered={
-            filteredDigimons.length < pokemons.length || undefined
+            filteredDigimons.length < digimons.length || undefined
           }
         >
           {filteredDigimons.map((digimon) => (
@@ -221,7 +223,7 @@ export default function pokedex() {
                 }
               }
               onClick={() => {
-                setSelectedPokemon(digimon);
+                setSelectedDigimon(digimon);
                 setIsOpen((prev) => {
                   //open card selected by user.
                   const prevIsOpen = { ...prev }; //state before being set.
@@ -244,12 +246,12 @@ export default function pokedex() {
               prevIsOpen.isModalOpen = !prevIsOpen.isModalOpen;
               return prevIsOpen;
             });
-            setSelectedPokemon(null);
+            setSelectedDigimon(null);
           }}
         >
           <>
-            <section className={styles["pokemon-profile"]}>
-              <p>{selectedPokemon.name}</p>
+            <section className={styles["digimon-profile"]}>
+              <p>{selectedDigimon.name}</p>
               <div>
                 <label>
                   <input
@@ -260,7 +262,7 @@ export default function pokedex() {
                   Shiny
                 </label>
 
-                <p>#{selectedPokemon.id}</p>
+                <p>#{selectedDigimon.id}</p>
               </div>
             </section>
 
@@ -269,40 +271,34 @@ export default function pokedex() {
                 <section className={styles.images}>
                   <img
                     src={
-                      showShiny
-                        ? selectedPokemon.frontShinyViewImageUrl
-                        : selectedPokemon.image
+                      showShiny ? pokemonFrontShinyImage : selectedPokemon.image
                     }
                   />
                   <img
-                    src={
-                      showShiny
-                        ? selectedPokemon.backShinyViewImageUrl
-                        : selectedPokemon.backViewImageUrl
-                    }
+                    src={showShiny ? pokemonBackShinyImage : pokemonBackImage}
                   />
                 </section>
 
-                <section className={styles["pokemon-details"]}>
-                  <p>Type: {digimonProperties[selectedPokemon.id].type}</p>
-                  <p>Height: {digimonProperties[selectedPokemon.id].level}</p>
-                  <p>Weight: {digimonProperties[selectedPokemon.id].field}</p>
+                <section className={styles["digimon-details"]}>
+                  <p>Type: {digimonProperties[selectedDigimon.id].type}</p>
+                  <p>Height: {digimonProperties[selectedDigimon.id].level}</p>
+                  <p>Weight: {digimonProperties[selectedDigimon.id].field}</p>
                 </section>
               </>
             ) : (
               <>
                 <div className={styles["slide-up-card"]}>
-                  <section className={styles["pokemon-details"]}>
-                    <p>Type: {digimonProperties[selectedPokemon.id].type}</p>
-                    <p>Height: {digimonProperties[selectedPokemon.id].level}</p>
-                    <p>Weight: {digimonProperties[selectedPokemon.id].field}</p>
+                  <section className={styles["digimon-details"]}>
+                    <p>Type: {digimonProperties[selectedDigimon.id].type}</p>
+                    <p>Height: {digimonProperties[selectedDigimon.id].level}</p>
+                    <p>Weight: {digimonProperties[selectedDigimon.id].field}</p>
                   </section>
 
                   <img
                     src={
                       showShiny
-                        ? selectedPokemon.frontShinyViewImageUrl
-                        : selectedPokemon.image
+                        ? selectedDigimon.frontShinyViewImageUrl
+                        : selectedDigimon.image
                     }
                     className={styles["slide-up-image"]}
                   />

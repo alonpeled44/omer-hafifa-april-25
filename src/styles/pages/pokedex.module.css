@@ -11,10 +11,10 @@
 
     display: flex;
     justify-content: space-between;
-    
+
     padding-inline: 12px;
 
-    & input { 
+    & input {
       border: none;
       border-bottom: 2px solid rgb(0, 0, 0);
 
@@ -42,7 +42,7 @@
     }
   }
 
-  & .pokemons-container {
+  & .digimons-container {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
@@ -55,10 +55,9 @@
       justify-content: center;
     }
   }
-  
 }
 
-.pokemon-profile {
+.digimon-profile {
   height: 32%;
   width: 100%;
 
@@ -91,7 +90,7 @@
   }
 }
 
-.pokemon-details {
+.digimon-details {
   display: flex;
   flex-direction: column;
   gap: 20px;
@@ -132,7 +131,7 @@
       }
     }
 
-    & .pokemons-container {
+    & .digimons-container {
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
@@ -150,7 +149,7 @@
     justify-content: center;
     align-items: center;
 
-    & .pokemon-details {
+    & .digimon-details {
       gap: 52px;
 
       font-size: clamp(10px, 4vw, 50px);
@@ -162,13 +161,11 @@
     }
   }
 
-  & .pokemon-profile {
+  & .digimon-profile {
     font-size: clamp(10px, 4vw, 50px);
 
     & div {
-
-      & label { 
-
+      & label {
         & input {
           height: clamp(0.5rem, 3vw, 2rem);
           width: clamp(0.5rem, 3vw, 2rem);
