@@ -150,7 +150,7 @@
     align-items: center;
 
     & .digimon-details {
-      gap: 52px;
+      gap: 80px;
 
       font-size: clamp(10px, 4vw, 50px);
     }

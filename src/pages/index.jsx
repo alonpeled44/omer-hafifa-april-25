@@ -270,7 +270,7 @@ export default function Home() {
 
                 <section className={styles["digimon-details"]}>
                   <p>Type: {digimonProperties[selectedDigimon.id].type}</p>
-                  <p>Height: {digimonProperties[selectedDigimon.id].level}</p>
+                  <p>Level: {digimonProperties[selectedDigimon.id].level}</p>
                 </section>
               </>
             ) : (
@@ -278,13 +278,13 @@ export default function Home() {
                 <div className={styles["slide-up-card"]}>
                   <section className={styles["digimon-details"]}>
                     <p>Type: {digimonProperties[selectedDigimon.id].type}</p>
-                    <p>Height: {digimonProperties[selectedDigimon.id].level}</p>
+                    <p>Level: {digimonProperties[selectedDigimon.id].level}</p>
                   </section>
 
                   <img
                     src={
                       showShiny
-                        ? frontShinyViewImageUrl.src
+                        ? pokemonFrontShinyImage.src
                         : selectedDigimon.image
                     }
                     className={styles["slide-up-image"]}
