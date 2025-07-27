@@ -199,7 +199,7 @@ export default function Home() {
             <Card
               key={digimon.id}
               card={digimon}
-              digimonProperties={
+              digimon={
                 digimonProperties[digimon.id] || {
                   type: "",
                   level: "",

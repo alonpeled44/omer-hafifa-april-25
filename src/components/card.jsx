@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useScreenWidth } from "../libs/screenContext";
 import styles from "../styles/components/card.module.css";
 
-export default function Card({ card, onClick, digimonProperties }) {
+export default function Card({ card, onClick, digimon }) {
   const { screenWidth } = useScreenWidth();
 
   return (
@@ -18,8 +18,8 @@ export default function Card({ card, onClick, digimonProperties }) {
       <img src={card.image} />
       {screenWidth > 1200 && (
         <section className={styles["digimon-details"]}>
-          <p>Type: {digimonProperties.type || "unknown"}</p>
-          <p>Level: {digimonProperties.level || "negative"}</p>
+          <p>Type: {digimon.type || "unknown"}</p>
+          <p>Level: {digimon.level || "negative"}</p>
         </section>
       )}
     </div>
