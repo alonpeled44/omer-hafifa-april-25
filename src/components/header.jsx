@@ -43,8 +43,8 @@ export default function Header() {
             <Settings></Settings>
           ) : (
             <div className={styles["settings-list"]}>
-              <button className={styles["color-settings"]}></button>
-              <button className={styles["font-settings"]}></button>
+              <button className={styles["color-settings"]}>color</button>
+              <button className={styles["font-settings"]}>font</button>
             </div>
           ))}
       </div>
