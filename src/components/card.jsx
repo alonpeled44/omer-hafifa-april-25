@@ -20,7 +20,6 @@ export default function Card({ card, onClick, digimonProperties }) {
         <section className={styles["digimon-details"]}>
           <p>Type: {digimonProperties.type || "unknown"}</p>
           <p>Level: {digimonProperties.level || "negative"}</p>
-          <p>Field: {digimonProperties.field || "none"}</p>
         </section>
       )}
     </div>

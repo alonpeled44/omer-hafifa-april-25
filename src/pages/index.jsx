@@ -14,7 +14,6 @@ const sortOptions = {
   type: "Type",
   id: "Id",
   level: "Level",
-  field: "Field",
 };
 
 export default function Home() {
@@ -66,7 +65,6 @@ export default function Home() {
               properties[digimon.id] = {
                 type: data.types?.[0]?.type || "unknown",
                 level: data.levels?.[0]?.level || "negative",
-                field: data.fields?.[0]?.field || "none",
               };
             } catch (err) {
               console.error(
@@ -76,7 +74,6 @@ export default function Home() {
               properties[digimon.id] = {
                 type: "error",
                 level: "error",
-                field: "error",
               };
             }
           })
@@ -119,9 +116,6 @@ export default function Home() {
         digimon.id.toString().startsWith(searchValue) ||
         digimonProperties[digimon.id].level
           .toLowerCase()
-          .startsWith(searchValue) ||
-        digimonProperties[digimon.id].field
-          .toLowerCase()
           .startsWith(searchValue);
 
       const matchesTypes =
@@ -152,15 +146,6 @@ export default function Home() {
         case sortOptions.level:
           return digimonProperties[a.id].level.localeCompare(
             digimonProperties[b.id].level,
-            undefined,
-            {
-              sensitivity: "base",
-            }
-          );
-
-        case sortOptions.field:
-          return digimonProperties[a.id].field.localeCompare(
-            digimonProperties[b.id].field,
             undefined,
             {
               sensitivity: "base",
@@ -218,7 +203,6 @@ export default function Home() {
                 digimonProperties[digimon.id] || {
                   type: "",
                   level: "",
-                  field: "",
                 }
               }
               onClick={() => {
@@ -287,7 +271,6 @@ export default function Home() {
                 <section className={styles["digimon-details"]}>
                   <p>Type: {digimonProperties[selectedDigimon.id].type}</p>
                   <p>Height: {digimonProperties[selectedDigimon.id].level}</p>
-                  <p>Weight: {digimonProperties[selectedDigimon.id].field}</p>
                 </section>
               </>
             ) : (
@@ -296,7 +279,6 @@ export default function Home() {
                   <section className={styles["digimon-details"]}>
                     <p>Type: {digimonProperties[selectedDigimon.id].type}</p>
                     <p>Height: {digimonProperties[selectedDigimon.id].level}</p>
-                    <p>Weight: {digimonProperties[selectedDigimon.id].field}</p>
                   </section>
 
                   <img
