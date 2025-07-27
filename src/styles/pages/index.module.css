@@ -1,0 +1,176 @@
+.pokedex-content {
+  height: 92%;
+  width: inherit;
+
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+
+  & .control-bar {
+    height: 36px;
+
+    display: flex;
+    justify-content: space-between;
+
+    padding-inline: 12px;
+
+    & input {
+      border: none;
+      border-bottom: 2px solid rgb(0, 0, 0);
+
+      background-color: transparent;
+      font-size: 1rem;
+    }
+
+    & input::placeholder {
+      color: rgb(255, 69, 0);
+      font-size: 2rem;
+      font-weight: 600;
+    }
+
+    & input:focus {
+      border: none;
+      border-bottom: 2px solid rgb(0, 0, 0);
+      outline: none;
+    }
+
+    & .filter-and-sort-container {
+      width: 32%;
+
+      display: flex;
+      justify-content: space-evenly;
+    }
+  }
+
+  & .digimons-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 28px;
+
+    overflow-y: auto;
+    padding-inline: 100px;
+
+    &[data-is-centered] {
+      justify-content: center;
+    }
+  }
+}
+
+.digimon-profile {
+  height: 32%;
+  width: 100%;
+
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+
+  font-size: 2.25rem;
+
+  & div {
+    display: flex;
+    gap: 48px;
+
+    & label {
+      & input {
+        height: 20px;
+        width: 20px;
+
+        border: none;
+        outline: none;
+      }
+    }
+  }
+}
+
+.images {
+  & img {
+    height: 204px;
+    width: 204px;
+  }
+}
+
+.digimon-details {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+
+  font-size: 2rem;
+}
+
+@media screen and (max-width: 1200px) {
+  .pokedex-content {
+    position: relative;
+
+    height: 100%;
+    width: inherit;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    & .control-bar {
+      height: 32px;
+      width: 92%;
+
+      gap: 68px;
+
+      & input {
+        width: 108px;
+      }
+
+      & input::placeholder {
+        font-size: 1.6rem;
+      }
+
+      & .filter-and-sort-container {
+        height: 100%;
+        width: 68%;
+
+        gap: 12px;
+      }
+    }
+
+    & .digimons-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+
+      padding-inline: 10px;
+    }
+  }
+
+  & .slide-up-card {
+    height: 68%;
+    width: 100%;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+
+    & .digimon-details {
+      gap: 52px;
+
+      font-size: clamp(10px, 4vw, 50px);
+    }
+
+    & .slide-up-image {
+      height: 80%;
+      aspect-ratio: 9 /12;
+    }
+  }
+
+  & .digimon-profile {
+    font-size: clamp(10px, 4vw, 50px);
+
+    & div {
+      & label {
+        & input {
+          height: clamp(0.5rem, 3vw, 2rem);
+          width: clamp(0.5rem, 3vw, 2rem);
+        }
+      }
+    }
+  }
+}
