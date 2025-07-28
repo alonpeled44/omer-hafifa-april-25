@@ -45,7 +45,10 @@ export default function Header() {
         <p className={styles["header-text"]}>pokemon</p>
       </div>
 
-      <div className={styles["right-section"]}>
+      <div
+        className={styles["right-section"]}
+        settings-open={isOpen.isSettingsOpen || undefined}
+      >
         {screenWidth > 1200 && (
           <p className={styles.date}>
             {new Date().toLocaleDateString("en-GB")}
@@ -61,6 +64,7 @@ export default function Header() {
               return prevIsOpen;
             });
           }}
+          className={styles["settings-icon"]}
         />
 
         {isOpen.isSettingsOpen &&
@@ -95,12 +99,12 @@ export default function Header() {
                   }}
                   className={styles["font-settings"]}
                 >
-                  {selected.selectedFont}
+                  <img src={fontSizeIcon.src} />
                 </button>
               </div>
 
               {isOpen.isFontsOpen && (
-                <div>
+                <div className={styles["font-sizes-list"]}>
                   {fontSizes.map((fontSize) => (
                     <button
                       key={fontSize}
@@ -108,8 +112,9 @@ export default function Header() {
                         console.log(fontSize);
                         handleFontSizeSelect(fontSize);
                       }}
+                      className={styles["font-size"]}
                     >
-                      {fontSize}
+                      <img src={fontSizeIcon.src} />
                     </button>
                   ))}
                 </div>

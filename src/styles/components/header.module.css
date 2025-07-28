@@ -67,9 +67,30 @@
 
       display: block;
 
+      background-color: rgb(255, 255, 255);
+      border-radius: 60px;
+      border: 1px solid rgb(0, 0, 0);
+
       & img {
         height: 120px;
         width: 120px;
+        background: none;
+      }
+
+      &[settings-open] {
+        background-color: rgb(255, 255, 255);
+        border-radius: 60px;
+        border: 1px solid rgb(0, 0, 0);
+        & img {
+          height: 120px;
+          width: 120px;
+          border: 1px solid rgb(0, 0, 0);
+          border-radius: 60px;
+          border-top: none; /* Flat top to align with right-section */
+          border-bottom-left-radius: 60px; /* Rounded bottom corners */
+          border-bottom-right-radius: 60px;
+          cursor: pointer; /* Ensures the settings icon is clickable */
+        }
       }
 
       & .settings-list {
@@ -78,6 +99,49 @@
 
         display: flex;
         flex-direction: column;
+
+        background-color: white;
+        border-radius: 60px; /* Slightly rounded for consistency */
+
+        & button {
+          background: none;
+          border: none;
+
+          & img {
+            height: 104px;
+            width: 104px;
+            padding: 4px;
+            border-radius: 52px;
+            border: 1px solid rgb(0, 0, 0);
+          }
+        }
+      }
+
+      & .font-sizes-list {
+        position: absolute;
+        bottom: 0;
+        left: 100px;
+        display: flex;
+        border: 1px solid rgb(0, 0, 0);
+        border-radius: 60px; /* Slightly rounded for consistency */
+        background-color: white;
+        & .font-size {
+          display: flex;
+          align-items: center;
+          padding: 5px;
+          background: none;
+          border: none;
+          cursor: pointer;
+          background-color: white;
+          background: none;
+          & img {
+            height: 104px;
+            width: 104px;
+            padding: 4px;
+            border-radius: 52px;
+            border: 1px solid rgb(0, 0, 0);
+          }
+        }
       }
     }
   }
