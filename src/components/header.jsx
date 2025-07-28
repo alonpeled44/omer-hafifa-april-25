@@ -1,9 +1,10 @@
+import { useState } from "react";
 import { useScreenWidth } from "../libs/screenContext";
+import Settings from "./settings";
 import pokemonIcon from "../images/pokemon-photo.png";
 import settingsIcon from "../images/settings-icon.png";
+import brightIcon from "../images/bright-mode-icon.png";
 import styles from "../styles/components/header.module.css";
-import Settings from "./settings";
-import { useState } from "react";
 
 export default function Header() {
   const { screenWidth } = useScreenWidth();
@@ -11,6 +12,10 @@ export default function Header() {
     isSettingsOpen: false,
     isColorsOpen: false,
     isFontsOpen: false,
+  });
+  const [selected, setSelected] = useState({
+    selectedColor: "shiny",
+    selectedFont: "small",
   });
 
   return (
@@ -42,10 +47,41 @@ export default function Header() {
           (screenWidth > 1200 ? (
             <Settings></Settings>
           ) : (
-            <div className={styles["settings-list"]}>
-              <button className={styles["color-settings"]}>color</button>
-              <button className={styles["font-settings"]}>font</button>
-            </div>
+            <button className={styles["settings-list"]}>
+              <button
+                onClick={() => {
+                  setIsOpen((prev) => {
+                    const prevIsOpen = { ...prev };
+                    prevIsOpen.isColorsOpen = !prevIsOpen.isColorsOpen;
+                    return prevIsOpen;
+                  });
+                }}
+                className={styles["color-settings"]}
+              >
+                {isOpen.isColorsOpen && (
+                  <div>
+                    <button>
+                      <img src={brightIcon.src} />
+                    </button>
+                    <button>
+                      <img src={brightIcon.src} />
+                    </button>
+                  </div>
+                )}
+              </button>
+              <button
+                onClick={() => {
+                  setIsOpen((prev) => {
+                    const prevIsOpen = { ...prev };
+                    prevIsOpen.isFontsOpen = !prevIsOpen.isFontsOpen;
+                    return prevIsOpen;
+                  });
+                }}
+                className={styles["font-settings"]}
+              >
+                font
+              </button>
+            </button>
           ))}
       </div>
     </header>
