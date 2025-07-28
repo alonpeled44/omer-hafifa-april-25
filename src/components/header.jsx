@@ -5,6 +5,7 @@ import pokemonIcon from "../images/pokemon-photo.png";
 import settingsIcon from "../images/settings-icon.png";
 import brightIcon from "../images/bright-mode-icon.png";
 import darkIcon from "../images/dark-mode-icon.png";
+import fontSizeIcon from "../images/font-size-icon.png";
 import styles from "../styles/components/header.module.css";
 
 export default function Header() {
@@ -74,7 +75,19 @@ export default function Header() {
                 }}
                 className={styles["font-settings"]}
               >
-                <img src={darkIcon.src} />
+                <button>
+                  <img src={fontSizeIcon.src} />
+                </button>
+                {isOpen.isFontsOpen && (
+                  <div>
+                    <button>
+                      <img src={fontSizeIcon.src} />
+                    </button>
+                    <button>
+                      <img src={fontSizeIcon.src} />
+                    </button>
+                  </div>
+                )}
               </button>
             </button>
           ))}
