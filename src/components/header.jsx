@@ -16,8 +16,27 @@ export default function Header() {
   });
   const [selected, setSelected] = useState({
     bright: true,
-    selectedFont: "small",
+    selectedFont: "medium",
   });
+  const [fontSizes, setFontSizes] = useState(["small", "large"]);
+
+  const handleFontSizeSelect = (chosenFontSize) => {
+    const newFontSizes = fontSizes.map((fontSize) =>
+      fontSize === chosenFontSize ? selected.selectedFont : fontSize
+    );
+
+    setSelected((prev) => {
+      const prevSelected = { ...prev };
+      prevSelected.selectedFont = chosenFontSize;
+      return prevSelected;
+    });
+    setFontSizes(newFontSizes);
+    setIsOpen((prev) => {
+      const prevIsOpen = { ...prev };
+      prevIsOpen.isFontsOpen = !prevIsOpen.isFontsOpen;
+      return prevIsOpen;
+    });
+  };
 
   return (
     <header className={styles.header}>
@@ -48,48 +67,54 @@ export default function Header() {
           (screenWidth > 1200 ? (
             <Settings></Settings>
           ) : (
-            <button className={styles["settings-list"]}>
-              <button
-                onClick={() => {
-                  setSelected((prev) => {
-                    const prevSelected = { ...prev };
-                    prevSelected.bright = !prevSelected.bright;
-                    return prevSelected;
-                  });
-                }}
-                className={styles["color-settings"]}
-              >
-                {selected.bright ? (
-                  <img src={brightIcon.src} />
-                ) : (
-                  <img src={darkIcon.src} />
-                )}
-              </button>
-              <button
-                onClick={() => {
-                  setIsOpen((prev) => {
-                    const prevIsOpen = { ...prev };
-                    prevIsOpen.isFontsOpen = !prevIsOpen.isFontsOpen;
-                    return prevIsOpen;
-                  });
-                }}
-                className={styles["font-settings"]}
-              >
-                <button>
-                  <img src={fontSizeIcon.src} />
+            <>
+              <div className={styles["settings-list"]}>
+                <button
+                  onClick={() => {
+                    setSelected((prev) => {
+                      const prevSelected = { ...prev };
+                      prevSelected.bright = !prevSelected.bright;
+                      return prevSelected;
+                    });
+                  }}
+                  className={styles["color-settings"]}
+                >
+                  {selected.bright ? (
+                    <img src={brightIcon.src} />
+                  ) : (
+                    <img src={darkIcon.src} />
+                  )}
                 </button>
-                {isOpen.isFontsOpen && (
-                  <div>
-                    <button>
-                      <img src={fontSizeIcon.src} />
+                <button
+                  onClick={() => {
+                    setIsOpen((prev) => {
+                      const prevIsOpen = { ...prev };
+                      prevIsOpen.isFontsOpen = !prevIsOpen.isFontsOpen;
+                      return prevIsOpen;
+                    });
+                  }}
+                  className={styles["font-settings"]}
+                >
+                  {selected.selectedFont}
+                </button>
+              </div>
+
+              {isOpen.isFontsOpen && (
+                <div>
+                  {fontSizes.map((fontSize) => (
+                    <button
+                      key={fontSize}
+                      onClick={() => {
+                        console.log(fontSize);
+                        handleFontSizeSelect(fontSize);
+                      }}
+                    >
+                      {fontSize}
                     </button>
-                    <button>
-                      <img src={fontSizeIcon.src} />
-                    </button>
-                  </div>
-                )}
-              </button>
-            </button>
+                  ))}
+                </div>
+              )}
+            </>
           ))}
       </div>
     </header>
