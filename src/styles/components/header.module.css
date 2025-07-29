@@ -65,15 +65,19 @@
       top: 4px;
       left: 4px;
 
-      display: block;
+      height: auto;
+      width: 10%;
+
+      display: flex;
+      flex-direction: column;
 
       background-color: rgb(255, 255, 255);
       border-radius: 60px;
       border: 1px solid rgb(0, 0, 0);
 
       & img {
-        height: 120px;
-        width: 120px;
+        height: auto;
+        width: 88%;
         background: none;
       }
 
@@ -82,8 +86,8 @@
         border-radius: 60px;
         border: 1px solid rgb(0, 0, 0);
         & img {
-          height: 120px;
-          width: 120px;
+          height: auto;
+          width: 88%;
           border: 1px solid rgb(0, 0, 0);
           border-radius: 60px;
           border-top: none; /* Flat top to align with right-section */
@@ -106,13 +110,19 @@
         & button {
           background: none;
           border: none;
+          z-index: 1;
 
           & img {
-            height: 104px;
-            width: 104px;
+            height: auto;
+            width: 72%;
             padding: 4px;
-            border-radius: 52px;
-            border: 1px solid rgb(0, 0, 0);
+          }
+        }
+
+        & .font-settings {
+          border: 1px solid rgb(0, 0, 0);
+          border-radius: 48px;
+          & img {
           }
         }
       }
@@ -120,12 +130,19 @@
       & .font-sizes-list {
         position: absolute;
         bottom: 0;
-        left: 100px;
+        left: 0;
+
+        height: 32%;
+        width: 300%;
         display: flex;
+        justify-content: flex-end;
         border: 1px solid rgb(0, 0, 0);
         border-radius: 60px; /* Slightly rounded for consistency */
         background-color: white;
+
         & .font-size {
+          height: auto;
+          width: 32%;
           display: flex;
           align-items: center;
           padding: 5px;
@@ -134,12 +151,11 @@
           cursor: pointer;
           background-color: white;
           background: none;
+
           & img {
-            height: 104px;
-            width: 104px;
+            height: auto;
+            width: 88%;
             padding: 4px;
-            border-radius: 52px;
-            border: 1px solid rgb(0, 0, 0);
           }
         }
       }
