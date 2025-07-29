@@ -1,7 +1,9 @@
 .header {
   height: 70px;
+
   display: flex;
   justify-content: space-between;
+
   background-color: rgb(175, 51, 175);
 
   & .logo-header {
@@ -16,8 +18,8 @@
   }
 
   & img {
-    width: 60px;
     height: 60px;
+    width: 60px;
   }
 
   & .right-section {
@@ -42,7 +44,7 @@
       width: 52px;
     }
 
-    & .theme-container {
+    & .row-container {
       display: flex;
       flex-direction: row;
       flex: 1;
@@ -54,45 +56,23 @@
         font-size: 4rem;
       }
 
-      & .theme-icons-container {
+      & .icons-container {
+        height: 48%;
+
         display: flex;
         flex-direction: row;
-        flex: 1.5;
-
-        & button {
-          position: static;
-        }
-      }
-
-      & .selected {
-        border: 2px solid black;
-      }
-    }
-
-    & .font-size-container {
-      display: flex;
-      flex-direction: row;
-      flex: 1;
-      align-items: center;
-
-      & p {
         flex: 1;
-        text-align: center;
-        font-size: 4rem;
-      }
-
-      & .font-size-icons-container {
-        display: flex;
-        flex-direction: row;
-        flex: 1.5;
+        justify-content: flex-start;
+        gap: 72px;
 
         & button {
           position: static;
+          width: 16%;
         }
       }
 
       & .selected {
-        border: 2px solid black;
+        border: 3px solid rgb(0, 0, 0);
       }
     }
   }
@@ -132,22 +112,26 @@
       & img {
         height: auto;
         width: 88%;
+
         background: none;
       }
 
       &[settings-open] {
-        background-color: rgb(255, 255, 255);
         border-radius: 60px;
         border: 1px solid rgb(0, 0, 0);
+        background-color: rgb(255, 255, 255);
+
         & img {
           height: auto;
           width: 88%;
+
           border: 1px solid rgb(0, 0, 0);
           border-radius: 60px;
-          border-top: none; /* Flat top to align with right-section */
-          border-bottom-left-radius: 60px; /* Rounded bottom corners */
+          border-top: none;
+          border-bottom-left-radius: 60px;
           border-bottom-right-radius: 60px;
-          cursor: pointer; /* Ensures the settings icon is clickable */
+
+          cursor: pointer;
         }
       }
 
@@ -158,8 +142,8 @@
         display: flex;
         flex-direction: column;
 
-        background-color: white;
-        border-radius: 60px; /* Slightly rounded for consistency */
+        border-radius: 60px;
+        background-color: rgb(255, 255, 255);
 
         & button {
           background: none;
@@ -169,6 +153,7 @@
           & img {
             height: auto;
             width: 72%;
+
             padding: 4px;
           }
         }
@@ -186,27 +171,34 @@
 
         height: 32%;
         width: 300%;
+
         display: flex;
         justify-content: flex-end;
+
         border: 1px solid rgb(0, 0, 0);
-        border-radius: 60px; /* Slightly rounded for consistency */
-        background-color: white;
+        border-radius: 60px;
+
+        background-color: rgb(255, 255, 255);
 
         & .font-size {
           height: auto;
           width: 32%;
+
           display: flex;
           align-items: center;
+
           padding: 5px;
-          background: none;
           border: none;
-          cursor: pointer;
-          background-color: white;
+
           background: none;
+          background-color: rgb(255, 255, 255);
+          background: none;
+          cursor: pointer;
 
           & img {
             height: auto;
             width: 88%;
+
             padding: 4px;
           }
         }

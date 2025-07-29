@@ -61,6 +61,7 @@ export default function Header() {
             setIsOpen((prev) => {
               const prevIsOpen = { ...prev };
               prevIsOpen.isSettingsOpen = !prevIsOpen.isSettingsOpen;
+              prevIsOpen.isFontsOpen = false;
               return prevIsOpen;
             });
           }}
@@ -80,9 +81,9 @@ export default function Header() {
                 });
               }}
             >
-              <div className={styles["theme-container"]}>
+              <div className={styles["row-container"]}>
                 <p>Theme</p>
-                <div className={styles["theme-icons-container"]}>
+                <div className={styles["icons-container"]}>
                   <button
                     className={`${styles["theme-button"]} ${
                       !selected.bright ? styles.selected : ""
@@ -113,9 +114,9 @@ export default function Header() {
                   </button>
                 </div>
               </div>
-              <div className={styles["font-size-container"]}>
+              <div className={styles["row-container"]}>
                 <p>Font Size</p>
-                <div className={styles["font-size-icons-container"]}>
+                <div className={styles["icons-container"]}>
                   <button
                     className={`${styles["font-size-button"]} ${
                       selected.selectedFont === "large" ? styles.selected : ""
@@ -200,7 +201,6 @@ export default function Header() {
                     <button
                       key={fontSize}
                       onClick={() => {
-                        console.log(fontSize);
                         handleFontSizeSelect(fontSize);
                       }}
                       className={styles["font-size"]}
