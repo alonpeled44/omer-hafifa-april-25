@@ -33,7 +33,9 @@ export default function Settings({ isOpen, onClose, children }) {
       <div>
         {children}
 
-        <button onClick={() => onClose()}>&times;</button>
+        <button onClick={() => onClose()} className={styles["close-button"]}>
+          &times;
+        </button>
       </div>
     </dialog>
   );

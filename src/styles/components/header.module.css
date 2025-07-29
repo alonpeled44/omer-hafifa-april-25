@@ -44,6 +44,10 @@
       width: 52px;
     }
 
+    & .settings-icon {
+      cursor: pointer;
+    }
+
     & .row-container {
       display: flex;
       flex-direction: row;
@@ -68,6 +72,13 @@
         & button {
           position: static;
           width: 16%;
+
+          background: none;
+          cursor: pointer;
+
+          &:active {
+            transform: scale(0.9);
+          }
         }
       }
 
