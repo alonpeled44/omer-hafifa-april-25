@@ -69,7 +69,98 @@ export default function Header() {
 
         {isOpen.isSettingsOpen &&
           (screenWidth > 1200 ? (
-            <Settings></Settings>
+            <Settings
+              isOpen={isOpen.isSettingsOpen}
+              onClose={() => {
+                setIsOpen((prev) => {
+                  //closing pop up card.
+                  const prevIsOpen = { ...prev }; //state before being set.
+                  prevIsOpen.isSettingsOpen = !prevIsOpen.isSettingsOpen;
+                  return prevIsOpen;
+                });
+              }}
+            >
+              <div className={styles["theme-container"]}>
+                <p>Theme</p>
+                <div className={styles["theme-icons-container"]}>
+                  <button
+                    className={`${styles["theme-button"]} ${
+                      !selected.bright ? styles.selected : ""
+                    }`}
+                    onClick={() => {
+                      setSelected((prev) => {
+                        const prevSelected = { ...prev };
+                        prevSelected.bright = false;
+                        return prevSelected;
+                      });
+                    }}
+                  >
+                    <img src={darkIcon.src} />
+                  </button>
+                  <button
+                    className={`${styles["theme-button"]} ${
+                      selected.bright ? styles.selected : ""
+                    }`}
+                    onClick={() => {
+                      setSelected((prev) => {
+                        const prevSelected = { ...prev };
+                        prevSelected.bright = true;
+                        return prevSelected;
+                      });
+                    }}
+                  >
+                    <img src={brightIcon.src} />
+                  </button>
+                </div>
+              </div>
+              <div className={styles["font-size-container"]}>
+                <p>Font Size</p>
+                <div className={styles["font-size-icons-container"]}>
+                  <button
+                    className={`${styles["font-size-button"]} ${
+                      selected.selectedFont === "large" ? styles.selected : ""
+                    }`}
+                    onClick={() => {
+                      setSelected((prev) => {
+                        const prevSelected = { ...prev };
+                        prevSelected.selectedFont = "large";
+                        return prevSelected;
+                      });
+                    }}
+                  >
+                    <img src={fontSizeIcon.src} />
+                  </button>
+                  <button
+                    className={`${styles["font-size-button"]} ${
+                      selected.selectedFont === "medium" ? styles.selected : ""
+                    }`}
+                    onClick={() => {
+                      setSelected((prev) => {
+                        const prevSelected = { ...prev };
+                        prevSelected.selectedFont = "medium";
+                        return prevSelected;
+                      });
+                    }}
+                  >
+                    <img src={fontSizeIcon.src} />
+                  </button>
+                  <button
+                    className={`${styles["font-size-button"]} ${
+                      selected.selectedFont === "small" ? styles.selected : ""
+                    }`}
+                    onClick={() => {
+                      setSelected((prev) => {
+                        const prevSelected = { ...prev };
+                        prevSelected.selectedFont = "small";
+                        return prevSelected;
+                      });
+                    }}
+                  >
+                    <img src={fontSizeIcon.src} />
+                  </button>
+                </div>
+              </div>
+            </Settings>
           ) : (
             <>
               <div className={styles["settings-list"]}>
