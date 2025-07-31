@@ -4,8 +4,9 @@ const DigimonsDbContext = createContext();
 
 export function DigimonsDbProvider({ children }) {
   const [digimons, setDigimons] = useState([]);
-  const [types, setTypes] = useState([]);
+
   const [loading, setLoading] = useState(true);
+
   const [error, setError] = useState(null);
 
   useEffect(() => {

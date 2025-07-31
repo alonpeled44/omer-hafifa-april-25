@@ -6,13 +6,11 @@ import Select from "../components/Select";
 import Modal from "../components/Modal";
 import styles from "../styles/pages/index.module.css";
 import pokemonBackImage from "../images/pikachu-back-image.png";
-import pokemonFrontShinyImage from "../images/pikachu-front-shiny-image.png";
-import pokemonBackShinyImage from "../images/pikachu-back-shiny-image.png";
 
 const sortOptions = {
+  id: "Id",
   name: "Name",
   type: "Type",
-  id: "Id",
   level: "Level",
 };
 
@@ -23,11 +21,14 @@ export default function Home() {
     isModalOpen: false,
   });
   const [selectedDigimon, setSelectedDigimon] = useState(null);
-  const [showShiny, setShowShiny] = useState(false);
+
   const [searchValue, setSearchValue] = useState("");
+
   const [types, setTypes] = useState([]);
   const [selectedTypes, setSelectedTypes] = useState([]);
+
   const [sortOption, setSortOption] = useState("");
+
   const [digimonProperties, setDigimonProperties] = useState({});
 
   const { screenWidth } = useScreenWidth();
@@ -36,12 +37,11 @@ export default function Home() {
   useEffect(() => {
     // closing sort and filter lists when user click outside their space.
     const handleClickOnScreen = () => {
-      setIsOpen((prev) => {
-        const prevIsOpen = { ...prev }; //state before being set.
-        prevIsOpen.isSortOpen = false;
-        prevIsOpen.isFilterOpen = false;
-        return prevIsOpen;
-      });
+      setIsOpen((prev) => ({
+        ...prev,
+        isSortOpen: false,
+        isFilterOpen: false,
+      }));
     };
 
     document.addEventListener("click", handleClickOnScreen);
@@ -61,7 +61,9 @@ export default function Home() {
                   `Failed to fetch Digimon ${digimon.id}: ${response.status}`
                 );
               }
+
               const data = await response.json();
+
               properties[digimon.id] = {
                 type: data.types?.[0]?.type || "unknown",
                 level: data.levels?.[0]?.level || "negative",
@@ -71,6 +73,7 @@ export default function Home() {
                 `Error fetching Digimon ${digimon.id}:`,
                 err.message
               );
+
               properties[digimon.id] = {
                 type: "error",
                 level: "error",
@@ -78,6 +81,7 @@ export default function Home() {
             }
           })
         );
+
         setDigimonProperties(properties);
       } catch (err) {
         console.error("Error fetching Digimon details:", err.message);
@@ -97,23 +101,22 @@ export default function Home() {
 
   const setFilterOrSortOpen = (isMulti) => {
     //setter for either sort or filter list to open when closed/close when open when user click on the button above the list.
-    setIsOpen((prev) => {
-      const prevIsOpen = { ...prev }; // state before being set.
-      prevIsOpen[isMulti ? "isFilterOpen" : "isSortOpen"] =
-        !prevIsOpen[isMulti ? "isFilterOpen" : "isSortOpen"];
-      return prevIsOpen;
-    });
+    setIsOpen((prev) => ({
+      ...prev,
+      [isMulti ? "isFilterOpen" : "isSortOpen"]:
+        !prev[isMulti ? "isFilterOpen" : "isSortOpen"],
+    }));
   };
 
   const filteredDigimons = digimons
     .filter((digimon) => {
       const searchValueLowerCase = searchValue.toLowerCase();
       const matchesSearch =
+        digimon.id.toString().startsWith(searchValue) ||
         digimon.name.toLowerCase().startsWith(searchValueLowerCase) ||
         digimonProperties[digimon.id].type
           .toLowerCase()
           .startsWith(searchValueLowerCase) ||
-        digimon.id.toString().startsWith(searchValue) ||
         digimonProperties[digimon.id].level
           .toLowerCase()
           .startsWith(searchValue);
@@ -126,6 +129,9 @@ export default function Home() {
     })
     .sort((a, b) => {
       switch (sortOption) {
+        case sortOptions.id:
+          return a.id - b.id;
+
         case sortOptions.name:
           return a.name.localeCompare(b.name, undefined, {
             sensitivity: "base",
@@ -139,9 +145,6 @@ export default function Home() {
               sensitivity: "base",
             }
           );
-
-        case sortOptions.id:
-          return a.id - b.id;
 
         case sortOptions.level:
           return digimonProperties[a.id].level.localeCompare(
@@ -236,15 +239,6 @@ export default function Home() {
             <section className={styles["digimon-profile"]}>
               <p>{selectedDigimon.name}</p>
               <div>
-                <label>
-                  <input
-                    type="checkbox"
-                    checked={showShiny}
-                    onChange={(event) => setShowShiny(event.target.checked)}
-                  />
-                  Shiny
-                </label>
-
                 <p>#{selectedDigimon.id}</p>
               </div>
             </section>
@@ -252,20 +246,8 @@ export default function Home() {
             {screenWidth > 1200 ? (
               <>
                 <section className={styles.images}>
-                  <img
-                    src={
-                      showShiny
-                        ? pokemonFrontShinyImage.src
-                        : selectedDigimon.image
-                    }
-                  />
-                  <img
-                    src={
-                      showShiny
-                        ? pokemonBackShinyImage.src
-                        : pokemonBackImage.src
-                    }
-                  />
+                  <img src={selectedDigimon.image} />
+                  <img src={pokemonBackImage.src} />
                 </section>
 
                 <section className={styles["digimon-details"]}>
@@ -282,11 +264,7 @@ export default function Home() {
                   </section>
 
                   <img
-                    src={
-                      showShiny
-                        ? pokemonFrontShinyImage.src
-                        : selectedDigimon.image
-                    }
+                    src={selectedDigimon.image}
                     className={styles["slide-up-image"]}
                   />
                 </div>
