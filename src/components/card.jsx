@@ -1,4 +1,3 @@
-import { useEffect, useState } from "react";
 import { useScreenWidth } from "../libs/screenContext";
 import styles from "../styles/components/card.module.css";
 

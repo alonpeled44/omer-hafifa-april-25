@@ -5,7 +5,6 @@ import Card from "../components/card";
 import Select from "../components/Select";
 import Modal from "../components/Modal";
 import styles from "../styles/pages/index.module.css";
-import pokemonBackImage from "../images/pikachu-back-image.png";
 
 const sortOptions = {
   id: "Id",
@@ -24,7 +23,6 @@ export default function Home() {
 
   const [searchValue, setSearchValue] = useState("");
 
-  const [types, setTypes] = useState([]);
   const [selectedTypes, setSelectedTypes] = useState([]);
 
   const [sortOption, setSortOption] = useState("");
@@ -32,7 +30,7 @@ export default function Home() {
   const [digimonProperties, setDigimonProperties] = useState({});
 
   const { screenWidth } = useScreenWidth();
-  const { digimons } = useDigimonsDb();
+  const { digimons, types } = useDigimonsDb();
 
   useEffect(() => {
     // closing sort and filter lists when user click outside their space.
@@ -49,13 +47,15 @@ export default function Home() {
   });
 
   useEffect(() => {
-    const fetchDigimonDetails = async () => {
+    const fetchDigimonProperties = async () => {
       try {
         const properties = {};
+
         await Promise.all(
           digimons.map(async (digimon) => {
             try {
               const response = await fetch(digimon.href);
+
               if (!response.ok) {
                 throw new Error(
                   `Failed to fetch Digimon ${digimon.id}: ${response.status}`
@@ -89,15 +89,9 @@ export default function Home() {
     };
 
     if (digimons.length > 0) {
-      fetchDigimonDetails();
+      fetchDigimonProperties();
     }
   }, [digimons]);
-
-  useEffect(() => {
-    setTypes([
-      ...new Set(Object.values(digimonProperties).map((item) => item.type)),
-    ]);
-  }, [digimonProperties]);
 
   const setFilterOrSortOpen = (isMulti) => {
     //setter for either sort or filter list to open when closed/close when open when user click on the button above the list.
@@ -119,7 +113,7 @@ export default function Home() {
           .startsWith(searchValueLowerCase) ||
         digimonProperties[digimon.id].level
           .toLowerCase()
-          .startsWith(searchValue);
+          .startsWith(searchValueLowerCase);
 
       const matchesTypes =
         selectedTypes.length === 0 ||
@@ -210,12 +204,10 @@ export default function Home() {
               }
               onClick={() => {
                 setSelectedDigimon(digimon);
-                setIsOpen((prev) => {
-                  //open card selected by user.
-                  const prevIsOpen = { ...prev }; //state before being set.
-                  prevIsOpen.isModalOpen = !prevIsOpen.isModalOpen;
-                  return prevIsOpen;
-                });
+                setIsOpen((prev) => ({
+                  ...prev,
+                  isModalOpen: !prev.isModalOpen,
+                }));
               }}
             />
           ))}
@@ -226,12 +218,7 @@ export default function Home() {
         <Modal
           isOpen={isOpen.isModalOpen}
           onClose={() => {
-            setIsOpen((prev) => {
-              //closing pop up card.
-              const prevIsOpen = { ...prev }; //state before being set.
-              prevIsOpen.isModalOpen = !prevIsOpen.isModalOpen;
-              return prevIsOpen;
-            });
+            setIsOpen((prev) => ({ ...prev, isModalOpen: !prev.isModalOpen }));
             setSelectedDigimon(null);
           }}
         >
@@ -247,7 +234,6 @@ export default function Home() {
               <>
                 <section className={styles.images}>
                   <img src={selectedDigimon.image} />
-                  <img src={pokemonBackImage.src} />
                 </section>
 
                 <section className={styles["digimon-details"]}>
