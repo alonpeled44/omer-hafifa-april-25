@@ -4,7 +4,8 @@
   display: flex;
   justify-content: space-between;
 
-  background-color: rgb(175, 51, 175);
+  background-color: var(--primary-color, rgb(255, 0, 0));
+  color: var(--font-color);
 
   & .logo-header {
     display: flex;

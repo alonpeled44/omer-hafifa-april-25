@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useScreenWidth } from "../libs/screenContext";
 import Settings from "./settings";
 import pokemonIcon from "../images/pokemon-photo.png";
@@ -19,6 +19,10 @@ export default function Header() {
     selectedFont: "medium",
   });
   const [fontSizes, setFontSizes] = useState(["small", "large"]);
+
+  useEffect(() => {
+    document.documentElement.setAttribute("data-theme", selected.bright);
+  }, [selected.bright]);
 
   const handleFontSizeSelect = (chosenFontSize) => {
     const newFontSizes = fontSizes.map((fontSize) =>
