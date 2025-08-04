@@ -19,7 +19,7 @@
     font-size: 1.5rem;
   }
 
-  &[sort-container="true"] {
+  &[sort-container] {
     height: 76px;
 
     & .head {
