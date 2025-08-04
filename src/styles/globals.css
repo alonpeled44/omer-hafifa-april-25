@@ -16,6 +16,18 @@
   --font-color: rgba(206, 5, 247, 1);
 }
 
+[data-font-size="small"] {
+  --font-size: 13px;
+}
+
+[data-font-size="medium"] {
+  --font-size: 16px;
+}
+
+[data-font-size="large"] {
+  --font-size: 19px;
+}
+
 html {
   width: 100vw;
   height: 100vh;
@@ -42,6 +54,7 @@ main {
 
   background-color: var(--secondary-color, rgb(255, 0, 0));
   color: var(--font-color);
+  font-size: var(--font-size);
 }
 
 @media screen and (max-width: 1200px) {

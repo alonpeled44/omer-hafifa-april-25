@@ -6,6 +6,7 @@
 
   background-color: var(--primary-color, rgb(255, 0, 0));
   color: var(--font-color);
+  font-size: var(--font-size-cus);
 
   & .logo-header {
     display: flex;
@@ -73,6 +74,7 @@
         & button {
           position: static;
           width: 16%;
+          font-size: var(--font-size);
 
           background: none;
           cursor: pointer;

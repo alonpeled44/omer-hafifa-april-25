@@ -24,6 +24,13 @@ export default function Header() {
     document.documentElement.setAttribute("data-theme", selected.bright);
   }, [selected.bright]);
 
+  useEffect(() => {
+    document.documentElement.setAttribute(
+      "data-font-size",
+      selected.selectedFont
+    );
+  }, [selected.selectedFont]);
+
   const handleFontSizeSelect = (chosenFontSize) => {
     const newFontSizes = fontSizes.map((fontSize) =>
       fontSize === chosenFontSize ? selected.selectedFont : fontSize
