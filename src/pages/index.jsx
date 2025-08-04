@@ -9,8 +9,6 @@ import styles from "../styles/pages/index.module.css";
 const sortOptions = {
   id: "Id",
   name: "Name",
-  type: "Type",
-  level: "Level",
 };
 
 export default function Home() {
@@ -75,8 +73,8 @@ export default function Home() {
               );
 
               properties[digimon.id] = {
-                type: "error",
-                level: "error",
+                type: "unknown",
+                level: "unknown",
               };
             }
           })
@@ -131,23 +129,6 @@ export default function Home() {
             sensitivity: "base",
           });
 
-        case sortOptions.type:
-          return digimonProperties[a.id].type.localeCompare(
-            digimonProperties[b.id].type,
-            undefined,
-            {
-              sensitivity: "base",
-            }
-          );
-
-        case sortOptions.level:
-          return digimonProperties[a.id].level.localeCompare(
-            digimonProperties[b.id].level,
-            undefined,
-            {
-              sensitivity: "base",
-            }
-          );
         default:
           return;
       }
