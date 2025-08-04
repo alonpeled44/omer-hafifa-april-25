@@ -15,7 +15,7 @@ export default function Header() {
     isFontsOpen: false,
   });
   const [selected, setSelected] = useState({
-    selectedTheme: "bright",
+    selectedTheme: "light",
     selectedFont: "medium",
   });
   const [fontSizes, setFontSizes] = useState(["small", "large"]);
@@ -88,12 +88,12 @@ export default function Header() {
                   </button>
                   <button
                     className={`${styles["theme-button"]} ${
-                      selected.selectedTheme === "bright" ? styles.selected : ""
+                      selected.selectedTheme === "light" ? styles.selected : ""
                     }`}
                     onClick={() => {
                       setSelected((prev) => ({
                         ...prev,
-                        selectedTheme: "bright",
+                        selectedTheme: "light",
                       }));
                     }}
                   >
@@ -109,39 +109,33 @@ export default function Header() {
                       selected.selectedFont === "large" ? styles.selected : ""
                     }`}
                     onClick={() => {
-                      setSelected((prev) => ({
-                        ...prev,
-                        selectedFont: "large",
-                      }));
+                      fontSizes.find((fontSize) => fontSize === "large") &&
+                        handleFontSizeSelect("large");
                     }}
                   >
-                    <img src={fontSizeIcon.src} />1
+                    <img src={fontSizeIcon.src} />
                   </button>
                   <button
                     className={`${styles["font-size-button"]} ${
                       selected.selectedFont === "medium" ? styles.selected : ""
                     }`}
                     onClick={() => {
-                      setSelected((prev) => ({
-                        ...prev,
-                        selectedFont: "medium",
-                      }));
+                      fontSizes.find((fontSize) => fontSize === "medium") &&
+                        handleFontSizeSelect("medium");
                     }}
                   >
-                    <img src={fontSizeIcon.src} />2
+                    <img src={fontSizeIcon.src} />
                   </button>
                   <button
                     className={`${styles["font-size-button"]} ${
                       selected.selectedFont === "small" ? styles.selected : ""
                     }`}
                     onClick={() => {
-                      setSelected((prev) => ({
-                        ...prev,
-                        selectedFont: "small",
-                      }));
+                      fontSizes.find((fontSize) => fontSize === "small") &&
+                        handleFontSizeSelect("small");
                     }}
                   >
-                    <img src={fontSizeIcon.src} />3
+                    <img src={fontSizeIcon.src} />
                   </button>
                 </div>
               </div>
@@ -154,19 +148,20 @@ export default function Header() {
                     setSelected((prev) => ({
                       ...prev,
                       selectedTheme:
-                        prev.selectedTheme === "bright" ? "dark" : "bright",
+                        prev.selectedTheme === "light" ? "dark" : "light",
                     }));
                     console.log(selected.selectedTheme);
                   }}
                   className={styles["color-settings"]}
                 >
-                  {selected.selectedTheme === "bright" ? (
+                  {selected.selectedTheme === "light" ? (
                     <img src={brightIcon.src} />
                   ) : (
                     <img src={darkIcon.src} />
                   )}
                 </button>
                 <button
+                  key={selected.selectedFont}
                   onClick={() => {
                     setIsOpen((prev) => ({
                       ...prev,
@@ -183,7 +178,7 @@ export default function Header() {
                 <div className={styles["font-sizes-list"]}>
                   {fontSizes.map((fontSize) => (
                     <button
-                      key={fontSize.charAt(0)}
+                      key={fontSize}
                       onClick={() => {
                         handleFontSizeSelect(fontSize);
                       }}
