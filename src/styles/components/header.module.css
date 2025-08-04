@@ -1,7 +1,9 @@
 .header {
   height: 70px;
+
   display: flex;
   justify-content: space-between;
+
   background-color: rgb(175, 51, 175);
 
   & .logo-header {
@@ -16,26 +18,80 @@
   }
 
   & img {
-    width: 60px;
     height: 60px;
+    width: 60px;
   }
 
-  & .date {
+  & .right-section {
     display: flex;
     align-items: center;
 
-    padding-right: 10px;
+    & .date {
+      display: flex;
+      align-items: center;
 
-    color: rgb(127, 255, 212);
+      padding-right: 10px;
 
-    font-size: 2rem;
-    font-weight: bold;
-    letter-spacing: 1px;
+      color: rgb(127, 255, 212);
+
+      font-size: 2rem;
+      font-weight: bold;
+      letter-spacing: 1px;
+    }
+
+    & img {
+      height: 52px;
+      width: 52px;
+    }
+
+    & .settings-icon {
+      cursor: pointer;
+    }
+
+    & .row-container {
+      display: flex;
+      flex-direction: row;
+      flex: 1;
+      align-items: center;
+
+      & p {
+        flex: 1;
+        text-align: center;
+        font-size: 4rem;
+      }
+
+      & .icons-container {
+        height: 48%;
+
+        display: flex;
+        flex-direction: row;
+        flex: 1;
+        justify-content: flex-start;
+        gap: 72px;
+
+        & button {
+          position: static;
+          width: 16%;
+
+          background: none;
+          cursor: pointer;
+
+          &:active {
+            transform: scale(0.9);
+          }
+        }
+      }
+
+      & .selected {
+        border: 4px solid rgb(0, 0, 0);
+      }
+    }
   }
 }
 
 @media screen and (max-width: 1200px) {
   .header {
+    position: relative;
     height: 170px;
     justify-content: center;
     background-color: transparent;
@@ -43,10 +99,120 @@
     & p {
       font-size: 3.5rem;
     }
-  }
 
-  & .logo-header {
-    flex-direction: row-reverse;
-    padding-top: 60px;
+    & .logo-header {
+      flex-direction: row-reverse;
+      padding-top: 60px;
+    }
+
+    & .right-section {
+      position: absolute;
+      top: 4px;
+      left: 4px;
+
+      height: auto;
+      width: 10%;
+
+      display: flex;
+      flex-direction: column;
+
+      background-color: rgb(255, 255, 255);
+      border-radius: 60px;
+      border: 1px solid rgb(0, 0, 0);
+
+      & img {
+        height: auto;
+        width: 88%;
+
+        background: none;
+      }
+
+      &[settings-open] {
+        border-radius: 60px;
+        border: 1px solid rgb(0, 0, 0);
+        background-color: rgb(255, 255, 255);
+
+        & img {
+          height: auto;
+          width: 88%;
+
+          border: 1px solid rgb(0, 0, 0);
+          border-radius: 60px;
+          border-top: none;
+          border-bottom-left-radius: 60px;
+          border-bottom-right-radius: 60px;
+
+          cursor: pointer;
+        }
+      }
+
+      & .settings-list {
+        position: relative;
+        top: 0;
+
+        display: flex;
+        flex-direction: column;
+
+        border-radius: 60px;
+        background-color: rgb(255, 255, 255);
+
+        & button {
+          background: none;
+          border: none;
+          z-index: 1;
+
+          & img {
+            height: auto;
+            width: 72%;
+
+            padding: 4px;
+          }
+        }
+
+        & .font-settings {
+          border: 1px solid rgb(0, 0, 0);
+          border-radius: 48px;
+        }
+      }
+
+      & .font-sizes-list {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+
+        height: 32%;
+        width: 300%;
+
+        display: flex;
+        justify-content: flex-end;
+
+        border: 1px solid rgb(0, 0, 0);
+        border-radius: 60px;
+
+        background-color: rgb(255, 255, 255);
+
+        & .font-size {
+          height: auto;
+          width: 32%;
+
+          display: flex;
+          align-items: center;
+
+          padding: 5px;
+          border: none;
+
+          background: none;
+          background-color: rgb(255, 255, 255);
+          cursor: pointer;
+
+          & img {
+            height: auto;
+            width: 88%;
+
+            padding: 4px;
+          }
+        }
+      }
+    }
   }
 }
