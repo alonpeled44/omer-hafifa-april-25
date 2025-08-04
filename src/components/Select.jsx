@@ -10,7 +10,7 @@ export default function Select({
   setSelectedOptions,
 }) {
   return (
-    <div className={styles.select}>
+    <div className={styles.select} data-sort-container={!multiple}>
       <button
         className={styles.head}
         onClick={(event) => {

@@ -19,6 +19,14 @@
     font-size: 1.5rem;
   }
 
+  &[data-sort-container="true"] {
+    height: 76px;
+
+    & .head {
+      height: 36%;
+    }
+  }
+
   & .options {
     position: absolute;
     top: 24px;
@@ -47,7 +55,7 @@
 
       white-space: nowrap;
       background: transparent;
-      font-size: 1.5rem;
+      font-size: 1.15rem;
     }
   }
 }
