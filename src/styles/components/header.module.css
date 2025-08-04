@@ -79,6 +79,12 @@
           &:active {
             transform: scale(0.9);
           }
+
+          & span {
+            position: relative;
+            top: 32px;
+            font-size: 1.2rem;
+          }
         }
       }
 

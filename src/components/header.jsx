@@ -85,6 +85,7 @@ export default function Header() {
                     }}
                   >
                     <img src={darkIcon.src} />
+                    <span>dark</span>
                   </button>
                   <button
                     className={`${styles["theme-button"]} ${
@@ -98,6 +99,7 @@ export default function Header() {
                     }}
                   >
                     <img src={brightIcon.src} />
+                    <span>light</span>
                   </button>
                 </div>
               </div>
@@ -114,6 +116,7 @@ export default function Header() {
                     }}
                   >
                     <img src={fontSizeIcon.src} />
+                    <span>large</span>
                   </button>
                   <button
                     className={`${styles["font-size-button"]} ${
@@ -125,6 +128,7 @@ export default function Header() {
                     }}
                   >
                     <img src={fontSizeIcon.src} />
+                    <span>medium</span>
                   </button>
                   <button
                     className={`${styles["font-size-button"]} ${
@@ -136,6 +140,7 @@ export default function Header() {
                     }}
                   >
                     <img src={fontSizeIcon.src} />
+                    <span>small</span>
                   </button>
                 </div>
               </div>
