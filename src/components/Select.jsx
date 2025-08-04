@@ -10,7 +10,10 @@ export default function Select({
   setSelectedOptions,
 }) {
   return (
-    <div className={styles.select}>
+    <div
+      className={styles.select}
+      sort-container={multiple ? undefined : "true"}
+    >
       <button
         className={styles.head}
         onClick={(event) => {

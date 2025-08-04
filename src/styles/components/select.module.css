@@ -19,6 +19,14 @@
     font-size: 1.5rem;
   }
 
+  &[sort-container="true"] {
+    height: 76px;
+
+    & .head {
+      height: 36%;
+    }
+  }
+
   & .options {
     position: absolute;
     top: 24px;
