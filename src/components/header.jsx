@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useScreenWidth } from "../libs/screenContext";
 import Settings from "./settings";
 import pokemonIcon from "../images/pokemon-photo.png";
@@ -29,6 +29,10 @@ export default function Header() {
     setFontSizes(newFontSizes);
     setIsOpen((prev) => ({ ...prev, isFontsOpen: !prev.isFontsOpen }));
   };
+
+  useEffect(() => {
+    document.documentElement.setAttribute("data-theme", selected.selectedTheme);
+  }, [selected.selectedTheme]);
 
   return (
     <header className={styles.header}>

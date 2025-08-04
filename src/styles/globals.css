@@ -4,6 +4,18 @@
   font-family: Arial, Helvetica, sans-serif;
 }
 
+:root {
+  --primary-color: rgba(175, 51, 175, 1);
+  --secondary-color: rgba(199, 209, 218, 0.2);
+  --font-color: rgba(0, 0, 0, 1);
+}
+
+[data-theme="dark"] {
+  --primary-color: rgba(23, 164, 186, 1);
+  --secondary-color: rgba(106, 113, 121, 0.2);
+  --font-color: rgba(206, 5, 247, 1);
+}
+
 html {
   width: 100vw;
   height: 100vh;
@@ -20,17 +32,19 @@ body {
   background-size: cover;
 }
 
-main{
+main {
   width: 100%;
   height: calc(100vh - 70px);
 
   display: flex;
   justify-content: center;
   align-items: center;
+
+  background-color: var(--secondary-color);
 }
 
-@media screen and (max-width: 1200px){
-  main{
+@media screen and (max-width: 1200px) {
+  main {
     height: calc(100vh - 170px);
   }
 }
