@@ -127,8 +127,8 @@ export default function Header() {
                     }}
                   >
                     Aa
-                    <span>large</span>
                   </button>
+                  <span>large</span>
                   <button
                     className={`${styles["medium-font-size"]} ${
                       selected.selectedFont === "medium" ? styles.selected : ""
@@ -139,8 +139,8 @@ export default function Header() {
                     }}
                   >
                     Aa
-                    <span>medium</span>
                   </button>
+                  <span>medium</span>
                   <button
                     className={`${styles["small-font-size"]} ${
                       selected.selectedFont === "small" ? styles.selected : ""
@@ -151,8 +151,8 @@ export default function Header() {
                     }}
                   >
                     Aa
-                    <span>small</span>
                   </button>
+                  <span>small</span>
                 </div>
               </div>
             </Settings>
