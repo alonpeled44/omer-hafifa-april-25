@@ -6,13 +6,13 @@
 
 :root {
   --primary-color: rgba(175, 51, 175, 1);
-  --secondary-color: rgba(199, 209, 218, 0.2);
+  --secondary-color: rgba(183, 191, 199, 0.2);
   --font-color: rgba(0, 0, 0, 1);
 }
 
 [data-theme="dark"] {
-  --primary-color: rgba(23, 164, 186, 1);
-  --secondary-color: rgba(106, 113, 121, 0.2);
+  --primary-color: rgb(12, 102, 116);
+  --secondary-color: rgba(77, 83, 90, 0.2);
   --font-color: rgba(206, 5, 247, 1);
 }
 
@@ -30,6 +30,7 @@ body {
 
   background-image: url("../images/pokemon-background-image.jpg");
   background-size: cover;
+  color: var(--font-color);
 }
 
 main {
