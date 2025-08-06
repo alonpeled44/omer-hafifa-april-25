@@ -135,21 +135,21 @@
       position: absolute;
       top: 4px;
       left: 4px;
-
       height: auto;
-      width: 10%;
-
+      width: 12%;
+      max-width: 76px;
+      gap: 4px;
       display: flex;
       flex-direction: column;
-
       background-color: rgb(255, 255, 255);
       border-radius: 60px;
       border: 1px solid rgb(0, 0, 0);
-
       & img {
-        height: auto;
-        width: 88%;
+        height: 44px;
+        width: 44px;
 
+        border: 1px solid rgb(0, 0, 0);
+        border-radius: 22px;
         background: none;
       }
 
@@ -159,8 +159,8 @@
         background-color: rgb(255, 255, 255);
 
         & img {
-          height: auto;
-          width: 88%;
+          height: 44px;
+          width: 44px;
 
           border: 1px solid rgb(0, 0, 0);
           border-radius: 60px;
@@ -183,34 +183,36 @@
         background-color: rgb(255, 255, 255);
 
         & button {
+          height: 44px;
+          width: 44px;
           background: none;
           border: none;
           z-index: 1;
 
           & img {
             height: auto;
-            width: 72%;
+            width: 76%;
 
             padding: 4px;
           }
         }
 
         & .font-settings {
-          height: 84px;
+          height: 48px;
           border: 1px solid rgb(0, 0, 0);
           border-radius: 60px;
         }
 
         & .large {
-          font-size: 1.5rem;
+          font-size: 19px;
         }
 
         & .medium {
-          font-size: 1rem;
+          font-size: 16px;
         }
 
         & .small {
-          font-size: 0.5rem;
+          font-size: 13px;
         }
       }
 
@@ -254,15 +256,15 @@
         }
 
         & .large {
-          font-size: 1.5rem;
+          font-size: 19px;
         }
 
         & .medium {
-          font-size: 1rem;
+          font-size: 16px;
         }
 
         & .small {
-          font-size: 0.5rem;
+          font-size: 13px;
         }
       }
     }
