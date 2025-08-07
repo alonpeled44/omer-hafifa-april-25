@@ -96,15 +96,15 @@
         }
 
         & .large-font-size {
-          font-size: 3rem;
+          font-size: 30px;
         }
 
         & .medium-font-size {
-          font-size: 2rem;
+          font-size: 25px;
         }
 
         & .small-font-size {
-          font-size: 1rem;
+          font-size: 20px;
         }
 
         & .selected {
