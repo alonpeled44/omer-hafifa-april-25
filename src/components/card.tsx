@@ -1,8 +1,8 @@
-import { useScreenWidth } from "../libs/screenContext";
+import { useScreenWidth } from "../libs/ScreenContext";
 import styles from "../styles/components/card.module.css";
 
 export default function Card({ card, onClick, digimon }) {
-  const { screenWidth } = useScreenWidth();
+  const screenWidth = useScreenWidth();
 
   return (
     <div onClick={onClick} className={styles.card}>

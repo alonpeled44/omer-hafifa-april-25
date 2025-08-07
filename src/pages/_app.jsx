@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useRouter } from "next/router";
-import { ScreenWidthProvider } from "../libs/screenContext";
-import Header from "../components/header";
+import { ScreenWidthProvider } from "../libs/ScreenContext";
+import Header from "../components/Header";
 import "../styles/globals.css";
 import { DigimonsDbProvider } from "../libs/digimonsDbContext";
 

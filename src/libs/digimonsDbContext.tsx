@@ -1,9 +1,38 @@
-import { createContext, useContext, useEffect, useState } from "react";
+import {
+  ReactNode,
+  createContext,
+  useContext,
+  useEffect,
+  useState,
+} from "react";
 
-const DigimonsDbContext = createContext();
+const DigimonsDbContext = createContext<object>({});
 
-export function DigimonsDbProvider({ children }) {
-  const [digimons, setDigimons] = useState([]);
+interface DigimonsDbProviderProps {
+  children: ReactNode;
+}
+interface Digimon {
+  id: string;
+  name: string;
+  image: string;
+}
+
+interface DigimonApiRespone {
+  content: Digimon[];
+}
+
+interface TypeField {
+  name: string;
+}
+
+interface DigimonTypesResponse {
+  content: {
+    fields: TypeField[];
+  };
+}
+
+export function DigimonsDbProvider({ children }: DigimonsDbProviderProps) {
+  const [digimons, setDigimons] = useState<Digimon[]>([]);
 
   const [types, setTypes] = useState([]);
 
@@ -21,7 +50,7 @@ export function DigimonsDbProvider({ children }) {
           throw new Error("Failed to fetch digimons");
         }
 
-        const data = await response.json();
+        const data: DigimonApiRespone = await response.json();
         setDigimons(data.content);
         setLoading(false);
       } catch (err) {
@@ -41,7 +70,7 @@ export function DigimonsDbProvider({ children }) {
             throw new Error("Failed to fetch digimons types");
           }
 
-          const data = await response.json();
+          const data: DigimonTypes = await response.json();
           const pageTypes = data.content.fields.map((type) => type.name);
           allTypes = [...allTypes, ...pageTypes];
         } catch (err) {
@@ -63,7 +92,7 @@ export function DigimonsDbProvider({ children }) {
   );
 }
 
-export function useDigimonsDb() {
+export function useDigimonsDb(): object {
   const context = useContext(DigimonsDbContext);
   if (!context) {
     throw new Error("useDigimonsDb must be used within a DigimonsDbProvider");

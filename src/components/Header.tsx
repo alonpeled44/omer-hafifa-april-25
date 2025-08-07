@@ -8,7 +8,7 @@ import darkIcon from "../images/dark-mode-icon.png";
 import styles from "../styles/components/header.module.css";
 
 export default function Header(): JSX.Element {
-  const { screenWidth } = useScreenWidth();
+  const screenWidth = useScreenWidth();
   const [isOpen, setIsOpen] = useState({
     isSettingsOpen: false,
     isFontsOpen: false,
