@@ -70,26 +70,46 @@
         gap: 72px;
 
         & button {
-          position: static;
+          position: relative;
           width: 16%;
-
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
           background: none;
           cursor: pointer;
+          font-size: inherit;
 
           &:active {
             transform: scale(0.9);
           }
 
           & span {
-            position: relative;
-            top: 32px;
+            position: absolute;
+            bottom: -2rem;
+            left: 50%;
+            transform: translateX(-50%);
             font-size: 1.2rem;
+            text-align: center;
+            white-space: nowrap;
           }
         }
-      }
 
-      & .selected {
-        border: 4px solid rgb(0, 0, 0);
+        & .large-font-size {
+          font-size: 30px;
+        }
+
+        & .medium-font-size {
+          font-size: 25px;
+        }
+
+        & .small-font-size {
+          font-size: 20px;
+        }
+
+        & .selected {
+          border: 4px solid rgb(0, 0, 0);
+        }
       }
     }
   }
@@ -117,19 +137,23 @@
       left: 4px;
 
       height: auto;
-      width: 10%;
+      width: 12%;
+      max-width: 76px;
 
       display: flex;
       flex-direction: column;
+      gap: 4px;
 
-      background-color: rgb(255, 255, 255);
       border-radius: 60px;
       border: 1px solid rgb(0, 0, 0);
 
+      background-color: rgb(255, 255, 255);
       & img {
-        height: auto;
-        width: 88%;
+        height: 44px;
+        width: 44px;
 
+        border: 1px solid rgb(0, 0, 0);
+        border-radius: 22px;
         background: none;
       }
 
@@ -139,8 +163,8 @@
         background-color: rgb(255, 255, 255);
 
         & img {
-          height: auto;
-          width: 88%;
+          height: 44px;
+          width: 44px;
 
           border: 1px solid rgb(0, 0, 0);
           border-radius: 60px;
@@ -163,21 +187,38 @@
         background-color: rgb(255, 255, 255);
 
         & button {
-          background: none;
+          height: 44px;
+          width: 44px;
+
           border: none;
+          background: none;
           z-index: 1;
 
           & img {
             height: auto;
-            width: 72%;
+            width: 76%;
 
             padding: 4px;
           }
         }
 
         & .font-settings {
+          height: 48px;
+
           border: 1px solid rgb(0, 0, 0);
-          border-radius: 48px;
+          border-radius: 60px;
+        }
+
+        & .large {
+          font-size: 19px;
+        }
+
+        & .medium {
+          font-size: 16px;
+        }
+
+        & .small {
+          font-size: 13px;
         }
       }
 
@@ -203,9 +244,11 @@
 
           display: flex;
           align-items: center;
+          justify-content: center;
 
           padding: 5px;
           border: none;
+          border-radius: 20px;
 
           background: none;
           background-color: rgb(255, 255, 255);
@@ -217,6 +260,18 @@
 
             padding: 4px;
           }
+        }
+
+        & .large {
+          font-size: 19px;
+        }
+
+        & .medium {
+          font-size: 16px;
+        }
+
+        & .small {
+          font-size: 13px;
         }
       }
     }

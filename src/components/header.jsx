@@ -5,7 +5,6 @@ import pokemonIcon from "../images/pokemon-photo.png";
 import settingsIcon from "../images/settings-icon.png";
 import brightIcon from "../images/bright-mode-icon.png";
 import darkIcon from "../images/dark-mode-icon.png";
-import fontSizeIcon from "../images/font-size-icon.png";
 import styles from "../styles/components/header.module.css";
 
 export default function Header() {
@@ -32,7 +31,11 @@ export default function Header() {
 
   useEffect(() => {
     document.documentElement.setAttribute("data-theme", selected.selectedTheme);
-  }, [selected.selectedTheme]);
+    document.documentElement.setAttribute(
+      "data-font-size",
+      selected.selectedFont
+    );
+  }, [selected.selectedTheme, selected.selectedFont]);
 
   return (
     <header className={styles.header}>
@@ -111,7 +114,7 @@ export default function Header() {
                 <p>Font Size</p>
                 <div className={styles["icons-container"]}>
                   <button
-                    className={`${styles["font-size-button"]} ${
+                    className={`${styles["large-font-size"]} ${
                       selected.selectedFont === "large" ? styles.selected : ""
                     }`}
                     onClick={() => {
@@ -119,11 +122,11 @@ export default function Header() {
                         handleFontSizeSelect("large");
                     }}
                   >
-                    <img src={fontSizeIcon.src} />
+                    Aa
                     <span>large</span>
                   </button>
                   <button
-                    className={`${styles["font-size-button"]} ${
+                    className={`${styles["medium-font-size"]} ${
                       selected.selectedFont === "medium" ? styles.selected : ""
                     }`}
                     onClick={() => {
@@ -131,11 +134,11 @@ export default function Header() {
                         handleFontSizeSelect("medium");
                     }}
                   >
-                    <img src={fontSizeIcon.src} />
+                    Aa
                     <span>medium</span>
                   </button>
                   <button
-                    className={`${styles["font-size-button"]} ${
+                    className={`${styles["small-font-size"]} ${
                       selected.selectedFont === "small" ? styles.selected : ""
                     }`}
                     onClick={() => {
@@ -143,7 +146,7 @@ export default function Header() {
                         handleFontSizeSelect("small");
                     }}
                   >
-                    <img src={fontSizeIcon.src} />
+                    Aa
                     <span>small</span>
                   </button>
                 </div>
@@ -177,9 +180,11 @@ export default function Header() {
                       isFontsOpen: !prev.isFontsOpen,
                     }));
                   }}
-                  className={styles["font-settings"]}
+                  className={`${styles["font-settings"]} ${
+                    styles[selected.selectedFont]
+                  }`}
                 >
-                  <img src={fontSizeIcon.src} />
+                  Aa
                 </button>
               </div>
 
@@ -191,9 +196,9 @@ export default function Header() {
                       onClick={() => {
                         handleFontSizeSelect(fontSize);
                       }}
-                      className={styles["font-size"]}
+                      className={`${styles["font-size"]} ${styles[fontSize]}`}
                     >
-                      <img src={fontSizeIcon.src} />
+                      Aa
                     </button>
                   ))}
                 </div>
