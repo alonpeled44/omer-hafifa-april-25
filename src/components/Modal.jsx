@@ -18,7 +18,7 @@ export default function Modal({ isOpen, onClose, children }) {
       onClose();
     };
 
-    dialog.addEventListener("cancel", handleCancel); //delete this com
+    dialog.addEventListener("cancel", handleCancel);
     return () => dialog.removeEventListener("cancel", handleCancel);
   }, [isOpen, onClose]);
 
