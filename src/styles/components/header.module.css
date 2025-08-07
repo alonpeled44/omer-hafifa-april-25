@@ -72,13 +72,15 @@
         & button {
           position: relative;
           width: 16%;
+
           display: flex;
           flex-direction: column;
           justify-content: center;
           align-items: center;
+
           background: none;
-          cursor: pointer;
           font-size: inherit;
+          cursor: pointer;
 
           &:active {
             transform: scale(0.9);
@@ -88,10 +90,11 @@
             position: absolute;
             bottom: -2rem;
             left: 50%;
+
             transform: translateX(-50%);
-            font-size: 1.2rem;
             text-align: center;
             white-space: nowrap;
+            font-size: 1.2rem;
           }
         }
 
@@ -148,6 +151,7 @@
       border: 1px solid rgb(0, 0, 0);
 
       background-color: rgb(255, 255, 255);
+
       & img {
         height: 44px;
         width: 44px;
