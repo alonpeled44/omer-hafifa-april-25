@@ -1,5 +1,5 @@
-import { useState, useEffect } from "react";
-import { useScreenWidth } from "../libs/screenContext";
+import { useState, useEffect, JSX } from "react";
+import { useScreenWidth } from "../libs/ScreenContext";
 import Settings from "./settings";
 import pokemonIcon from "../images/pokemon-photo.png";
 import settingsIcon from "../images/settings-icon.png";
@@ -7,7 +7,7 @@ import brightIcon from "../images/bright-mode-icon.png";
 import darkIcon from "../images/dark-mode-icon.png";
 import styles from "../styles/components/header.module.css";
 
-export default function Header() {
+export default function Header(): JSX.Element {
   const { screenWidth } = useScreenWidth();
   const [isOpen, setIsOpen] = useState({
     isSettingsOpen: false,
