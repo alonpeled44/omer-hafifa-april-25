@@ -135,15 +135,19 @@
       position: absolute;
       top: 4px;
       left: 4px;
+
       height: auto;
       width: 12%;
       max-width: 76px;
-      gap: 4px;
+
       display: flex;
       flex-direction: column;
-      background-color: rgb(255, 255, 255);
+      gap: 4px;
+
       border-radius: 60px;
       border: 1px solid rgb(0, 0, 0);
+
+      background-color: rgb(255, 255, 255);
       & img {
         height: 44px;
         width: 44px;
@@ -185,8 +189,9 @@
         & button {
           height: 44px;
           width: 44px;
-          background: none;
+
           border: none;
+          background: none;
           z-index: 1;
 
           & img {
@@ -199,6 +204,7 @@
 
         & .font-settings {
           height: 48px;
+
           border: 1px solid rgb(0, 0, 0);
           border-radius: 60px;
         }
