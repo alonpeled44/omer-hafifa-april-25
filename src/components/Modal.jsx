@@ -1,11 +1,7 @@
 import { useRef, useEffect } from "react";
 import styles from "../styles/components/modal.module.css";
 
-export default function Modal({
-  isOpen,
-  onClose,
-  children
-}) {
+export default function Modal({ isOpen, onClose, children }) {
   const dialogRef = useRef(null);
 
   useEffect(() => {
@@ -22,24 +18,22 @@ export default function Modal({
       onClose();
     };
 
-    dialog.addEventListener("cancel", handleCancel);
+    dialog.addEventListener("cancel", handleCancel); //delete this com
     return () => dialog.removeEventListener("cancel", handleCancel);
-
   }, [isOpen, onClose]);
 
   return (
     <dialog
       ref={dialogRef}
-      onClick={((e) => { if (e.target === dialogRef.current) onClose(); })}
+      onClick={(e) => {
+        if (e.target === dialogRef.current) onClose();
+      }}
       className={styles.modal}
     >
       <div className={styles["content-container"]}>
         {children}
 
-        <button
-          onClick={() => onClose()}
-          className={styles["close-button"]}
-        >
+        <button onClick={() => onClose()} className={styles["close-button"]}>
           &times;
         </button>
       </div>
