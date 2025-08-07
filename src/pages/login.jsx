@@ -11,9 +11,11 @@ const usersData = [
 
 export default function Login() {
   const [loggedUser, setLoggedUser] = useState({});
+
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
+
   const { screenWidth } = useScreenWidth();
 
   const router = useRouter();

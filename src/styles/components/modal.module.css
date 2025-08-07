@@ -1,0 +1,79 @@
+.modal {
+  height: 75%;
+  width: 100%;
+  max-width: none;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  margin: auto;
+  border: none;
+  background-color: transparent;
+
+  &::backdrop {
+    backdrop-filter: blur(10px);
+    background-color: transparent;
+  }
+
+  & .content-container {
+    position: relative;
+    
+    height: 64%;
+    width: 52%;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+
+    padding-top: 5px;
+    background-color: rgb(255, 255, 255);
+
+    & .close-button {
+      position: absolute;
+      top: 4px;
+      right: 8px;
+
+      height: 36px;
+      width: 36px;
+
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      border-radius: 20px;
+      background: none;
+      font-size: 2.75rem;
+      cursor: pointer;
+    }
+
+    & .close-button:active {
+      transform: scale(0.9);
+    }
+  }
+}
+
+@media screen and (max-width: 1200px) {
+  .modal {
+    animation: slideUp linear 1s 0s 1 normal forwards;
+
+    & .content-container {
+      height: 100%;
+      width: 100%;
+      gap: 4px;
+
+      padding-top: 0;
+    }
+  }
+
+  @keyframes slideUp {
+    0% {
+      transform: translateY(100%);
+    }
+
+    100% {
+      transform: translateY(20%);
+    }
+  }
+}

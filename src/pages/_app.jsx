@@ -3,6 +3,7 @@ import { useRouter } from "next/router";
 import { ScreenWidthProvider } from "../libs/screenContext";
 import Header from "../components/header";
 import "../styles/globals.css";
+import { DigimonsDbProvider } from "../libs/digimonsDbContext";
 
 export default function App({ Component, pageProps }) {
   const router = useRouter();
@@ -17,9 +18,11 @@ export default function App({ Component, pageProps }) {
   return (
     <ScreenWidthProvider>
       <Header />
-      <main>
-        <Component {...pageProps} />
-      </main>
+      <DigimonsDbProvider>
+        <main>
+          <Component {...pageProps} />
+        </main>
+      </DigimonsDbProvider>
     </ScreenWidthProvider>
   );
 }
