@@ -1,6 +1,6 @@
 import { useState, useEffect, JSX } from "react";
 import { useScreenWidth } from "../libs/ScreenContext";
-import Settings from "./settings";
+import Settings from "./Settings";
 import pokemonIcon from "../images/pokemon-photo.png";
 import settingsIcon from "../images/settings-icon.png";
 import brightIcon from "../images/bright-mode-icon.png";

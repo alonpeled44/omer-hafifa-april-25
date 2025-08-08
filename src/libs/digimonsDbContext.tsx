@@ -6,13 +6,13 @@ import {
   useState,
 } from "react";
 
-const DigimonsDbContext = createContext<object>({});
+const DigimonsDbContext = createContext<DigimonsDbContextType | undefined>(undefined); //specify the expected returned values from context.
 
 interface DigimonsDbProviderProps {
   children: ReactNode;
 }
 interface Digimon {
-  id: string;
+  id: number;
   name: string;
   image: string;
 }
@@ -31,17 +31,24 @@ interface DigimonTypesResponse {
   };
 }
 
+interface DigimonsDbContextType {
+  digimons: Digimon[];
+  types: string[];
+  loading: boolean;
+  error: string | null;
+}
+
 export function DigimonsDbProvider({ children }: DigimonsDbProviderProps) {
   const [digimons, setDigimons] = useState<Digimon[]>([]);
 
-  const [types, setTypes] = useState([]);
+  const [types, setTypes] = useState<string[]>([]);
 
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState<boolean>(true);
 
-  const [error, setError] = useState(null);
+  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    const fetchData = async () => {
+    const fetchData = async (): Promise<void> => {
       try {
         const response = await fetch(
           "https://digi-api.com/api/v1/digimon?pageSize=100"
@@ -53,14 +60,14 @@ export function DigimonsDbProvider({ children }: DigimonsDbProviderProps) {
         const data: DigimonApiRespone = await response.json();
         setDigimons(data.content);
         setLoading(false);
-      } catch (err) {
-        setError(err.message);
+      } catch (err: unknown) {
+        setError(err instanceof Error ? err.message : "An unknown error occurred");
         setLoading(false);
       }
     };
 
-    const fetchTypes = async () => {
-      let allTypes = [];
+    const fetchTypes = async (): Promise<void> => {
+      let allTypes: string[] = [];
       for (let i = 0; i < 5; i++) {
         try {
           const response = await fetch(
@@ -70,11 +77,11 @@ export function DigimonsDbProvider({ children }: DigimonsDbProviderProps) {
             throw new Error("Failed to fetch digimons types");
           }
 
-          const data: DigimonTypes = await response.json();
-          const pageTypes = data.content.fields.map((type) => type.name);
+          const data: DigimonTypesResponse = await response.json();
+          const pageTypes = data.content.fields.map((type: TypeField) => type.name);
           allTypes = [...allTypes, ...pageTypes];
-        } catch (err) {
-          setError(err.message);
+        } catch (err: unknown) {
+          setError(err instanceof Error ? err.message : "An unknown error occurred"); //let know if error with wierd rejection accord("throw 42" for example).
           setLoading(false);
         }
       }
@@ -92,7 +99,7 @@ export function DigimonsDbProvider({ children }: DigimonsDbProviderProps) {
   );
 }
 
-export function useDigimonsDb(): object {
+export function useDigimonsDb(): DigimonsDbContextType {
   const context = useContext(DigimonsDbContext);
   if (!context) {
     throw new Error("useDigimonsDb must be used within a DigimonsDbProvider");

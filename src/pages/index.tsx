@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useScreenWidth } from "../libs/screenContext";
+import { useScreenWidth } from "../libs/ScreenContext";
 import { useDigimonsDb } from "../libs/digimonsDbContext";
 import Card from "../components/card";
 import Select from "../components/Select";
@@ -10,6 +10,12 @@ const sortOptions = {
   id: "Id",
   name: "Name",
 };
+
+interface Digimon {
+  id: number;
+  name: string;
+  image: string;
+}
 
 export default function Home() {
   const [isOpen, setIsOpen] = useState({
@@ -27,7 +33,7 @@ export default function Home() {
 
   const [digimonProperties, setDigimonProperties] = useState({});
 
-  const { screenWidth } = useScreenWidth();
+  const screenWidth = useScreenWidth();
   const { digimons, types } = useDigimonsDb();
 
   useEffect(() => {
@@ -119,7 +125,7 @@ export default function Home() {
 
       return matchesSearch && matchesTypes;
     })
-    .sort((a, b) => {
+    .sort((a: Digimon, b: Digimon) => {
       switch (sortOption) {
         case sortOptions.id:
           return a.id - b.id;
@@ -173,7 +179,7 @@ export default function Home() {
             filteredDigimons.length < digimons.length || undefined
           }
         >
-          {filteredDigimons.map((digimon) => (
+          {filteredDigimons.map((digimon: Digimon) => (
             <Card
               key={digimon.id}
               card={digimon}
