@@ -25,8 +25,14 @@ interface DigimonProperties {
   };
 }
 
+type ModalState = {
+  isSortOpen: boolean; 
+  isFilterOpen: boolean;
+  isModalOpen: boolean;
+};
+
 export default function Home() {
-  const [isOpen, setIsOpen] = useState<{isSortOpen: boolean, isFilterOpen: boolean, isModalOpen: boolean}>({
+  const [isOpen, setIsOpen] = useState<ModalState>({
     isSortOpen: false,
     isFilterOpen: false,
     isModalOpen: false,
