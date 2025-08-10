@@ -1,7 +1,12 @@
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
-import { useScreenWidth } from "../libs/screenContext";
+import { useScreenWidth } from "../libs/ScreenContext";
 import styles from "../styles/pages/login.module.css";
+
+type LoggedUserProps = {
+  _username: string;
+  _password: string;
+};
 
 const usersData = [
   { _username: "wer123", _password: "gg666" },
@@ -10,18 +15,18 @@ const usersData = [
 ];
 
 export default function Login() {
-  const [loggedUser, setLoggedUser] = useState({});
+  const [loggedUser, setLoggedUser] = useState<LoggedUserProps | {}>({}); //{} is for initialized value.
 
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
-  const [errorMessage, setErrorMessage] = useState("");
+  const [username, setUsername] = useState<string>("");
+  const [password, setPassword] = useState<string>("");
+  const [errorMessage, setErrorMessage] = useState<string>("");
 
-  const { screenWidth } = useScreenWidth();
+  const screenWidth = useScreenWidth();
 
   const router = useRouter();
 
   useEffect(() => {
-    const currentUsername = localStorage.getItem("username");
+    const currentUsername: string = localStorage.getItem("username");
     if (currentUsername) {
       router.push("/");
     }

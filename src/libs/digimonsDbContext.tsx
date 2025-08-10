@@ -6,7 +6,9 @@ import {
   useState,
 } from "react";
 
-const DigimonsDbContext = createContext<DigimonsDbContextType | undefined>(undefined); //specify the expected returned values from context.
+const DigimonsDbContext = createContext<DigimonsDbContextType | undefined>(
+  undefined
+); //specify the expected returned values from context.
 
 interface DigimonsDbProviderProps {
   children: ReactNode;
@@ -48,7 +50,7 @@ export function DigimonsDbProvider({ children }: DigimonsDbProviderProps) {
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    const fetchData = async (): Promise<void> => {
+    const fetchData = async () => {
       try {
         const response = await fetch(
           "https://digi-api.com/api/v1/digimon?pageSize=100"
@@ -61,12 +63,14 @@ export function DigimonsDbProvider({ children }: DigimonsDbProviderProps) {
         setDigimons(data.content);
         setLoading(false);
       } catch (err: unknown) {
-        setError(err instanceof Error ? err.message : "An unknown error occurred");
+        setError(
+          err instanceof Error ? err.message : "An unknown error occurred"
+        );
         setLoading(false);
       }
     };
 
-    const fetchTypes = async (): Promise<void> => {
+    const fetchTypes = async () => {
       let allTypes: string[] = [];
       for (let i = 0; i < 5; i++) {
         try {
@@ -78,10 +82,14 @@ export function DigimonsDbProvider({ children }: DigimonsDbProviderProps) {
           }
 
           const data: DigimonTypesResponse = await response.json();
-          const pageTypes = data.content.fields.map((type: TypeField) => type.name);
+          const pageTypes = data.content.fields.map(
+            (type: TypeField) => type.name
+          );
           allTypes = [...allTypes, ...pageTypes];
         } catch (err: unknown) {
-          setError(err instanceof Error ? err.message : "An unknown error occurred"); //let know if error with wierd rejection accord("throw 42" for example).
+          setError(
+            err instanceof Error ? err.message : "An unknown error occurred"
+          ); //let know if error with wierd rejection accord("throw 42" for example).
           setLoading(false);
         }
       }
@@ -99,7 +107,7 @@ export function DigimonsDbProvider({ children }: DigimonsDbProviderProps) {
   );
 }
 
-export function useDigimonsDb(): DigimonsDbContextType {
+export function useDigimonsDb() {
   const context = useContext(DigimonsDbContext);
   if (!context) {
     throw new Error("useDigimonsDb must be used within a DigimonsDbProvider");

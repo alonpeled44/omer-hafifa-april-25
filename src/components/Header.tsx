@@ -7,19 +7,29 @@ import brightIcon from "../images/bright-mode-icon.png";
 import darkIcon from "../images/dark-mode-icon.png";
 import styles from "../styles/components/header.module.css";
 
-export default function Header(): JSX.Element {
+type IsOpenProps = {
+  isSettingsOpen: boolean;
+  isFontsOpen: boolean;
+};
+
+type SelectedProps = {
+  selectedTheme: string;
+  selectedFont: string;
+};
+
+export default function Header() {
   const screenWidth = useScreenWidth();
-  const [isOpen, setIsOpen] = useState({
+  const [isOpen, setIsOpen] = useState<IsOpenProps>({
     isSettingsOpen: false,
     isFontsOpen: false,
   });
-  const [selected, setSelected] = useState({
+  const [selected, setSelected] = useState<SelectedProps>({
     selectedTheme: "light",
     selectedFont: "medium",
   });
-  const [fontSizes, setFontSizes] = useState(["small", "large"]);
+  const [fontSizes, setFontSizes] = useState<string[]>(["small", "large"]);
 
-  const handleFontSizeSelect = (chosenFontSize) => {
+  const handleFontSizeSelect = (chosenFontSize: string) => {
     const newFontSizes = fontSizes.map((fontSize) =>
       fontSize === chosenFontSize ? selected.selectedFont : fontSize
     );

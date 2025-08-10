@@ -1,8 +1,14 @@
 import { useRef, useEffect } from "react";
-import styles from "../styles/components/settings.module.css";
+import styles from "../styles/components/modal.module.css";
 
-export default function Settings({ isOpen, onClose, children }) {
-  const dialogRef = useRef(null);
+interface ModalProps {
+  isOpen: boolean;
+  onClose: () => void;
+  children: React.ReactNode;
+}
+
+export default function Modal({ isOpen, onClose, children }: ModalProps) {
+  const dialogRef = useRef<HTMLDialogElement | null>(null);
 
   useEffect(() => {
     const dialog = dialogRef.current;
@@ -13,7 +19,7 @@ export default function Settings({ isOpen, onClose, children }) {
       dialog.close();
     }
 
-    const handleCancel = (e) => {
+    const handleCancel = (e: Event) => {
       e.preventDefault();
       onClose();
     };
@@ -28,9 +34,9 @@ export default function Settings({ isOpen, onClose, children }) {
       onClick={(e) => {
         if (e.target === dialogRef.current) onClose();
       }}
-      className={styles.settings}
+      className={styles.modal}
     >
-      <div>
+      <div className={styles["content-container"]}>
         {children}
 
         <button onClick={() => onClose()} className={styles["close-button"]}>

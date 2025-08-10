@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useScreenWidth } from "../libs/ScreenContext";
-import { useDigimonsDb } from "../libs/digimonsDbContext";
+import { useDigimonsDb } from "../libs/DigimonsDbContext";
 import Card from "../components/card";
 import Select from "../components/Select";
 import Modal from "../components/Modal";
@@ -26,7 +26,7 @@ interface DigimonProperties {
 }
 
 type ModalState = {
-  isSortOpen: boolean; 
+  isSortOpen: boolean;
   isFilterOpen: boolean;
   isModalOpen: boolean;
 };
@@ -45,7 +45,9 @@ export default function Home() {
 
   const [sortOption, setSortOption] = useState<string>("");
 
-  const [digimonProperties, setDigimonProperties] = useState<DigimonProperties>({});
+  const [digimonProperties, setDigimonProperties] = useState<DigimonProperties>(
+    {}
+  );
 
   const screenWidth = useScreenWidth();
   const { digimons, types } = useDigimonsDb();
@@ -80,7 +82,10 @@ export default function Home() {
                 );
               }
 
-              const data: { types?: { type: string }[]; levels?: { level: string }[] } = await response.json(); // ensures that types and levels are array of objects. ? sign prevents error when either types or levels weren't found.
+              const data: {
+                types?: { type: string }[];
+                levels?: { level: string }[];
+              } = await response.json(); // ensures that types and levels are array of objects. ? sign prevents error when either types or levels weren't found.
 
               properties[digimon.id] = {
                 type: data.types?.[0]?.type || "unknown",
@@ -102,7 +107,10 @@ export default function Home() {
 
         setDigimonProperties(properties);
       } catch (err: unknown) {
-        console.error("Error fetching Digimon details:", (err as Error).message);
+        console.error(
+          "Error fetching Digimon details:",
+          (err as Error).message
+        );
       }
     };
 

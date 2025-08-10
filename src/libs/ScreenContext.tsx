@@ -16,7 +16,7 @@ export function ScreenWidthProvider({ children }: ScreenWidthProviderProps) {
   const [screenWidth, setScreenWidth] = useState<number>(0);
 
   useEffect(() => {
-    const handleResize: () => void = () => {
+    const handleResize = () => {
       setScreenWidth(window.innerWidth);
     };
 
@@ -32,7 +32,7 @@ export function ScreenWidthProvider({ children }: ScreenWidthProviderProps) {
   );
 }
 
-export function useScreenWidth(): number {
+export function useScreenWidth() {
   const context = useContext(ScreenWidthContext);
   if (!context) {
     console.log("no screen width context found");
