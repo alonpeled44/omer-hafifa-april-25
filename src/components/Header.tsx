@@ -1,4 +1,4 @@
-import { useState, useEffect, JSX } from "react";
+import { useState, useEffect } from "react";
 import { useScreenWidth } from "../libs/ScreenContext";
 import Settings from "./Settings";
 import pokemonIcon from "../images/pokemon-photo.png";
@@ -7,15 +7,15 @@ import brightIcon from "../images/bright-mode-icon.png";
 import darkIcon from "../images/dark-mode-icon.png";
 import styles from "../styles/components/header.module.css";
 
-type IsOpenProps = {
+interface IsOpenProps {
   isSettingsOpen: boolean;
   isFontsOpen: boolean;
-};
+}
 
-type SelectedProps = {
+interface SelectedProps {
   selectedTheme: string;
   selectedFont: string;
-};
+}
 
 export default function Header() {
   const screenWidth = useScreenWidth();
