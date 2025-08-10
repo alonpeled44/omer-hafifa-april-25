@@ -1,5 +1,15 @@
 import styles from "../styles/components/select.module.css";
 
+interface SelectProps {
+  isOpen: boolean;
+  setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  options: string[];
+  title: string;
+  multiple: boolean;
+  selectedOptions: string[] | string;
+  setSelectedOptions: React.Dispatch<React.SetStateAction<string[] | string>>;
+}
+
 export default function Select({
   isOpen,
   setIsOpen,
@@ -8,7 +18,7 @@ export default function Select({
   multiple,
   selectedOptions,
   setSelectedOptions,
-}) {
+}: SelectProps) {
   return (
     <div className={styles.select} data-sort-container={!multiple}>
       <button
@@ -30,7 +40,7 @@ export default function Select({
               onClick={() => {
                 if (multiple) {
                   if (selectedOptions.includes(option)) {
-                    setSelectedOptions((prev) =>
+                    setSelectedOptions((prev: string[]) =>
                       prev.filter((item) => item !== option)
                     );
                   } else {
@@ -44,7 +54,7 @@ export default function Select({
               {
                 <>
                   {option}
-                  {(multiple
+                  {(multiple && Array.isArray(selectedOptions)
                     ? selectedOptions.find((opt) => opt === option)
                     : option === selectedOptions) && <span>&#10003;</span>}
                 </>

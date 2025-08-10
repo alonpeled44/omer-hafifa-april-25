@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import { useScreenWidth } from "../libs/screenContext";
-import { useDigimonsDb } from "../libs/digimonsDbContext";
+import { useScreenWidth } from "../libs/ScreenContext";
+import { useDigimonsDb } from "../libs/DigimonsDbContext";
 import Card from "../components/card";
 import Select from "../components/Select";
 import Modal from "../components/Modal";
@@ -11,23 +11,45 @@ const sortOptions = {
   name: "Name",
 };
 
+interface Digimon {
+  id: number;
+  name: string;
+  image: string;
+  href: string;
+}
+
+interface DigimonProperties {
+  [key: number]: {
+    type: string;
+    level: string;
+  };
+}
+
+type ModalState = {
+  isSortOpen: boolean;
+  isFilterOpen: boolean;
+  isModalOpen: boolean;
+};
+
 export default function Home() {
-  const [isOpen, setIsOpen] = useState({
+  const [isOpen, setIsOpen] = useState<ModalState>({
     isSortOpen: false,
     isFilterOpen: false,
     isModalOpen: false,
   });
-  const [selectedDigimon, setSelectedDigimon] = useState(null);
+  const [selectedDigimon, setSelectedDigimon] = useState<Digimon | null>(null);
 
-  const [searchValue, setSearchValue] = useState("");
+  const [searchValue, setSearchValue] = useState<string>("");
 
-  const [selectedTypes, setSelectedTypes] = useState([]);
+  const [selectedTypes, setSelectedTypes] = useState<string[]>([]);
 
-  const [sortOption, setSortOption] = useState("");
+  const [sortOption, setSortOption] = useState<string>("");
 
-  const [digimonProperties, setDigimonProperties] = useState({});
+  const [digimonProperties, setDigimonProperties] = useState<DigimonProperties>(
+    {}
+  );
 
-  const { screenWidth } = useScreenWidth();
+  const screenWidth = useScreenWidth();
   const { digimons, types } = useDigimonsDb();
 
   useEffect(() => {
@@ -45,12 +67,12 @@ export default function Home() {
   });
 
   useEffect(() => {
-    const fetchDigimonProperties = async () => {
+    const fetchDigimonProperties = async (): Promise<void> => {
       try {
-        const properties = {};
+        const properties: DigimonProperties = {};
 
         await Promise.all(
-          digimons.map(async (digimon) => {
+          digimons.map(async (digimon: Digimon) => {
             try {
               const response = await fetch(digimon.href);
 
@@ -60,16 +82,19 @@ export default function Home() {
                 );
               }
 
-              const data = await response.json();
+              const data: {
+                types?: { type: string }[];
+                levels?: { level: string }[];
+              } = await response.json(); // ensures that types and levels are array of objects. ? sign prevents error when either types or levels weren't found.
 
               properties[digimon.id] = {
                 type: data.types?.[0]?.type || "unknown",
                 level: data.levels?.[0]?.level || "negative",
               };
-            } catch (err) {
+            } catch (err: unknown) {
               console.error(
                 `Error fetching Digimon ${digimon.id}:`,
-                err.message
+                (err as Error).message
               );
 
               properties[digimon.id] = {
@@ -81,8 +106,11 @@ export default function Home() {
         );
 
         setDigimonProperties(properties);
-      } catch (err) {
-        console.error("Error fetching Digimon details:", err.message);
+      } catch (err: unknown) {
+        console.error(
+          "Error fetching Digimon details:",
+          (err as Error).message
+        );
       }
     };
 
@@ -91,7 +119,7 @@ export default function Home() {
     }
   }, [digimons]);
 
-  const setFilterOrSortOpen = (isMulti) => {
+  const setFilterOrSortOpen = (isMulti: boolean) => {
     //setter for either sort or filter list to open when closed/close when open when user click on the button above the list.
     setIsOpen((prev) => ({
       ...prev,
@@ -101,7 +129,7 @@ export default function Home() {
   };
 
   const filteredDigimons = digimons
-    .filter((digimon) => {
+    .filter((digimon: Digimon) => {
       const searchValueLowerCase = searchValue.toLowerCase();
       const matchesSearch =
         digimon.id.toString().startsWith(searchValue) ||
@@ -119,7 +147,7 @@ export default function Home() {
 
       return matchesSearch && matchesTypes;
     })
-    .sort((a, b) => {
+    .sort((a: Digimon, b: Digimon) => {
       switch (sortOption) {
         case sortOptions.id:
           return a.id - b.id;
@@ -173,7 +201,7 @@ export default function Home() {
             filteredDigimons.length < digimons.length || undefined
           }
         >
-          {filteredDigimons.map((digimon) => (
+          {filteredDigimons.map((digimon: Digimon) => (
             <Card
               key={digimon.id}
               card={digimon}

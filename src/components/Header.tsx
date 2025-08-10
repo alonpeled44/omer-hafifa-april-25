@@ -1,25 +1,35 @@
 import { useState, useEffect } from "react";
-import { useScreenWidth } from "../libs/screenContext";
-import Settings from "./settings";
+import { useScreenWidth } from "../libs/ScreenContext";
+import Settings from "./Settings";
 import pokemonIcon from "../images/pokemon-photo.png";
 import settingsIcon from "../images/settings-icon.png";
 import brightIcon from "../images/bright-mode-icon.png";
 import darkIcon from "../images/dark-mode-icon.png";
 import styles from "../styles/components/header.module.css";
 
+interface IsOpenProps {
+  isSettingsOpen: boolean;
+  isFontsOpen: boolean;
+}
+
+interface SelectedProps {
+  selectedTheme: string;
+  selectedFont: string;
+}
+
 export default function Header() {
-  const { screenWidth } = useScreenWidth();
-  const [isOpen, setIsOpen] = useState({
+  const screenWidth = useScreenWidth();
+  const [isOpen, setIsOpen] = useState<IsOpenProps>({
     isSettingsOpen: false,
     isFontsOpen: false,
   });
-  const [selected, setSelected] = useState({
+  const [selected, setSelected] = useState<SelectedProps>({
     selectedTheme: "light",
     selectedFont: "medium",
   });
-  const [fontSizes, setFontSizes] = useState(["small", "large"]);
+  const [fontSizes, setFontSizes] = useState<string[]>(["small", "large"]);
 
-  const handleFontSizeSelect = (chosenFontSize) => {
+  const handleFontSizeSelect = (chosenFontSize: string) => {
     const newFontSizes = fontSizes.map((fontSize) =>
       fontSize === chosenFontSize ? selected.selectedFont : fontSize
     );

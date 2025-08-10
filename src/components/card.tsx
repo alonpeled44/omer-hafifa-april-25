@@ -1,8 +1,25 @@
-import { useScreenWidth } from "../libs/screenContext";
+import { useScreenWidth } from "../libs/ScreenContext";
 import styles from "../styles/components/card.module.css";
 
-export default function Card({ card, onClick, digimon }) {
-  const { screenWidth } = useScreenWidth();
+interface Digimon {
+  id: number;
+  name: string;
+  image: string;
+}
+
+interface DigimonDetails {
+  type: string;
+  level: string;
+}
+
+interface CardProps {
+  card: Digimon;
+  digimon: DigimonDetails;
+  onClick: () => void;
+}
+
+export default function Card({ card, onClick, digimon }: CardProps) {
+  const screenWidth = useScreenWidth();
 
   return (
     <div onClick={onClick} className={styles.card}>

@@ -1,27 +1,32 @@
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
-import { useScreenWidth } from "../libs/screenContext";
+import { useScreenWidth } from "../libs/ScreenContext";
 import styles from "../styles/pages/login.module.css";
 
+type LoggedUserProps = {
+  username: string;
+  password: string;
+};
+
 const usersData = [
-  { _username: "wer123", _password: "gg666" },
-  { _username: "ola098", _password: "fff3323r" },
-  { _username: "1111", _password: "2234rrr" },
+  { username: "wer123", password: "gg666" },
+  { username: "ola098", password: "fff3323r" },
+  { username: "1111", password: "2234rrr" },
 ];
 
 export default function Login() {
-  const [loggedUser, setLoggedUser] = useState({});
+  const [loggedUser, setLoggedUser] = useState<LoggedUserProps | null>(null); //{} is for initialized value.
 
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
-  const [errorMessage, setErrorMessage] = useState("");
+  const [username, setUsername] = useState<string>("");
+  const [password, setPassword] = useState<string>("");
+  const [errorMessage, setErrorMessage] = useState<string>("");
 
-  const { screenWidth } = useScreenWidth();
+  const screenWidth = useScreenWidth();
 
   const router = useRouter();
 
   useEffect(() => {
-    const currentUsername = localStorage.getItem("username");
+    const currentUsername: string = localStorage.getItem("username");
     if (currentUsername) {
       router.push("/");
     }
@@ -40,8 +45,8 @@ export default function Login() {
 
         const foundUser = usersData.find(
           (currentUser) =>
-            currentUser._username === username &&
-            currentUser._password === password
+            currentUser.username === username &&
+            currentUser.password === password
         );
 
         if (foundUser) {
