@@ -3,10 +3,10 @@ import { useRouter } from "next/router";
 import { useScreenWidth } from "../libs/ScreenContext";
 import styles from "../styles/pages/login.module.css";
 
-type LoggedUserProps = {
+interface LoggedUserProps {
   username: string;
   password: string;
-};
+}
 
 const usersData = [
   { username: "wer123", password: "gg666" },

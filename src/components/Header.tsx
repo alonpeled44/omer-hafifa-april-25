@@ -7,6 +7,17 @@ import brightIcon from "../images/bright-mode-icon.png";
 import darkIcon from "../images/dark-mode-icon.png";
 import styles from "../styles/components/header.module.css";
 
+enum Theme {
+  Light = "light",
+  Dark = "dark",
+}
+
+enum FontSize {
+  Small = "small",
+  Medium = "medium",
+  Large = "large",
+}
+
 interface IsOpenProps {
   isSettingsOpen: boolean;
   isFontsOpen: boolean;
@@ -24,15 +35,18 @@ export default function Header() {
     isFontsOpen: false,
   });
   const [selected, setSelected] = useState<SelectedProps>({
-    selectedTheme: "light",
-    selectedFont: "medium",
+    selectedTheme: Theme.Light,
+    selectedFont: FontSize.Medium,
   });
-  const [fontSizes, setFontSizes] = useState<string[]>(["small", "large"]);
+  const [fontSizes, setFontSizes] = useState<FontSize[]>([
+    FontSize.Small,
+    FontSize.Large,
+  ]);
 
-  const handleFontSizeSelect = (chosenFontSize: string) => {
-    const newFontSizes = fontSizes.map((fontSize) =>
+  const handleFontSizeSelect = (chosenFontSize: FontSize) => {
+    const newFontSizes: FontSize[] = fontSizes.map((fontSize) =>
       fontSize === chosenFontSize ? selected.selectedFont : fontSize
-    );
+    ) as FontSize[];
 
     setSelected((prev) => ({ ...prev, selectedFont: chosenFontSize }));
     setFontSizes(newFontSizes);
@@ -128,8 +142,9 @@ export default function Header() {
                       selected.selectedFont === "large" ? styles.selected : ""
                     }`}
                     onClick={() => {
-                      fontSizes.find((fontSize) => fontSize === "large") &&
-                        handleFontSizeSelect("large");
+                      fontSizes.find(
+                        (fontSize) => fontSize === FontSize.Large
+                      ) && handleFontSizeSelect(FontSize.Large);
                     }}
                   >
                     Aa
@@ -140,8 +155,9 @@ export default function Header() {
                       selected.selectedFont === "medium" ? styles.selected : ""
                     }`}
                     onClick={() => {
-                      fontSizes.find((fontSize) => fontSize === "medium") &&
-                        handleFontSizeSelect("medium");
+                      fontSizes.find(
+                        (fontSize) => fontSize === FontSize.Medium
+                      ) && handleFontSizeSelect(FontSize.Medium);
                     }}
                   >
                     Aa
@@ -152,8 +168,9 @@ export default function Header() {
                       selected.selectedFont === "small" ? styles.selected : ""
                     }`}
                     onClick={() => {
-                      fontSizes.find((fontSize) => fontSize === "small") &&
-                        handleFontSizeSelect("small");
+                      fontSizes.find(
+                        (fontSize) => fontSize === FontSize.Small
+                      ) && handleFontSizeSelect(FontSize.Small);
                     }}
                   >
                     Aa

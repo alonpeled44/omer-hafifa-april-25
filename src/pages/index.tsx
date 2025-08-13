@@ -6,10 +6,10 @@ import Select from "../components/Select";
 import Modal from "../components/Modal";
 import styles from "../styles/pages/index.module.css";
 
-const sortOptions = {
-  id: "Id",
-  name: "Name",
-};
+enum sortOptions {
+  Id = "Id",
+  Name = "Name",
+}
 
 interface Digimon {
   id: number;
@@ -149,10 +149,10 @@ export default function Home() {
     })
     .sort((a: Digimon, b: Digimon) => {
       switch (sortOption) {
-        case sortOptions.id:
+        case sortOptions.Id:
           return a.id - b.id;
 
-        case sortOptions.name:
+        case sortOptions.Name:
           return a.name.localeCompare(b.name, undefined, {
             sensitivity: "base",
           });
