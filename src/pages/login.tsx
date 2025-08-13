@@ -8,14 +8,14 @@ interface LoggedUserProps {
   password: string;
 }
 
-const usersData = [
+const usersData: LoggedUserProps[] = [
   { username: "wer123", password: "gg666" },
   { username: "ola098", password: "fff3323r" },
   { username: "1111", password: "2234rrr" },
 ];
 
 export default function Login() {
-  const [loggedUser, setLoggedUser] = useState<LoggedUserProps | null>(null); //{} is for initialized value.
+  const [loggedUser, setLoggedUser] = useState<LoggedUserProps | null>(null);
 
   const [username, setUsername] = useState<string>("");
   const [password, setPassword] = useState<string>("");

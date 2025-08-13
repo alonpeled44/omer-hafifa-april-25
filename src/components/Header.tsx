@@ -43,6 +43,8 @@ export default function Header() {
     FontSize.Large,
   ]);
 
+  const findFontSize = 
+
   const handleFontSizeSelect = (chosenFontSize: FontSize) => {
     const newFontSizes: FontSize[] = fontSizes.map((fontSize) =>
       fontSize === chosenFontSize ? selected.selectedFont : fontSize
@@ -167,11 +169,7 @@ export default function Header() {
                     className={`${styles["small-font-size"]} ${
                       selected.selectedFont === "small" ? styles.selected : ""
                     }`}
-                    onClick={() => {
-                      fontSizes.find(
-                        (fontSize) => fontSize === FontSize.Small
-                      ) && handleFontSizeSelect(FontSize.Small);
-                    }}
+                    onClick={() => {}}
                   >
                     Aa
                     <span>small</span>
