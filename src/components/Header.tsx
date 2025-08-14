@@ -40,10 +40,18 @@ export default function Header() {
   });
   const [fontSizes, setFontSizes] = useState<FontSize[]>([
     FontSize.Small,
+    FontSize.Medium,
     FontSize.Large,
   ]);
 
-  const findFontSize = 
+  const findFontSize = (
+    chosenFontSize: FontSize,
+    fontSizeType: string
+  ): void => {
+    Object.values(FontSize).find(
+      (fontSizeVal) => fontSizeVal === fontSizeType
+    ) && handleFontSizeSelect(chosenFontSize);
+  };
 
   const handleFontSizeSelect = (chosenFontSize: FontSize) => {
     const newFontSizes: FontSize[] = fontSizes.map((fontSize) =>
@@ -51,7 +59,15 @@ export default function Header() {
     ) as FontSize[];
 
     setSelected((prev) => ({ ...prev, selectedFont: chosenFontSize }));
-    setFontSizes(newFontSizes);
+    setFontSizes(
+      newFontSizes.filter(
+        (
+          duplicatedFontSize: FontSize,
+          index: number,
+          initialArray: FontSize[]
+        ) => initialArray.indexOf(duplicatedFontSize) === index
+      )
+    );
     setIsOpen((prev) => ({ ...prev, isFontsOpen: !prev.isFontsOpen }));
   };
 
@@ -157,9 +173,7 @@ export default function Header() {
                       selected.selectedFont === "medium" ? styles.selected : ""
                     }`}
                     onClick={() => {
-                      fontSizes.find(
-                        (fontSize) => fontSize === FontSize.Medium
-                      ) && handleFontSizeSelect(FontSize.Medium);
+                      findFontSize(FontSize.Medium, "medium");
                     }}
                   >
                     Aa
@@ -169,7 +183,11 @@ export default function Header() {
                     className={`${styles["small-font-size"]} ${
                       selected.selectedFont === "small" ? styles.selected : ""
                     }`}
-                    onClick={() => {}}
+                    onClick={() => {
+                      fontSizes.find(
+                        (fontSize) => fontSize === FontSize.Small
+                      ) && handleFontSizeSelect(FontSize.Small);
+                    }}
                   >
                     Aa
                     <span>small</span>
@@ -215,17 +233,19 @@ export default function Header() {
 
               {isOpen.isFontsOpen && (
                 <div className={styles["font-sizes-list"]}>
-                  {fontSizes.map((fontSize) => (
-                    <button
-                      key={fontSize}
-                      onClick={() => {
-                        handleFontSizeSelect(fontSize);
-                      }}
-                      className={`${styles["font-size"]} ${styles[fontSize]}`}
-                    >
-                      Aa
-                    </button>
-                  ))}
+                  {fontSizes
+                    .filter((fontSize) => fontSize !== selected.selectedFont)
+                    .map((fontSize) => (
+                      <button
+                        key={fontSize}
+                        onClick={() => {
+                          handleFontSizeSelect(fontSize);
+                        }}
+                        className={`${styles["font-size"]} ${styles[fontSize]}`}
+                      >
+                        Aa
+                      </button>
+                    ))}
                 </div>
               )}
             </>
