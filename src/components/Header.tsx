@@ -7,6 +7,17 @@ import brightIcon from "../images/bright-mode-icon.png";
 import darkIcon from "../images/dark-mode-icon.png";
 import styles from "../styles/components/header.module.css";
 
+enum Theme {
+  Light = "light",
+  Dark = "dark",
+}
+
+enum FontSize {
+  Small = "small",
+  Medium = "medium",
+  Large = "large",
+}
+
 interface IsOpenProps {
   isSettingsOpen: boolean;
   isFontsOpen: boolean;
@@ -24,18 +35,37 @@ export default function Header() {
     isFontsOpen: false,
   });
   const [selected, setSelected] = useState<SelectedProps>({
-    selectedTheme: "light",
-    selectedFont: "medium",
+    selectedTheme: Theme.Light,
+    selectedFont: FontSize.Medium,
   });
-  const [fontSizes, setFontSizes] = useState<string[]>(["small", "large"]);
+  const [fontSizes, setFontSizes] = useState<FontSize[]>([
+    ...Object.values(FontSize),
+  ]);
 
-  const handleFontSizeSelect = (chosenFontSize: string) => {
-    const newFontSizes = fontSizes.map((fontSize) =>
+  const findFontSize = (
+    chosenFontSize: FontSize,
+    fontSizeType: string
+  ): void => {
+    Object.values(FontSize).find(
+      (fontSizeVal) => fontSizeVal === fontSizeType
+    ) && handleFontSizeSelect(chosenFontSize);
+  };
+
+  const handleFontSizeSelect = (chosenFontSize: FontSize) => {
+    const newFontSizes: FontSize[] = fontSizes.map((fontSize) =>
       fontSize === chosenFontSize ? selected.selectedFont : fontSize
-    );
+    ) as FontSize[];
 
     setSelected((prev) => ({ ...prev, selectedFont: chosenFontSize }));
-    setFontSizes(newFontSizes);
+    setFontSizes(
+      newFontSizes.filter(
+        (
+          duplicatedFontSize: FontSize,
+          index: number,
+          initialArray: FontSize[]
+        ) => initialArray.indexOf(duplicatedFontSize) === index
+      )
+    );
     setIsOpen((prev) => ({ ...prev, isFontsOpen: !prev.isFontsOpen }));
   };
 
@@ -128,8 +158,9 @@ export default function Header() {
                       selected.selectedFont === "large" ? styles.selected : ""
                     }`}
                     onClick={() => {
-                      fontSizes.find((fontSize) => fontSize === "large") &&
-                        handleFontSizeSelect("large");
+                      fontSizes.find(
+                        (fontSize) => fontSize === FontSize.Large
+                      ) && handleFontSizeSelect(FontSize.Large);
                     }}
                   >
                     Aa
@@ -140,8 +171,7 @@ export default function Header() {
                       selected.selectedFont === "medium" ? styles.selected : ""
                     }`}
                     onClick={() => {
-                      fontSizes.find((fontSize) => fontSize === "medium") &&
-                        handleFontSizeSelect("medium");
+                      findFontSize(FontSize.Medium, "medium");
                     }}
                   >
                     Aa
@@ -152,8 +182,9 @@ export default function Header() {
                       selected.selectedFont === "small" ? styles.selected : ""
                     }`}
                     onClick={() => {
-                      fontSizes.find((fontSize) => fontSize === "small") &&
-                        handleFontSizeSelect("small");
+                      fontSizes.find(
+                        (fontSize) => fontSize === FontSize.Small
+                      ) && handleFontSizeSelect(FontSize.Small);
                     }}
                   >
                     Aa
@@ -200,17 +231,19 @@ export default function Header() {
 
               {isOpen.isFontsOpen && (
                 <div className={styles["font-sizes-list"]}>
-                  {fontSizes.map((fontSize) => (
-                    <button
-                      key={fontSize}
-                      onClick={() => {
-                        handleFontSizeSelect(fontSize);
-                      }}
-                      className={`${styles["font-size"]} ${styles[fontSize]}`}
-                    >
-                      Aa
-                    </button>
-                  ))}
+                  {fontSizes
+                    .filter((fontSize) => fontSize !== selected.selectedFont)
+                    .map((fontSize) => (
+                      <button
+                        key={fontSize}
+                        onClick={() => {
+                          handleFontSizeSelect(fontSize);
+                        }}
+                        className={`${styles["font-size"]} ${styles[fontSize]}`}
+                      >
+                        Aa
+                      </button>
+                    ))}
                 </div>
               )}
             </>
