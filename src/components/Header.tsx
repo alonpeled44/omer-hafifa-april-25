@@ -39,9 +39,7 @@ export default function Header() {
     selectedFont: FontSize.Medium,
   });
   const [fontSizes, setFontSizes] = useState<FontSize[]>([
-    FontSize.Small,
-    FontSize.Medium,
-    FontSize.Large,
+    ...Object.values(FontSize),
   ]);
 
   const findFontSize = (
