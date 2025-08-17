@@ -1,16 +1,18 @@
 import styles from "../styles/components/select.module.css";
 
-interface SelectProps {
+type SelectedValues<T extends boolean> = T extends true ? string[] : string;
+
+interface SelectProps<T extends boolean> {
   isOpen: boolean;
   setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
   options: string[];
   title: string;
-  multiple: boolean;
-  selectedOptions: string[] | string;
-  setSelectedOptions: React.Dispatch<React.SetStateAction<string[] | string>>;
+  multiple: T;
+  selectedOptions: SelectedValues<T>;
+  setSelectedOptions: React.Dispatch<React.SetStateAction<SelectedValues<T>>>;
 }
 
-export default function Select({
+export default function Select<T extends boolean>({
   isOpen,
   setIsOpen,
   options,
@@ -18,7 +20,7 @@ export default function Select({
   multiple,
   selectedOptions,
   setSelectedOptions,
-}: SelectProps) {
+}: SelectProps<T>) {
   return (
     <div className={styles.select} data-sort-container={!multiple}>
       <button
@@ -39,23 +41,27 @@ export default function Select({
               className={styles.option}
               onClick={() => {
                 if (multiple) {
-                  if (selectedOptions.includes(option)) {
-                    setSelectedOptions((prev: string[]) =>
-                      prev.filter((item) => item !== option)
-                    );
-                  } else {
-                    setSelectedOptions((prev) => [...prev, option]);
-                  }
+                  setSelectedOptions((prev) => {
+                    const currentOptions = prev as string[];
+                    if (currentOptions.includes(option)) {
+                      return currentOptions.filter(
+                        (item) => item !== option
+                      ) as SelectedValues<T>;
+                    }
+                    return [...currentOptions, option] as SelectedValues<T>;
+                  });
                 } else {
-                  setSelectedOptions(option);
+                  setSelectedOptions(option as SelectedValues<T>);
                 }
               }}
             >
               {
                 <>
                   {option}
-                  {(multiple && Array.isArray(selectedOptions)
-                    ? selectedOptions.find((opt) => opt === option)
+                  {(multiple
+                    ? (selectedOptions as string[]).find(
+                        (opt) => opt === option
+                      )
                     : option === selectedOptions) && <span>&#10003;</span>}
                 </>
               }
