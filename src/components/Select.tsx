@@ -1,6 +1,6 @@
 import styles from "../styles/components/select.module.css";
 
-type SelectedValues<T extends boolean> = T extends true ? string[] : string;
+type SelectedValues<T extends boolean> = T extends true ? string[] : string; // eliminates runtime check to see if the selectedOptions is an array.
 
 interface SelectProps<T extends boolean> {
   isOpen: boolean;
