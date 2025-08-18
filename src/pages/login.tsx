@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import { useScreenWidth } from "../libs/ScreenContext";
+import getUsers from "@/libs/useUser";
 import styles from "../styles/pages/login.module.css";
 
 interface LoggedUserProps {
@@ -14,6 +15,14 @@ const usersData: LoggedUserProps[] = [
   { username: "1111", password: "2234rrr" },
 ];
 
+interface Users {
+  id: number;
+  username: string;
+  password: string;
+  theme: string;
+  fontSize: string;
+}
+
 export default function Login() {
   const [loggedUser, setLoggedUser] = useState<LoggedUserProps | null>(null);
 
@@ -24,6 +33,12 @@ export default function Login() {
   const screenWidth = useScreenWidth();
 
   const router = useRouter();
+
+  const currentUser = getUsers();
+
+  useEffect(() => {
+    console.log(Promise.toString());
+  }, []);
 
   useEffect(() => {
     const currentUsername: string = localStorage.getItem("username");
