@@ -6,6 +6,8 @@ import settingsIcon from "../images/settings-icon.png";
 import brightIcon from "../images/bright-mode-icon.png";
 import darkIcon from "../images/dark-mode-icon.png";
 import styles from "../styles/components/header.module.css";
+import getUsers from "@/libs/useUser";
+import { updateUserApi } from "@/libs/useUser";
 
 enum Theme {
   Light = "light",
@@ -28,8 +30,18 @@ interface SelectedProps {
   selectedFont: string;
 }
 
+interface Users {
+  id: number;
+  username: string;
+  password: string;
+  theme: string;
+  fontSize: string;
+}
+
 export default function Header() {
   const screenWidth = useScreenWidth();
+  const currentUser = getUsers();
+  const [user, setUser] = useState<Users | undefined>();
   const [isOpen, setIsOpen] = useState<IsOpenProps>({
     isSettingsOpen: false,
     isFontsOpen: false,
@@ -41,6 +53,31 @@ export default function Header() {
   const [fontSizes, setFontSizes] = useState<FontSize[]>([
     ...Object.values(FontSize),
   ]);
+
+  useEffect(() => {
+    currentUser
+      .then((resolved) => {
+        if (resolved) {
+          const userId = parseInt(localStorage.getItem("id") || "0", 10);
+          const foundUser = resolved.find((user) => user.id === userId);
+          if (foundUser) {
+            setUser(foundUser);
+            setSelected({
+              selectedTheme: foundUser.theme,
+              selectedFont: foundUser.fontSize,
+            });
+          } else {
+            throw new Error("User not found");
+          }
+        } else {
+          throw new Error("No users fetched");
+        }
+      })
+      .catch((err) => {
+        console.error("Error fetching users:", err);
+        throw new Error("Failed to load user data");
+      });
+  }, []);
 
   const findFontSize = (
     chosenFontSize: FontSize,
@@ -67,6 +104,35 @@ export default function Header() {
       )
     );
     setIsOpen((prev) => ({ ...prev, isFontsOpen: !prev.isFontsOpen }));
+  };
+
+  // Update database when theme or font size changes
+  const handleUpdateUser = async (updates: {
+    theme?: string;
+    fontSize?: string;
+  }) => {
+    if (!user) {
+      throw new Error("No user selected");
+    }
+    const result = await updateUserApi(user.id, updates);
+    if (result.success) {
+      console.log(result.message, result.updatedUser);
+      // Update local user state
+      setUser((prev) => (prev ? { ...prev, ...updates } : prev));
+    } else {
+      throw new Error(result.message);
+    }
+  };
+
+  const handleThemeSelect = (theme: Theme) => {
+    setSelected((prev) => ({ ...prev, selectedTheme: theme }));
+    handleUpdateUser({ theme });
+  };
+
+  const handleFontSizeSelecttemp = (fontSize: FontSize) => {
+    setSelected((prev) => ({ ...prev, selectedFont: fontSize }));
+    handleUpdateUser({ fontSize });
+    setIsOpen((prev) => ({ ...prev, isFontsOpen: false }));
   };
 
   useEffect(() => {
@@ -124,12 +190,7 @@ export default function Header() {
                     className={`${styles["theme-button"]} ${
                       selected.selectedTheme === "dark" ? styles.selected : ""
                     }`}
-                    onClick={() => {
-                      setSelected((prev) => ({
-                        ...prev,
-                        selectedTheme: "dark",
-                      }));
-                    }}
+                    onClick={() => handleThemeSelect(Theme.Dark)}
                   >
                     <img src={darkIcon.src} />
                     <span>dark</span>
@@ -138,12 +199,7 @@ export default function Header() {
                     className={`${styles["theme-button"]} ${
                       selected.selectedTheme === "light" ? styles.selected : ""
                     }`}
-                    onClick={() => {
-                      setSelected((prev) => ({
-                        ...prev,
-                        selectedTheme: "light",
-                      }));
-                    }}
+                    onClick={() => handleThemeSelect(Theme.Light)}
                   >
                     <img src={brightIcon.src} />
                     <span>light</span>

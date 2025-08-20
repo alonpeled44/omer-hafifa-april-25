@@ -21,3 +21,32 @@ export default async function getUsers(): Promise<Users[]> {
     return [];
   }
 }
+
+export async function updateUserApi(
+  id: number,
+  updates: { theme?: string; fontSize?: string }
+) {
+  try {
+    const response = await fetch("/api/users", {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ id, ...updates }),
+    });
+    if (!response.ok) {
+      throw new Error(`Failed to update user: ${response.status}`);
+    }
+    const result = await response.json();
+    return {
+      success: true,
+      message: result.message,
+      updatedUser: result.updatedUser,
+    };
+  } catch (err: unknown) {
+    return {
+      success: false,
+      message: `Error updating user: ${(err as Error).message}`,
+    };
+  }
+}

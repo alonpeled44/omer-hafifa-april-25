@@ -28,11 +28,11 @@ export default function Login() {
 
   const router = useRouter();
 
-  const currentUser = getUsers();
+  const currentUsers = getUsers();
 
   useEffect(() => {
-    const currentUsername: string = localStorage.getItem("username");
-    if (currentUsername) {
+    const currentUserProps: string = localStorage.getItem("id");
+    if (currentUserProps) {
       router.push("/");
     }
   }, [loggedUser]);
@@ -48,7 +48,7 @@ export default function Login() {
           return;
         }
 
-        currentUser
+        currentUsers
           .then((resolve: Users[] | undefined) => {
             if (resolve) {
               const foundUser = resolve.find(
@@ -58,7 +58,8 @@ export default function Login() {
               );
               if (foundUser) {
                 setLoggedUser(foundUser);
-                localStorage && localStorage.setItem("username", username);
+                localStorage &&
+                  localStorage.setItem("id", foundUser.id.toString());
                 setErrorMessage("");
               } else {
                 setErrorMessage("Username or password incorrect");
@@ -107,7 +108,7 @@ export default function Login() {
           type="button"
           onClick={() => {
             setUsername("Guest");
-            localStorage && localStorage.setItem("username", "Guest");
+            localStorage && localStorage.setItem("id", "0");
             router.push("/");
           }}
         >
