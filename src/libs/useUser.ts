@@ -6,15 +6,18 @@ interface Users {
   fontSize: string;
 }
 
-export default async function getUsers() {
+export default async function getUsers(): Promise<Users[]> {
   try {
     const response = await fetch("/api/users");
     if (!response.ok) {
       throw new Error("Failed to fetch users " + response.status);
     }
-    const data: Users[] = await response.json();
+    const jsonResponse = await response.json();
+    const data: Users[] = jsonResponse.data;
+    console.log(data);
     return data;
   } catch (err: unknown) {
     console.error("Database error: ", (err as Error).message);
+    return [];
   }
 }

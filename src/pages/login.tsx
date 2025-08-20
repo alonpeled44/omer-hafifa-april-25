@@ -9,12 +9,6 @@ interface LoggedUserProps {
   password: string;
 }
 
-const usersData: LoggedUserProps[] = [
-  { username: "wer123", password: "gg666" },
-  { username: "ola098", password: "fff3323r" },
-  { username: "1111", password: "2234rrr" },
-];
-
 interface Users {
   id: number;
   username: string;
@@ -37,10 +31,6 @@ export default function Login() {
   const currentUser = getUsers();
 
   useEffect(() => {
-    console.log(Promise.toString());
-  }, []);
-
-  useEffect(() => {
     const currentUsername: string = localStorage.getItem("username");
     if (currentUsername) {
       router.push("/");
@@ -58,19 +48,28 @@ export default function Login() {
           return;
         }
 
-        const foundUser = usersData.find(
-          (currentUser) =>
-            currentUser.username === username &&
-            currentUser.password === password
-        );
-
-        if (foundUser) {
-          setLoggedUser(foundUser);
-          localStorage && localStorage.setItem("username", username);
-          setErrorMessage("");
-        } else {
-          setErrorMessage("Username or password incorrect");
-        }
+        currentUser
+          .then((resolve: Users[] | undefined) => {
+            if (resolve) {
+              const foundUser = resolve.find(
+                (currentUser) =>
+                  currentUser.username === username &&
+                  currentUser.password === password
+              );
+              if (foundUser) {
+                setLoggedUser(foundUser);
+                localStorage && localStorage.setItem("username", username);
+                setErrorMessage("");
+              } else {
+                setErrorMessage("Username or password incorrect");
+              }
+            } else {
+              console.log("No users fetched");
+            }
+          })
+          .catch((err) => {
+            console.error("Error fetching users:", err);
+          });
       }}
     >
       {screenWidth > 1200 && <h1 className={styles["login-header"]}>Login</h1>}
