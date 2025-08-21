@@ -66,6 +66,18 @@ export default function Header() {
               selectedTheme: foundUser.theme,
               selectedFont: foundUser.fontSize,
             });
+          } else if (userId === 0) {
+            setUser({
+              id: 0,
+              username: "guest",
+              password: "none",
+              theme: "light",
+              fontSize: "medium",
+            });
+            setSelected({
+              selectedTheme: "light",
+              selectedFont: "medium",
+            });
           } else {
             throw new Error("User not found");
           }
