@@ -55,7 +55,13 @@ export default async function handler(
         return res.status(404).json({ error: "User not found" });
       }
 
-      res.status(200).json({ message: "User updated successfully" });
+      // Fetch the updated user
+      const updatedUser = await db.get("SELECT * FROM users WHERE id = ?", [id]);
+
+      res.status(200).json({
+        message: "User updated successfully",
+        updatedUser,
+      });
     } else {
       res.status(405).json({ error: "Method not allowed" });
     }
