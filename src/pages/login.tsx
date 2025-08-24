@@ -4,6 +4,17 @@ import { useScreenWidth } from "../libs/ScreenContext";
 import getUsers from "@/libs/useUser";
 import styles from "../styles/pages/login.module.css";
 
+enum Theme {
+  Light = "light",
+  Dark = "dark",
+}
+
+enum FontSize {
+  Small = "small",
+  Medium = "medium",
+  Large = "large",
+}
+
 interface LoggedUserProps {
   username: string;
   password: string;

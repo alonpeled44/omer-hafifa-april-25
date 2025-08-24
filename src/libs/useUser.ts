@@ -14,7 +14,7 @@ export default async function getUsers(): Promise<Users[]> {
     }
     const jsonResponse = await response.json();
     const data: Users[] = jsonResponse.data;
-    console.log(data);
+
     return data;
   } catch (err: unknown) {
     console.error("Database error: ", (err as Error).message);

@@ -41,7 +41,7 @@ interface Users {
 export default function Header() {
   const screenWidth = useScreenWidth();
   const currentUser = getUsers();
-  const [user, setUser] = useState<Users | undefined>();
+  const [user, setUser] = useState<Users | null>(null);
   const [isOpen, setIsOpen] = useState<IsOpenProps>({
     isSettingsOpen: false,
     isFontsOpen: false,
@@ -62,10 +62,6 @@ export default function Header() {
           const foundUser = resolved.find((user) => user.id === userId);
           if (foundUser) {
             setUser(foundUser);
-            setSelected({
-              selectedTheme: foundUser.theme,
-              selectedFont: foundUser.fontSize,
-            });
           } else if (userId === 0) {
             setUser({
               id: 0,
@@ -73,10 +69,6 @@ export default function Header() {
               password: "none",
               theme: "light",
               fontSize: "medium",
-            });
-            setSelected({
-              selectedTheme: "light",
-              selectedFont: "medium",
             });
           } else {
             throw new Error("User not found");
@@ -91,68 +83,60 @@ export default function Header() {
       });
   }, []);
 
-  const findFontSize = (
-    chosenFontSize: FontSize,
-    fontSizeType: string
-  ): void => {
-    Object.values(FontSize).find(
-      (fontSizeVal) => fontSizeVal === fontSizeType
-    ) && handleFontSizeSelect(chosenFontSize);
-  };
-
-  const handleFontSizeSelect = (chosenFontSize: FontSize) => {
-    const newFontSizes: FontSize[] = fontSizes.map((fontSize) =>
-      fontSize === chosenFontSize ? selected.selectedFont : fontSize
-    ) as FontSize[];
-
-    setSelected((prev) => ({ ...prev, selectedFont: chosenFontSize }));
-    setFontSizes(
-      newFontSizes.filter(
-        (
-          duplicatedFontSize: FontSize,
-          index: number,
-          initialArray: FontSize[]
-        ) => initialArray.indexOf(duplicatedFontSize) === index
-      )
-    );
-    setIsOpen((prev) => ({ ...prev, isFontsOpen: !prev.isFontsOpen }));
-  };
-
   // Update database when theme or font size changes
   const handleUpdateUser = async (updates: {
     theme?: string;
     fontSize?: string;
   }) => {
-    if (!user) {
-      throw new Error("No user selected");
-    }
+    if (!user || user.id === 0) return;
+
     const result = await updateUserApi(user.id, updates);
     if (result.success) {
-      console.log(result.message, result.updatedUser);
       // Update local user state
       setUser((prev) => (prev ? { ...prev, ...updates } : prev));
     } else {
-      throw new Error(result.message);
+      console.error(`${result} not successeded with updates:  ${updates}`);
+      return;
     }
   };
 
-  const handleThemeSelect = (theme: Theme) => {
+  useEffect(() => {
+    if (user) {
+      if (
+        user.theme !== selected.selectedTheme ||
+        user.fontSize !== selected.selectedFont
+      ) {
+        handleThemeSelect(user.theme);
+        handleFontSizeSelect(user.fontSize);
+      }
+    } else {
+      return;
+    }
+  }, [user]);
+
+  const handleThemeSelect = (theme: string) => {
     setSelected((prev) => ({ ...prev, selectedTheme: theme }));
-    handleUpdateUser({ theme });
   };
 
-  const handleFontSizeSelecttemp = (fontSize: FontSize) => {
+  const handleFontSizeSelect = (fontSize: string) => {
     setSelected((prev) => ({ ...prev, selectedFont: fontSize }));
-    handleUpdateUser({ fontSize });
     setIsOpen((prev) => ({ ...prev, isFontsOpen: false }));
   };
 
-  useEffect(() => {
+  const changeUiFontAndTheme = () => {
     document.documentElement.setAttribute("data-theme", selected.selectedTheme);
     document.documentElement.setAttribute(
       "data-font-size",
       selected.selectedFont
     );
+  };
+
+  useEffect(() => {
+    const updates: { theme?: string; fontSize?: string } = {};
+    updates.theme = selected.selectedTheme;
+    updates.fontSize = selected.selectedFont;
+    handleUpdateUser(updates);
+    changeUiFontAndTheme();
   }, [selected.selectedTheme, selected.selectedFont]);
 
   return (
@@ -239,7 +223,9 @@ export default function Header() {
                       selected.selectedFont === "medium" ? styles.selected : ""
                     }`}
                     onClick={() => {
-                      findFontSize(FontSize.Medium, "medium");
+                      fontSizes.find(
+                        (fontSize) => fontSize === FontSize.Medium
+                      ) && handleFontSizeSelect(FontSize.Medium);
                     }}
                   >
                     Aa
@@ -271,7 +257,7 @@ export default function Header() {
                       selectedTheme:
                         prev.selectedTheme === "light" ? "dark" : "light",
                     }));
-                    console.log(selected.selectedTheme);
+                    changeUiFontAndTheme();
                   }}
                   className={styles["color-settings"]}
                 >
