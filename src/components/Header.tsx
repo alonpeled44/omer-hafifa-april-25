@@ -1,4 +1,3 @@
-// Header.tsx
 import { useState, useEffect } from "react";
 import { useScreenWidth } from "../libs/ScreenContext";
 import Settings from "./Settings";
@@ -41,7 +40,8 @@ interface Users {
 
 export default function Header() {
   const screenWidth = useScreenWidth();
-  const [user, setUser] = useState<Users | null>(null);
+  const currentUser = getUsers();
+  const [user, setUser] = useState<Users | undefined>();
   const [isOpen, setIsOpen] = useState<IsOpenProps>({
     isSettingsOpen: false,
     isFontsOpen: false,
@@ -50,80 +50,89 @@ export default function Header() {
     selectedTheme: Theme.Light,
     selectedFont: FontSize.Medium,
   });
+  const [fontSizes, setFontSizes] = useState<FontSize[]>([
+    ...Object.values(FontSize),
+  ]);
 
   useEffect(() => {
-    const loadUser = async () => {
-      try {
-        const userId = parseInt(localStorage.getItem("id") || "0", 10);
-        if (userId === 0) {
-          // Guest user
-          setUser({
-            id: 0,
-            username: "guest",
-            password: "none",
-            theme: "light",
-            fontSize: "medium",
-          });
-          setSelected({
-            selectedTheme: "light",
-            selectedFont: "medium",
-          });
-          return;
-        }
-
-        const users = await getUsers();
-        const foundUser = users.find((u) => u.id === userId);
-        if (foundUser) {
-          setUser(foundUser);
-          setSelected({
-            selectedTheme: foundUser.theme,
-            selectedFont: foundUser.fontSize,
-          });
+    currentUser
+      .then((resolved) => {
+        if (resolved) {
+          const userId = parseInt(localStorage.getItem("id") || "0", 10);
+          const foundUser = resolved.find((user) => user.id === userId);
+          if (foundUser) {
+            setUser(foundUser);
+            setSelected({
+              selectedTheme: foundUser.theme,
+              selectedFont: foundUser.fontSize,
+            });
+          } else if (userId === 0) {
+            setUser({
+              id: 0,
+              username: "guest",
+              password: "none",
+              theme: "light",
+              fontSize: "medium",
+            });
+            setSelected({
+              selectedTheme: "light",
+              selectedFont: "medium",
+            });
+          } else {
+            throw new Error("User not found");
+          }
         } else {
-          throw new Error("User not found");
+          throw new Error("No users fetched");
         }
-      } catch (err) {
+      })
+      .catch((err) => {
         console.error("Error fetching users:", err);
-        // Fallback to guest user
-        setUser({
-          id: 0,
-          username: "guest",
-          password: "none",
-          theme: "light",
-          fontSize: "medium",
-        });
-        setSelected({
-          selectedTheme: "light",
-          selectedFont: "medium",
-        });
-      }
-    };
-
-    loadUser();
+        throw new Error("Failed to load user data");
+      });
   }, []);
 
+  const findFontSize = (
+    chosenFontSize: FontSize,
+    fontSizeType: string
+  ): void => {
+    Object.values(FontSize).find(
+      (fontSizeVal) => fontSizeVal === fontSizeType
+    ) && handleFontSizeSelect(chosenFontSize);
+  };
+
+  const handleFontSizeSelect = (chosenFontSize: FontSize) => {
+    const newFontSizes: FontSize[] = fontSizes.map((fontSize) =>
+      fontSize === chosenFontSize ? selected.selectedFont : fontSize
+    ) as FontSize[];
+
+    setSelected((prev) => ({ ...prev, selectedFont: chosenFontSize }));
+    setFontSizes(
+      newFontSizes.filter(
+        (
+          duplicatedFontSize: FontSize,
+          index: number,
+          initialArray: FontSize[]
+        ) => initialArray.indexOf(duplicatedFontSize) === index
+      )
+    );
+    setIsOpen((prev) => ({ ...prev, isFontsOpen: !prev.isFontsOpen }));
+  };
+
+  // Update database when theme or font size changes
   const handleUpdateUser = async (updates: {
     theme?: string;
     fontSize?: string;
   }) => {
-    if (!user || user.id === 0) {
-      // Don't update database for guest user
-      setUser((prev) =>
-        prev ? { ...prev, ...updates } : prev
-      );
-      setSelected((prev) => ({ ...prev, ...updates }));
-      return;
+    if (!user) {
+      throw new Error("No user selected");
     }
-    try {
-      const result = await updateUserApi(user.id, updates);
-      if (result.success) {
-        console.log(result.message, result.updatedUser);
-        setUser((prev) => (prev ? { ...prev, ...updates } : prev));
-      } else {
-        throw new Error(result.message);
-      }
-    } catch (err) {
-      console.error("Error updating user:", err);
+    const result = await updateUserApi(user.id, updates);
+    if (result.success) {
+      console.log(result.message, result.updatedUser);
+      // Update local user state
+      setUser((prev) => (prev ? { ...prev, ...updates } : prev));
+    } else {
+      throw new Error(result.message);
     }
   };
 
@@ -132,7 +141,7 @@ export default function Header() {
     handleUpdateUser({ theme });
   };
 
-  const handleFontSizeSelect = (fontSize: FontSize) => {
+  const handleFontSizeSelecttemp = (fontSize: FontSize) => {
     setSelected((prev) => ({ ...prev, selectedFont: fontSize }));
     handleUpdateUser({ fontSize });
     setIsOpen((prev) => ({ ...prev, isFontsOpen: false }));
@@ -216,7 +225,11 @@ export default function Header() {
                     className={`${styles["large-font-size"]} ${
                       selected.selectedFont === "large" ? styles.selected : ""
                     }`}
-                    onClick={() => handleFontSizeSelect(FontSize.Large)}
+                    onClick={() => {
+                      fontSizes.find(
+                        (fontSize) => fontSize === FontSize.Large
+                      ) && handleFontSizeSelect(FontSize.Large);
+                    }}
                   >
                     Aa
                     <span>large</span>
@@ -225,7 +238,9 @@ export default function Header() {
                     className={`${styles["medium-font-size"]} ${
                       selected.selectedFont === "medium" ? styles.selected : ""
                     }`}
-                    onClick={() => handleFontSizeSelect(FontSize.Medium)}
+                    onClick={() => {
+                      findFontSize(FontSize.Medium, "medium");
+                    }}
                   >
                     Aa
                     <span>medium</span>
@@ -234,7 +249,11 @@ export default function Header() {
                     className={`${styles["small-font-size"]} ${
                       selected.selectedFont === "small" ? styles.selected : ""
                     }`}
-                    onClick={() => handleFontSizeSelect(FontSize.Small)}
+                    onClick={() => {
+                      fontSizes.find(
+                        (fontSize) => fontSize === FontSize.Small
+                      ) && handleFontSizeSelect(FontSize.Small);
+                    }}
                   >
                     Aa
                     <span>small</span>
@@ -280,12 +299,14 @@ export default function Header() {
 
               {isOpen.isFontsOpen && (
                 <div className={styles["font-sizes-list"]}>
-                  {Object.values(FontSize)
+                  {fontSizes
                     .filter((fontSize) => fontSize !== selected.selectedFont)
                     .map((fontSize) => (
                       <button
                         key={fontSize}
-                        onClick={() => handleFontSizeSelect(fontSize)}
+                        onClick={() => {
+                          handleFontSizeSelect(fontSize);
+                        }}
                         className={`${styles["font-size"]} ${styles[fontSize]}`}
                       >
                         Aa

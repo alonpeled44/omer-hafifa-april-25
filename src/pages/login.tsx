@@ -4,17 +4,6 @@ import { useScreenWidth } from "../libs/ScreenContext";
 import getUsers from "@/libs/useUser";
 import styles from "../styles/pages/login.module.css";
 
-enum Theme {
-  Light = "light",
-  Dark = "dark",
-}
-
-enum FontSize {
-  Small = "small",
-  Medium = "medium",
-  Large = "large",
-}
-
 interface LoggedUserProps {
   username: string;
   password: string;
@@ -42,42 +31,16 @@ export default function Login() {
   const currentUsers = getUsers();
 
   useEffect(() => {
-    const userId = localStorage.getItem("id");
-    if (userId) {
-      console.log("User ID in localStorage on mount:", userId); // Debug log
-      // Load settings for already logged-in user
-      const loadSettings = async () => {
-        try {
-          const id = parseInt(userId, 10);
-          if (id === 0) {
-            // Guest user
-            document.documentElement.setAttribute("data-theme", Theme.Light);
-            document.documentElement.setAttribute("data-font-size", FontSize.Medium);
-            console.log("Applied guest settings: light, medium");
-          } else {
-            const users = await getUsers();
-            const foundUser = users.find((u) => u.id === id);
-            if (foundUser) {
-              document.documentElement.setAttribute("data-theme", foundUser.theme);
-              document.documentElement.setAttribute("data-font-size", foundUser.fontSize);
-              console.log("Applied user settings:", foundUser.theme, foundUser.fontSize);
-            }
-          }
-        } catch (err) {
-          console.error("Error loading settings:", err);
-          // Fallback to defaults
-          document.documentElement.setAttribute("data-theme", Theme.Light);
-          document.documentElement.setAttribute("data-font-size", FontSize.Medium);
-        }
-      };
-      loadSettings();
+    const currentUserProps: string = localStorage.getItem("id");
+    if (currentUserProps) {
+      router.push("/");
     }
-  }, []);
+  }, [loggedUser]);
 
   return (
     <form
       className={styles["login-form"]}
-      onSubmit={async(event) => {
+      onSubmit={(event) => {
         event.preventDefault();
 
         if (username === "" || password === "") {
@@ -85,29 +48,29 @@ export default function Login() {
           return;
         }
 
-        try {
-      const users = await getUsers();
-      console.log("Users during login:", users); // Debug log
-      const foundUser = users.find(
-        (user) => user.username === username && user.password === password
-      );
-      if (foundUser) {
-        setLoggedUser({ username: foundUser.username, password: foundUser.password });
-        localStorage.setItem("id", foundUser.id.toString());
-        console.log("Logged in user ID:", foundUser.id); // Debug log
-        // Apply settings immediately
-        document.documentElement.setAttribute("data-theme", foundUser.theme);
-        document.documentElement.setAttribute("data-font-size", foundUser.fontSize);
-        console.log("Applied settings after login:", foundUser.theme, foundUser.fontSize);
-        setErrorMessage("");
-        router.push("/");
-      } else {
-        setErrorMessage("Username or password incorrect");
-      }
-    } catch (err) {
-      console.error("Error fetching users:", err);
-      setErrorMessage("Failed to fetch users");
-    }
+        currentUsers
+          .then((resolve: Users[] | undefined) => {
+            if (resolve) {
+              const foundUser = resolve.find(
+                (currentUser) =>
+                  currentUser.username === username &&
+                  currentUser.password === password
+              );
+              if (foundUser) {
+                setLoggedUser(foundUser);
+                localStorage &&
+                  localStorage.setItem("id", foundUser.id.toString());
+                setErrorMessage("");
+              } else {
+                setErrorMessage("Username or password incorrect");
+              }
+            } else {
+              console.log("No users fetched");
+            }
+          })
+          .catch((err) => {
+            console.error("Error fetching users:", err);
+          });
       }}
     >
       {screenWidth > 1200 && <h1 className={styles["login-header"]}>Login</h1>}
@@ -146,11 +109,6 @@ export default function Login() {
           onClick={() => {
             setUsername("Guest");
             localStorage && localStorage.setItem("id", "0");
-            console.log("Guest login, ID set to 0"); // Debug log
-            // Apply guest settings
-            document.documentElement.setAttribute("data-theme", Theme.Light);
-            document.documentElement.setAttribute("data-font-size", FontSize.Medium);
-            console.log("Applied guest settings: light, medium");
             router.push("/");
           }}
         >

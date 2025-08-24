@@ -56,7 +56,9 @@ export default async function handler(
       }
 
       // Fetch the updated user
-      const updatedUser = await db.get("SELECT * FROM users WHERE id = ?", [id]);
+      const updatedUser = await db.get("SELECT * FROM users WHERE id = ?", [
+        id,
+      ]);
 
       res.status(200).json({
         message: "User updated successfully",

@@ -9,8 +9,8 @@ export default function App({ Component, pageProps }) {
   const router = useRouter();
 
   useEffect(() => {
-    const username: string = localStorage.getItem("username");
-    if (!username) {
+    const userId: string = localStorage.getItem("id");
+    if (!userId) {
       router.push("/login");
     }
   }, []);
