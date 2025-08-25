@@ -53,16 +53,26 @@ export default function Header() {
   const [fontSizes, setFontSizes] = useState<FontSize[]>([
     ...Object.values(FontSize),
   ]);
+  const [userId, setUserId] = useState<number>(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      const newId = parseInt(localStorage.getItem("id") || "0", 10);
+      setUserId((prevId) => (prevId !== newId ? newId : prevId));
+    }, 500);
+
+    return () => clearInterval(interval);
+  }, []);
 
   useEffect(() => {
     currentUser
       .then((resolved) => {
         if (resolved) {
-          const userId = parseInt(localStorage.getItem("id") || "0", 10);
-          const foundUser = resolved.find((user) => user.id === userId);
+          const userIdNum = parseInt(localStorage.getItem("id") || "0", 10);
+          const foundUser = resolved.find((user) => user.id === userIdNum);
           if (foundUser) {
             setUser(foundUser);
-          } else if (userId === 0) {
+          } else if (userIdNum === 0) {
             setUser({
               id: 0,
               username: "guest",
@@ -81,7 +91,29 @@ export default function Header() {
         console.error("Error fetching users:", err);
         throw new Error("Failed to load user data");
       });
-  }, []);
+  }, [userId]);
+
+  useEffect(() => {
+    if (user) {
+      if (
+        user.theme !== selected.selectedTheme ||
+        user.fontSize !== selected.selectedFont
+      ) {
+        handleThemeSelect(user.theme);
+        handleFontSizeSelect(user.fontSize);
+      }
+    } else {
+      return;
+    }
+  }, [user]);
+
+  useEffect(() => {
+    const updates: { theme?: string; fontSize?: string } = {};
+    updates.theme = selected.selectedTheme;
+    updates.fontSize = selected.selectedFont;
+    handleUpdateUser(updates);
+    changeUiFontAndTheme();
+  }, [selected.selectedTheme, selected.selectedFont]);
 
   // Update database when theme or font size changes
   const handleUpdateUser = async (updates: {
@@ -100,20 +132,6 @@ export default function Header() {
     }
   };
 
-  useEffect(() => {
-    if (user) {
-      if (
-        user.theme !== selected.selectedTheme ||
-        user.fontSize !== selected.selectedFont
-      ) {
-        handleThemeSelect(user.theme);
-        handleFontSizeSelect(user.fontSize);
-      }
-    } else {
-      return;
-    }
-  }, [user]);
-
   const handleThemeSelect = (theme: string) => {
     setSelected((prev) => ({ ...prev, selectedTheme: theme }));
   };
@@ -130,14 +148,6 @@ export default function Header() {
       selected.selectedFont
     );
   };
-
-  useEffect(() => {
-    const updates: { theme?: string; fontSize?: string } = {};
-    updates.theme = selected.selectedTheme;
-    updates.fontSize = selected.selectedFont;
-    handleUpdateUser(updates);
-    changeUiFontAndTheme();
-  }, [selected.selectedTheme, selected.selectedFont]);
 
   return (
     <header className={styles.header}>
