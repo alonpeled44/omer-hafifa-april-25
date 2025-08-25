@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import { useScreenWidth } from "../libs/ScreenContext";
+import getUsers from "@/libs/useUser";
 import styles from "../styles/pages/login.module.css";
 
 interface LoggedUserProps {
@@ -8,11 +9,13 @@ interface LoggedUserProps {
   password: string;
 }
 
-const usersData: LoggedUserProps[] = [
-  { username: "wer123", password: "gg666" },
-  { username: "ola098", password: "fff3323r" },
-  { username: "1111", password: "2234rrr" },
-];
+interface Users {
+  id: number;
+  username: string;
+  password: string;
+  theme: string;
+  fontSize: string;
+}
 
 export default function Login() {
   const [loggedUser, setLoggedUser] = useState<LoggedUserProps | null>(null);
@@ -25,9 +28,11 @@ export default function Login() {
 
   const router = useRouter();
 
+  const currentUsers = getUsers();
+
   useEffect(() => {
-    const currentUsername: string = localStorage.getItem("username");
-    if (currentUsername) {
+    const currentUserProps: string = localStorage.getItem("id");
+    if (currentUserProps) {
       router.push("/");
     }
   }, [loggedUser]);
@@ -43,19 +48,29 @@ export default function Login() {
           return;
         }
 
-        const foundUser = usersData.find(
-          (currentUser) =>
-            currentUser.username === username &&
-            currentUser.password === password
-        );
-
-        if (foundUser) {
-          setLoggedUser(foundUser);
-          localStorage && localStorage.setItem("username", username);
-          setErrorMessage("");
-        } else {
-          setErrorMessage("Username or password incorrect");
-        }
+        currentUsers
+          .then((resolve: Users[] | undefined) => {
+            if (resolve) {
+              const foundUser = resolve.find(
+                (currentUser) =>
+                  currentUser.username === username &&
+                  currentUser.password === password
+              );
+              if (foundUser) {
+                setLoggedUser(foundUser);
+                localStorage &&
+                  localStorage.setItem("id", foundUser.id.toString());
+                setErrorMessage("");
+              } else {
+                setErrorMessage("Username or password incorrect");
+              }
+            } else {
+              console.log("No users fetched");
+            }
+          })
+          .catch((err) => {
+            console.error("Error fetching users:", err);
+          });
       }}
     >
       {screenWidth > 1200 && <h1 className={styles["login-header"]}>Login</h1>}
@@ -93,7 +108,7 @@ export default function Login() {
           type="button"
           onClick={() => {
             setUsername("Guest");
-            localStorage && localStorage.setItem("username", "Guest");
+            localStorage && localStorage.setItem("id", "0");
             router.push("/");
           }}
         >
