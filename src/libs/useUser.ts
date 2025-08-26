@@ -7,8 +7,8 @@ export default async function getUsers() {
       throw new Error("Failed to fetch users " + response.status);
     }
 
-    const users: User[] = await response.json();
-    return users;
+    const { data }: { data: User[] } = await response.json();
+    return data;
   } catch (err: unknown) {
     console.error("Database error: ", (err as Error).message);
     return [];

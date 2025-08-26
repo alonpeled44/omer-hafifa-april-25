@@ -7,32 +7,38 @@ import { DigimonsDbProvider } from "../libs/DigimonsDbContext";
 import UserProvider, { useUser } from "@/libs/UserContext";
 
 export default function App({ Component, pageProps }) {
-  const user = useUser();
-  const router = useRouter();
-
-  useEffect(() => {
-    if (location.pathname === "/login") {
-      if (user) {
-        location.pathname = "/";
-      }
-    } else if (location.pathname === "/") {
-      if (!user) {
-        location.pathname = "/login";
-      }
-    }
-    router.push(location.pathname);
-  }, []);
-
   return (
     <UserProvider>
       <ScreenWidthProvider>
-        <Header />
-        <DigimonsDbProvider>
-          <main>
-            <Component {...pageProps} />
-          </main>
-        </DigimonsDbProvider>
+        <InnerApp Component={Component} pageProps={pageProps} />
       </ScreenWidthProvider>
     </UserProvider>
+  );
+}
+
+function InnerApp({ Component, pageProps }) {
+  const [user] = useUser();
+  const router = useRouter();
+
+  useEffect(() => {
+    // Wait until user state is known
+    if (user === null) return;
+
+    if (router.pathname === "/login" && user) {
+      router.push("/");
+    } else if (router.pathname === "/" && !user) {
+      router.push("/login");
+    }
+  }, [user, router]);
+
+  return (
+    <>
+      <Header />
+      <DigimonsDbProvider>
+        <main>
+          <Component {...pageProps} />
+        </main>
+      </DigimonsDbProvider>
+    </>
   );
 }

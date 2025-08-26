@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import { useScreenWidth } from "../libs/ScreenContext";
-import { getUsers } from "@/libs/useUser";
+import getUsers from "@/libs/useUser";
 import { FontSize, Theme, User } from "@/libs/types";
 import { useUser } from "@/libs/UserContext";
 import styles from "../styles/pages/login.module.css";
@@ -34,7 +34,7 @@ export default function Login() {
   const setToHomePage = () => router.push("/");
 
   const fetchUsers = useCallback(async () => {
-    const usersList = (await getUsers()).users;
+    const usersList = await getUsers();
     setUsers(usersList);
   }, []);
 

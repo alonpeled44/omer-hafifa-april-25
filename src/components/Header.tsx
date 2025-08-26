@@ -35,14 +35,16 @@ export default function Header() {
   });
 
   useEffect(() => {
-    if (user[0]) {
-      setCurrentUser(user[0]);
-      setSelected({
-        theme: user[0].theme,
-        fontSize: user[0].fontSize,
-      });
-    }
-  }, []);
+  if (user && user[0]) {
+    setCurrentUser(user[0]);
+    setSelected({
+      theme: user[0].theme,
+      fontSize: user[0].fontSize,
+    });
+    changeUiFontAndTheme(); // apply immediately on load
+  }
+}, [user]);
+
 
   useEffect(() => {
     const updates: Partial<UserSettings> = {};
@@ -59,7 +61,9 @@ export default function Header() {
     const result = await updateUserApi(currentUser.id, updates);
     if (result.success) {
       // Update local user state
-      setCurrentUser((prev) => ({ ...prev, ...updates }));
+      const updatedUser = { ...currentUser, ...updates };
+      setCurrentUser(updatedUser);
+      user[1](updatedUser);
     } else {
       console.error(`${result} not successeded with updates:  ${updates}`);
       return;
