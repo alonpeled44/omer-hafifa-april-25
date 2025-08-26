@@ -8,145 +8,64 @@ import darkIcon from "../images/dark-mode-icon.png";
 import styles from "../styles/components/header.module.css";
 import getUsers from "@/libs/useUser";
 import { updateUserApi } from "@/libs/useUser";
-
-enum Theme {
-  Light = "light",
-  Dark = "dark",
-}
-
-enum FontSize {
-  Small = "small",
-  Medium = "medium",
-  Large = "large",
-}
+import { FontSize, Theme, User } from "@/libs/Types";
 
 interface IsOpenProps {
   isSettingsOpen: boolean;
   isFontsOpen: boolean;
 }
 
-interface SelectedProps {
-  selectedTheme: string;
-  selectedFont: string;
-}
+type UserSettings = Pick<User, "theme" | "fontSize">;
 
-interface Users {
-  id: number;
-  username: string;
-  password: string;
-  theme: string;
-  fontSize: string;
-}
+const fontSizes = [...Object.values(FontSize)];
 
 export default function Header() {
   const screenWidth = useScreenWidth();
   const currentUser = getUsers();
-  const [user, setUser] = useState<Users | null>(null);
+  const [user, setCurrentUser] = useState<User | null>(null);
   const [isOpen, setIsOpen] = useState<IsOpenProps>({
     isSettingsOpen: false,
     isFontsOpen: false,
   });
-  const [selected, setSelected] = useState<SelectedProps>({
-    selectedTheme: Theme.Light,
-    selectedFont: FontSize.Medium,
+  const [selected, setSelected] = useState<UserSettings>({
+    theme: Theme.Light,
+    fontSize: FontSize.Medium,
   });
-  const [fontSizes, setFontSizes] = useState<FontSize[]>([
-    ...Object.values(FontSize),
-  ]);
-  const [userId, setUserId] = useState<number>(0);
 
   useEffect(() => {
-    const interval = setInterval(() => {
-      const newId = parseInt(localStorage.getItem("id") || "0", 10);
-      setUserId((prevId) => (prevId !== newId ? newId : prevId));
-    }, 500);
-
-    return () => clearInterval(interval);
-  }, []);
-
-  useEffect(() => {
-    currentUser
-      .then((resolved) => {
-        if (resolved) {
-          const userIdNum = parseInt(localStorage.getItem("id") || "0", 10);
-          const foundUser = resolved.find((user) => user.id === userIdNum);
-          if (foundUser) {
-            setUser(foundUser);
-          } else if (userIdNum === 0) {
-            setUser({
-              id: 0,
-              username: "guest",
-              password: "none",
-              theme: "light",
-              fontSize: "medium",
-            });
-          } else {
-            throw new Error("User not found");
-          }
-        } else {
-          throw new Error("No users fetched");
-        }
-      })
-      .catch((err) => {
-        console.error("Error fetching users:", err);
-        throw new Error("Failed to load user data");
-      });
-  }, [userId]);
-
-  useEffect(() => {
-    if (user) {
-      if (
-        user.theme !== selected.selectedTheme ||
-        user.fontSize !== selected.selectedFont
-      ) {
-        handleThemeSelect(user.theme);
-        handleFontSizeSelect(user.fontSize);
-      }
-    } else {
-      return;
-    }
-  }, [user]);
-
-  useEffect(() => {
-    const updates: { theme?: string; fontSize?: string } = {};
-    updates.theme = selected.selectedTheme;
-    updates.fontSize = selected.selectedFont;
+    const updates: Partial<UserSettings> = {};
+    updates.theme = selected.theme;
+    updates.fontSize = selected.fontSize;
     handleUpdateUser(updates);
     changeUiFontAndTheme();
-  }, [selected.selectedTheme, selected.selectedFont]);
+  }, [selected]);
 
   // Update database when theme or font size changes
-  const handleUpdateUser = async (updates: {
-    theme?: string;
-    fontSize?: string;
-  }) => {
+  const handleUpdateUser = async (updates: Partial<UserSettings>) => {
     if (!user || user.id === 0) return;
 
     const result = await updateUserApi(user.id, updates);
     if (result.success) {
       // Update local user state
-      setUser((prev) => (prev ? { ...prev, ...updates } : prev));
+      setCurrentUser((prev) => ({ ...prev, ...updates }));
     } else {
       console.error(`${result} not successeded with updates:  ${updates}`);
       return;
     }
   };
 
-  const handleThemeSelect = (theme: string) => {
-    setSelected((prev) => ({ ...prev, selectedTheme: theme }));
+  const handleThemeSelect = (theme: Theme) => {
+    setSelected((prev) => ({ ...prev, theme: theme }));
   };
 
-  const handleFontSizeSelect = (fontSize: string) => {
-    setSelected((prev) => ({ ...prev, selectedFont: fontSize }));
+  const handleFontSizeSelect = (fontSize: FontSize) => {
+    setSelected((prev) => ({ ...prev, fontSize: fontSize }));
     setIsOpen((prev) => ({ ...prev, isFontsOpen: false }));
   };
 
   const changeUiFontAndTheme = () => {
-    document.documentElement.setAttribute("data-theme", selected.selectedTheme);
-    document.documentElement.setAttribute(
-      "data-font-size",
-      selected.selectedFont
-    );
+    document.documentElement.setAttribute("data-theme", selected.theme);
+    document.documentElement.setAttribute("data-font-size", selected.fontSize);
   };
 
   return (
@@ -194,7 +113,7 @@ export default function Header() {
                 <div className={styles["icons-container"]}>
                   <button
                     className={`${styles["theme-button"]} ${
-                      selected.selectedTheme === "dark" ? styles.selected : ""
+                      selected.theme === "dark" ? styles.selected : ""
                     }`}
                     onClick={() => handleThemeSelect(Theme.Dark)}
                   >
@@ -203,7 +122,7 @@ export default function Header() {
                   </button>
                   <button
                     className={`${styles["theme-button"]} ${
-                      selected.selectedTheme === "light" ? styles.selected : ""
+                      selected.theme === "light" ? styles.selected : ""
                     }`}
                     onClick={() => handleThemeSelect(Theme.Light)}
                   >
@@ -217,7 +136,7 @@ export default function Header() {
                 <div className={styles["icons-container"]}>
                   <button
                     className={`${styles["large-font-size"]} ${
-                      selected.selectedFont === "large" ? styles.selected : ""
+                      selected.fontSize === "large" ? styles.selected : ""
                     }`}
                     onClick={() => {
                       fontSizes.find(
@@ -230,7 +149,7 @@ export default function Header() {
                   </button>
                   <button
                     className={`${styles["medium-font-size"]} ${
-                      selected.selectedFont === "medium" ? styles.selected : ""
+                      selected.fontSize === "medium" ? styles.selected : ""
                     }`}
                     onClick={() => {
                       fontSizes.find(
@@ -243,7 +162,7 @@ export default function Header() {
                   </button>
                   <button
                     className={`${styles["small-font-size"]} ${
-                      selected.selectedFont === "small" ? styles.selected : ""
+                      selected.fontSize === "small" ? styles.selected : ""
                     }`}
                     onClick={() => {
                       fontSizes.find(
@@ -264,21 +183,21 @@ export default function Header() {
                   onClick={() => {
                     setSelected((prev) => ({
                       ...prev,
-                      selectedTheme:
-                        prev.selectedTheme === "light" ? "dark" : "light",
+                      theme:
+                        prev.theme === Theme.Light ? Theme.Dark : Theme.Light,
                     }));
                     changeUiFontAndTheme();
                   }}
                   className={styles["color-settings"]}
                 >
-                  {selected.selectedTheme === "light" ? (
+                  {selected.theme === "light" ? (
                     <img src={brightIcon.src} />
                   ) : (
                     <img src={darkIcon.src} />
                   )}
                 </button>
                 <button
-                  key={selected.selectedFont}
+                  key={selected.fontSize}
                   onClick={() => {
                     setIsOpen((prev) => ({
                       ...prev,
@@ -286,7 +205,7 @@ export default function Header() {
                     }));
                   }}
                   className={`${styles["font-settings"]} ${
-                    styles[selected.selectedFont]
+                    styles[selected.fontSize]
                   }`}
                 >
                   Aa
@@ -296,7 +215,7 @@ export default function Header() {
               {isOpen.isFontsOpen && (
                 <div className={styles["font-sizes-list"]}>
                   {fontSizes
-                    .filter((fontSize) => fontSize !== selected.selectedFont)
+                    .filter((fontSize) => fontSize !== selected.fontSize)
                     .map((fontSize) => (
                       <button
                         key={fontSize}

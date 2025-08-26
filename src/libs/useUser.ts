@@ -1,19 +1,13 @@
-interface Users {
-  id: number;
-  username: string;
-  password: string;
-  theme: string;
-  fontSize: string;
-}
+import { FontSize, Theme, User } from "./Types";
 
-export default async function getUsers(): Promise<Users[]> {
+export default async function getUsers(): Promise<User[]> {
   try {
     const response = await fetch("/api/users");
     if (!response.ok) {
       throw new Error("Failed to fetch users " + response.status);
     }
     const jsonResponse = await response.json();
-    const data: Users[] = jsonResponse.data;
+    const data: User[] = jsonResponse.data;
 
     return data;
   } catch (err: unknown) {
@@ -24,7 +18,7 @@ export default async function getUsers(): Promise<Users[]> {
 
 export async function updateUserApi(
   id: number,
-  updates: { theme?: string; fontSize?: string }
+  updates: { theme?: Theme; fontSize?: FontSize }
 ) {
   try {
     const response = await fetch("/api/users", {
@@ -46,7 +40,7 @@ export async function updateUserApi(
   } catch (err: unknown) {
     return {
       success: false,
-      message: `Error updating user: ${(err as Error).message}`,
+      message: `Error updating user: ${err instanceof Error && err.message}`,
     };
   }
 }
