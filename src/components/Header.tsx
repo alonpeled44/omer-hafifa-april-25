@@ -6,9 +6,10 @@ import settingsIcon from "../images/settings-icon.png";
 import brightIcon from "../images/bright-mode-icon.png";
 import darkIcon from "../images/dark-mode-icon.png";
 import styles from "../styles/components/header.module.css";
-import getUsers from "@/libs/useUser";
 import { updateUserApi } from "@/libs/useUser";
-import { FontSize, Theme, User } from "@/libs/Types";
+import { FontSize, Theme, User } from "@/libs/types";
+import { useUser } from "@/libs/UserContext";
+import { useRouter } from "next/router";
 
 interface IsOpenProps {
   isSettingsOpen: boolean;
@@ -21,8 +22,9 @@ const fontSizes = [...Object.values(FontSize)];
 
 export default function Header() {
   const screenWidth = useScreenWidth();
-  const currentUser = getUsers();
-  const [user, setCurrentUser] = useState<User | null>(null);
+  const router = useRouter();
+  const user = useUser();
+  const [currentUser, setCurrentUser] = useState<User | null>(null);
   const [isOpen, setIsOpen] = useState<IsOpenProps>({
     isSettingsOpen: false,
     isFontsOpen: false,
@@ -31,6 +33,16 @@ export default function Header() {
     theme: Theme.Light,
     fontSize: FontSize.Medium,
   });
+
+  useEffect(() => {
+    if (user[0]) {
+      setCurrentUser(user[0]);
+      setSelected({
+        theme: user[0].theme,
+        fontSize: user[0].fontSize,
+      });
+    }
+  }, []);
 
   useEffect(() => {
     const updates: Partial<UserSettings> = {};
@@ -42,9 +54,9 @@ export default function Header() {
 
   // Update database when theme or font size changes
   const handleUpdateUser = async (updates: Partial<UserSettings>) => {
-    if (!user || user.id === 0) return;
+    if (!currentUser || currentUser.id === 0) return;
 
-    const result = await updateUserApi(user.id, updates);
+    const result = await updateUserApi(currentUser.id, updates);
     if (result.success) {
       // Update local user state
       setCurrentUser((prev) => ({ ...prev, ...updates }));
@@ -73,6 +85,21 @@ export default function Header() {
       <div className={styles["logo-header"]}>
         <img src={pokemonIcon.src} />
         <p className={styles["header-text"]}>pokemon</p>
+        {user[0] && (
+          <div>
+            <p>{user[0].username}</p>
+            <button
+              onClick={() => {
+                setCurrentUser(null);
+                user[1](null);
+                location.pathname = "/login";
+                router.push(location.pathname);
+              }}
+            >
+              Log out
+            </button>
+          </div>
+        )}
       </div>
 
       <div
