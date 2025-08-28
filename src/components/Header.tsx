@@ -23,8 +23,8 @@ const fontSizes = [...Object.values(FontSize)];
 export default function Header() {
   const screenWidth = useScreenWidth();
   const router = useRouter();
-  const user = useUser();
-  const [currentUser, setCurrentUser] = useState<User | null>(null);
+  const [currentUser, setCurrentUser] = useUser();
+
   const [isOpen, setIsOpen] = useState<IsOpenProps>({
     isSettingsOpen: false,
     isFontsOpen: false,
@@ -35,15 +35,23 @@ export default function Header() {
   });
 
   useEffect(() => {
-  if (user && user[0]) {
-    setCurrentUser(user[0]);
-    setSelected({
-      theme: user[0].theme,
-      fontSize: user[0].fontSize,
-    });
-    changeUiFontAndTheme(); // apply immediately on load
-  }
-}, [user]);
+    if (currentUser) {
+      setSelected(prev => {
+        if (
+          prev.theme !== currentUser.theme ||
+          prev.fontSize !== currentUser.fontSize
+        ) {
+          return {
+            theme: currentUser.theme,
+            fontSize: currentUser.fontSize,
+          };
+        }
+        return prev; // avoid re-trigger
+      });
+      changeUiFontAndTheme();
+    }
+  }, [currentUser]);
+
 
 
   useEffect(() => {
@@ -63,7 +71,6 @@ export default function Header() {
       // Update local user state
       const updatedUser = { ...currentUser, ...updates };
       setCurrentUser(updatedUser);
-      user[1](updatedUser);
     } else {
       console.error(`${result} not successeded with updates:  ${updates}`);
       return;
@@ -89,15 +96,15 @@ export default function Header() {
       <div className={styles["logo-header"]}>
         <img src={pokemonIcon.src} />
         <p className={styles["header-text"]}>pokemon</p>
-        {user[0] && (
+        {currentUser && (
           <div>
-            <p>{user[0].username}</p>
+            <p>{currentUser.username}</p>
             <button
               onClick={() => {
                 setCurrentUser(null);
-                user[1](null);
-                location.pathname = "/login";
-                router.push(location.pathname);
+                localStorage.removeItem("currentUser");
+                router.push("/login");
+
               }}
             >
               Log out
@@ -143,18 +150,16 @@ export default function Header() {
                 <p>Theme</p>
                 <div className={styles["icons-container"]}>
                   <button
-                    className={`${styles["theme-button"]} ${
-                      selected.theme === "dark" ? styles.selected : ""
-                    }`}
+                    className={`${styles["theme-button"]} ${selected.theme === "dark" ? styles.selected : ""
+                      }`}
                     onClick={() => handleThemeSelect(Theme.Dark)}
                   >
                     <img src={darkIcon.src} />
                     <span>dark</span>
                   </button>
                   <button
-                    className={`${styles["theme-button"]} ${
-                      selected.theme === "light" ? styles.selected : ""
-                    }`}
+                    className={`${styles["theme-button"]} ${selected.theme === "light" ? styles.selected : ""
+                      }`}
                     onClick={() => handleThemeSelect(Theme.Light)}
                   >
                     <img src={brightIcon.src} />
@@ -166,9 +171,8 @@ export default function Header() {
                 <p>Font Size</p>
                 <div className={styles["icons-container"]}>
                   <button
-                    className={`${styles["large-font-size"]} ${
-                      selected.fontSize === "large" ? styles.selected : ""
-                    }`}
+                    className={`${styles["large-font-size"]} ${selected.fontSize === "large" ? styles.selected : ""
+                      }`}
                     onClick={() => {
                       fontSizes.find(
                         (fontSize) => fontSize === FontSize.Large
@@ -179,9 +183,8 @@ export default function Header() {
                     <span>large</span>
                   </button>
                   <button
-                    className={`${styles["medium-font-size"]} ${
-                      selected.fontSize === "medium" ? styles.selected : ""
-                    }`}
+                    className={`${styles["medium-font-size"]} ${selected.fontSize === "medium" ? styles.selected : ""
+                      }`}
                     onClick={() => {
                       fontSizes.find(
                         (fontSize) => fontSize === FontSize.Medium
@@ -192,9 +195,8 @@ export default function Header() {
                     <span>medium</span>
                   </button>
                   <button
-                    className={`${styles["small-font-size"]} ${
-                      selected.fontSize === "small" ? styles.selected : ""
-                    }`}
+                    className={`${styles["small-font-size"]} ${selected.fontSize === "small" ? styles.selected : ""
+                      }`}
                     onClick={() => {
                       fontSizes.find(
                         (fontSize) => fontSize === FontSize.Small
@@ -235,9 +237,8 @@ export default function Header() {
                       isFontsOpen: !prev.isFontsOpen,
                     }));
                   }}
-                  className={`${styles["font-settings"]} ${
-                    styles[selected.fontSize]
-                  }`}
+                  className={`${styles["font-settings"]} ${styles[selected.fontSize]
+                    }`}
                 >
                   Aa
                 </button>

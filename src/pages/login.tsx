@@ -33,14 +33,13 @@ export default function Login() {
 
   const setToHomePage = () => router.push("/");
 
-  const fetchUsers = useCallback(async () => {
+  useEffect(() => {
+  (async () => {
     const usersList = await getUsers();
     setUsers(usersList);
-  }, []);
+  })();
+}, []);
 
-  useEffect(() => {
-    fetchUsers();
-  }, []);
 
   return (
     <form
