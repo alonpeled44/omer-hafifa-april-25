@@ -1,12 +1,20 @@
-import {useEffect, useState, useContext, createContext, PropsWithChildren } from "react";
+import {
+  useEffect,
+  useState,
+  useContext,
+  createContext,
+  PropsWithChildren,
+} from "react";
 import { User } from "./types";
 
-const UserContext = createContext<[User, React.Dispatch<React.SetStateAction<User>>] | null>(null);
+const UserContext = createContext<
+  [User, React.Dispatch<React.SetStateAction<User>>] | null
+>(null);
 
-export default function UserProvider({children}: PropsWithChildren) {
-    const [currentUser, setCurrentUser] = useState<User | null>(null);
+export default function UserProvider({ children }: PropsWithChildren) {
+  const [currentUser, setCurrentUser] = useState<User | null>(null);
 
-    // Load from localStorage on mount
+  // Load from localStorage on mount
   useEffect(() => {
     const storedUser = localStorage.getItem("currentUser");
     if (storedUser) {
@@ -20,16 +28,20 @@ export default function UserProvider({children}: PropsWithChildren) {
       localStorage.setItem("currentUser", JSON.stringify(currentUser));
     } else {
       localStorage.removeItem("currentUser");
+      setCurrentUser(null);
     }
   }, [currentUser]);
 
-
-    return (<UserContext.Provider value={[currentUser, setCurrentUser]}>{children}</UserContext.Provider>)
+  return (
+    <UserContext.Provider value={[currentUser, setCurrentUser]}>
+      {children}
+    </UserContext.Provider>
+  );
 }
 
 export function useUser() {
-    const context = useContext(UserContext);
-    if(!context) return null;
+  const context = useContext(UserContext);
+  if (!context) return null;
 
-    return context;
+  return context;
 }
