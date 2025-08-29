@@ -33,11 +33,12 @@ export default function Login() {
 
   const setToHomePage = () => router.push("/");
 
-  useEffect(() => {
-  (async () => {
-    const usersList = await getUsers();
-    setUsers(usersList);
-  })();
+useEffect(() => {
+  async function fetchUsers() {
+    const result = await getUsers();
+    setUsers(result);
+  }
+  fetchUsers();
 }, []);
 
 

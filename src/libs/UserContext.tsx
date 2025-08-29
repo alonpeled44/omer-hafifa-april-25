@@ -24,12 +24,12 @@ export default function UserProvider({ children }: PropsWithChildren) {
 });
 
   // Load from localStorage on mount
-  useEffect(() => {
-    const storedUser = localStorage.getItem("currentUser");
-    if (storedUser) {
-      setCurrentUser(JSON.parse(storedUser));
-    }
-  }, []);
+  // useEffect(() => {
+  //   const storedUser = localStorage.getItem("currentUser");
+  //   if (storedUser) {
+  //     setCurrentUser(JSON.parse(storedUser));
+  //   }
+  // }, []);
 
   useEffect(() => {
   if (!currentUser) {

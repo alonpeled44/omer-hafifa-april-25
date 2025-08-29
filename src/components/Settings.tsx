@@ -1,6 +1,6 @@
 import { useRef, useEffect } from "react";
 import styles from "../styles/components/settings.module.css";
-import getUsers from "@/libs/useUser";
+//import getUsers from "@/libs/useUser";
 
 interface SettingsProps {
   isOpen: boolean;
@@ -11,7 +11,7 @@ interface SettingsProps {
 export default function Settings({ isOpen, onClose, children }: SettingsProps) {
   const dialogRef = useRef<HTMLDialogElement | null>(null);
 
-  const currentUser = getUsers();
+  //const currentUser = getUsers();
 
   useEffect(() => {
     const dialog = dialogRef.current;

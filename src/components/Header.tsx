@@ -24,7 +24,7 @@ export default function Header() {
   const screenWidth = useScreenWidth();
   const router = useRouter();
   const [currentUser, setCurrentUser] = useUser();
-
+  const [mounted, setMounted] = useState(false);
   const [isOpen, setIsOpen] = useState<IsOpenProps>({
     isSettingsOpen: false,
     isFontsOpen: false,
@@ -33,6 +33,12 @@ export default function Header() {
     theme: Theme.Light,
     fontSize: FontSize.Medium,
   });
+
+
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   useEffect(() => {
     if (currentUser) {
@@ -50,7 +56,7 @@ export default function Header() {
       });
       changeUiFontAndTheme();
     }
-  }, [currentUser]);
+  }, [mounted, currentUser]);
 
 
 
@@ -96,13 +102,15 @@ export default function Header() {
       <div className={styles["logo-header"]}>
         <img src={pokemonIcon.src} />
         <p className={styles["header-text"]}>pokemon</p>
-        {currentUser && (
+        {mounted && currentUser && (
           <div>
             <p>{currentUser.username}</p>
             <button
               onClick={() => {
                 setCurrentUser(null);
                 localStorage.removeItem("currentUser");
+                document.documentElement.setAttribute("data-theme", Theme.Light);
+                document.documentElement.setAttribute("data-font-size", FontSize.Medium);
                 router.push("/login");
 
               }}
