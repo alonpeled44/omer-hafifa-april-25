@@ -15,24 +15,27 @@ const UserContext = createContext<
 export default function UserProvider({ children }: PropsWithChildren) {
   const router = useRouter();
 
-  const [currentUser, setCurrentUser] = useState<User | null>(() => {
-    if (typeof window !== "undefined") {
-      const storedUser = localStorage.getItem("currentUser");
-      return storedUser ? JSON.parse(storedUser) : null;
-    }
-    return null;
-  });
+  const [currentUser, setCurrentUser] = useState<User | null>(null);
 
   useEffect(() => {
-    if (!currentUser) {
-      router.push("/login");
+    const storedId = localStorage.getItem("currentUser");
+    if (storedId) {
+      setCurrentUser({ id: Number(storedId) } as User);
+    }
+  }, []);
+
+  useEffect(() => {
+    if (currentUser === null) {
+      const stored = localStorage.getItem("currentUser");
+      if (!stored) {
+        router.push("/login");
+      }
     }
   }, [currentUser, router]);
 
-  // Save to localStorage whenever user changes
   useEffect(() => {
     if (currentUser) {
-      localStorage.setItem("currentUser", JSON.stringify(currentUser.id));
+      localStorage.setItem("currentUser", String(currentUser.id));
     } else {
       localStorage.removeItem("currentUser");
     }

@@ -62,7 +62,6 @@ export default function Header() {
     // const updates: Partial<UserSettings> = {};
     // updates.theme = selected.theme;
     // updates.fontSize = selected.fontSize;
-    console.log(selected.theme);
     handleUpdateUser(selected);
     changeUiFontAndTheme();
   }, [isMounted, selected]);
