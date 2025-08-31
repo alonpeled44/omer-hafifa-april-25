@@ -5,8 +5,8 @@ import {
   createContext,
   PropsWithChildren,
 } from "react";
-import { User } from "./types";
 import { useRouter } from "next/router";
+import { User } from "./types";
 
 const UserContext = createContext<
   [User | null, React.Dispatch<React.SetStateAction<User | null>>] | null
@@ -14,14 +14,14 @@ const UserContext = createContext<
 
 export default function UserProvider({ children }: PropsWithChildren) {
   const router = useRouter();
-  
+
   const [currentUser, setCurrentUser] = useState<User | null>(() => {
-  if (typeof window !== "undefined") {
-    const storedUser = localStorage.getItem("currentUser");
-    return storedUser ? JSON.parse(storedUser) : null;
-  }
-  return null;
-});
+    if (typeof window !== "undefined") {
+      const storedUser = localStorage.getItem("currentUser");
+      return storedUser ? JSON.parse(storedUser) : null;
+    }
+    return null;
+  });
 
   // Load from localStorage on mount
   // useEffect(() => {
@@ -32,20 +32,19 @@ export default function UserProvider({ children }: PropsWithChildren) {
   // }, []);
 
   useEffect(() => {
-  if (!currentUser) {
-    router.push("/login");
-  }
-}, [currentUser, router]);
+    if (!currentUser) {
+      router.push("/login");
+    }
+  }, [currentUser, router]);
 
   // Save to localStorage whenever user changes
   useEffect(() => {
-  if (currentUser) {
-    localStorage.setItem("currentUser", JSON.stringify(currentUser));
-  } else {
-    localStorage.removeItem("currentUser");
-  }
-}, [currentUser]);
-
+    if (currentUser) {
+      localStorage.setItem("currentUser", JSON.stringify(currentUser));
+    } else {
+      localStorage.removeItem("currentUser");
+    }
+  }, [currentUser]);
 
   return (
     <UserContext.Provider value={[currentUser, setCurrentUser]}>

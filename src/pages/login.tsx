@@ -1,9 +1,9 @@
-import { useCallback, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
-import { useScreenWidth } from "../libs/ScreenContext";
 import getUsers from "@/libs/useUser";
-import { FontSize, Theme, User } from "@/libs/types";
 import { useUser } from "@/libs/UserContext";
+import { useScreenWidth } from "../libs/ScreenContext";
+import { FontSize, Theme, User } from "@/libs/types";
 import styles from "../styles/pages/login.module.css";
 
 const validateInput = (value: string) => {
@@ -33,14 +33,13 @@ export default function Login() {
 
   const setToHomePage = () => router.push("/");
 
-useEffect(() => {
-  async function fetchUsers() {
-    const result = await getUsers();
-    setUsers(result);
-  }
-  fetchUsers();
-}, []);
-
+  useEffect(() => {
+    async function fetchUsers() {
+      const result = await getUsers();
+      setUsers(result);
+    }
+    fetchUsers();
+  }, []);
 
   return (
     <form

@@ -2,8 +2,9 @@ import type { NextApiRequest, NextApiResponse } from "next";
 import path from "path";
 import sqlite3 from "sqlite3";
 import { open, Database } from "sqlite";
+import { getErrorMessage } from "@/libs/errors";
 
-async function getDb(): Promise<Database> {
+async function connectToDb(): Promise<Database> {
   const db = await open({
     filename: path.join(process.cwd(), "db.db"),
     driver: sqlite3.Database,
@@ -16,7 +17,7 @@ export default async function handler(
   res: NextApiResponse
 ) {
   try {
-    const db = await getDb();
+    const db = await connectToDb();
     if (req.method === "GET") {
       const rows = await db.all("SELECT * FROM users");
       res.status(200).json({ data: [...rows] });
@@ -68,8 +69,6 @@ export default async function handler(
       res.status(405).json({ error: "Method not allowed" });
     }
   } catch (err) {
-    res
-      .status(500)
-      .json({ error: "Database error: " + (err as Error).message });
+    res.status(500).json({ error: "Database error: " + getErrorMessage(err) });
   }
 }

@@ -5,6 +5,8 @@ import {
   useEffect,
   useState,
 } from "react";
+import { Digimon } from "./types";
+import { getErrorMessage } from "./errors";
 
 const DigimonsDbContext = createContext<DigimonsDbContextType | undefined>(
   undefined
@@ -12,11 +14,6 @@ const DigimonsDbContext = createContext<DigimonsDbContextType | undefined>(
 
 interface DigimonsDbProviderProps {
   children: ReactNode;
-}
-interface Digimon {
-  id: number;
-  name: string;
-  image: string;
 }
 
 interface DigimonApiRespone {
@@ -63,9 +60,7 @@ export function DigimonsDbProvider({ children }: DigimonsDbProviderProps) {
         setDigimons(data.content);
         setLoading(false);
       } catch (err: unknown) {
-        setError(
-          err instanceof Error ? err.message : "An unknown error occurred"
-        );
+        setError(getErrorMessage(err));
         setLoading(false);
       }
     };
@@ -87,9 +82,7 @@ export function DigimonsDbProvider({ children }: DigimonsDbProviderProps) {
           );
           allTypes = [...allTypes, ...pageTypes];
         } catch (err: unknown) {
-          setError(
-            err instanceof Error ? err.message : "An unknown error occurred"
-          ); //let know if error with wierd rejection accord("throw 42" for example).
+          setError(getErrorMessage(err)); //let know if error with wierd rejection accord("throw 42" for example).
           setLoading(false);
         }
       }

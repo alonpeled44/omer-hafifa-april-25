@@ -1,15 +1,15 @@
 import { useState, useEffect } from "react";
+import { useRouter } from "next/router";
 import { useScreenWidth } from "../libs/ScreenContext";
+import { useUser } from "@/libs/UserContext";
+import { updateUserSettings } from "@/libs/useUser";
+import { FontSize, Theme, User } from "@/libs/types";
 import Settings from "./Settings";
 import pokemonIcon from "../images/pokemon-photo.png";
 import settingsIcon from "../images/settings-icon.png";
 import brightIcon from "../images/bright-mode-icon.png";
 import darkIcon from "../images/dark-mode-icon.png";
 import styles from "../styles/components/header.module.css";
-import { updateUserApi } from "@/libs/useUser";
-import { FontSize, Theme, User } from "@/libs/types";
-import { useUser } from "@/libs/UserContext";
-import { useRouter } from "next/router";
 
 interface IsOpenProps {
   isSettingsOpen: boolean;
@@ -34,15 +34,13 @@ export default function Header() {
     fontSize: FontSize.Medium,
   });
 
-
-
   useEffect(() => {
     setMounted(true);
   }, []);
 
   useEffect(() => {
     if (currentUser) {
-      setSelected(prev => {
+      setSelected((prev) => {
         if (
           prev.theme !== currentUser.theme ||
           prev.fontSize !== currentUser.fontSize
@@ -58,8 +56,6 @@ export default function Header() {
     }
   }, [mounted, currentUser]);
 
-
-
   useEffect(() => {
     const updates: Partial<UserSettings> = {};
     updates.theme = selected.theme;
@@ -72,7 +68,7 @@ export default function Header() {
   const handleUpdateUser = async (updates: Partial<UserSettings>) => {
     if (!currentUser || currentUser.id === 0) return;
 
-    const result = await updateUserApi(currentUser.id, updates);
+    const result = await updateUserSettings(currentUser.id, updates);
     if (result.success) {
       // Update local user state
       const updatedUser = { ...currentUser, ...updates };
@@ -109,10 +105,15 @@ export default function Header() {
               onClick={() => {
                 setCurrentUser(null);
                 localStorage.removeItem("currentUser");
-                document.documentElement.setAttribute("data-theme", Theme.Light);
-                document.documentElement.setAttribute("data-font-size", FontSize.Medium);
+                document.documentElement.setAttribute(
+                  "data-theme",
+                  Theme.Light
+                );
+                document.documentElement.setAttribute(
+                  "data-font-size",
+                  FontSize.Medium
+                );
                 router.push("/login");
-
               }}
             >
               Log out
@@ -158,16 +159,18 @@ export default function Header() {
                 <p>Theme</p>
                 <div className={styles["icons-container"]}>
                   <button
-                    className={`${styles["theme-button"]} ${selected.theme === "dark" ? styles.selected : ""
-                      }`}
+                    className={`${styles["theme-button"]} ${
+                      selected.theme === "dark" ? styles.selected : ""
+                    }`}
                     onClick={() => handleThemeSelect(Theme.Dark)}
                   >
                     <img src={darkIcon.src} />
                     <span>dark</span>
                   </button>
                   <button
-                    className={`${styles["theme-button"]} ${selected.theme === "light" ? styles.selected : ""
-                      }`}
+                    className={`${styles["theme-button"]} ${
+                      selected.theme === "light" ? styles.selected : ""
+                    }`}
                     onClick={() => handleThemeSelect(Theme.Light)}
                   >
                     <img src={brightIcon.src} />
@@ -179,8 +182,9 @@ export default function Header() {
                 <p>Font Size</p>
                 <div className={styles["icons-container"]}>
                   <button
-                    className={`${styles["large-font-size"]} ${selected.fontSize === "large" ? styles.selected : ""
-                      }`}
+                    className={`${styles["large-font-size"]} ${
+                      selected.fontSize === "large" ? styles.selected : ""
+                    }`}
                     onClick={() => {
                       fontSizes.find(
                         (fontSize) => fontSize === FontSize.Large
@@ -191,8 +195,9 @@ export default function Header() {
                     <span>large</span>
                   </button>
                   <button
-                    className={`${styles["medium-font-size"]} ${selected.fontSize === "medium" ? styles.selected : ""
-                      }`}
+                    className={`${styles["medium-font-size"]} ${
+                      selected.fontSize === "medium" ? styles.selected : ""
+                    }`}
                     onClick={() => {
                       fontSizes.find(
                         (fontSize) => fontSize === FontSize.Medium
@@ -203,8 +208,9 @@ export default function Header() {
                     <span>medium</span>
                   </button>
                   <button
-                    className={`${styles["small-font-size"]} ${selected.fontSize === "small" ? styles.selected : ""
-                      }`}
+                    className={`${styles["small-font-size"]} ${
+                      selected.fontSize === "small" ? styles.selected : ""
+                    }`}
                     onClick={() => {
                       fontSizes.find(
                         (fontSize) => fontSize === FontSize.Small
@@ -245,8 +251,9 @@ export default function Header() {
                       isFontsOpen: !prev.isFontsOpen,
                     }));
                   }}
-                  className={`${styles["font-settings"]} ${styles[selected.fontSize]
-                    }`}
+                  className={`${styles["font-settings"]} ${
+                    styles[selected.fontSize]
+                  }`}
                 >
                   Aa
                 </button>

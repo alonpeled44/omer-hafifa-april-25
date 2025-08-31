@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useScreenWidth } from "../libs/ScreenContext";
 import { useDigimonsDb } from "../libs/DigimonsDbContext";
+import { getErrorMessage } from "@/libs/errors";
 import Card from "../components/card";
 import Select from "../components/Select";
 import Modal from "../components/Modal";
@@ -94,7 +95,7 @@ export default function Home() {
             } catch (err: unknown) {
               console.error(
                 `Error fetching Digimon ${digimon.id}:`,
-                (err as Error).message
+                getErrorMessage(err)
               );
 
               properties[digimon.id] = {
@@ -107,10 +108,7 @@ export default function Home() {
 
         setDigimonProperties(properties);
       } catch (err: unknown) {
-        console.error(
-          "Error fetching Digimon details:",
-          (err as Error).message
-        );
+        console.error("Error fetching Digimon details:", getErrorMessage(err));
       }
     };
 

@@ -1,10 +1,10 @@
 import { useEffect } from "react";
 import { useRouter } from "next/router";
 import { ScreenWidthProvider } from "../libs/ScreenContext";
+import UserProvider, { useUser } from "@/libs/UserContext";
+import { DigimonsDbProvider } from "../libs/DigimonsDbContext";
 import Header from "../components/Header";
 import "../styles/globals.css";
-import { DigimonsDbProvider } from "../libs/DigimonsDbContext";
-import UserProvider, { useUser } from "@/libs/UserContext";
 
 export default function App({ Component, pageProps }) {
   return (

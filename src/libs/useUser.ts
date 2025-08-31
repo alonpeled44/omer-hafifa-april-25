@@ -1,4 +1,5 @@
 import { FontSize, Theme, User } from "./types";
+import { getErrorMessage } from "./errors";
 
 export default async function getUsers() {
   try {
@@ -10,12 +11,12 @@ export default async function getUsers() {
     const { data }: { data: User[] } = await response.json();
     return data;
   } catch (err: unknown) {
-    console.error("Database error: ", (err as Error).message);
+    console.error("Database error: ", getErrorMessage(err));
     return [];
   }
 }
 
-export async function updateUserApi(
+export async function updateUserSettings(
   id: number,
   updates: { theme?: Theme; fontSize?: FontSize }
 ) {
@@ -41,9 +42,7 @@ export async function updateUserApi(
   } catch (err: unknown) {
     return {
       success: false,
-      message: `Error updating user: ${
-        err instanceof Error ? err.message : "unkown error"
-      }`,
+      message: "Error updating user: " + getErrorMessage(err),
     };
   }
 }
