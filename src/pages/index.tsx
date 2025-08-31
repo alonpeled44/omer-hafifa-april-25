@@ -33,11 +33,17 @@ type ModalState = {
 };
 
 export default function Home() {
+  const screenWidth = useScreenWidth();
+  const { digimons, types } = useDigimonsDb();
+
   const [isOpen, setIsOpen] = useState<ModalState>({
     isSortOpen: false,
     isFilterOpen: false,
     isModalOpen: false,
   });
+  const [digimonProperties, setDigimonProperties] = useState<DigimonProperties>(
+    {}
+  );
   const [selectedDigimon, setSelectedDigimon] = useState<Digimon | null>(null);
 
   const [searchValue, setSearchValue] = useState<string>("");
@@ -45,13 +51,6 @@ export default function Home() {
   const [selectedTypes, setSelectedTypes] = useState<string[]>([]);
 
   const [sortOption, setSortOption] = useState<string>("");
-
-  const [digimonProperties, setDigimonProperties] = useState<DigimonProperties>(
-    {}
-  );
-
-  const screenWidth = useScreenWidth();
-  const { digimons, types } = useDigimonsDb();
 
   useEffect(() => {
     // closing sort and filter lists when user click outside their space.

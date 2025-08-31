@@ -22,7 +22,8 @@ export default async function handler(
       const rows = await db.all("SELECT * FROM users");
       res.status(200).json({ data: [...rows] });
     } else if (req.method === "PUT") {
-      const { id, theme, fontSize } = req.body;
+      const { id } = req.query;
+      const { theme, fontSize } = req.body;
 
       // Validate input
       if (!id) {
@@ -46,11 +47,8 @@ export default async function handler(
         values.push(fontSize);
       }
 
-      // Add id to values for WHERE clause
-      values.push(id);
-
       const query = `UPDATE users SET ${updates.join(", ")} WHERE id = ?`;
-      const result = await db.run(query, values);
+      const result = await db.run(query, [...values, id]);
 
       if (result.changes === 0) {
         return res.status(404).json({ error: "User not found" });

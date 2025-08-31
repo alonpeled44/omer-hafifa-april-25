@@ -21,10 +21,12 @@ type UserSettings = Pick<User, "theme" | "fontSize">;
 const fontSizes = [...Object.values(FontSize)];
 
 export default function Header() {
-  const screenWidth = useScreenWidth();
   const router = useRouter();
+
+  const screenWidth = useScreenWidth();
   const [currentUser, setCurrentUser] = useUser();
-  const [mounted, setMounted] = useState(false);
+  const [isMounted, setIsMounted] = useState(false);
+
   const [isOpen, setIsOpen] = useState<IsOpenProps>({
     isSettingsOpen: false,
     isFontsOpen: false,
@@ -35,7 +37,7 @@ export default function Header() {
   });
 
   useEffect(() => {
-    setMounted(true);
+    setIsMounted(true);
   }, []);
 
   useEffect(() => {
@@ -54,15 +56,16 @@ export default function Header() {
       });
       changeUiFontAndTheme();
     }
-  }, [mounted, currentUser]);
+  }, [isMounted, currentUser]);
 
   useEffect(() => {
-    const updates: Partial<UserSettings> = {};
-    updates.theme = selected.theme;
-    updates.fontSize = selected.fontSize;
-    handleUpdateUser(updates);
+    // const updates: Partial<UserSettings> = {};
+    // updates.theme = selected.theme;
+    // updates.fontSize = selected.fontSize;
+    console.log(selected.theme);
+    handleUpdateUser(selected);
     changeUiFontAndTheme();
-  }, [selected]);
+  }, [isMounted, selected]);
 
   // Update database when theme or font size changes
   const handleUpdateUser = async (updates: Partial<UserSettings>) => {
@@ -98,7 +101,7 @@ export default function Header() {
       <div className={styles["logo-header"]}>
         <img src={pokemonIcon.src} />
         <p className={styles["header-text"]}>pokemon</p>
-        {mounted && currentUser && (
+        {isMounted && currentUser && (
           <div>
             <p>{currentUser.username}</p>
             <button

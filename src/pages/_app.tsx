@@ -17,8 +17,9 @@ export default function App({ Component, pageProps }) {
 }
 
 function InnerApp({ Component, pageProps }) {
-  const [user] = useUser();
   const router = useRouter();
+
+  const [user] = useUser();
 
   useEffect(() => {
     // Wait until user state is known

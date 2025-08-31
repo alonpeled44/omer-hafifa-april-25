@@ -19,17 +19,17 @@ const guestUser: User = {
 };
 
 export default function Login() {
+  const router = useRouter();
+
   const [_currentUser, setCurrentUser] = useUser();
+  const screenWidth = useScreenWidth();
+
   const [users, setUsers] = useState<User[]>([]);
 
   const [username, setUsername] = useState<string>("");
   const [password, setPassword] = useState<string>("");
 
   const [errorMessage, setErrorMessage] = useState<string>("");
-
-  const screenWidth = useScreenWidth();
-
-  const router = useRouter();
 
   const setToHomePage = () => router.push("/");
 

@@ -21,7 +21,7 @@ export async function updateUserSettings(
   updates: { theme?: Theme; fontSize?: FontSize }
 ) {
   try {
-    const response = await fetch("/api/users", {
+    const response = await fetch(`/api/users?id=${id}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",

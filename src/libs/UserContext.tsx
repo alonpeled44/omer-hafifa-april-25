@@ -23,14 +23,6 @@ export default function UserProvider({ children }: PropsWithChildren) {
     return null;
   });
 
-  // Load from localStorage on mount
-  // useEffect(() => {
-  //   const storedUser = localStorage.getItem("currentUser");
-  //   if (storedUser) {
-  //     setCurrentUser(JSON.parse(storedUser));
-  //   }
-  // }, []);
-
   useEffect(() => {
     if (!currentUser) {
       router.push("/login");
@@ -40,7 +32,7 @@ export default function UserProvider({ children }: PropsWithChildren) {
   // Save to localStorage whenever user changes
   useEffect(() => {
     if (currentUser) {
-      localStorage.setItem("currentUser", JSON.stringify(currentUser));
+      localStorage.setItem("currentUser", JSON.stringify(currentUser.id));
     } else {
       localStorage.removeItem("currentUser");
     }
