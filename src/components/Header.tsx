@@ -132,17 +132,19 @@ export default function Header() {
           </p>
         )}
 
-        <img
-          src={settingsIcon.src}
-          onClick={() => {
-            setIsOpen((prev) => ({
-              ...prev,
-              isSettingsOpen: !prev.isSettingsOpen,
-              isFontsOpen: false,
-            }));
-          }}
-          className={styles["settings-icon"]}
-        />
+        {currentUser && (
+          <img
+            src={settingsIcon.src}
+            onClick={() => {
+              setIsOpen((prev) => ({
+                ...prev,
+                isSettingsOpen: !prev.isSettingsOpen,
+                isFontsOpen: false,
+              }));
+            }}
+            className={styles["settings-icon"]}
+          />
+        )}
 
         {isOpen.isSettingsOpen &&
           (screenWidth > 1200 ? (
