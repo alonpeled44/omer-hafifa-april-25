@@ -16,6 +16,21 @@ export default async function getUsers() {
   }
 }
 
+export async function getUserById(id: number) {
+  try {
+    const response = await fetch(`/api/users?id=${id}`);
+    if (!response.ok) {
+      throw new Error("Failed to fetch user " + response.status);
+    }
+
+    const { data }: { data: User[] } = await response.json();
+    return data[0] || null;
+  } catch (err: unknown) {
+    console.error("Database error: ", getErrorMessage(err));
+    return null;
+  }
+}
+
 export async function updateUserSettings(
   id: number,
   updates: { theme?: Theme; fontSize?: FontSize }

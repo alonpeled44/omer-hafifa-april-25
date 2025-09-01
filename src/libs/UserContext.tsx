@@ -7,6 +7,7 @@ import {
 } from "react";
 import { useRouter } from "next/router";
 import { User } from "./types";
+import { getUserById } from "./useUser";
 
 const UserContext = createContext<
   [User | null, React.Dispatch<React.SetStateAction<User | null>>] | null
@@ -20,6 +21,7 @@ export default function UserProvider({ children }: PropsWithChildren) {
   useEffect(() => {
     const storedId = localStorage.getItem("currentUser");
     if (storedId) {
+      const user = getUserById(Number(storedId));
       setCurrentUser({ id: Number(storedId) } as User);
     }
   }, []);
