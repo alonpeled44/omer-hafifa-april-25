@@ -18,28 +18,54 @@ export default function UserProvider({ children }: PropsWithChildren) {
 
   const [currentUser, setCurrentUser] = useState<User | null>(null);
 
+  // useEffect(() => {
+  //   if (!currentUser && router.pathname === "/") {
+  //     const storedId = localStorage.getItem("id");
+  //     async function getUserRow() {
+  //       const user = await getUserById(Number(storedId));
+  //       setCurrentUser(user);
+  //     }
+
+  //     getUserRow();
+  //   }
+  // }, []);
+
   useEffect(() => {
-    const storedId = localStorage.getItem("currentUser");
+    const storedId = localStorage.getItem("id");
+    async function getUserRow() {
+      const user = await getUserById(Number(storedId));
+      setCurrentUser(user);
+    }
+
     if (storedId) {
-      const user = getUserById(Number(storedId));
-      setCurrentUser({ id: Number(storedId) } as User);
+      getUserRow();
     }
   }, []);
 
   useEffect(() => {
     if (currentUser === null) {
-      const stored = localStorage.getItem("currentUser");
+      const stored = localStorage.getItem("id");
+      async function getUserRow() {
+        const user = await getUserById(Number(stored));
+        setCurrentUser(user);
+      }
       if (!stored) {
         router.push("/login");
+      } else {
+        getUserRow();
       }
     }
   }, [currentUser, router]);
 
   useEffect(() => {
     if (currentUser) {
-      localStorage.setItem("currentUser", String(currentUser.id));
+      localStorage.setItem("id", String(currentUser.id));
+      localStorage.setItem("theme", currentUser.theme);
+      localStorage.setItem("fontSize", currentUser.fontSize);
     } else {
-      localStorage.removeItem("currentUser");
+      localStorage.removeItem("id");
+      localStorage.removeItem("theme");
+      localStorage.removeItem("fontSize");
     }
   }, [currentUser]);
 

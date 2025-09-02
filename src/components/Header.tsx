@@ -106,7 +106,9 @@ export default function Header() {
             <button
               onClick={() => {
                 setCurrentUser(null);
-                localStorage.removeItem("currentUser");
+                localStorage.removeItem("id");
+                localStorage.removeItem("theme");
+                localStorage.removeItem("fontSize");
                 document.documentElement.setAttribute(
                   "data-theme",
                   Theme.Light
