@@ -20,7 +20,7 @@ export default async function handler(
     const db = await connectToDb();
     if (req.method === "GET") {
       const rows = await db.all("SELECT * FROM users");
-      res.status(200).json({ data: [...rows] });
+      res.status(200).json({ data: rows });
     } else if (req.method === "PUT") {
       const { id } = req.query;
       const { theme, fontSize } = req.body;

@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import getUsers from "@/libs/useUser";
-import { useUser } from "@/libs/UserContext";
 import { useScreenWidth } from "../libs/ScreenContext";
 import { FontSize, Theme, User } from "@/libs/types";
 import styles from "../styles/pages/login.module.css";
@@ -10,18 +9,9 @@ const validateInput = (value: string) => {
   return value.replace(/[^A-Za-z0-9]/g, "");
 };
 
-const guestUser: User = {
-  id: 0,
-  username: "Guest",
-  password: "",
-  theme: Theme.Light,
-  fontSize: FontSize.Medium,
-};
-
 export default function Login() {
   const router = useRouter();
 
-  const [_currentUser, setCurrentUser] = useUser();
   const screenWidth = useScreenWidth();
 
   const [users, setUsers] = useState<User[]>([]);
@@ -33,12 +23,13 @@ export default function Login() {
 
   const setToHomePage = () => router.push("/");
 
+  async function fetchUsers() {
+    const result = await getUsers();
+    setUsers(result);
+  }
+
   useEffect(() => {
-    async function fetchUsers() {
-      const result = await getUsers();
-      setUsers(result);
-    }
-    fetchUsers();
+    users.length === 0 && fetchUsers();
   }, []);
 
   return (
@@ -59,7 +50,7 @@ export default function Login() {
         if (!foundUser) {
           setErrorMessage("Username or password are incorrect.");
           return;
-        } else setCurrentUser(foundUser);
+        } else localStorage.setItem("id", String(foundUser.id));
 
         setToHomePage();
       }}
@@ -101,7 +92,7 @@ export default function Login() {
           className={styles["guest-button"]}
           type="button"
           onClick={() => {
-            setCurrentUser(guestUser);
+            localStorage.setItem("id", "0");
             setToHomePage();
           }}
         >

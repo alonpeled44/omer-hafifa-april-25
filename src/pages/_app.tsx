@@ -1,36 +1,50 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import { ScreenWidthProvider } from "../libs/ScreenContext";
-import UserProvider, { useUser } from "@/libs/UserContext";
 import { DigimonsDbProvider } from "../libs/DigimonsDbContext";
 import Header from "../components/Header";
 import "../styles/globals.css";
+import { getUserById } from "@/libs/useUser";
+import { FontSize, Theme, User } from "@/libs/types";
 
 export default function App({ Component, pageProps }) {
   return (
-    <UserProvider>
-      <ScreenWidthProvider>
-        <InnerApp Component={Component} pageProps={pageProps} />
-      </ScreenWidthProvider>
-    </UserProvider>
+    <ScreenWidthProvider>
+      <InnerApp Component={Component} pageProps={pageProps} />
+    </ScreenWidthProvider>
   );
 }
 
 function InnerApp({ Component, pageProps }) {
   const router = useRouter();
+  const [currentUser, setCurrentUser] = useState<User | null>(null);
 
-  const [user] = useUser();
+  const guest: User = {
+    id: 0,
+    username: "Guest",
+    password: " ",
+    theme: Theme.Light,
+    fontSize: FontSize.Medium,
+  };
+
+  async function getUser(id: string) {
+    const user = await getUserById(Number(id));
+    setCurrentUser(user);
+  }
 
   useEffect(() => {
-    // Wait until user state is known
-    if (user === null) return;
+    if (window !== undefined) {
+      const storedId = localStorage.getItem("id");
 
-    if (router.pathname === "/login" && user) {
-      router.push("/");
-    } else if (router.pathname === "/" && !user) {
-      router.push("/login");
+      if (!storedId) {
+        router.push("/login");
+      } else if (storedId === "0") {
+        setCurrentUser(guest);
+      } else {
+        getUser(storedId);
+      }
     }
-  }, [user, router]);
+  }, [router]);
 
   return (
     <>

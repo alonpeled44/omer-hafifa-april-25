@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import { useScreenWidth } from "../libs/ScreenContext";
-import { useUser } from "@/libs/UserContext";
 import { updateUserSettings } from "@/libs/useUser";
 import { FontSize, Theme, User } from "@/libs/types";
 import Settings from "./Settings";
@@ -59,16 +58,31 @@ export default function Header() {
   }, [isMounted, currentUser]);
 
   useEffect(() => {
-    // const updates: Partial<UserSettings> = {};
-    // updates.theme = selected.theme;
-    // updates.fontSize = selected.fontSize;
+    if (typeof window !== undefined) {
+      setCurrentUser();
+    }
+  }, []);
+
+  useEffect(() => {
     handleUpdateUser(selected);
     changeUiFontAndTheme();
   }, [isMounted, selected]);
 
   // Update database when theme or font size changes
   const handleUpdateUser = async (updates: Partial<UserSettings>) => {
-    if (!currentUser || currentUser.id === 0) return;
+    if (!currentUser) {
+      return;
+    } else if (currentUser.id === 0) {
+      console.log("currentUser.id is 0 (type:", typeof currentUser.id, ")");
+      setCurrentUser({
+        id: 0,
+        username: "Guest",
+        password: "",
+        theme: Theme.Light,
+        fontSize: FontSize.Medium,
+      });
+      return;
+    }
 
     const result = await updateUserSettings(currentUser.id, updates);
     if (result.success) {
