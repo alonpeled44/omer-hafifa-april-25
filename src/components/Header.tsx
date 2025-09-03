@@ -34,8 +34,8 @@ export default function Header({ currentUser, setCurrentUser }: HeaderProps) {
     isFontsOpen: false,
   });
   const [selected, setSelected] = useState<UserSettings>({
-    theme: Theme.Light,
-    fontSize: FontSize.Medium,
+    theme: currentUser?.theme || Theme.Light,
+    fontSize: currentUser?.fontSize || FontSize.Medium,
   });
 
   async function updateThemeOrFontSize(theme?: Theme, fontSize?: FontSize) {
@@ -59,27 +59,20 @@ export default function Header({ currentUser, setCurrentUser }: HeaderProps) {
     }
   }
 
-  useEffect(() => {
-    if (currentUser) {
-      if (
-        currentUser.theme !== selected.theme &&
-        currentUser.fontSize !== selected.fontSize
-      ) {
-        updateThemeOrFontSize(currentUser.theme, currentUser.fontSize);
-        setSelected((prev) => ({
-          ...prev,
-          theme: currentUser.theme,
-          fontSize: currentUser.fontSize,
-        }));
-      } else if (currentUser.theme !== selected.theme) {
-        updateThemeOrFontSize(currentUser.theme);
-        setSelected((prev) => ({ ...prev, theme: currentUser.theme }));
-      } else if (currentUser.fontSize !== selected.fontSize) {
-        updateThemeOrFontSize(undefined, currentUser.fontSize);
-        setSelected((prev) => ({ ...prev, fontSize: currentUser.fontSize }));
-      }
-    }
-  }, []);
+// ...existing code...
+
+// Remove the old useEffect with []
+// Replace with this:
+useEffect(() => {
+  if (currentUser) {
+    setSelected({
+      theme: currentUser.theme,
+      fontSize: currentUser.fontSize,
+    });
+  }
+}, [currentUser]);
+
+// ...existing code...
 
   useEffect(() => {
     document.documentElement.setAttribute("data-theme", selected.theme);

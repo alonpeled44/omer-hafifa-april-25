@@ -33,11 +33,13 @@ function InnerApp({ Component, pageProps }) {
   }
 
   useEffect(() => {
-    if (window !== undefined) {
+    if (typeof window !== undefined) {
       const storedId = localStorage.getItem("id");
 
       if (!storedId) {
-        router.push("/login");
+        if (router.pathname !== "/login"){
+          router.push("/login");
+        }
       } else if (storedId === "0") {
         setCurrentUser(guest);
       } else {
