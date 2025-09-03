@@ -48,7 +48,7 @@ function InnerApp({ Component, pageProps }) {
 
   return (
     <>
-      <Header />
+      <Header currentUser={currentUser} setCurrentUser={setCurrentUser} />
       <DigimonsDbProvider>
         <main>
           <Component {...pageProps} />

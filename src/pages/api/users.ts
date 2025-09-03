@@ -19,6 +19,11 @@ export default async function handler(
   try {
     const db = await connectToDb();
     if (req.method === "GET") {
+      const { id } = req.query;
+      if (id) {
+        const row = await db.get("SELECT * FROM users WHERE id = ?", id);
+        return res.status(200).json({ data: [row] });
+      }
       const rows = await db.all("SELECT * FROM users");
       res.status(200).json({ data: rows });
     } else if (req.method === "PUT") {
