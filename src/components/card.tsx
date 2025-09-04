@@ -1,11 +1,6 @@
 import { useScreenWidth } from "../libs/ScreenContext";
+import { Digimon } from "@/libs/types";
 import styles from "../styles/components/card.module.css";
-
-interface Digimon {
-  id: number;
-  name: string;
-  image: string;
-}
 
 interface DigimonDetails {
   type: string;

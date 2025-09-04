@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useScreenWidth } from "../libs/ScreenContext";
 import { useDigimonsDb } from "../libs/DigimonsDbContext";
+import { getErrorMessage } from "@/libs/errors";
 import Card from "../components/card";
 import Select from "../components/Select";
 import Modal from "../components/Modal";
@@ -32,11 +33,17 @@ type ModalState = {
 };
 
 export default function Home() {
+  const screenWidth = useScreenWidth();
+  const { digimons, types } = useDigimonsDb();
+
   const [isOpen, setIsOpen] = useState<ModalState>({
     isSortOpen: false,
     isFilterOpen: false,
     isModalOpen: false,
   });
+  const [digimonProperties, setDigimonProperties] = useState<DigimonProperties>(
+    {}
+  );
   const [selectedDigimon, setSelectedDigimon] = useState<Digimon | null>(null);
 
   const [searchValue, setSearchValue] = useState<string>("");
@@ -44,13 +51,6 @@ export default function Home() {
   const [selectedTypes, setSelectedTypes] = useState<string[]>([]);
 
   const [sortOption, setSortOption] = useState<string>("");
-
-  const [digimonProperties, setDigimonProperties] = useState<DigimonProperties>(
-    {}
-  );
-
-  const screenWidth = useScreenWidth();
-  const { digimons, types } = useDigimonsDb();
 
   useEffect(() => {
     // closing sort and filter lists when user click outside their space.
@@ -94,7 +94,7 @@ export default function Home() {
             } catch (err: unknown) {
               console.error(
                 `Error fetching Digimon ${digimon.id}:`,
-                (err as Error).message
+                getErrorMessage(err)
               );
 
               properties[digimon.id] = {
@@ -107,10 +107,7 @@ export default function Home() {
 
         setDigimonProperties(properties);
       } catch (err: unknown) {
-        console.error(
-          "Error fetching Digimon details:",
-          (err as Error).message
-        );
+        console.error("Error fetching Digimon details:", getErrorMessage(err));
       }
     };
 
