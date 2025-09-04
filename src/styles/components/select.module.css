@@ -9,7 +9,7 @@
   align-items: center;
 
   & .head {
-    height: 24%;
+    height: 28%;
     width: 100%;
 
     border: 1px solid black;
@@ -23,7 +23,7 @@
     height: 76px;
 
     & .head {
-      height: 36%;
+      height: 40%;
     }
   }
 
