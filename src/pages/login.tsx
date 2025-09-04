@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import getUsers from "@/libs/useUser";
 import { useScreenWidth } from "../libs/ScreenContext";
-import { FontSize, Theme, User } from "@/libs/types";
+import { User } from "@/libs/types";
 import styles from "../styles/pages/login.module.css";
 
 const validateInput = (value: string) => {

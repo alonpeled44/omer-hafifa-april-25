@@ -59,20 +59,23 @@ export default function Header({ currentUser, setCurrentUser }: HeaderProps) {
     }
   }
 
-// ...existing code...
-
-// Remove the old useEffect with []
-// Replace with this:
-useEffect(() => {
-  if (currentUser) {
-    setSelected({
-      theme: currentUser.theme,
-      fontSize: currentUser.fontSize,
-    });
+  function updateLoggedUserFontSize(selectedFontSize: FontSize) {
+    updateThemeOrFontSize(undefined, selectedFontSize);
+    setSelected((prev) => ({
+      ...prev,
+      fontSize: selectedFontSize,
+    }));
+    setIsOpen((prev) => ({ ...prev, isFontsOpen: false }));
   }
-}, [currentUser]);
 
-// ...existing code...
+  useEffect(() => {
+    if (currentUser) {
+      setSelected({
+        theme: currentUser.theme,
+        fontSize: currentUser.fontSize,
+      });
+    }
+  }, [currentUser]);
 
   useEffect(() => {
     document.documentElement.setAttribute("data-theme", selected.theme);
@@ -133,6 +136,7 @@ useEffect(() => {
         )}
 
         {isOpen.isSettingsOpen &&
+          currentUser &&
           (screenWidth > 1200 ? (
             <Settings
               isOpen={isOpen.isSettingsOpen}
@@ -183,15 +187,7 @@ useEffect(() => {
                       const foundFontSize = fontSizes.find(
                         (fontSize) => fontSize === FontSize.Large
                       );
-
-                      if (foundFontSize) {
-                        updateThemeOrFontSize(undefined, FontSize.Large);
-                        setSelected((prev) => ({
-                          ...prev,
-                          fontSize: FontSize.Large,
-                        }));
-                        setIsOpen((prev) => ({ ...prev, isFontsOpen: false }));
-                      }
+                      foundFontSize && updateLoggedUserFontSize(FontSize.Large);
                     }}
                   >
                     Aa
@@ -205,15 +201,8 @@ useEffect(() => {
                       const foundFontSize = fontSizes.find(
                         (fontSize) => fontSize === FontSize.Medium
                       );
-
-                      if (foundFontSize) {
-                        updateThemeOrFontSize(undefined, FontSize.Medium);
-                        setSelected((prev) => ({
-                          ...prev,
-                          fontSize: FontSize.Medium,
-                        }));
-                        setIsOpen((prev) => ({ ...prev, isFontsOpen: false }));
-                      }
+                      foundFontSize &&
+                        updateLoggedUserFontSize(FontSize.Medium);
                     }}
                   >
                     Aa
@@ -227,15 +216,7 @@ useEffect(() => {
                       const foundFontSize = fontSizes.find(
                         (fontSize) => fontSize === FontSize.Small
                       );
-
-                      if (foundFontSize) {
-                        updateThemeOrFontSize(undefined, FontSize.Small);
-                        setSelected((prev) => ({
-                          ...prev,
-                          fontSize: FontSize.Small,
-                        }));
-                        setIsOpen((prev) => ({ ...prev, isFontsOpen: false }));
-                      }
+                      foundFontSize && updateLoggedUserFontSize(FontSize.Small);
                     }}
                   >
                     Aa
@@ -289,15 +270,7 @@ useEffect(() => {
                       <button
                         key={fontSize}
                         onClick={() => {
-                          updateThemeOrFontSize(undefined, fontSize);
-                          setSelected((prev) => ({
-                            ...prev,
-                            fontSize: fontSize,
-                          }));
-                          setIsOpen((prev) => ({
-                            ...prev,
-                            isFontsOpen: false,
-                          }));
+                          updateLoggedUserFontSize(fontSize);
                         }}
                         className={`${styles["font-size"]} ${styles[fontSize]}`}
                       >
