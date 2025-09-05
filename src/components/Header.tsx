@@ -85,10 +85,13 @@ export default function Header({ currentUser, setCurrentUser }: HeaderProps) {
   return (
     <header className={styles.header}>
       <div className={styles["logo-header"]}>
-        <img src={pokemonIcon.src} />
-        <p className={styles["header-text"]}>pokemon</p>
+        <div className={styles['logo-container']}>
+          <img src={pokemonIcon.src} />
+          <p className={styles["header-text"]}>pokemon</p>
+        </div>
+
         {currentUser && (
-          <div>
+          <div className={styles["user-info"]}>
             <p>{currentUser.username}</p>
             <button
               onClick={() => {
@@ -151,9 +154,8 @@ export default function Header({ currentUser, setCurrentUser }: HeaderProps) {
                 <p>Theme</p>
                 <div className={styles["icons-container"]}>
                   <button
-                    className={`${styles["theme-button"]} ${
-                      selected.theme === "dark" ? styles.selected : ""
-                    }`}
+                    className={`${styles["theme-button"]} ${selected.theme === "dark" ? styles.selected : ""
+                      }`}
                     onClick={() => {
                       updateThemeOrFontSize(Theme.Dark);
                       setSelected((prev) => ({ ...prev, theme: Theme.Dark }));
@@ -163,9 +165,8 @@ export default function Header({ currentUser, setCurrentUser }: HeaderProps) {
                     <span>dark</span>
                   </button>
                   <button
-                    className={`${styles["theme-button"]} ${
-                      selected.theme === "light" ? styles.selected : ""
-                    }`}
+                    className={`${styles["theme-button"]} ${selected.theme === "light" ? styles.selected : ""
+                      }`}
                     onClick={() => {
                       updateThemeOrFontSize(Theme.Light);
                       setSelected((prev) => ({ ...prev, theme: Theme.Light }));
@@ -180,9 +181,8 @@ export default function Header({ currentUser, setCurrentUser }: HeaderProps) {
                 <p>Font Size</p>
                 <div className={styles["icons-container"]}>
                   <button
-                    className={`${styles["large-font-size"]} ${
-                      selected.fontSize === "large" ? styles.selected : ""
-                    }`}
+                    className={`${styles["large-font-size"]} ${selected.fontSize === "large" ? styles.selected : ""
+                      }`}
                     onClick={() => {
                       const foundFontSize = fontSizes.find(
                         (fontSize) => fontSize === FontSize.Large
@@ -194,9 +194,8 @@ export default function Header({ currentUser, setCurrentUser }: HeaderProps) {
                     <span>large</span>
                   </button>
                   <button
-                    className={`${styles["medium-font-size"]} ${
-                      selected.fontSize === "medium" ? styles.selected : ""
-                    }`}
+                    className={`${styles["medium-font-size"]} ${selected.fontSize === "medium" ? styles.selected : ""
+                      }`}
                     onClick={() => {
                       const foundFontSize = fontSizes.find(
                         (fontSize) => fontSize === FontSize.Medium
@@ -209,9 +208,8 @@ export default function Header({ currentUser, setCurrentUser }: HeaderProps) {
                     <span>medium</span>
                   </button>
                   <button
-                    className={`${styles["small-font-size"]} ${
-                      selected.fontSize === "small" ? styles.selected : ""
-                    }`}
+                    className={`${styles["small-font-size"]} ${selected.fontSize === "small" ? styles.selected : ""
+                      }`}
                     onClick={() => {
                       const foundFontSize = fontSizes.find(
                         (fontSize) => fontSize === FontSize.Small
@@ -254,9 +252,8 @@ export default function Header({ currentUser, setCurrentUser }: HeaderProps) {
                       isFontsOpen: !prev.isFontsOpen,
                     }));
                   }}
-                  className={`${styles["font-settings"]} ${
-                    styles[selected.fontSize]
-                  }`}
+                  className={`${styles["font-settings"]} ${styles[selected.fontSize]
+                    }`}
                 >
                   Aa
                 </button>
