@@ -161,62 +161,65 @@ export default function Home() {
   return (
     <>
       <div className={styles["pokedex-content"]}>
-        <div className={styles["control-bar"]}>
-          <input
-            type="text"
-            placeholder="Search..."
-            onChange={(event) => {
-              setSearchValue(event.target.value);
-            }}
-          />
-          <section className={styles["filter-and-sort-container"]}>
-            <Select
-              isOpen={isOpen.isFilterOpen}
-              setIsOpen={() => setFilterOrSortOpen(true)}
-              options={types}
-              title="filter"
-              multiple={true}
-              selectedOptions={selectedTypes}
-              setSelectedOptions={setSelectedTypes}
-            />
-
-            <Select
-              isOpen={isOpen.isSortOpen}
-              setIsOpen={() => setFilterOrSortOpen(false)}
-              options={Object.values(sortOptions)}
-              title="sort"
-              multiple={false}
-              selectedOptions={sortOption}
-              setSelectedOptions={setSortOption}
-            />
-          </section>
-        </div>
-
-        <div
-          className={styles["digimons-container"]}
-          data-is-centered={
-            filteredDigimons.length < digimons.length || undefined
-          }
-        >
-          {filteredDigimons.map((digimon: Digimon) => (
-            <Card
-              key={digimon.id}
-              card={digimon}
-              digimon={
-                digimonProperties[digimon.id] || {
-                  type: "",
-                  level: "",
-                }
-              }
-              onClick={() => {
-                setSelectedDigimon(digimon);
-                setIsOpen((prev) => ({
-                  ...prev,
-                  isModalOpen: !prev.isModalOpen,
-                }));
+        <div className={styles["test-container"]}>
+          <div className={styles["control-bar"]}>
+            <input
+              type="text"
+              placeholder="Search..."
+              onChange={(event) => {
+                setSearchValue(event.target.value);
               }}
             />
-          ))}
+            <section className={styles["filter-and-sort-container"]}>
+              <Select
+                isOpen={isOpen.isFilterOpen}
+                setIsOpen={() => setFilterOrSortOpen(true)}
+                options={types}
+                title="filter"
+                multiple={true}
+                selectedOptions={selectedTypes}
+                setSelectedOptions={setSelectedTypes}
+              />
+
+              <Select
+                isOpen={isOpen.isSortOpen}
+                setIsOpen={() => setFilterOrSortOpen(false)}
+                options={Object.values(sortOptions)}
+                title="sort"
+                multiple={false}
+                selectedOptions={sortOption}
+                setSelectedOptions={setSortOption}
+              />
+            </section>
+          </div>
+        </div>
+        <div className={styles["test-container"]}>
+          <div
+            className={styles["digimons-container"]}
+            data-is-centered={
+              filteredDigimons.length < digimons.length || undefined
+            }
+          >
+            {filteredDigimons.map((digimon: Digimon) => (
+              <Card
+                key={digimon.id}
+                card={digimon}
+                digimon={
+                  digimonProperties[digimon.id] || {
+                    type: "",
+                    level: "",
+                  }
+                }
+                onClick={() => {
+                  setSelectedDigimon(digimon);
+                  setIsOpen((prev) => ({
+                    ...prev,
+                    isModalOpen: !prev.isModalOpen,
+                  }));
+                }}
+              />
+            ))}
+          </div>
         </div>
       </div>
 
