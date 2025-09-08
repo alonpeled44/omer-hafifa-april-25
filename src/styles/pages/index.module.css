@@ -13,8 +13,6 @@
       display: flex;
       justify-content: space-between;
 
-      padding-inline: 12px;
-
       & input {
         border: none;
         border-bottom: 2px solid rgb(0, 0, 0);
@@ -117,12 +115,14 @@
       }
     }
 
-    & .digimons-container {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
+    & .test-container {
+      & .digimons-container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
 
-      padding-inline: 10px;
+        padding-inline: 10px;
+      }
     }
   }
 

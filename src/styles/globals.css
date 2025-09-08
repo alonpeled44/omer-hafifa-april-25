@@ -29,16 +29,14 @@
 }
 
 html {
-  width: 100vw;
   min-height: 100vh;
+  max-width: 100vw;
 }
 
 body {
   min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-
-
+  display: flex;
+  flex-direction: column;
 
   background-image: url("../images/pokemon-background-image.jpg");
   background-size: cover;

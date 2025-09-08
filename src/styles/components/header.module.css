@@ -10,6 +10,15 @@
   & .logo-header {
     display: flex;
     align-items: center;
+
+    & .logo-container {
+      display: flex;
+      align-items: center;
+    }
+
+    & .user-info {
+      display: flex;
+    }
   }
 
   & p {
@@ -126,10 +135,6 @@
     justify-content: center;
     background-color: transparent;
 
-
-
-
-
     & .logo-header {
       flex-direction: column;
 
@@ -147,9 +152,7 @@
       .user-info {
         display: flex;
       }
-
     }
-
 
     & .right-section {
       position: absolute;
