@@ -11,7 +11,7 @@
       height: 36px;
 
       display: flex;
-      justify-content: space-between;
+      justify-content: space-around;
 
       & input {
         border: none;
@@ -23,7 +23,7 @@
 
       & input::placeholder {
         color: rgb(255, 69, 0);
-        font-size: 2rem;
+        font-size: 1.6rem;
         font-weight: 600;
       }
 
@@ -94,28 +94,22 @@
     flex-direction: column;
     align-items: center;
 
-    & .control-bar {
-      height: 32px;
-
-      gap: 68px;
-
-      & input {
-        width: 108px;
-      }
-
-      & input::placeholder {
-        font-size: 1.6rem;
-      }
-
-      & .filter-and-sort-container {
-        height: 100%;
-        width: 68%;
-
-        gap: 12px;
-      }
-    }
-
     & .test-container {
+      & .control-bar {
+        height: 32px;
+
+        & input {
+        }
+
+        & input::placeholder {
+          font-size: 1.6rem;
+        }
+
+        & .filter-and-sort-container {
+          height: 100%;
+        }
+      }
+
       & .digimons-container {
         display: flex;
         flex-wrap: wrap;
