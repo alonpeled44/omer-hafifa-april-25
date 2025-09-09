@@ -106,6 +106,13 @@
         }
 
         & input::placeholder {
+          font-size: 0.8rem;
+        }
+
+        & input:focus {
+          border: none;
+          border-bottom: 1px solid rgb(0, 0, 0);
+          outline: none;
           font-size: 1rem;
         }
 
