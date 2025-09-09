@@ -43,20 +43,21 @@
 
 @media screen and (max-width: 1200px) {
   .card {
-    height: 260px;
-    width: 232px;
+    height: 160px;
+    width: 124px;
 
     flex-direction: column-reverse;
+    justify-content: center;
     align-items: center;
     gap: 12px;
 
     & img {
-      height: 204px;
-      width: 224px;
+      height: 72%;
+      width: 92%;
     }
 
     & p {
-      font-size: 1.5rem;
+      font-size: 1.2rem;
     }
   }
 }

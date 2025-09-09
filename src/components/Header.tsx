@@ -97,6 +97,7 @@ export default function Header({ currentUser, setCurrentUser }: HeaderProps) {
             <div className={styles["user-info"]}>
               <p>{currentUser.username}</p>
               <button
+                className={styles["log-out-button"]}
                 onClick={() => {
                   setCurrentUser(null);
                   localStorage.removeItem("id");

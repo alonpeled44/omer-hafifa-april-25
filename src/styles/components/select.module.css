@@ -65,20 +65,21 @@
     width: 48%;
 
     & .head {
+      width: 96%;
       font-size: 1.4rem;
     }
 
     & .options {
       top: 20px;
 
-      width: 100%;
+      width: 96%;
 
       padding-top: 4px;
 
       & .option {
         width: 68%;
 
-        font-size: 1.2rem;
+        font-size: 0.75rem;
       }
     }
   }

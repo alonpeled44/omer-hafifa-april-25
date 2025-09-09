@@ -139,7 +139,7 @@
       flex-direction: column;
 
       & p {
-        font-size: 3.5rem;
+        font-size: 2.5rem;
       }
 
       & .logo-container {
@@ -151,6 +151,11 @@
 
       .user-info {
         display: flex;
+        align-items: center;
+
+        & .log-out-button {
+          height: 50%;
+        }
       }
     }
 
