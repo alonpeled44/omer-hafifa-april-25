@@ -152,6 +152,7 @@
       .user-info {
         display: flex;
         align-items: center;
+        gap: 8px;
 
         & .log-out-button {
           height: 50%;

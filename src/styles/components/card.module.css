@@ -52,12 +52,8 @@
     gap: 12px;
 
     & img {
-      height: 72%;
-      width: 92%;
-    }
-
-    & p {
-      font-size: 1.2rem;
+      height: 64%;
+      width: 88%;
     }
   }
 }
