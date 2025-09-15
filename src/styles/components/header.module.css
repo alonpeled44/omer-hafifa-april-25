@@ -18,6 +18,11 @@
 
     & .user-info {
       display: flex;
+
+      & .log-out-button {
+        white-space: nowrap;
+        padding: 0 1rem;
+      }
     }
   }
 

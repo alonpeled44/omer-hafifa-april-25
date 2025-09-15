@@ -93,7 +93,7 @@ export default function Header({ currentUser, setCurrentUser }: HeaderProps) {
 
         {currentUser && (
           <>
-            <HorizontalDivider />
+            <HorizontalDivider height="100%" width="8px" />
             <div className={styles["user-info"]}>
               <p>{currentUser.username}</p>
               <button
@@ -115,7 +115,7 @@ export default function Header({ currentUser, setCurrentUser }: HeaderProps) {
                 Log out
               </button>
             </div>
-            <HorizontalDivider />
+            <HorizontalDivider height="100%" width="8px" />
           </>
         )}
       </div>

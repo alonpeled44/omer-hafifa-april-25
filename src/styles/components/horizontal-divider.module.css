@@ -1,6 +1,8 @@
 .horizontal-divider {
-    height: 100%;
-    width: 100%;
+  height: var(--divider-height);
+  width: var(--divider-width);
 
-    background-color: rgb(0, 0, 0);
+  margin-inline: 4px;
+
+  background-color: rgb(0, 0, 0);
 }
