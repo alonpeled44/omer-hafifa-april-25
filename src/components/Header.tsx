@@ -122,6 +122,9 @@ export default function Header({ currentUser, setCurrentUser }: HeaderProps) {
 
       <div
         className={styles["right-section"]}
+        user-not-logged-in-small-screen={
+          (currentUser === null && screenWidth < 1200) || undefined
+        }
         settings-open={isOpen.isSettingsOpen || undefined}
       >
         {screenWidth > 1200 && (

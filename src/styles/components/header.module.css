@@ -193,6 +193,10 @@
         background: none;
       }
 
+      &[user-not-logged-in-small-screen="true"] {
+        display: none;
+      }
+
       &[settings-open="true"] {
         border-radius: 60px;
         border: 1px solid rgb(0, 0, 0);
