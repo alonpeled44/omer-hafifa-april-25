@@ -1,7 +1,8 @@
 .login-form {
   position: relative;
-  width: 55%;
+
   height: 65%;
+  width: 55%;
 
   display: flex;
   flex-direction: column;
@@ -16,12 +17,13 @@
 
   & h1 {
     margin-bottom: 30px;
+
     font-size: 4.4rem;
   }
 
   & .inputs {
-    width: 70%;
     height: 10%;
+    width: 70%;
 
     display: flex;
     flex-direction: column;
@@ -29,6 +31,7 @@
 
     & input {
       padding-block: 15px;
+
       border: none;
       border-bottom: 2px solid rgb(0, 0, 0);
       background-color: transparent;
@@ -51,6 +54,7 @@
       position: absolute;
       left: 0;
       bottom: 205px;
+
       width: 100%;
 
       text-align: center;
@@ -61,8 +65,8 @@
   }
 
   & .buttons {
-    width: min(470px, 70%);
     height: 100px;
+    width: min(470px, 70%);
 
     display: flex;
     align-items: center;
@@ -108,6 +112,7 @@
 @media screen and (max-width: 1200px) {
   .login-form {
     width: 100%;
+
     justify-content: space-between;
     gap: 70px;
 
@@ -127,8 +132,8 @@
       }
 
       & .error-message {
-        left: 0;
         top: 105px;
+        left: 0;
       }
     }
 
@@ -144,6 +149,7 @@
 
       & .guest-button {
         width: 100%;
+
         font-size: 2.75rem;
       }
     }
