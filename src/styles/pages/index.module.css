@@ -119,14 +119,11 @@
       & .filter-and-sort-container {
         height: 100%;
         width: 76%;
-
-        flex-shrink: 0;
       }
     }
 
     & .digimons-container {
       display: flex;
-      flex-wrap: wrap;
       justify-content: center;
 
       padding-inline: 10px;

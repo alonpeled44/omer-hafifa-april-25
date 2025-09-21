@@ -43,9 +43,6 @@
     align-items: center;
 
     & .date {
-      display: flex;
-      align-items: center;
-
       padding-right: 10px;
 
       color: rgb(127, 255, 212);
