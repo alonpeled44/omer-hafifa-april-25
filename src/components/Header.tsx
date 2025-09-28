@@ -4,12 +4,12 @@ import { useScreenWidth } from "../libs/ScreenContext";
 import { updateUserSettings } from "@/libs/useUser";
 import { FontSize, Theme, User } from "@/libs/types";
 import Settings from "./Settings";
+import HorizontalDivider from "./HorizontalDivider";
 import pokemonIcon from "../images/pokemon-photo.png";
 import settingsIcon from "../images/settings-icon.png";
 import brightIcon from "../images/bright-mode-icon.png";
 import darkIcon from "../images/dark-mode-icon.png";
 import styles from "../styles/components/header.module.css";
-import HorizontalDivider from "./HorizontalDivider";
 
 interface HeaderProps {
   currentUser: User | null;
