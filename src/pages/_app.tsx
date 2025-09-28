@@ -2,10 +2,10 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import { ScreenWidthProvider } from "../libs/ScreenContext";
 import { DigimonsDbProvider } from "../libs/DigimonsDbContext";
-import Header from "../components/Header";
-import "../styles/globals.css";
 import { getUserById } from "@/libs/useUser";
 import { FontSize, Theme, User } from "@/libs/types";
+import Header from "../components/Header";
+import "../styles/globals.css";
 
 export default function App({ Component, pageProps }) {
   return (
@@ -37,7 +37,7 @@ function InnerApp({ Component, pageProps }) {
       const storedId = localStorage.getItem("id");
 
       if (!storedId) {
-        if (router.pathname !== "/login"){
+        if (router.pathname !== "/login") {
           router.push("/login");
         }
       } else if (storedId === "0") {

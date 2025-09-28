@@ -10,9 +10,7 @@
     height: 36px;
 
     display: flex;
-    justify-content: space-between;
-
-    padding-inline: 12px;
+    justify-content: space-around;
 
     & input {
       border: none;
@@ -24,7 +22,7 @@
 
     & input::placeholder {
       color: rgb(255, 69, 0);
-      font-size: 2rem;
+      font-size: 1.6rem;
       font-weight: 600;
     }
 
@@ -48,8 +46,9 @@
     justify-content: space-between;
     gap: 28px;
 
-    overflow-y: auto;
     padding-inline: 100px;
+
+    overflow-y: auto;
 
     &[data-is-centered] {
       justify-content: center;
@@ -96,29 +95,35 @@
 
     & .control-bar {
       height: 32px;
-      width: 92%;
+      width: 80%;
 
-      gap: 68px;
+      gap: 8px;
 
       & input {
-        width: 108px;
+        width: 12%;
+
+        flex-grow: 1;
       }
 
       & input::placeholder {
-        font-size: 1.6rem;
+        font-size: 0.8rem;
+      }
+
+      & input:focus {
+        border: none;
+        border-bottom: 1px solid rgb(0, 0, 0);
+        outline: none;
+        font-size: 1rem;
       }
 
       & .filter-and-sort-container {
         height: 100%;
-        width: 68%;
-
-        gap: 12px;
+        width: 76%;
       }
     }
 
     & .digimons-container {
       display: flex;
-      flex-wrap: wrap;
       justify-content: center;
 
       padding-inline: 10px;
@@ -141,12 +146,13 @@
     }
 
     & .slide-up-image {
-      height: 80%;
+      height: 68%;
+
       aspect-ratio: 9 /12;
     }
   }
 
   & .digimon-profile {
-    font-size: clamp(10px, 6vw, 68px);
+    font-size: clamp(10px, 5.6vw, 68px);
   }
 }

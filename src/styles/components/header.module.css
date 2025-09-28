@@ -1,6 +1,6 @@
 .header {
-  width: 100%;
   height: 70px;
+  width: 100%;
 
   display: flex;
   justify-content: space-between;
@@ -10,6 +10,21 @@
   & .logo-header {
     display: flex;
     align-items: center;
+
+    & .logo-container {
+      display: flex;
+      align-items: center;
+    }
+
+    & .user-info {
+      display: flex;
+      gap: 8px;
+
+      & .log-out-button {
+        padding: 0 1rem;
+        white-space: nowrap;
+      }
+    }
   }
 
   & p {
@@ -28,9 +43,6 @@
     align-items: center;
 
     & .date {
-      display: flex;
-      align-items: center;
-
       padding-right: 10px;
 
       color: rgb(127, 255, 212);
@@ -41,8 +53,8 @@
     }
 
     & img {
-      height: 52px;
-      width: 52px;
+      height: 48px;
+      width: 48px;
     }
 
     & .settings-icon {
@@ -58,7 +70,7 @@
       & p {
         flex: 1;
         text-align: center;
-        font-size: 4rem;
+        font-size: 3.6rem;
       }
 
       & .icons-container {
@@ -93,6 +105,7 @@
             left: 50%;
 
             transform: translateX(-50%);
+
             text-align: center;
             white-space: nowrap;
             font-size: 1.2rem;
@@ -122,17 +135,35 @@
 @media screen and (max-width: 1200px) {
   .header {
     position: relative;
-    height: 170px;
     justify-content: center;
+
+    padding: 50px 0;
+
     background-color: transparent;
 
-    & p {
-      font-size: 3.5rem;
-    }
-
     & .logo-header {
-      flex-direction: row-reverse;
-      padding-top: 60px;
+      flex-direction: column;
+
+      & p {
+        font-size: 2.5rem;
+      }
+
+      & .logo-container {
+        display: flex;
+        flex-direction: row-reverse;
+        align-items: center;
+        gap: 8px;
+      }
+
+      .user-info {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+
+        & .log-out-button {
+          height: 50%;
+        }
+      }
     }
 
     & .right-section {
@@ -160,6 +191,10 @@
         border: 1px solid rgb(0, 0, 0);
         border-radius: 22px;
         background: none;
+      }
+
+      &[user-not-logged-in-small-screen="true"] {
+        display: none;
       }
 
       &[settings-open="true"] {

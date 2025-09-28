@@ -4,6 +4,7 @@ import { useScreenWidth } from "../libs/ScreenContext";
 import { updateUserSettings } from "@/libs/useUser";
 import { FontSize, Theme, User } from "@/libs/types";
 import Settings from "./Settings";
+import HorizontalDivider from "./HorizontalDivider";
 import pokemonIcon from "../images/pokemon-photo.png";
 import settingsIcon from "../images/settings-icon.png";
 import brightIcon from "../images/bright-mode-icon.png";
@@ -85,34 +86,45 @@ export default function Header({ currentUser, setCurrentUser }: HeaderProps) {
   return (
     <header className={styles.header}>
       <div className={styles["logo-header"]}>
-        <img src={pokemonIcon.src} />
-        <p className={styles["header-text"]}>pokemon</p>
+        <div className={styles["logo-container"]}>
+          <img src={pokemonIcon.src} />
+          <p className={styles["header-text"]}>pokemon</p>
+        </div>
+
         {currentUser && (
-          <div>
-            <p>{currentUser.username}</p>
-            <button
-              onClick={() => {
-                setCurrentUser(null);
-                localStorage.removeItem("id");
-                document.documentElement.setAttribute(
-                  "data-theme",
-                  Theme.Light
-                );
-                document.documentElement.setAttribute(
-                  "data-font-size",
-                  FontSize.Medium
-                );
-                router.push("/login");
-              }}
-            >
-              Log out
-            </button>
-          </div>
+          <>
+            <HorizontalDivider height="100%" width="8px" />
+            <div className={styles["user-info"]}>
+              <p>{currentUser.username}</p>
+              <button
+                className={styles["log-out-button"]}
+                onClick={() => {
+                  setCurrentUser(null);
+                  localStorage.removeItem("id");
+                  document.documentElement.setAttribute(
+                    "data-theme",
+                    Theme.Light
+                  );
+                  document.documentElement.setAttribute(
+                    "data-font-size",
+                    FontSize.Medium
+                  );
+                  router.push("/login");
+                }}
+              >
+                Log out
+              </button>
+            </div>
+            <HorizontalDivider height="100%" width="8px" />
+          </>
         )}
       </div>
 
       <div
         className={styles["right-section"]}
+        user-not-logged-in-small-screen={
+          currentUser === null && screenWidth < 1200 ? "true" : undefined
+        }
         settings-open={isOpen.isSettingsOpen || undefined}
       >
         {screenWidth > 1200 && (

@@ -1,7 +1,8 @@
 .login-form {
   position: relative;
-  width: 55%;
+
   height: 65%;
+  width: 55%;
 
   display: flex;
   flex-direction: column;
@@ -10,17 +11,19 @@
   gap: 80px;
 
   border-radius: 10px;
-  background-color: rgb(255,165,0);
-  box-shadow: 1px 1px 20px 1px rgb(255,165,0), 1px 1px 20px 1px rgb(255,165,0);
+  background-color: rgb(255, 165, 0);
+  box-shadow: 1px 1px 20px 1px rgb(255, 165, 0),
+    1px 1px 20px 1px rgb(255, 165, 0);
 
   & h1 {
     margin-bottom: 30px;
+
     font-size: 4.4rem;
   }
 
   & .inputs {
-    width: 70%;
     height: 10%;
+    width: 70%;
 
     display: flex;
     flex-direction: column;
@@ -28,10 +31,11 @@
 
     & input {
       padding-block: 15px;
+
       border: none;
       border-bottom: 2px solid rgb(0, 0, 0);
       background-color: transparent;
-      font-size: 2.2rem;
+      font-size: 1.7rem;
     }
 
     & input::placeholder {
@@ -50,6 +54,7 @@
       position: absolute;
       left: 0;
       bottom: 205px;
+
       width: 100%;
 
       text-align: center;
@@ -60,8 +65,8 @@
   }
 
   & .buttons {
-    width: min(470px, 70%);
     height: 100px;
+    width: min(470px, 70%);
 
     display: flex;
     align-items: center;
@@ -107,6 +112,7 @@
 @media screen and (max-width: 1200px) {
   .login-form {
     width: 100%;
+
     justify-content: space-between;
     gap: 70px;
 
@@ -126,14 +132,14 @@
       }
 
       & .error-message {
-        left: 0;
         top: 105px;
+        left: 0;
       }
     }
 
     & .buttons {
       height: auto;
-      
+
       flex-direction: column;
       gap: 21px;
 
@@ -143,7 +149,7 @@
 
       & .guest-button {
         width: 100%;
-        font-size: 2.75rem;
+        font-size: 2.5rem;
       }
     }
   }

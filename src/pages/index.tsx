@@ -174,7 +174,7 @@ export default function Home() {
               isOpen={isOpen.isFilterOpen}
               setIsOpen={() => setFilterOrSortOpen(true)}
               options={types}
-              title="filter by"
+              title="filter"
               multiple={true}
               selectedOptions={selectedTypes}
               setSelectedOptions={setSelectedTypes}
@@ -184,7 +184,7 @@ export default function Home() {
               isOpen={isOpen.isSortOpen}
               setIsOpen={() => setFilterOrSortOpen(false)}
               options={Object.values(sortOptions)}
-              title="sort by"
+              title="sort"
               multiple={false}
               selectedOptions={sortOption}
               setSelectedOptions={setSortOption}
